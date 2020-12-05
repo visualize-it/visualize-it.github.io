@@ -64,8 +64,15 @@
         <center>
             <canvas id="sine-cosine"></canvas>
             <p id="angle-1"></p>
+            <p id="sin"></p>
+            <p id="cos"></p>
+            <p>Adjust angle using the following slider:</p>
             <div class="slidecontainer">
-                <input type="range" min="0" max="360" value="30" id="slider-1" onchange="update_1()" class="slider">
+                <input type="range" min="0" max="360" value="30" id="slider-1" onchange="update_1('slide')" class="slider">
+            </div>
+            <p>Or, type the angle here:</p>
+            <div style="width: 30%">
+                <input type="number" max="360" min="0" id="type-1" onchange="update_1('typed')">
             </div>
         </center>
         <br />

@@ -6,6 +6,12 @@ p {
   color: white;
 }
 
+input{
+    color: white;
+    width: 50%;
+    text-align: center;
+}
+
 b {
   color: white;
 }

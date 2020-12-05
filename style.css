@@ -1,0 +1,27 @@
+body
+{
+    background-color: black;
+}
+
+p
+{
+    color: white;
+}
+
+a
+{
+    color: lightblue;
+}
+
+h4
+{
+    color: white;
+    text-align: center;
+}
+
+#main-heading
+{
+    margin-top: 0mm;
+    padding: 5mm;
+    text-align: center;
+}

@@ -42,11 +42,34 @@ function drawRaw() {
     context.stroke();
 }
 
+function drawLine() {
+    context.strokeStyle = "#ffffff";
+    context.beginPath();
+    context.moveTo(canvas_width / 2, canvas_height / 2);
+    context.lineTo(canvas_width / 2 + (Math.cos(Math.PI * slider_1.value / 180)) * canvas_height / 3, canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
+    context.stroke();
+}
+
+function drawPerpendiculars() {
+    context.strokeStyle = "#ffffff";
+    context.beginPath();
+    context.moveTo(canvas_width / 2 + (Math.cos(Math.PI * slider_1.value / 180)) * canvas_height / 3, canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
+    context.lineTo(canvas_width / 2 ,canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
+    context.stroke();
+
+    context.strokeStyle = "#ffffff";
+    context.beginPath();
+    context.moveTo(canvas_width / 2 + (Math.cos(Math.PI * slider_1.value / 180)) * canvas_height / 3, canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
+    context.lineTo(canvas_width / 2 + (Math.cos(Math.PI * slider_1.value / 180)) * canvas_height / 3, canvas_height / 2);
+    context.stroke();
+}
+
 function render() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
 
     drawRaw();
+    drawPerpendiculars();
 }
 
 function update_1() {
@@ -68,5 +91,14 @@ window.onload = function () {
 
 function step() {
     render();
+    drawLine();
     animate(step);
 };
+
+function distance(x1, y1, x2, y2) {
+    return Math.sqrt((x1 - x2)^2 + (y2 - y1)^2);
+}
+
+function radian(degrees) {
+    return (Math.PI * degrees / 180);
+}

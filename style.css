@@ -34,6 +34,11 @@ h5 {
   text-align: center;
 }
 
+h6 {
+  color: white;
+  text-align: center;
+}
+
 ul li::before {
   color: white;
 }

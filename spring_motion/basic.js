@@ -1,4 +1,8 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
+let fps = 30;
+
+let canvas = document.getElementById("spring-canvas");
+let context = canvas.getContext("2d");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -12,7 +16,10 @@ if (mobile) {
 else {
     canvas_width = 0.5 * screen_width;
 }
-canvas_height = canvas_width / 1.6;
+canvas_height = 70;
+
+canvas.width = canvas_width;
+canvas.height = canvas_height;
 
 let animate = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -20,28 +27,3 @@ let animate = window.requestAnimationFrame
     || function (callback) {
         window.setTimeout(callback, 1000 / fps);
     };
-
-window.onload = function () {
-    slider_1.value = 30;
-    slider_2.value = 45;
-    slider_3.value = 60;
-    update_1('slide');
-    update_2('slide');
-    update_3('slide');
-    animate(step);
-}
-
-function step() {
-    render_1();
-    render_2();
-    render_3();
-    animate(step);
-};
-
-function distance(x1, y1, x2, y2) {
-    return Math.sqrt((x1 - x2)^2 + (y2 - y1)^2);
-}
-
-function radian(degrees) {
-    return (Math.PI * degrees / 180);
-}

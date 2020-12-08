@@ -36,6 +36,7 @@ function prepare() {
 function calcScaling() {
     max_displacement = Math.sqrt(Math.pow(position, 2) + (mass * Math.pow(velocity, 2) / spring_const));
     scaling_factor = canvas_width / (2 * max_displacement);
+    scale_display.innerHTML = `Scale: ${(canvas_width/2).toFixed(0)} pixels = ${max_displacement.toFixed(2)} length units`;
 }
 
 function calcThreads() {
@@ -119,6 +120,12 @@ function initialParams() {
     precision_input.value = `${precision_factor}`;
 }
 
+function displayParams() {
+    position_display.innerHTML = `Position: ${position.toFixed(4)} units`;
+    velocity_display.innerHTML = `Velocity: ${velocity.toFixed(4)} units`;
+    acceleration_display.innerHTML = `Acceleration: ${accn.toFixed(4)} units`;
+}
+
 window.onload = function () {
     initialParams();
     prepare();
@@ -129,6 +136,7 @@ function step() {
     if (!paused) {
         update();
     }
+    displayParams();
     render();
     animate(step);
 };

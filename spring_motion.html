@@ -37,9 +37,37 @@
     <center>
         <canvas id="spring-canvas"></canvas>
     </center>
+    <center>
+        <button id="pause" class="btn blue" onclick="button('pause')" >Pause</button>
+        <button class="btn blue" onclick="button('restart')" >Restart</button>
+    </center>
+    <br>
+    <div class="container" style="color: white">
+        <div class="row">
+            <div class="col m6">
+                <center>
+                    Initial position:
+                    <input id="position" type="number">
+                    Initial velocity:
+                    <input id="velocity" type="number">
+                    Spring constant:
+                    <input id="spring-constant" type="number">
+                </center>
+            </div>
+            <div class="col m6">
+                <center>
+                    Mass of spring:
+                    <input id="mass" type="number">
+                    Damping constant:
+                    <input placeholder="Enter '0' for ignoring air resistance" id="damping" type="number">
+                    Precision:
+                    <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10">
+                </center>
+            </div>
+        </div>
+    </div>
+    <center>
+        <button class="btn blue waves-effect" onclick="button('simulate')">Simulate</button>
+    </center>
   </div>
-  <center>
-      <button class="btn blue" onclick="button('pause')" >Pause</button>
-      <button class="btn blue" onclick="button('restart')" >Restart</button>
-  </center>
 </html>

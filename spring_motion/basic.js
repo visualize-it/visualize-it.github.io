@@ -4,6 +4,15 @@ let fps = 30;
 let canvas = document.getElementById("spring-canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause");
+
+let position_input = document.getElementById("position");
+let velocity_input = document.getElementById("velocity");
+let spring_constant_input = document.getElementById("spring-constant");
+let spring_mass_input = document.getElementById("mass");
+let damping_input = document.getElementById("damping");
+let precision_input = document.getElementById("precision");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

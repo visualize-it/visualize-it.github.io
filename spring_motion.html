@@ -1,78 +1,105 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Spring Motion | Visualize It</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Materialize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="spring_motion/basic.js" defer></script>
-    <script src="spring_motion/spring.js" defer></script>
+<head>
+  <title>Spring Motion | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="nav-extended" style="background:black; margin-top: 0mm">
-      <div class="nav-wrapper">
-        <h3 id="main-heading">Visualize It</h3>
-      </div>
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a href="index.html">Home</a></li>
-          <li class="tab"><a href="about.html">Abt</a></li>
-        </ul>
-      </div>
-    </nav>
-  </body>
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="spring_motion/basic.js" defer></script>
+  <script src="spring_motion/spring.js" defer></script>
 
-  <div class="text">
-    <h4>Simulation of Spring Motion</h4>
-    <center>
-        <canvas id="spring-canvas"></canvas>
-    </center>
-    <center>
-        <button id="pause" class="btn blue" onclick="button('pause')" >Pause</button>
-        <button class="btn blue" onclick="button('restart')" >Restart</button>
-        <br>
-        <p id="scale-display"></p>
-        <p id="position-display"></p>
-        <p id="velocity-display"></p>
-        <p id="acceleration-display"></p>
-    </center>
-    <br>
-    <div class="container" style="color: white">
-        <div class="row">
-            <div class="col m6">
-                <center>
-                    Initial position:
-                    <input id="position" type="number">
-                    Initial velocity:
-                    <input id="velocity" type="number">
-                    Spring constant:
-                    <input id="spring-constant" type="number">
-                </center>
-            </div>
-            <div class="col m6">
-                <center>
-                    Mass of spring:
-                    <input id="mass" type="number">
-                    Damping constant:
-                    <input placeholder="Enter '0' for ignoring air resistance" id="damping" type="number">
-                    Precision:
-                    <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10">
-                </center>
-            </div>
-        </div>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
     </div>
-    <center>
-        <button class="btn blue waves-effect pulse" onclick="button('simulate')">Simulate</button>
-    </center>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="index.html">Home</a></li>
+        <li class="tab"><a href="about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h4>Simulation of Spring Motion</h4>
+  <p>Spring motion belongs to a subset of periodic motion known as Simple Harmonic Motion (SHM), where the restoring
+    force is directly proportional to the objects displacement magnitude and acts towards the objects equilibrium
+    position. The proportionality factor between restoring force and displacement plays a key role in determining the
+    time period of motion. It is commonly denoted by &omega;^2.
+  </p>
+  <p>
+    For a spring, &omega;^2 is given by k/m. Where 'k' is known as spring constant. It is the
+    magnitude ofrestoring force developed for unit displacement of the edge of the spring from its equilibrium position.
+    In essence, it quantifies the 'stiffness' of the spring. 'm' is mass of the spring.
+  </p>
+  <p>
+    The time period of SHM is universally given by 2&pi;/&omega;. For a spring, T = 2&pi;&Sqrt;(m/k). Frequency of
+    vibration is given by 1/T. For a spring, f = 1/2&pi;&Sqrt;(k/m). Hence, a lighter but stiffer spring oscillates
+    fasterthan a heavier but looser spring. In the below interactive simulation, increase 'k' or decrease 'm' and
+    observe what happens to the frequency of oscillation:
+  </p>
+  <center>
+    <canvas id="spring-canvas"></canvas>
+  </center>
+  <center>
+    <button id="pause" class="btn blue" onclick="button('pause')">Pause</button>
+    <button class="btn blue" onclick="button('restart')">Restart</button>
+    <br>
+    <br>
+    <b>If you wish to repeat a simulation with the previous parameters, then press 'restart'</b>
+    <br>
+    <p id="scale-display"></p>
+    <p id="position-display"></p>
+    <p id="velocity-display"></p>
+    <p id="acceleration-display"></p>
+    <button class="btn blue waves-effect pulse" onclick="button('simulate')">Simulate</button>
+    <br>
+    <br>
+    <b>If you've changed the below parameters, then click on 'simulate' to consider the new parameters</b>
+  </center>
+  <br>
+  <div class="container" style="color: white">
+    <div class="row">
+      <div class="col m6">
+        <center>
+          Initial position:
+          <input id="position" type="number">
+          Initial velocity:
+          <input id="velocity" type="number">
+          Spring constant:
+          <input id="spring-constant" type="number">
+        </center>
+      </div>
+      <div class="col m6">
+        <center>
+          Mass of spring:
+          <input id="mass" type="number">
+          Damping constant:
+          <input placeholder="Enter '0' for ignoring air resistance" id="damping" type="number">
+          Precision:
+          <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10">
+        </center>
+      </div>
+    </div>
   </div>
+  <b>Relationship of SHM with sines and cosine:</b><br>
+  <p>
+    Any periodic function can be expressed as a superposition of sines and cosine. Fourier transformation deals with
+    determining this superposition for a given periodic function. However, in the case of SHM (under non-dissipative
+    conditions), this relationship is hard to miss. Perform the above simulation with a damping constant of 0 and
+    observe the cosine wave being generated.
+  </p>
+</div>
+
 </html>

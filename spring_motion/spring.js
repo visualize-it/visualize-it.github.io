@@ -1,11 +1,11 @@
 // initial params
 let init_position = 50;
-let init_velocity = -100;
+let init_velocity = 0;
 
 // constants
-let spring_const = 10;
+let spring_const = 100;
 let mass = 5;
-let damping = 0.1
+let damping = 0.3;
 
 // spring params
 let position = 0;
@@ -15,6 +15,10 @@ let accn = 0;
 // spring threads
 let threads = [];
 let num_threads = 20;
+
+// wave
+let points = [];
+let num_points = canvas_height - 70;
 
 // simulation params
 let precision_factor = 2;
@@ -64,6 +68,7 @@ function button(button) {
 
         paused = false;
         pause_button.innerHTML = "Pause";
+        points = [];
     }
     else if(button == 'simulate') {
         init_position = parseFloat(position_input.value);
@@ -76,6 +81,7 @@ function button(button) {
         paused = false;
         pause_button.innerHTML = "Pause";
         prepare();
+        points = [];
     }
 }
 
@@ -84,11 +90,29 @@ function update() {
     velocity = velocity + (accn * precision);
     position = position + (velocity * precision);
     calcThreads();
+
+    if(points.length == num_points) {
+        points.pop();
+    }
+    points.unshift({
+        x: origin + (position * scaling_factor),
+        y: 80,
+    })
+
+    for(let i = 0; i < points.length; i++) {
+        points[i].y += 1;
+    }
 }
 
 function render() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
+
+    context.strokeStyle = "#ffffff";
+    context.beginPath();
+    context.moveTo(origin, 0);
+    context.lineTo(origin, 400);
+    context.stroke();
 
     context.fillStyle = "#ffffff";
     context.fillRect(origin + (position * scaling_factor), 10, 5, 50);
@@ -108,6 +132,10 @@ function render() {
             context.lineTo(origin + (threads[i + 1] * scaling_factor), 30);
             context.stroke();
         }
+    }
+    for(let point of points) {
+        context.fillStyle = "#ffffff";
+        context.fillRect(point.x, point.y, 2, 2);
     }
 }
 

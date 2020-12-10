@@ -16,8 +16,26 @@ let ballFired = false;
 // Trajectory
 let points = [];
 
+// Target
+let target_x;
+let target_spread = 20;
+
 // Scale
 let scale;
+
+function checkTarget(position) {
+    if(position >= target_x && position <= target_x + target_spread) {
+        target_hit.play();
+        newTarget();
+    }
+    else {
+        target_miss.play();
+    }
+}
+
+function newTarget() {
+    target_x = (Math.random() * 750) + 250;
+}
 
 function shootBall() {
     ballFired = true;
@@ -30,6 +48,15 @@ function shootBall() {
     displacement = 0;
 
     display_params.style.display = "block";
+}
+
+function drawTarget() {
+    context.strokeStyle = "#0000ff";
+    context.lineWidth = 3;
+    context.beginPath();
+    context.moveTo(target_x / scale, canvas_height - 1);
+    context.lineTo((target_x + target_spread) / scale, canvas_height - 1);
+    context.stroke();
 }
 
 function drawBall() {
@@ -50,10 +77,6 @@ function drawTrajectories() {
     }
 }
 
-function clearTrajectories() {
-    points = [];
-}
-
 function drawRaw() {
     context.strokeStyle = "#ffffff";
     context.fillStyle = "#ffffff";
@@ -63,6 +86,10 @@ function drawRaw() {
     context.moveTo(0, canvas_height - 1);
     context.lineTo(canvas_width, canvas_height - 1);
     context.stroke();
+}
+
+function clearTrajectories() {
+    points = [];
 }
 
 function update_params(input) {
@@ -96,6 +123,7 @@ function update() {
         if (ball_y <= init_ball_y) {
             ballFired = false;
             display_params.style.display = "none";
+            checkTarget(ball_x);
         }
         display_params.innerHTML = `x: ${ball_x.toFixed(2)}, y: ${ball_y.toFixed(2)}, v<sub>x</sub>: ${ball_vx.toFixed(2)}, v<sub>y</sub>: ${ball_vy.toFixed(2)}`;
         display_stats.innerHTML = `Range: ${displacement.toFixed(2)}, Maximum height: ${max_height.toFixed(2)}`;
@@ -109,6 +137,7 @@ function render() {
     drawRaw();
     drawBall();
     drawTrajectories();
+    drawTarget();
 }
 
 function initParams() {
@@ -127,6 +156,7 @@ function calcScale() {
 window.onload = function () {
     initParams();
     calcScale();
+    newTarget();
     animate(step);
 }
 

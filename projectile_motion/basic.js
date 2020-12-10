@@ -22,7 +22,7 @@ if (mobile) {
 else {
     canvas_width = 0.5 * screen_width;
 }
-canvas_height = 0.6 * canvas_width;
+canvas_height = 0.5 * canvas_width;
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;

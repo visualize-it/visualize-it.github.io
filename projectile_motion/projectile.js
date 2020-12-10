@@ -1,8 +1,8 @@
 // Initial Params
-let init_angle = 30;
-let init_speed = 50;
+let init_angle = 60;
+let init_speed = 80;
 let init_ball_x = 15;
-let init_ball_y = 30;
+let init_ball_y = 20;
 let barrel_length = 30;
 
 // Constants
@@ -32,7 +32,7 @@ function drawBall() {
         context.strokeStyle = "#ffffff";
         context.lineWidth = 2;
         context.beginPath();
-        context.arc(ball_x / scale, canvas_height - ball_y / scale, 5, 0, 2 * Math.PI);
+        context.arc((ball_x - 5) / scale, canvas_height - (ball_y - 5) / scale, 5, 0, 2 * Math.PI);
         context.stroke();
         console.log("Ball drawn");
     }
@@ -41,7 +41,7 @@ function drawBall() {
 function drawTrajectories() {
     context.fillStyle = "#ffffff";
     for (let point of points) {
-        context.fillRect(point.x, point.y, 2, 2);
+        context.fillRect(point.x, point.y, 1, 1);
     }
 }
 
@@ -92,11 +92,11 @@ function update() {
         ball_y = ball_y + ball_vy * prec;
 
         points.push({
-            x: ball_x / scale,
-            y: canvas_height - ball_y / scale,
+            x: (ball_x - 5) / scale,
+            y: canvas_height - (ball_y - 5) / scale,
         });
 
-        if (ball_y <= 30.0) {
+        if (ball_y <= init_ball_y) {
             ballFired = false;
         }
     }

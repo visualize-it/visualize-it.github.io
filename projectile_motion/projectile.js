@@ -10,7 +10,8 @@ let accn_g = 9.81;
 let prec = 0.05;
 
 // Transitive Params
-let ball_x, ball_y, ball_vx, ball_vy, max_height, displacement;
+let ball_x, ball_y, ball_vx, ball_vy;
+let max_height, displacement, time;
 let ballFired = false;
 
 // Trajectory
@@ -18,13 +19,13 @@ let points = [];
 
 // Target
 let target_x;
-let target_spread = 20;
+let target_spread = 35;
 
 // Scale
 let scale;
 
 function checkTarget(position) {
-    if(position >= target_x && position <= target_x + target_spread) {
+    if(position >= target_x - 2 && position <= target_x + target_spread + 2) {
         target_hit.play();
         newTarget();
     }
@@ -46,6 +47,7 @@ function shootBall() {
 
     max_height = ball_y;
     displacement = 0;
+    time = 0;
 
     display_params.style.display = "block";
 }
@@ -111,6 +113,7 @@ function update() {
         ball_y = ball_y + ball_vy * prec;
 
         displacement += ball_vx * prec;
+        time += prec;
         if(ball_y > max_height) {
             max_height = ball_y;
         }
@@ -123,10 +126,10 @@ function update() {
         if (ball_y <= init_ball_y) {
             ballFired = false;
             display_params.style.display = "none";
-            checkTarget(ball_x);
+            checkTarget(ball_x - 5);
         }
         display_params.innerHTML = `x: ${ball_x.toFixed(2)}, y: ${ball_y.toFixed(2)}, v<sub>x</sub>: ${ball_vx.toFixed(2)}, v<sub>y</sub>: ${ball_vy.toFixed(2)}`;
-        display_stats.innerHTML = `Range: ${displacement.toFixed(2)}, Maximum height: ${max_height.toFixed(2)}`;
+        display_stats.innerHTML = `Range: ${displacement.toFixed(2)}, Maximum height: ${max_height.toFixed(2)}, Time of flight: ${time.toFixed(2)}`;
     }
 }
 

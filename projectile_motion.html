@@ -35,6 +35,13 @@
 <div class="text">
     <h4>Projectile Motion</h4>
 
+    <p>
+        Projectile motion possesses many interesting properties. One of them is the fact that two projectiles, when
+        thrown with the same speed but at angles &theta; and 90 - &theta; respectively, land at the same position! You
+        can verify this fact by using the interactive simulation of projectile motion given below. Also, try to hit that
+        blue target!
+    </p>
+
     <center>
         <br>
         <canvas id="projectile-canvas"></canvas>
@@ -68,11 +75,73 @@
         </div>
     </div>
     <center>
-        <button class="btn blue pulse" onclick="shootBall()" >Throw</button>
+        <button class="btn blue pulse" onclick="shootBall()">Throw</button>
         <br>
         <br>
         <button class="btn blue" onclick="clearTrajectories()">Clear paths</button>
         <button class="btn blue" onclick="newTarget()">New Target</button>
+    </center>
+
+    <b>Basic concepts:</b>
+    <ol>
+        <li>In projectile motion, acceleration due to gravity acts in the vertical direction. Hence,
+            only the y-component of velocity is affected by acceleration due to gravity. The x-component of velocity
+            remains
+            constant. Observe that the value of v<sub>x</sub> remains constant in the above simulation</li>
+        <li>Let the coordinates of the projectile be denoted by (x,y). Let the initial speed be u =
+            &Sqrt;(u<sub>x</sub><sup>2</sup> + u<sub>y</sub><sup>2</sup>). Let &theta; be the angle that the vector u
+            makes with the X-axis.</li>
+        <li>We can determine the (x,y) position of the projectile in a parametric fashion: x = ut*cos &theta;, where 't'
+            is the time since the projectile has been launched and thereafter remained in air. y = ut*sin &theta; - 0.5
+            gt<sup>2</sup>. By
+            eliminating 't', we can obtain an equation in terms of x, y, u and &theta; only. The form of this equation
+            resembles that of a parabola. Hence, a projectile follows a parabolic trajectory</li>
+        <li>During ascent, v<sub>y</sub> is positive. During descent v<sub>y</sub> is negative. At the highest point,
+            v<sub>y</sub> is zero!</li>
+    </ol>
+
+    <b>Time of ascent, descent and flight:</b>
+    <ol>
+        <li>Using the fact that v<sub>y</sub> is zero at the highest point, and using v = u - gt in the y-direction, we
+            obtain the fact that
+            time of ascent = time of descent = u*sin &theta; / g and time of flight = 2u*sin &theta; / g</li>
+        <li>Time of ascent = time of descent provided that air resistance is absent/being ignored. All calculations here
+            make the same assumption</li>
+    </ol>
+
+    <b>Maximum height:</b>
+    <ol>
+        <li>Using the fact that v<sub>y</sub> is zero at the highest point, and using v<sup>2</sup>= u<sup>2</sup> -
+            2gy in the y-direction, we get maximum height H = (u*sin &theta;)<sup>2</sup>/ 2g </li>
+        <li>For a given initial velocity u, maximum possible height is achieved when angle of projection is 90 degrees,
+            as is evident from the above formula</li>
+    </ol>
+
+    <b>Range:</b>
+    <ol>
+        <li>We know that x = ut*cos &theta;. If we subtitute 't' as the time of flight, we obtain the horizontal
+            displacement of the projectile, denoted by R: 2u<sup>2</sup>sin &theta; cos &theta; / g = u<sup>2</sup>sin
+            2&theta; / g </li>
+        <li>As can be deciphered from the above formula, range is maximum when &theta; = 45 degrees</li>
+        <li>You can verify it <a href="trig_functions.html">here</a> that sin (180 - A) = sin A;, hence the
+            range is same for angles of projection of &theta; and 90 - &theta;, provided the initial velocity remains
+            constant </li>
+    </ol>
+
+    <b>Notes:</b>
+    <ol>
+        <li>The above simulation is fully compatible with SI units. Acceleration due to gravity = 9.81 acceleration
+            units</li>
+        <li>The length of the canvas corresponds to (maximum possible range + 40) length units. Maximum range is
+            achieved when &theta; = 45 degrees and u = 100 velocity units</li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
+
+    <center>
+        <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
     </center>
 </div>
 

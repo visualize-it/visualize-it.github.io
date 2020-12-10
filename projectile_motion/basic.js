@@ -10,6 +10,9 @@ let angle_display = document.getElementById("angle-display");
 let speed_slider = document.getElementById("speed-slider");
 let speed_display = document.getElementById("speed-display");
 
+let display_params = document.getElementById("display-params");
+let display_stats = document.getElementById("display-stats");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

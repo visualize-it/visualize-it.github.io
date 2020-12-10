@@ -10,7 +10,7 @@ let accn_g = 9.81;
 let prec = 0.05;
 
 // Transitive Params
-let ball_x, ball_y, ball_vx, ball_vy;
+let ball_x, ball_y, ball_vx, ball_vy, max_height, displacement;
 let ballFired = false;
 
 // Trajectory
@@ -25,6 +25,11 @@ function shootBall() {
     ball_y = init_ball_y;
     ball_vx = init_speed * Math.cos(toRadian(init_angle));
     ball_vy = init_speed * Math.sin(toRadian(init_angle));
+
+    max_height = ball_y;
+    displacement = 0;
+
+    display_params.style.display = "block";
 }
 
 function drawBall() {
@@ -78,6 +83,11 @@ function update() {
         ball_x = ball_x + ball_vx * prec;
         ball_y = ball_y + ball_vy * prec;
 
+        displacement += ball_vx * prec;
+        if(ball_y > max_height) {
+            max_height = ball_y;
+        }
+
         points.push({
             x: (ball_x - 5) / scale,
             y: canvas_height - (ball_y - 5) / scale,
@@ -85,7 +95,10 @@ function update() {
 
         if (ball_y <= init_ball_y) {
             ballFired = false;
+            display_params.style.display = "none";
         }
+        display_params.innerHTML = `x: ${ball_x.toFixed(2)}, y: ${ball_y.toFixed(2)}, v<sub>x</sub>: ${ball_vx.toFixed(2)}, v<sub>y</sub>: ${ball_vy.toFixed(2)}`;
+        display_stats.innerHTML = `Range: ${displacement.toFixed(2)}, Maximum height: ${max_height.toFixed(2)}`;
     }
 }
 

@@ -38,6 +38,8 @@
         <br>
         <canvas id="projectile-canvas"></canvas>
         <br>
+        <p id="display-params"></p>
+        <p id="display-stats"></p>
     </center>
 
     <div class="container">
@@ -48,7 +50,7 @@
                     <div class="slidecontainer">
                         <input type="range" min="0" max="90" value="30" id="angle-slider"
                             oninput="update_params('angle-slide')" onchange="update_params('angle-slide')"
-                            class="slider">
+                            class="slider" style="width: 100%">
                     </div>
                 </center>
             </div>
@@ -58,7 +60,7 @@
                     <div class="slidecontainer">
                         <input type="range" min="0" max="100" value="30" id="speed-slider"
                             oninput="update_params('speed-slide')" onchange="update_params('speed-slide')"
-                            class="slider">
+                            class="slider" style="width: 100%">
                     </div>
                 </center>
             </div>

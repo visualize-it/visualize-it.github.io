@@ -1,8 +1,8 @@
 // Initial Params
 let init_angle = 60;
 let init_speed = 80;
-let init_ball_x = 15;
-let init_ball_y = 20;
+let init_ball_x = 10;
+let init_ball_y = 1;
 let barrel_length = 30;
 
 // Constants
@@ -41,7 +41,7 @@ function drawBall() {
 function drawTrajectories() {
     context.fillStyle = "#ffffff";
     for (let point of points) {
-        context.fillRect(point.x, point.y, 1, 1);
+        context.fillRect(point.x, point.y, 2, 2);
     }
 }
 
@@ -55,22 +55,9 @@ function drawRaw() {
     context.lineWidth = 2;
 
     context.beginPath();
-    context.moveTo(0, canvas_height - 10);
-    context.lineTo(canvas_width, canvas_height - 10);
+    context.moveTo(0, canvas_height - 1);
+    context.lineTo(canvas_width, canvas_height - 1);
     context.stroke();
-
-    context.beginPath();
-    context.arc(20, canvas_height - 20, 10, 0, 2 * Math.PI);
-    context.stroke();
-
-    context.beginPath();
-    context.moveTo(15, canvas_height - 25);
-    context.lineTo(15 + barrel_length * Math.cos(toRadian(angle_slider.value)), canvas_height - 25 - barrel_length * Math.sin(toRadian(angle_slider.value)));
-    context.lineTo(25 + barrel_length * Math.cos(toRadian(angle_slider.value)), canvas_height - 17 - barrel_length * Math.sin(toRadian(angle_slider.value)));
-    context.lineTo(25, canvas_height - 17);
-    context.lineTo(15, canvas_height - 25);
-    context.closePath();
-    context.fill();
 }
 
 function update_params(input) {
@@ -121,7 +108,7 @@ function initParams() {
 
 function calcScale() {
     let maxRange = (100 * 100) / accn_g;
-    scale = maxRange / (canvas_width - 50);
+    scale = maxRange / canvas_width;
 }
 
 window.onload = function () {

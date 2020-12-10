@@ -33,26 +33,16 @@
 
 <div class="text">
     <h4>Projectile Motion</h4>
+
     <center>
         <br>
         <canvas id="projectile-canvas"></canvas>
         <br>
-
-        <!--<p id="angle-display"></p>
-        <div class="slidecontainer">
-            <input type="range" min="0" max="90" value="30" id="angle-slider" oninput="update_params('angle-slide')"
-                onchange="update_params('angle-slide')" class="slider">
-        </div>
-        <p id="speed-display"></p>
-        <div class="slidecontainer">
-            <input type="range" min="0" max="100" value="30" id="speed-slider" oninput="update_params('speed-slide')"
-                onchange="update_params('speed-slide')" class="slider">
-        </div>-->
-
     </center>
+
     <div class="container">
         <div class="row">
-            <div class="col m6">
+            <div class="col s6">
                 <center>
                     <p id="angle-display"></p>
                     <div class="slidecontainer">
@@ -62,7 +52,7 @@
                     </div>
                 </center>
             </div>
-            <div class="col m6">
+            <div class="col s6">
                 <center>
                     <p id="speed-display"></p>
                     <div class="slidecontainer">
@@ -75,7 +65,7 @@
         </div>
     </div>
     <center>
-        <button class="btn blue pulse" onclick="shootBall()" >Fire!</button>
+        <button class="btn blue pulse" onclick="shootBall()" >Throw</button>
         <br>
         <br>
         <button class="btn blue" onclick="clearTrajectories()">Clear paths</button>

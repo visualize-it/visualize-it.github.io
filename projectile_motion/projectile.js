@@ -160,6 +160,7 @@ window.onload = function () {
     initParams();
     calcScale();
     newTarget();
+    shootBall();
     animate(step);
 }
 

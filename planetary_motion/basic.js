@@ -10,6 +10,8 @@ let remove_button = document.getElementById("remove-button");
 let pause_button = document.getElementById("pause-button");
 let resume_button = document.getElementById("resume-button");
 
+let scale_display = document.getElementById("scale");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

@@ -1,87 +1,137 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Planetary Motion | Visualize It</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Materialize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="planetary_motion/basic.js" defer></script>
-    <script src="planetary_motion/planetary_motion.js" defer></script>
+<head>
+  <title>Planetary Motion | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="nav-extended" style="background:black; margin-top: 0mm">
-      <div class="nav-wrapper">
-        <h3 id="main-heading">Visualize It</h3>
-      </div>
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a href="index.html">Home</a></li>
-          <li class="tab"><a href="about.html">Abt</a></li>
-        </ul>
-      </div>
-    </nav>
-  </body>
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="planetary_motion/basic.js" defer></script>
+  <script src="planetary_motion/planetary_motion.js" defer></script>
 
-  <div class="text">
-    <h4>Planetary Motion</h4>
-    <p>Under development</p>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-    <center>
-        <br />
-        <canvas id="planet-canvas"></canvas>
-        <br />
-        <br />
-        <button class="btn blue" onclick="zoomIn()">Zoom In</button>
-        <button class="btn blue" onclick="zoomOut()">Zoom out</button>
-        <br />
-        <br />
-        <button id="pause-button" class="btn blue" style="margin-left: 30px" onclick="pause()">Pause</button>
-        <button class="btn blue pulse" onclick="startSimulation()">Simulate</button>
-        <button id="restart-button" class="btn blue" style="margin-right: 30px;" onclick="restart()">Restart</button>
-        <br />
-        <br />
-        <b>'Restart' starts the simulation using the previously-entered parameters.<br>'Simulate' starts the simulation using the currently-entered parameters.</b>
-    </center>
-    
-    <div class="container">
-        <div id="car" class="row">
-            <div class="col s6">
-                <p id="body-1" class="center-align">Star</p>
-                <input id="m-1" placeholder="Mass" type="number" onchange="updateParams()">
-                <input id="x-1" placeholder="X-coordinate" type="number" onchange="updateParams()">
-                <input id="y-1"  placeholder="Y-coordinate" type="number" onchange="updateParams()">
-                <input id="vx-1" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
-                <input id="vy-1" placeholder="Vertical velocity" type="number" onchange="updateParams()">
-            </div>
-            <div class="col s6">
-                <p id="body-2" class="center-align">Planet 1</p>
-                <input id="m-2" placeholder="Mass" type="number" onchange="updateParams()">
-                <input id="x-2" placeholder="X-coordinate" type="number" onchange="updateParams()">
-                <input id="y-2" placeholder="Y-coordinate" type="number" onchange="updateParams()">
-                <input id="vx-2" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
-                <input id="vy-2" placeholder="Vertical velocity" type="number" onchange="updateParams()">
-            </div>
-        </div>
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
     </div>
-    <center>
-        <button class="btn blue" onclick="newBody()">New Body</button>
-        <button id="remove-button" style="margin-top: 20px;" class="btn blue" onclick="removeBody()">Remove Body</button>
-    </center>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="index.html">Home</a></li>
+        <li class="tab"><a href="about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
 
-    <br />
-    <hr />
-    <br />
+<div class="text">
+  <h4>Planetary Motion</h4>
+  <p>Under development</p>
 
-    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+  <center>
+    <br />
+    <canvas id="planet-canvas"></canvas>
+    <br />
+    <br />
+    <p id="scale"></p>
+    <br />
+    <button class="btn blue" onclick="zoomIn()">Zoom In</button>
+    <button class="btn blue" onclick="zoomOut()">Zoom out</button>
+    <br />
+    <br />
+    <button id="pause-button" class="btn blue" style="margin-left: 30px" onclick="pause()">Pause</button>
+    <button class="btn blue pulse" onclick="startSimulation()">Simulate</button>
+    <button id="restart-button" class="btn blue" style="margin-right: 30px;" onclick="restart()">Restart</button>
+    <br />
+    <br />
+    <b>'Restart' starts the simulation using the previously-entered parameters.<br>'Simulate' starts the simulation
+      using the currently-entered parameters.</b>
+  </center>
+
+  <div class="container">
+    <div id="car" class="row">
+      <div class="col s6">
+        <p id="body-1" class="center-align">Star</p>
+        <input id="m-1" placeholder="Mass" type="number" onchange="updateParams()">
+        <input id="x-1" placeholder="X-coordinate" type="number" onchange="updateParams()">
+        <input id="y-1" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+        <input id="vx-1" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+        <input id="vy-1" placeholder="Vertical velocity" type="number" onchange="updateParams()">
+      </div>
+      <div class="col s6">
+        <p id="body-2" class="center-align">Planet 1</p>
+        <input id="m-2" placeholder="Mass" type="number" onchange="updateParams()">
+        <input id="x-2" placeholder="X-coordinate" type="number" onchange="updateParams()">
+        <input id="y-2" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+        <input id="vx-2" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+        <input id="vy-2" placeholder="Vertical velocity" type="number" onchange="updateParams()">
+      </div>
+    </div>
   </div>
+  <center>
+    <button class="btn blue" onclick="newBody()">New Body</button>
+    <button id="remove-button" style="margin-top: 20px;" class="btn blue" onclick="removeBody()">Remove Body</button>
+  </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5 class="center-align">Planetary Phenomena</h5>
+  <ol>
+    <li><b>Unstable orbit:</b> Here, the planet's total energy is actually positive. Hence it is not actually bound to
+      the star and instead revolves around an unstable orbit before getting slingshot-ted. Moreover, the planet is only
+      10 times lighter than the star, causing the star to wobble.
+      <br />
+      <center>
+        <button class="center-align btn blue" onclick="phenomena(1)">Simulate</button>
+      </center>
+    </li>
+    <br />
+    <li>
+      <b>Two planetary orbits:</b> Two planets revolving around a star in remarkably stable orbits.
+      <center>
+        <button class="center-align btn blue" onclick="phenomena(2)">Simulate</button>
+      </center>
+    </li>
+    <br />
+    <li>
+      <b>Binary system:</b> Two equally heavy bodies orbiting their center of mass.
+      <center>
+        <button class="center-align btn blue" onclick="phenomena(3)">Simulate</button>
+      </center>
+    </li>
+    <br />
+    <li>
+      <b>Intersecting orbits:</b> Two planets revolving around a star in intersecting orbits.
+      <center>
+        <button class="center-align btn blue" onclick="phenomena(4)">Simulate</button>
+      </center>
+    </li>
+    <br />
+    <li>
+      <b>Planetary dance:</b> Two planets, initially revolve symmetrically around the star. However, they come close
+      together once and exchange energy. The planet that loses energy occupies a lower orbit and eventually gets ejected
+      whereas the planet that gains energy settles in an highly elliptical orbit.
+      <center>
+        <button class="center-align btn blue" onclick="phenomena(5)">Simulate</button>
+      </center>
+    </li>
+    <br />
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
 </html>

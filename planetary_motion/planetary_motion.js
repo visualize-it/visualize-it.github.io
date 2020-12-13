@@ -29,6 +29,7 @@ let trails_limit = 10;
 
 function calcScale() {
     scale = canvas_width / (3 * getFarthestDistance());
+    scale_display.innerHTML = `Scale: ${scale.toFixed(0)} pixels = ${(3 * getFarthestDistance()).toFixed(2)} length units`;
 }
 
 function update() {
@@ -126,9 +127,165 @@ function restart() {
 
 function zoomIn() {
     scale *= 2;
+    trails = [];
+    scale_display.innerHTML = `Scale: ${scale.toFixed(0)} pixels = ${(3 * getFarthestDistance()).toFixed(2)} length units`;
 }
 
 function zoomOut() {
     scale /= 2;
+    trails = [];
+    scale_display.innerHTML = `Scale: ${scale.toFixed(0)} pixels = ${(3 * getFarthestDistance()).toFixed(2)} length units`;
+}
+
+function createEntities(number) {
+    if(num_entities > number) {
+        while(num_entities != number) {
+            removeBody();
+        }
+    }
+    else if(num_entities < number) {
+        while(num_entities != number) {
+            newBody();
+        }
+    }
+}
+
+function phenomena(number) {
+    if(number == 1) {
+        createEntities(2);
+        bodies = [];
+        bodies.push(
+            {
+                m: 1000,
+                x: 0,
+                y: 0,
+                vx: 0,
+                vy: 0,
+            },
+            {
+                m: 100,
+                x: 5,
+                y: 0,
+                vx: 0,
+                vy: 10,
+            }
+        )
+        substituteParams();
+        window.scrollTo(0,100);
+        startSimulation();
+    }
+    else if(number == 2) {
+        createEntities(3);
+        bodies = [];
+        bodies.push(
+            {
+                m: 100,
+                x: 0,
+                y: 0,
+                vx: 0,
+                vy: 0,
+            },
+            {
+                m: 1,
+                x: -5,
+                y: -5,
+                vx: -3,
+                vy: 3,
+            },
+            {
+                m: 1,
+                x: 0,
+                y: 5,
+                vx: 4.5,
+                vy: 0,
+            }
+        )
+        substituteParams();
+        window.scrollTo(0,100);
+        startSimulation();
+    }
+    else if(number == 3) {
+        createEntities(2);
+        bodies = [];
+        bodies.push(
+            {
+                m: 500,
+                x: -5,
+                y: 0,
+                vx: 0,
+                vy: -5,
+            },
+            {
+                m: 500,
+                x: 5,
+                y: 0,
+                vx: 0,
+                vy: 5,
+            }
+        )
+        substituteParams();
+        window.scrollTo(0,100);
+        startSimulation();
+    }
+    else if(number == 4) {
+        createEntities(3);
+        bodies = [];
+        bodies.push(
+            {
+                m: 100,
+                x: 0,
+                y: 0,
+                vx: 0,
+                vy: 0,
+            },
+            {
+                m: 1,
+                x: 5,
+                y: 0,
+                vx: 0,
+                vy: 5,
+            },
+            {
+                m: 1,
+                x: 8,
+                y: 0,
+                vx: 0,
+                vy: 3,
+            }
+        )
+        substituteParams();
+        window.scrollTo(0,100);
+        startSimulation();
+    }
+    else if(number == 5) {
+        createEntities(3);
+        bodies = [];
+        bodies.push(
+            {
+                m: 1000,
+                x: 0,
+                y: 0,
+                vx: 0,
+                vy: 0,
+            },
+            {
+                m: 10,
+                x: 5,
+                y: 0,
+                vx: 0,
+                vy: 10,
+            },
+            {
+                m: 10,
+                x: -5,
+                y: 0,
+                vx: 0,
+                vy: -10,
+            }
+        )
+        substituteParams();
+        window.scrollTo(0,100);
+        startSimulation();
+    }
 }
 

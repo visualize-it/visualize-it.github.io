@@ -40,25 +40,32 @@
         <br />
         <canvas id="planet-canvas"></canvas>
         <br />
+        <br />
+        <button id="pause-button" class="btn blue" style="margin-left: 30px" onclick="pause()">Pause</button>
+        <button class="btn blue pulse" onclick="startSimulation()">Simulate</button>
+        <button id="restart-button" class="btn blue" style="margin-right: 30px;" onclick="restart()">Restart</button>
+        <br />
+        <br />
+        <b>'Restart' starts the simulation using the previous parameters. 'Simulate' starts the simulate using the new parameters.</b>
     </center>
     
     <div class="container">
         <div id="car" class="row">
             <div class="col s6">
                 <p id="body-1" class="center-align">Star</p>
-                <input id="mass-1" placeholder="Mass" type="number">
-                <input id="x-1" placeholder="X-coordinate" type="number">
-                <input id="y-1"  placeholder="Y-coordinate" type="number">
-                <input id="vx-1" placeholder="Horizontal velocity" type="number">
-                <input id="vy-1" placeholder="Vertical velocity" type="number">
+                <input id="m-1" placeholder="Mass" type="number" onchange="updateParams()">
+                <input id="x-1" placeholder="X-coordinate" type="number" onchange="updateParams()">
+                <input id="y-1"  placeholder="Y-coordinate" type="number" onchange="updateParams()">
+                <input id="vx-1" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+                <input id="vy-1" placeholder="Vertical velocity" type="number" onchange="updateParams()">
             </div>
             <div class="col s6">
                 <p id="body-2" class="center-align">Planet 1</p>
-                <input id="mass-2" placeholder="Mass" type="number">
-                <input id="x-2" placeholder="X-coordinate" type="number">
-                <input id="y-2" placeholder="Y-coordinate" type="number">
-                <input id="vx-2" placeholder="Horizontal velocity" type="number">
-                <input id="vy-2" placeholder="Vertical velocity" type="number">
+                <input id="m-2" placeholder="Mass" type="number" onchange="updateParams()">
+                <input id="x-2" placeholder="X-coordinate" type="number" onchange="updateParams()">
+                <input id="y-2" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+                <input id="vx-2" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+                <input id="vy-2" placeholder="Vertical velocity" type="number" onchange="updateParams()">
             </div>
         </div>
     </div>

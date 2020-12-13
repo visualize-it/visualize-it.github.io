@@ -41,12 +41,16 @@
         <canvas id="planet-canvas"></canvas>
         <br />
         <br />
+        <button class="btn blue" onclick="zoomIn()">Zoom In</button>
+        <button class="btn blue" onclick="zoomOut()">Zoom out</button>
+        <br />
+        <br />
         <button id="pause-button" class="btn blue" style="margin-left: 30px" onclick="pause()">Pause</button>
         <button class="btn blue pulse" onclick="startSimulation()">Simulate</button>
         <button id="restart-button" class="btn blue" style="margin-right: 30px;" onclick="restart()">Restart</button>
         <br />
         <br />
-        <b>'Restart' starts the simulation using the previous parameters. 'Simulate' starts the simulate using the new parameters.</b>
+        <b>'Restart' starts the simulation using the previously-entered parameters.<br>'Simulate' starts the simulation using the currently-entered parameters.</b>
     </center>
     
     <div class="container">

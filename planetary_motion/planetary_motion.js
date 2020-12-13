@@ -28,13 +28,7 @@ let trails = [];
 let trails_limit = 10;
 
 function calcScale() {
-    let heaviest_body = bodies[getHeaviestBody()];
-    let lightest_body = bodies[getLightestBody()];
-
-    let initial_energy = (- G * heaviest_body.m * lightest_body.m / distance(heaviest_body.x, heaviest_body.y, lightest_body.x, lightest_body.y));
-    initial_energy += 0.5 * lightest_body.m * (Math.pow(lightest_body.vx, 2) + Math.pow(lightest_body.vy, 2));
-    let maximum_displacement = (- G * heaviest_body.m * lightest_body.m / initial_energy);
-    scale = canvas_width / (2 * maximum_displacement);
+    scale = canvas_width / (3 * getFarthestDistance());
 }
 
 function update() {
@@ -71,8 +65,8 @@ function render() {
         context.arc(transformX(body.x * scale) - radius, transformY(body.y * scale) - radius, radius, 0, 2 * Math.PI);
         context.stroke();
         trails.unshift({
-            x: transformX(body.x * scale),
-            y: transformY(body.y * scale)
+            x: transformX(body.x * scale) - radius,
+            y: transformY(body.y * scale) - radius,
         });
     }
 
@@ -83,7 +77,8 @@ function render() {
 }
 
 function startSimulation() {
-    console.log(bodies);
+    paused = false;
+    pause_button.innerHTML = "Pause";
 
     updateParams();
     calcScale();
@@ -112,35 +107,28 @@ function pause() {
     }
 }
 
+function getFarthestDistance() {
+    let dist;
+    let greatest_distance = -Infinity;
+
+    for(let i = 0; i < bodies.length; i++) {
+        dist = distance(bodies[i].x, bodies[i].y, 0, 0);
+        if(dist > greatest_distance) {
+            greatest_distance = dist;
+        }
+    }
+    return greatest_distance;
+}
+
 function restart() {
     startSimulation();
 }
 
-function getLightestBody() {
-    let index = 0;
-    let lowest_mass = Infinity;
-
-    for (let i = 0; i < bodies.length; i++) {
-        if (bodies[i].m < lowest_mass) {
-            lowest_mass = bodies[i].m;
-            index = i;
-        }
-    }
-    return index;
+function zoomIn() {
+    scale *= 2;
 }
 
-function getHeaviestBody() {
-    let index = 0;
-    let highest_mass = -Infinity;
-
-    for (let i = 0; i < bodies.length; i++) {
-        if (bodies[i].m > highest_mass) {
-            highest_mass = bodies[i].m;
-            index = i;
-        }
-    }
-    return index;
+function zoomOut() {
+    scale /= 2;
 }
-
-
 

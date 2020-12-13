@@ -45,7 +45,9 @@ window.onload = function() {
 }
 
 function step() {
-    update();
+    if(!paused) {
+        update();
+    }
     render();
     animate(step);
 }

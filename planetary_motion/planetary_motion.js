@@ -23,6 +23,10 @@ let m_element, x_element, y_element, vx_element, vy_element;
 let ax, ay;
 let m, x, y, vx, vy;
 
+// trail
+let trails = [];
+let trails_limit = 10;
+
 function calcScale() {
     let heaviest_body = bodies[getHeaviestBody()];
     let lightest_body = bodies[getLightestBody()];
@@ -51,6 +55,10 @@ function update() {
         params[i].x += (params[i].vx * prec);
         params[i].y += (params[i].vy * prec);
     }
+
+    while(trails.length > trails_limit * num_entities) {
+        trails.pop();
+    }
 }
 
 function render() {
@@ -62,6 +70,15 @@ function render() {
         context.beginPath();
         context.arc(transformX(body.x * scale) - radius, transformY(body.y * scale) - radius, radius, 0, 2 * Math.PI);
         context.stroke();
+        trails.unshift({
+            x: transformX(body.x * scale),
+            y: transformY(body.y * scale)
+        });
+    }
+
+    context.fillStyle = "#ffffff";
+    for(let trail of trails) {
+        context.fillRect(trail.x, trail.y, 2, 2);
     }
 }
 
@@ -70,9 +87,17 @@ function startSimulation() {
 
     updateParams();
     calcScale();
+
     params = [];
-    for (let body of bodies) {
-        params.push(body);
+    trails = [];
+    for(let i = 0; i < bodies.length; i++) {
+        params.push({
+            m: bodies[i].m,
+            x: bodies[i].x,
+            y: bodies[i].y,
+            vx: bodies[i].vx,
+            vy: bodies[i].vy,
+        });
     }
 }
 
@@ -88,7 +113,7 @@ function pause() {
 }
 
 function restart() {
-
+    startSimulation();
 }
 
 function getLightestBody() {

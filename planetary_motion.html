@@ -33,7 +33,10 @@
 
 <div class="text">
   <h4>Planetary Motion</h4>
-  <p>Under development</p>
+  <p>The Universal Law of Gravitation states that every body in this universe attracts the other by virtue of its mass,
+    The force of attraction being directly proportional to the product of their masses and inversely proportional to the
+    square of the distance of their separation. The equation F = Gm<sub>1</sub>m<sub>2</sub>/r<sup>2</sup> is the
+    numerical form of this law. The aforementioned law was first published by Sir Isaac Newton in 1687.</p>
 
   <center>
     <br />
@@ -87,7 +90,7 @@
   <h5 class="center-align">Planetary Phenomena</h5>
   <ol>
     <li><b>Unstable orbit:</b> Here, the planet's total energy is actually positive. Hence it is not actually bound to
-      the star and instead revolves around an unstable orbit before getting slingshot-ted. Moreover, the planet is only
+      the star and instead revolves around an unstable orbit before getting ejected. Moreover, the planet is only
       10 times lighter than the star, causing the star to wobble.
       <br />
       <center>
@@ -103,7 +106,9 @@
     </li>
     <br />
     <li>
-      <b>Binary system:</b> Two equally heavy bodies orbiting their center of mass.
+      <b>Binary system:</b> Two equally heavy bodies orbiting their center of mass. This sort of behaviour is usually
+      seen among stars. Alpha Centauri A and B are well-known examples, just 4.36 light years away from Earth. However,
+      another star named Proxima Centauri actually orbits the binary system!
       <center>
         <button class="center-align btn blue" onclick="phenomena(3)">Simulate</button>
       </center>
@@ -117,14 +122,102 @@
     </li>
     <br />
     <li>
-      <b>Planetary dance:</b> Two planets, initially revolve symmetrically around the star. However, they come close
-      together once and exchange energy. The planet that loses energy occupies a lower orbit and eventually gets ejected
-      whereas the planet that gains energy settles in an highly elliptical orbit.
+      <b>Planetary dance:</b> The two planets initially revolve symmetrically around the star. However, they come quite
+      close
+      four times and exchange energy during each interaction. The planet that continually loses energy occupies
+      a lower orbit and eventually gets ejected whereas the planet that continually gains energy settles in an highly
+      elliptical orbit.
       <center>
         <button class="center-align btn blue" onclick="phenomena(5)">Simulate</button>
       </center>
     </li>
     <br />
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>The Force of Gravity:</b>
+  <ol>
+    <li>As a result of Newton's 3rd law of motion, the gravitational force of attraction of body
+      A on body B is equal to that of body B on body A.</li>
+    <li>G is an universal constant whose value is known to be 6.67 * 10<sup>-11</sup>
+      m<sup>3</sup>kg<sup>-1</sup>s<sup>-2</sup></li>
+    <li>As stated before, gravitational force acts between all pairs of objects in this universe by virtue of their
+      mass. However, we don't see everyday objects getting attracted to each other because the product of their masses
+      is not high enough to dwarf the low value of G. Hence, the force of gravity between them is too low to cause any
+      observable effects.</li>
+    <li>Although it is a well-known fact that electromagnetic force is 10<sup>38</sup> times stronger than gravitational
+      force, electromagnetic force cannot be dominant in the universe due to the presence of two types of charge. Over
+      large volumes, these two types of charges cancel out each other, thereby nullifying any electromagnetic
+      interactions. Moreover, electromagnetic interactions can be attractive as well as repulsive. On the other hand,
+      there is only one type of mass, hence there is no repulsive gravitational interaction and no mass cancellation
+      throughout the entire expanse of the universe, thereby allowing gravity to pervade it.</li>
+    <li>The motion of celestial bodies is directed by the force of gravity alone. Their huge masses allows high degree
+      of gravitational interaction despite the large distances between them.</li>
+
+  </ol>
+
+  <b>The Gravitational Field:</b>
+  <ol>
+    <li>Physicists often use the concept of a gravitational field being generated around a mass. The strength of the
+      gravitational field at a point in the vicinity of a mass is proportional to the mass 'M' of the object and falls
+      as the square of distance of separation 'r'. It is numerically denoted by GM/r<sup>2</sup></li>
+    <li>Any body of mass 'm', when kept in this field, interacts with it. The strength of interaction being proportional
+      to 'm' and to the strength of the gravitational field.</li>
+    <li>The postulation of a field is not merely theoretical. Infact, it is known that the bounds of this field explands
+      at the speed of light. Moreover, the concents of fields and potentials convey the transfer of energy and momentum
+      in an elegant manner.</li>
+  </ol>
+
+  <b>Gravitational Potential</b>
+  <ol>
+    <li>When two bodies are gravitationally interacting with one another, some energy is required to separate them until the
+      gravitational force of attraction between them becomes negligible. This energy, but for a unit mass, is defined to
+      be the gravitational potential.</li>
+    <li>The gravitational potential at a point 'r' units away from a mass 'M' is defined to be -GM/r whereas the
+      potential energy of a mass 'm' placed at this point is defined to be -GMm/r</li>
+    <li>The negative sign denotes that 1) energy is required to separate them or 2) the bodies are bound to each other
+    </li>
+    <li>The total mechanical energy as a result of gravitational interaction between two objects is equal to the sum of
+      their kinetic energy and gravitational potential energy.</li>
+  </ol>
+
+  <b>Kepler's Laws</b>
+  <ol>
+    <li>In the 17th century, Johannes Kepler postulated three laws that were followed by orbiting planets. These laws
+      were obtained by analysis of planetary data recorded by Tycho Brahe with the assistance of Kepler. They lacked any
+      scientific backing when they were proposed.</li>
+    <li>The first law states that planets revolve around their star in elliptical orbits, wherein the star is situated
+      at one of the foci. An ellipse is the locus of a point such that the sum of their distance from two fixed points
+      is always constant. In theory, a circle is an ellipse obtained by a merger of these two points. This law is a
+      result of the nature of gravitational force itself.</li>
+    <li>The second law states that planets trace equal areas in equal intervals of time. This indirectly means that
+      planets in non-circular orbits must move faster when closer to the star. This can be observed in the default
+      simulation above. This law is a result of conservation of angular momentum</li>
+    <li>The third law states that the square of time period of revolution of a planet around its star is directly
+      proportional to the cube of the major axis. This law can be derived with a bit of algebra.</li>
+  </ol>
+
+  <b> General info about stellar systems</b>
+  <ol>
+    <li>It is a false notion that all planets revolve around their star. The planets and the star revolve around the
+      center of mass of the stellar system. Due to the fact that stars tend to be much more massive than all the
+      revolving planets combined, this center of mass often tends to be within the star and maybe very close to the
+      center of the star, therefore giving the appearance that the planets actually revolve around the star.</li>
+    <li>Planets are usually formed from a disk of rocks and gases found around the protostar. Since a disk is planar,
+      all the resulting planets tend to orbit the star in the same plane, with small deviations.</li>
+  </ol>
+
+  <b>Note:</b>
+  <ol>
+    <li>The above simulation is not compatible with SI units. The value of G is taken to be 1, in order to avoid working
+      with huge masses and astronomical distances</li>
+    <li>Stars and Planets in the above simulation are treated equally. This allows us to observe the wobbling of the
+      star when the revolving planets are not many orders lighter than the star.</li>
+    <li>The above simulation doesn't check and allow collissions between bodies. Because of this, ejection of planets is
+      a very common occurence in the simulation although it rarely takes place in reality.</li>
   </ol>
 
   <br />

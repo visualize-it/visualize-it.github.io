@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Stroboscopic Effect | Visualize It</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Materialize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<head>
+  <title>Stroboscopic Effect | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="nav-extended" style="background:black; margin-top: 0mm">
-      <div class="nav-wrapper">
-        <h3 id="main-heading">Visualize It</h3>
-      </div>
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a href="index.html">Home</a></li>
-          <li class="tab"><a href="about.html">Abt</a></li>
-        </ul>
-      </div>
-    </nav>
-  </body>
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <div class="text">
-    <h4>Occurence of Stroboscopic Effect</h4>
-    <p>Under development</p>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="stroboscopic_effect/basic.js" defer></script>
+  <script src="stroboscopic_effect/stroboscopic_effect.js" defer></script>
+</head>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="index.html">Home</a></li>
+        <li class="tab"><a href="about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h4>Occurence of Stroboscopic Effect</h4>
+
+  <center>
     <br />
-    <hr />
+    <canvas id="canvas"></canvas>
     <br />
+    <p id="rpm-display"></p>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="120" value="30" id="rpm-slider" oninput="updateParams('rpm')"
+        onchange="updateParams('rpm')" class="slider">
+    </div>
+    <p id="fps-display"></p>
+    <div class="slidecontainer">
+      <input type="range" min="0" max="59" value="30" id="fps-slider" oninput="updateParams('fps')"
+        onchange="updateParams('fps')" class="slider">
+    </div>
+  </center>
 
-    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-  </div>
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
 </html>

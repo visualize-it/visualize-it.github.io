@@ -1,8 +1,11 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
+let y_offset = 30;
 let fps = 60;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
+
+let pause_button = document.getElementById("pause-button");
 
 let rpm_display = document.getElementById("rpm-display");
 let rpm_slider = document.getElementById("rpm-slider");
@@ -22,10 +25,10 @@ if (mobile) {
 else {
     canvas_width = 0.5 * screen_width;
 }
-canvas_height = canvas_width / 2;
+canvas_height = canvas_width / 2 + y_offset;
 
 canvas.width = canvas_width;
-canvas.height = canvas_height;
+canvas.height = canvas_height;;
 
 let animate = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame

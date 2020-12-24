@@ -33,11 +33,18 @@
 
 <div class="text">
   <h4>Occurence of Stroboscopic Effect</h4>
+  <p>Stroboscopic Effect is the visual phenomenon caused due to sampling of continuous motion in discrete steps. It can
+    be observed in daily life, as the apparent change in direction of rotation of a fan when changing its speed. In some
+    movies, the wheels of trains appear to go backwards (wagon-wheel effect), this is also explained by stroboscopic
+    effect. Some videos of helicopters flying without any motion of the rotor are illusions that can be explained by
+    stroboscopic effect: the shutter rate is a multiple of the revolving frequency of the rotor.</p>
 
   <center>
     <br />
     <canvas id="canvas"></canvas>
     <br />
+    <button class="btn blue" id="pause-button" onclick="updateParams('pause')">Pause</button>
+    <button class="btn blue" id="toggle-button" onclick="updateParams('dir')">Toggle direction</button>
     <p id="rpm-display"></p>
     <div class="slidecontainer">
       <input type="range" min="0" max="120" value="30" id="rpm-slider" oninput="updateParams('rpm')"
@@ -49,6 +56,66 @@
         onchange="updateParams('fps')" class="slider">
     </div>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Predefined States</h5>
+  <ol>
+    <li>
+      <b>The Stationary Rotor</b>
+      <p>The perceived wheel appears near stationary to the observer. Notice the fact that the sampling rate is exactly
+        twice of the number of revolutions per second. <a
+          href="https://www.youtube.com/watch?v=2SgG99QKLFE">StandUpMaths' YouTube video</a> </p>
+      <center>
+        <button class="btn blue" onclick="simulate(3)">View</button>
+      </center>
+    </li>
+    <li>
+      <b>Near-complete Aliasing</b>
+      <p>The condition where the camera's shutter rate is so high that the discrete frames captured by it actually
+        appear continuous to the eye.</p>
+      <center>
+        <button class="btn blue" onclick="simulate(1)">View</button>
+      </center>
+    </li>
+    <li>
+      <b>The Oscillating Rotor</b>
+      <p>The perceived wheel appears to oscillate between three angular positions. This wass commonly seen in World War
+        2 fighter planes</p>
+      <center>
+        <button class="btn blue" onclick="simulate(4)">View</button>
+      </center>
+    </li>
+    <li>
+      <b>Wagon-wheel Effect</b>
+      <p>The perceived direction of rotation is opposite to the actual direction of rotation. <a
+          href="https://www.youtube.com/watch?v=VNftf5qLpiA">Professor Valvano's YouTube video</a> </p>
+      <center>
+        <button class="btn blue" onclick="simulate(2)">View</button>
+      </center>
+    </li>
+    <li>
+      <b>The Sluggish Rotor</b>
+      <p>The perceived wheel rotates in the same direction as the actual wheel, but with a slower perceived speed.</p>
+      <center>
+        <button class="btn blue" onclick="simulate(5)">View</button>
+      </center>
+    </li>
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>Stroboscopic effect can also be introduced due to the limited frame rate of the screen and due to persistence of
+      vision of the human eye.</li>
+    <li>At speeds greater than 50 RPM, your eye perceives two spokes although only one spoke actually exists. This is
+      due to stroboscopic effect caused due to the persistence of vision of the human eye.</li>
+  </ol>
 
   <br />
   <hr />

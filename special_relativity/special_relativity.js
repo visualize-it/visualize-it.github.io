@@ -36,13 +36,14 @@ function render() {
 function updateParams(value) {
     if(value == "speed") {
         ship_speed = getAngularSpeed(speed_slider.value);
-        gamma = getGamma(speed_slider.value/100);
-        speed_display.innerHTML = `Satellite speed: ${speed_slider.value}% of speed of light or ${(speed_slider.value * 299792458 / 100).toFixed()} m/s.<br/><b>&gamma; = ${gamma.toFixed(4)}</b>`;
+        gamma = getGamma(speed_slider.value/1000);
+        speed_display.innerHTML = `Satellite speed: ${(speed_slider.value/10).toFixed(1)}% of speed of light or ${(speed_slider.value * 299792458 / 1000).toFixed()} m/s.<br/><b>&gamma; = ${gamma.toFixed(4)}</b>`;
 
         dilated_time_speed = normal_time_speed / gamma;
         length_decreased = length / gamma;
-        angular_freq_decreased = angular_freq * getDoppler(speed_slider.value / 100);
+        angular_freq_decreased = angular_freq * getDoppler(speed_slider.value /1000);
 
+        shifted_wave.shift();
         shifted_wave.shift();
         shifted_wave.shift();
         shifted_wave.shift();
@@ -64,7 +65,7 @@ function initParams() {
     wave_start_x = 9 * canvas_width / 16;
     wave_stop_x = 15 * canvas_width / 16;
 
-    speed_slider.value = 70;
+    speed_slider.value = 700;
     updateParams("speed");
 
     ship_position = 0;
@@ -109,21 +110,21 @@ function planetDisplay() {
 function timeDisplay() {
     context.strokeStyle = "#ffffff";
     context.beginPath();
-    context.arc(5 * canvas_width / 8, canvas_height / 4, canvas_height / 8, 0, 2 * Math.PI);
+    context.arc(5 * canvas_width / 8, canvas_height / 4 - font_offset, canvas_height / 8, 0, 2 * Math.PI);
     context.stroke();
 
     context.beginPath();
-    context.arc(7 * canvas_width / 8, canvas_height / 4, canvas_height / 8, 0, 2 * Math.PI);
+    context.arc(7 * canvas_width / 8, canvas_height / 4 - font_offset, canvas_height / 8, 0, 2 * Math.PI);
     context.stroke();
 
     context.beginPath();
-    context.moveTo(5 * canvas_width / 8, canvas_height / 4);
-    context.lineTo(5 * canvas_width / 8 + clock_length * Math.cos(radian(normal_time)), canvas_height / 4 - clock_length * Math.sin(radian(normal_time)));
+    context.moveTo(5 * canvas_width / 8, canvas_height / 4 - font_offset);
+    context.lineTo(5 * canvas_width / 8 + clock_length * Math.cos(radian(normal_time)), - font_offset + canvas_height / 4 - clock_length * Math.sin(radian(normal_time)));
     context.stroke();
 
     context.beginPath();
     context.moveTo(7 * canvas_width / 8, canvas_height / 4);
-    context.lineTo(7 * canvas_width / 8 + clock_length * Math.cos(radian(dilated_time)), canvas_height / 4 - clock_length * Math.sin(radian(dilated_time)));
+    context.lineTo(7 * canvas_width / 8 + clock_length * Math.cos(radian(dilated_time)), - font_offset + canvas_height / 4 - clock_length * Math.sin(radian(dilated_time)));
     context.stroke();
 }
 
@@ -179,14 +180,15 @@ function captionsDisplay() {
     context.fillText("Time Dilation", 3 * canvas_width / 4, font_offset);
     context.fillText("Clock on Planet", 5 * canvas_width / 8, canvas_height / 2 - font_offset);
     context.fillText("Clock on Satellite", 7 * canvas_width / 8, canvas_height / 2 - font_offset);
+    context.fillText(`1 second on Satellite = ${(normal_time_speed / dilated_time_speed).toFixed(2)} seconds on Planet`, 3 * canvas_width / 4, canvas_height / 2 - 2.5 * font_offset);
 
     context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + font_offset);
-    context.fillText("Distance on Planet", canvas_width / 4, 6 * canvas_height / 8 - font_offset);
-    context.fillText("Distance perceived by Satellite", canvas_width / 4, canvas_height - font_offset);
+    context.fillText(`Distance on Planet: ${length.toFixed()}`, canvas_width / 4, 6 * canvas_height / 8);
+    context.fillText(`Distance perceived by Satellite: ${length_decreased.toFixed()}`, canvas_width / 4, canvas_height - font_offset);
 
     context.fillText("Relativistic Doppler Effect", 3 * canvas_width / 4, canvas_height / 2 + font_offset);
-    context.fillText("Waves transmitted by Satellite", 3 * canvas_width / 4, 6 * canvas_height / 8);
-    context.fillText("Waves received by Planer",3 *  canvas_width / 4, canvas_height - font_offset);
+    context.fillText(`Waves transmitted by Satellite: ${angular_freq.toFixed(2)} Hz`, 3 * canvas_width / 4, 6 * canvas_height / 8);
+    context.fillText(`Waves received by Planet: ${angular_freq_decreased.toFixed(2)} Hz`,3 *  canvas_width / 4, canvas_height - font_offset);
 }
 
 function radian(degree) {

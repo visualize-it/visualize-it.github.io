@@ -64,7 +64,7 @@ function initParams() {
     wave_start_x = 9 * canvas_width / 16;
     wave_stop_x = 15 * canvas_width / 16;
 
-    speed_slider.value = 30;
+    speed_slider.value = 70;
     updateParams("speed");
 
     ship_position = 0;
@@ -102,7 +102,7 @@ function planetDisplay() {
 
     context.fillStyle = "#0000ff";
     context.beginPath();
-    context.arc(orbit_radius * Math.cos(radian(ship_position)) + canvas_width / 4, canvas_height / 4 - orbit_radius * Math.sin(radian(ship_position)), canvas_height / 25, 0, 2 * Math.PI);
+    context.arc(orbit_radius * Math.cos(radian(ship_position)) + canvas_width / 4, canvas_height / 4 - orbit_radius * Math.sin(radian(ship_position)), canvas_height / 50   , 0, 2 * Math.PI);
     context.fill();
 }
 
@@ -167,24 +167,26 @@ function dopplerDisplay() {
 
 function captionsDisplay() {
     if(mobile) {
-        context.font = "12px Arial";
+        context.font = "10px Arial";
     }
     else {
         context.font = "20px Arial";
     }
     context.textAlign = "center";
 
-    context.fillText("Time Dilation", 3 * canvas_width / 4, 30);
-    context.fillText("Clock on Planet", 5 * canvas_width / 8, canvas_height / 2 - 30);
-    context.fillText("Clock on Satellite", 7 * canvas_width / 8, canvas_height / 2 - 30);
+    context.fillText("Geosynchronous Satellite", canvas_width / 4, font_offset);
 
-    context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + 30);
-    context.fillText("Distance on Planet", canvas_width / 4, 6 * canvas_height / 8 - 20);
-    context.fillText("Distance perceived by Satellite", canvas_width / 4, canvas_height - 30);
+    context.fillText("Time Dilation", 3 * canvas_width / 4, font_offset);
+    context.fillText("Clock on Planet", 5 * canvas_width / 8, canvas_height / 2 - font_offset);
+    context.fillText("Clock on Satellite", 7 * canvas_width / 8, canvas_height / 2 - font_offset);
 
-    context.fillText("Relativistic Doppler Effect", 3 * canvas_width / 4, canvas_height / 2 + 30);
+    context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + font_offset);
+    context.fillText("Distance on Planet", canvas_width / 4, 6 * canvas_height / 8 - font_offset);
+    context.fillText("Distance perceived by Satellite", canvas_width / 4, canvas_height - font_offset);
+
+    context.fillText("Relativistic Doppler Effect", 3 * canvas_width / 4, canvas_height / 2 + font_offset);
     context.fillText("Waves transmitted by Satellite", 3 * canvas_width / 4, 6 * canvas_height / 8);
-    context.fillText("Waves received by Planer",3 *  canvas_width / 4, canvas_height - 20);
+    context.fillText("Waves received by Planer",3 *  canvas_width / 4, canvas_height - font_offset);
 }
 
 function radian(degree) {
@@ -192,7 +194,7 @@ function radian(degree) {
 }
 
 function getAngularSpeed(value) {
-    return (value * fps / 84);
+    return (value * fps / 470);
 }
 
 function getGamma(value) {

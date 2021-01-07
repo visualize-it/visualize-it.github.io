@@ -30,6 +30,7 @@ function render() {
     timeDisplay();
     lengthDisplay();
     dopplerDisplay();
+    captionsDisplay();
 }
 
 function updateParams(value) {
@@ -41,6 +42,10 @@ function updateParams(value) {
         dilated_time_speed = normal_time_speed / gamma;
         length_decreased = length / gamma;
         angular_freq_decreased = angular_freq * getDoppler(speed_slider.value / 100);
+
+        shifted_wave.shift();
+        shifted_wave.shift();
+        shifted_wave.shift();
     }
 }
 
@@ -125,7 +130,7 @@ function timeDisplay() {
 function lengthDisplay() {
     context.fillStyle = "#555555";
     context.fillRect(canvas_width / 16, 5 * canvas_height / 8, length, thickness);
-    context.fillRect(canvas_width / 16, 7 * canvas_height / 8, length_decreased, thickness);
+    context.fillRect(canvas_width / 16, 7 * canvas_height / 8 - thickness, length_decreased, thickness);
 }
 
 function dopplerDisplay() {
@@ -158,6 +163,28 @@ function dopplerDisplay() {
         context.fillRect(particle.x, particle.y, 2, 2);
         particle.x++;
     }
+}
+
+function captionsDisplay() {
+    if(mobile) {
+        context.font = "12px Arial";
+    }
+    else {
+        context.font = "20px Arial";
+    }
+    context.textAlign = "center";
+
+    context.fillText("Time Dilation", 3 * canvas_width / 4, 30);
+    context.fillText("Clock on Planet", 5 * canvas_width / 8, canvas_height / 2 - 30);
+    context.fillText("Clock on Satellite", 7 * canvas_width / 8, canvas_height / 2 - 30);
+
+    context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + 30);
+    context.fillText("Distance on Planet", canvas_width / 4, 6 * canvas_height / 8 - 20);
+    context.fillText("Distance perceived by Satellite", canvas_width / 4, canvas_height - 30);
+
+    context.fillText("Relativistic Doppler Effect", 3 * canvas_width / 4, canvas_height / 2 + 30);
+    context.fillText("Waves transmitted by Satellite", 3 * canvas_width / 4, 6 * canvas_height / 8);
+    context.fillText("Waves received by Planer",3 *  canvas_width / 4, canvas_height - 20);
 }
 
 function radian(degree) {

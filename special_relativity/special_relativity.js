@@ -146,7 +146,7 @@ function timeDisplay() {
     context.stroke();
 
     context.beginPath();
-    context.moveTo(7 * canvas_width / 8, canvas_height / 4);
+    context.moveTo(7 * canvas_width / 8, canvas_height / 4 - font_offset);
     context.lineTo(7 * canvas_width / 8 + clock_length * Math.cos(radian(dilated_time)), - font_offset + canvas_height / 4 - clock_length * Math.sin(radian(dilated_time)));
     context.stroke();
 }

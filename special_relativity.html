@@ -43,9 +43,15 @@
   <center>
     <p id="speed-display"></p>
     <div class="slidecontainer">
-      <input type="range" min="0" max="1000" value="700" id="speed-slider" oninput="updateParams('speed')"
-        onchange="updateParams('speed')" class="slider" style="width: 100%">
+      <input type="range" min="0" max="1000" value="700" id="speed-slider" oninput="updateParams('speed-slide')"
+        onchange="updateParams('speed-slide')" class="slider" style="width: 100%">
     </div>
+    <p class="text-white">Or type the % of speed of light here</p>
+    <div style="width:30%">
+      <input max="100" min="0" id="speed-input" value="70.0" oninput="updateParams('speed-typed')"
+      onchange="updateParams('speed-typed')">
+    </div>
+    
   </center>
 
   <br />

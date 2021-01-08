@@ -7,6 +7,7 @@ let context = canvas.getContext("2d");
 
 let speed_slider = document.getElementById("speed-slider");
 let speed_display = document.getElementById("speed-display");
+let speed_input = document.getElementById("speed-input");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;

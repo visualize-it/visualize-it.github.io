@@ -34,6 +34,13 @@
 <div class="text">
   <h4>Effects of Special Relativity</h4>
 
+  <p>Special relativity explains the relationship between space and time. It's based on two postulates: 1) The laws of
+    physics are same in all inertial frames of reference and 2) The speed of light in vacuum is same for all observers.
+    On applying these postulates, one realizes that certain physical quantities when measured from different inertial
+    frames of reference do not tally with each other. We explore three such quantities.</p>
+  <p>Consider a Geosynchronous satellite orbiting the Earth. It's near-circular orbital path has a radius of 42300 km.
+    We measure the passage of time, length of the same object and frequency of waves tranmitted by the satellite and
+    received by the Earth. Use the slider to vary the orbital speed of the satellite as a % of speed of light.</p>
   <br />
   <center>
     <canvas id="sr-canvas"></canvas>
@@ -49,10 +56,33 @@
     <p class="text-white">Or type the % of speed of light here</p>
     <div style="width:30%">
       <input max="100" min="0" id="speed-input" value="70.0" oninput="updateParams('speed-typed')"
-      onchange="updateParams('speed-typed')">
+        onchange="updateParams('speed-typed')">
     </div>
-    
+
   </center>
+  <br />
+  <hr />
+  <br />
+
+  <h6>Brief Description</h6>
+  <b>Time Dilation</b>
+  <p>According to a stationary observer on Earth, time appears to pass slower aboard the satellite. If the time period between two events on the satellite is t<sub>0</sub> aboard the satellite, then it is t = t<sub>0</sub> / (1 - v<sup>2</sup>/c<sup>2</sup>) for the observer on Earth. Observe that t<sub>0</sub> &lt; t. This phenomenon is known as time dilation.</p>
+  <b>Length contraction</b>
+  <p>If the length of an object on Earth is measured to be l<sub>0</sub> by a stationary observer on Earth, then an observer aboard the satellite measured the same object's length to be l = l<sub>0</sub> (1 - v<sup>2</sup>/c<sup>2</sup>). Observe that l<sub>0</sub> &gt; l. This phenomenon is known as length contraction.</p>
+  <b>Relativistic Doppler Effect</b>
+  <p>If the satellite transmits waves of frequency f<sub>0</sub>, then a stationary receiver on the Earth will measure the same waves to have a frequency of f = f<sub>0</sub> * (1 - v/c) / (1 + v/c). This phenomenon is known as relativistic doppler effect.</p>
+  
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>Speaking in a strict sense, a satellit orbiting the Earth won't exactly show these effects in the same manner. The orbiting satellite analogy has been provided to get a brief idea of speed. Instead, consider a spaceship going away from Earth at the same speed.</li>
+    <li>This simulation is compatible with SI units</li>
+    <li><b>Gamma (&gamma;)</b> below the speed parameters is equal to the inverse of (1 - v<sup>2</sup> / c<sup>2</sup>). Hence, t = &gamma; * t<sub>0</sub> and l = l<sub>0</sub> / &gamma;</li>
+    <li>Gravitational effects on physical quantities have been ignored. They come under the purview of General Relativity.</li>
+  </ol>
 
   <br />
   <hr />

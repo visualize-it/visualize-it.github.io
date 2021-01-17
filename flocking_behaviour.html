@@ -78,6 +78,13 @@
           </div>
         </div>
       </div>
+      <br/>
+      <p id="align-display"></p>
+      <input type="range" min="15" max="100" value="40" id="align-slider" oninput="updateParams('align')"
+        onchange="updateParams('align')" class="slider">
+      <p id="coh-display"></p>
+      <input  type="range" min="15" max="100" value="60" id="coh-slider" oninput="updateParams('coh')"
+        onchange="updateParams('coh')" class="slider">
     </center>
 
     <br />
@@ -85,14 +92,18 @@
     <br />
 
     <h5>Rules</h5>
-    <p><b>Separation:</b> If two boids come close to each other, they try moving in different directions to avoid colliding. There is no
-      form of communication between them. The blue circle denotes the region around the boid where this rule comes into
+    <p><b>Separation:</b> If two boids come close to each other, they try moving in different directions to avoid
+      colliding. There is no
+      form of communication between them. The light-gray circle denotes the region around the boid where this rule comes
+      into
       play.</p>
-    
-    <p><b>Alignment:</b> A boid moves in the average direction of the boids around it. The red circle denotes the region whose boids are considered.</p>
-    
-    <p><b>Cohesion:</b> A boid moves towards the average position of the boids around it. The green circle denotes the region whose boids are considered.</p>
-    
+
+    <p><b>Alignment:</b> A boid moves in the average direction of the boids around it. The medium-gray circle denotes
+      the region whose boids are considered. The blue coloured line points towards the average direction</p>
+
+    <p><b>Cohesion:</b> A boid moves towards the average position of the boids around it. The dark-gray circle denotes
+      the region whose boids are considered.</p>
+
     <br />
     <hr />
     <br />
@@ -100,9 +111,11 @@
     <b>Note:</b>
 
     <ol>
+      <li>Radius of Separation region cannot be changed because it may lead to crashes</li>
       <li>Alignment is critical for flocking behaviour.</li>
       <li>However, if a single flock is formed, then turning off alignment will almost never have any effect.</li>
-      <li>Turning off separation will cause the boids to clump together. Some of these clumps will cease net movement because they move around each other.</li>
+      <li>Turning off separation will cause the boids to clump together. Some of these clumps will cease net movement
+        because they move around each other.</li>
       <li>Simulation may lag in low-end devices. Simulation may lag if too many boids are introduced.</li>
     </ol>
 

@@ -11,6 +11,11 @@ let highlight_toggle = document.getElementById("highlight-toggle");
 
 let pause_button = document.getElementById("pause-button");
 let boid_number = document.getElementById("boid-number");
+let align_display = document.getElementById("align-display");
+let coh_display = document.getElementById("coh-display");
+
+let align_slider = document.getElementById("align-slider");
+let coh_slider = document.getElementById("coh-slider");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -27,7 +32,6 @@ else {
     canvas_height = canvas_width / 1.62;
 }
 
-
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
@@ -40,7 +44,7 @@ let animate = window.requestAnimationFrame
 
 window.onload = function () {
     initialize();
-    addBoids(20);
+    addBoids(30);
     animate(step);
 }
 
@@ -50,41 +54,6 @@ function step() {
     }
     render();
     animate(step);
-}
-
-function pause() {
-    if (!is_paused) {
-        is_paused = true;
-        pause_button.innerHTML = "Resume";
-        seek_x = seek_y = seek_angle = undefined;
-    }
-    else {
-        is_paused = false;
-        pause_button.innerHTML = "Pause";
-    }
-}
-
-function restart() {
-    let num_boids = boids.length;
-    removeBoids(boids.length);
-
-    if (num_boids == 0) {
-        addBoids(20);
-    }
-    else {
-        addBoids(num_boids);
-    }
-    is_highlighted = true;
-    highlight_index = getHighlightIndex();
-}
-
-function initialize() {
-    separation_toggle.checked = true;
-    alignment_toggle.checked = true;
-    cohesion_toggle.checked = true;
-
-    boid_number.innerHTML = `Number of boids: ${boids.length}`;
-    highlight_index = getHighlightIndex();
 }
 
 function addBoids(number = 1) {
@@ -123,6 +92,32 @@ function clearBoids() {
     boid_number.innerHTML = `Number of boids: ${boids.length}`;
     is_highlighted = false;
     highlight_toggle.innerHTML = "Highlight: OFF";
+}
+
+function pause() {
+    if (!is_paused) {
+        is_paused = true;
+        pause_button.innerHTML = "Resume";
+        seek_x = seek_y = seek_angle = undefined;
+    }
+    else {
+        is_paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+}
+
+function restart() {
+    let num_boids = boids.length;
+    removeBoids(boids.length);
+
+    if (num_boids == 0) {
+        addBoids(30);
+    }
+    else {
+        addBoids(num_boids);
+    }
+    is_highlighted = true;
+    highlight_index = getHighlightIndex();
 }
 
 function highlight() {

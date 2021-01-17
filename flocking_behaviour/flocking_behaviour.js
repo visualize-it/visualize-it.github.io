@@ -1,6 +1,6 @@
 let boids = [];
 let speed = 2;
-let sep_radius = 15, align_radius = 30, coh_radius = 20;
+let sep_radius = 20, align_radius = 40, coh_radius = 60;
 let is_paused = false;
 let is_highlighted = true, highlight_index;
 let seek_x, seek_y, seek_angle;
@@ -81,6 +81,33 @@ function update() {
         }
     }
 
+    moveBoids();
+}
+
+function render() {
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, canvas_width, canvas_height);
+
+    if (is_highlighted) {
+        if (align_radius < coh_radius) {
+            drawCohesion();
+            drawAlignment();
+        }
+        else {
+            drawAlignment();
+            drawCohesion();
+        }
+        drawSeparation();
+        drawVectors();
+    }
+
+    context.fillStyle = "#ffffff";
+    for (let boid of boids) {
+        context.fillRect(boid.x, boid.y, 3, 3);
+    }
+}
+
+function moveBoids() {
     for (let boid of boids) {
         boid.x += speed * Math.cos(radian(boid.dirn));
         boid.y -= speed * Math.sin(radian(boid.dirn));
@@ -108,64 +135,85 @@ function update() {
     }
 }
 
-function render() {
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
+function updateParams(variable) {
+    if(variable == "align") {
+        /* if(align_slider.value > coh_slider.value) {
+            align_slider.value = coh_radius;
+        }*/
+        align_radius = align_slider.value;
+        align_display.innerHTML = `Radius of Alignment region: ${align_slider.value}`;
+    }
+    if(variable == "coh") {
+        /*if(coh_slider.value < align_slider.value) {
+            coh_slider.value = align_slider.value;
+        }*/
+        coh_radius = coh_slider.value;
+        coh_display.innerHTML = `Radius of Cohesion region: ${coh_slider.value}`;
+    }  
+}
 
-    if (is_highlighted) {
-        context.fillStyle = "#ff0000";
+function initialize() {
+    separation_toggle.checked = true;
+    alignment_toggle.checked = true;
+    cohesion_toggle.checked = true;
+
+    boid_number.innerHTML = `Number of boids: ${boids.length}`;
+    highlight_index = getHighlightIndex();
+
+    align_slider.min = 15;
+    align_slider.max = canvas_width / 2;
+    coh_slider.min = 15;
+    coh_slider.max = canvas_width / 2;
+
+    align_slider.value = 40;
+    coh_slider.value = 60;
+
+    align_display.innerHTML = `Radius of Alignment region: ${align_slider.value}`;
+    coh_display.innerHTML = `Radius of Cohesion region: ${coh_slider.value}`;
+}
+
+function drawAlignment() {
+    context.fillStyle = "#444444";
+    context.beginPath();
+    context.arc(boids[highlight_index].x, boids[highlight_index].y, align_radius, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawCohesion() {
+    context.fillStyle = "#222222";
+    context.beginPath();
+    context.arc(boids[highlight_index].x, boids[highlight_index].y, coh_radius, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawSeparation() {
+    context.fillStyle = "#666666";
+    context.beginPath();
+    context.arc(boids[highlight_index].x, boids[highlight_index].y, sep_radius, 0, 2 * Math.PI);
+    context.fill();
+}
+
+function drawVectors() {
+    context.strokeStyle = "#ffff00";
+    context.lineWidth = 3;
+    if (seek_x !== undefined) {
         context.beginPath();
-        context.arc(boids[highlight_index].x, boids[highlight_index].y, align_radius, 0, 2 * Math.PI);
-        context.fill();
-
-        context.fillStyle = "#00ff00";
-        context.beginPath();
-        context.arc(boids[highlight_index].x, boids[highlight_index].y, coh_radius, 0, 2 * Math.PI);
-        context.fill();
-
-        context.fillStyle = "#0000ff";
-        context.beginPath();
-        context.arc(boids[highlight_index].x, boids[highlight_index].y, sep_radius, 0, 2 * Math.PI);
-        context.fill();
-
-        if (seek_x !== undefined) {
-            context.strokeStyle = "#ffffff";
-            context.beginPath();
-            context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
-            context.lineTo(seek_x, seek_y);
-            context.stroke();
-        }
-
-        if(seek_angle !== undefined) {
-            context.strokeStyle = "#ffffff";
-            context.beginPath();
-            context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
-            context.lineTo(boids[highlight_index].x + 50 * Math.cos(radian(seek_angle)), boids[highlight_index].y - 50 * Math.sin(radian(seek_angle)));
-            context.stroke();
-        }
+        context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
+        context.lineTo(seek_x, seek_y);
+        context.stroke();
     }
 
-    context.fillStyle = "#ffffff";
-    for (let boid of boids) {
-        context.fillRect(boid.x, boid.y, 3, 3);
+    context.strokeStyle = "#0000ff";
+    if (seek_angle !== undefined) {
+        context.beginPath();
+        context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
+        context.lineTo(boids[highlight_index].x + getLonger() * Math.cos(radian(seek_angle)), boids[highlight_index].y - getLonger() * Math.sin(radian(seek_angle)));
+        context.stroke();
     }
 }
 
 function getApproachDirn(boid1, boid2) {
     return degree(Math.atan((boid2.x - boid1.x) / boid1.y - boid2.y));
-}
-
-function seekDirn(boid, target_x, target_y) {
-    if (boid.x - target_x > 0) {
-        return degree(Math.atan((target_y - boid.y) / (boid.x - target_x))) + 180;
-    }
-    else {
-        return degree(Math.atan((target_y - boid.y) / (boid.x - target_x)));
-    }
-}
-
-function inCircle(boid1, boid2, radius) {
-    return (Math.sqrt(Math.pow(boid1.x - boid2.x, 2) + Math.pow(boid1.y - boid2.y, 2)) <= radius)
 }
 
 function getAvg(list) {
@@ -181,11 +229,28 @@ function getAvg(list) {
     }
 }
 
+function seekDirn(boid, target_x, target_y) {
+    return (boid.x - target_x > 0) ? degree(Math.atan((target_y - boid.y) / (boid.x - target_x))) + 180 : degree(Math.atan((target_y - boid.y) / (boid.x - target_x)));
+}
+
+function inCircle(boid1, boid2, radius) {
+    return (Math.sqrt(Math.pow(boid1.x - boid2.x, 2) + Math.pow(boid1.y - boid2.y, 2)) <= radius)
+}
+
 function radian(degree) {
     return (degree * Math.PI / 180);
 }
 
 function degree(radian) {
     return (radian * 180 / Math.PI);
+}
+
+function getLonger() {
+    if (align_radius > coh_radius) {
+        return align_radius;
+    }
+    else {
+        return coh_radius;
+    }
 }
 

@@ -3,6 +3,7 @@ let speed = 2;
 let sep_radius = 15, align_radius = 30, coh_radius = 20;
 let is_paused = false;
 let is_highlighted = true, highlight_index;
+let seek_x, seek_y, seek_angle;
 
 function update() {
     for (let i = 0; i < boids.length; i++) {
@@ -35,6 +36,9 @@ function update() {
             }
             if (neigh_dirns.length) {
                 align_dirn = getAvg(neigh_dirns);
+                if (i == highlight_index) {
+                    seek_angle = align_dirn;
+                }
             }
         }
 
@@ -53,9 +57,14 @@ function update() {
 
             if (neigh_x.length) {
                 coh_dirn = seekDirn(boids[i], getAvg(neigh_x), getAvg(neigh_y));
+                if (i == highlight_index) {
+                    seek_x = getAvg(neigh_x);
+                    seek_y = getAvg(neigh_y);
+                }
             }
         }
 
+        // combine rules
         if (sep_dirn !== undefined) {
             if (coh_dirn === undefined) {
                 boids[i].dirn = sep_dirn;
@@ -78,15 +87,19 @@ function update() {
 
         if (boid.x > canvas_width) {
             boid.x = 0;
+            seek_x = seek_y = seek_angle = undefined;
         }
         else if (boid.x < 0) {
             boid.x = canvas_width;
+            seek_x = seek_y = seek_angle = undefined;
         }
         if (boid.y > canvas_height) {
             boid.y = 0;
+            seek_x = seek_y = seek_angle = undefined;
         }
         else if (boid.y < 0) {
             boid.y = canvas_height;
+            seek_x = seek_y = seek_angle = undefined;
         }
 
         while (boid.dirn > 360) {
@@ -104,19 +117,32 @@ function render() {
         context.beginPath();
         context.arc(boids[highlight_index].x, boids[highlight_index].y, align_radius, 0, 2 * Math.PI);
         context.fill();
-        context.stroke();
 
         context.fillStyle = "#00ff00";
         context.beginPath();
         context.arc(boids[highlight_index].x, boids[highlight_index].y, coh_radius, 0, 2 * Math.PI);
         context.fill();
-        context.stroke();
 
         context.fillStyle = "#0000ff";
         context.beginPath();
         context.arc(boids[highlight_index].x, boids[highlight_index].y, sep_radius, 0, 2 * Math.PI);
         context.fill();
-        context.stroke();
+
+        if (seek_x !== undefined) {
+            context.strokeStyle = "#ffffff";
+            context.beginPath();
+            context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
+            context.lineTo(seek_x, seek_y);
+            context.stroke();
+        }
+
+        if(seek_angle !== undefined) {
+            context.strokeStyle = "#ffffff";
+            context.beginPath();
+            context.moveTo(boids[highlight_index].x, boids[highlight_index].y);
+            context.lineTo(boids[highlight_index].x + 50 * Math.cos(radian(seek_angle)), boids[highlight_index].y - 50 * Math.sin(radian(seek_angle)));
+            context.stroke();
+        }
     }
 
     context.fillStyle = "#ffffff";

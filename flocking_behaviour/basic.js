@@ -20,11 +20,13 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 if (mobile) {
     canvas_width = 0.95 * screen_width;
+    canvas_height = canvas_width;
 }
 else {
     canvas_width = 0.5 * screen_width;
+    canvas_height = canvas_width / 1.62;
 }
-canvas_height = canvas_width / 1.62;
+
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;
@@ -54,6 +56,7 @@ function pause() {
     if (!is_paused) {
         is_paused = true;
         pause_button.innerHTML = "Resume";
+        seek_x = seek_y = seek_angle = undefined;
     }
     else {
         is_paused = false;
@@ -135,6 +138,7 @@ function highlight() {
 }
 
 function getHighlightIndex() {
+    seek_x = seek_y = seek_angle = undefined;
     return Math.floor(Math.random() * boids.length);
 }
 

@@ -12,11 +12,13 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="flocking_behaviour/basic.js" defer></script>
+    <script src="flocking_behaviour/flocking_behaviour.js" defer></script> 
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body style="overflow-x: hidden;">
     <nav class="nav-extended" style="background:black; margin-top: 0mm">
       <div class="nav-wrapper">
         <h3 id="main-heading">Visualize It</h3>
@@ -28,15 +30,52 @@
         </ul>
       </div>
     </nav>
+
+    <div class="text">
+      <h4>Flocking Behaviour of Boids</h4>
+      <p>Under development</p>
+  
+      <center>
+        <br/>
+        <canvas id="flocking-canvas"></canvas>
+        <br/>
+        <button class="btn blue waves-effect">+</button>
+        <button class="btn blue waves-effect">Clear</button>
+        <button class="btn blue waves-effect">-</button>
+        <br/>
+        <br/>
+        <div class="container">
+          <div class="row">
+            <div class="col s4">
+              <label>
+                <input id="separation-toggle" type="checkbox"/>
+                <span>Separation</span>
+              </label>
+            </div>
+            <div class="col s4">
+              <label>
+                <input id="alignment-toggle" type="checkbox"/>
+                <span>Alignment</span>
+              </label>
+            </div>
+            <div class="col s4">
+              <label>
+                <input id="cohesion-toggle" type="checkbox"/>
+                <span>Cohesion</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <br/>
+        <button id="pause-button" class="btn blue waves-effect" onclick="pause()">Pause</button>
+      </center>
+  
+      <br />
+      <hr />
+      <br />
+  
+      <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+    </div>
   </body>
 
-  <div class="text">
-    <h4>Flocking Behaviour of Boids</h4>
-    <p>Under development</p>
-    <br />
-    <hr />
-    <br />
-
-    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-  </div>
 </html>

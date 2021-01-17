@@ -1,76 +1,78 @@
 let boids = [];
 let speed = 2;
-let radius = 20, radius_square;
+let sep_radius = 15, align_radius = 30, coh_radius = 20;
 let is_paused = false;
-
-function addBoids(number = 1) {
-    while (number) {
-        let x = Math.random() * canvas_width;
-        let y = Math.random() * canvas_height;
-        let dirn = Math.random() * 360;
-
-        boids.push(
-            {
-                x: x,
-                y: y,
-                dirn: dirn,
-            }
-        );
-        number--;
-    }
-
-    boids.push(
-        {
-            x: 0,
-            y: canvas_height / 2,
-            dirn: 0,
-        });
-
-    boids.push({
-        x: canvas_width,
-        y: canvas_height / 2,
-        dirn: 180,
-    }
-    )
-}
-
-function removeBoids(number = 1) {
-
-}
+let is_highlighted = true, highlight_index;
 
 function update() {
     for (let i = 0; i < boids.length; i++) {
-        let new_dirns = [];
+        let sep_dirn = undefined, align_dirn = undefined, coh_dirn = undefined;
 
-        // Prevent colliding with other boids
+        // Prevent collisions
         if (separation_toggle.checked) {
             let approach_dirns = [];
             for (let j = 0; j < boids.length; j++) {
                 if (i != j) {
-                    if (inCircle(boids[i], boids[j])) {
+                    if (inCircle(boids[i], boids[j], sep_radius)) {
                         approach_dirns.push(getApproachDirn(boids[i], boids[j]));
                     }
                 }
             }
-            if (approach_dirns.length != 0) {
-                new_dirns.push(getAvg(approach_dirns) - 180);
+            if (approach_dirns.length) {
+                sep_dirn = getAvg(approach_dirns) + 180;
             }
         }
 
+        // Move along with nearby boids
         if (alignment_toggle.checked) {
-
+            let neigh_dirns = [];
+            for (let j = 0; j < boids.length; j++) {
+                if (i != j) {
+                    if (inCircle(boids[i], boids[j], align_radius)) {
+                        neigh_dirns.push(boids[j].dirn);
+                    }
+                }
+            }
+            if (neigh_dirns.length) {
+                align_dirn = getAvg(neigh_dirns);
+            }
         }
 
+        // Form clusters
         if (cohesion_toggle.checked) {
+            let neigh_x = [];
+            let neigh_y = [];
+            for (let j = 0; j < boids.length; j++) {
+                if (i != j) {
+                    if (inCircle(boids[i], boids[j], coh_radius)) {
+                        neigh_x.push(boids[j].x);
+                        neigh_y.push(boids[j].y);
+                    }
+                }
+            }
 
+            if (neigh_x.length) {
+                coh_dirn = seekDirn(boids[i], getAvg(neigh_x), getAvg(neigh_y));
+            }
         }
 
-        if (new_dirns.length != 0) {
-            boids[i].dirn = Math.random() * getAvg(new_dirns);
-        } 
+        if (sep_dirn !== undefined) {
+            if (coh_dirn === undefined) {
+                boids[i].dirn = sep_dirn;
+            }
+        }
+        else if (align_dirn !== undefined && coh_dirn !== undefined) {
+            boids[i].dirn = 0.7 * align_dirn + 0.3 * coh_dirn;
+        }
+        else if (align_dirn !== undefined) {
+            boids[i].dirn = align_dirn;
+        }
+        else if (coh_dirn !== undefined) {
+            boids[i].dirn = coh_dirn;
+        }
     }
 
-    for(let boid of boids) {
+    for (let boid of boids) {
         boid.x += speed * Math.cos(radian(boid.dirn));
         boid.y -= speed * Math.sin(radian(boid.dirn));
 
@@ -86,13 +88,36 @@ function update() {
         else if (boid.y < 0) {
             boid.y = canvas_height;
         }
+
+        while (boid.dirn > 360) {
+            boid.dirn -= 360;
+        }
     }
-    console.log(boids);
 }
 
 function render() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
+
+    if (is_highlighted) {
+        context.fillStyle = "#ff0000";
+        context.beginPath();
+        context.arc(boids[highlight_index].x, boids[highlight_index].y, align_radius, 0, 2 * Math.PI);
+        context.fill();
+        context.stroke();
+
+        context.fillStyle = "#00ff00";
+        context.beginPath();
+        context.arc(boids[highlight_index].x, boids[highlight_index].y, coh_radius, 0, 2 * Math.PI);
+        context.fill();
+        context.stroke();
+
+        context.fillStyle = "#0000ff";
+        context.beginPath();
+        context.arc(boids[highlight_index].x, boids[highlight_index].y, sep_radius, 0, 2 * Math.PI);
+        context.fill();
+        context.stroke();
+    }
 
     context.fillStyle = "#ffffff";
     for (let boid of boids) {
@@ -100,33 +125,21 @@ function render() {
     }
 }
 
-function step() {
-    if(!is_paused) {
-        update();
-    }
-    render();
-    animate(step);
-}
-
-function initialize() {
-    separation_toggle.checked = true;
-    alignment_toggle.checked = true;
-    cohesion_toggle.checked = true;
-
-    let radius_square = radius * radius;
-}
-
 function getApproachDirn(boid1, boid2) {
-    let horizontal = boid2.x - boid1.x;
-    let vertical = boid2.y - boid1.y;
-    return degree(Math.atan(vertical / horizontal));
+    return degree(Math.atan((boid2.x - boid1.x) / boid1.y - boid2.y));
 }
 
-function inCircle(boid1, boid2) {
-    if (Math.sqrt(Math.pow(boid1.x - boid2.x, 2) + Math.pow(boid1.y - boid2.y, 2)) <= radius) {
-        return true;
+function seekDirn(boid, target_x, target_y) {
+    if (boid.x - target_x > 0) {
+        return degree(Math.atan((target_y - boid.y) / (boid.x - target_x))) + 180;
     }
-    else return false;
+    else {
+        return degree(Math.atan((target_y - boid.y) / (boid.x - target_x)));
+    }
+}
+
+function inCircle(boid1, boid2, radius) {
+    return (Math.sqrt(Math.pow(boid1.x - boid2.x, 2) + Math.pow(boid1.y - boid2.y, 2)) <= radius)
 }
 
 function getAvg(list) {
@@ -140,7 +153,7 @@ function getAvg(list) {
     else {
         return 0;
     }
-} 
+}
 
 function radian(degree) {
     return (degree * Math.PI / 180);
@@ -150,13 +163,3 @@ function degree(radian) {
     return (radian * 180 / Math.PI);
 }
 
-function pause() {
-    if(!is_paused) {
-        is_paused = true;
-        pause_button.innerHTML = "Resume";
-    }
-    else {
-        is_paused = false;
-        pause_button.innerHTML = "Pause";
-    }
-}

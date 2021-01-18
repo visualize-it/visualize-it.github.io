@@ -1,9 +1,22 @@
 let a, b, m, n;
+let m_prob, n_prob, num0, num1;
 let gates;
 let slider_conversion;
 let margin, padding, offset, square_half_length, space;
 
+function update() {
+    if(Math.random() < m_prob) {
+        num0++;
+    }
+    if(Math.random() < n_prob) {
+        num1++;
+    }
+    display_measure.innerHTML = `Measurements: 0 = ${(num0 * 100 / (num0 + num1)).toFixed(2)}%, 1 = ${(num1 * 100 / (num0 + num1)).toFixed(2)}%`;
+}
+
 function evaluate() {
+    num0 = 0;
+    num1 = 0;
     m = a;
     n = b;
     let output;
@@ -22,6 +35,8 @@ function evaluate() {
         n = output[1];
     }
     display_output.innerHTML = `Output: [${m.toFixed(4)}, ${n.toFixed(4)}]`;
+    m_prob = m*m;
+    n_prob = n*n;
 }
 
 function render() {

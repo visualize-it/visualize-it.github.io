@@ -1,5 +1,5 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 24;
+let fps = 60;
 
 let canvas = document.getElementById("quantum-canvas");
 let context = canvas.getContext("2d");
@@ -12,6 +12,7 @@ let display_top = document.getElementById("display-top");
 let display_bottom = document.getElementById("display-bottom");
 let display_output = document.getElementById("display-output");
 let display_input = document.getElementById("display-input");
+let display_measure = document.getElementById("display-measure");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -43,6 +44,7 @@ window.onload = function() {
 }
 
 function step() {
+    update();
     render();
     animate(step);
 }

@@ -31,7 +31,7 @@
   </nav>
   <div class="text">
     <h4>Working of Quantum Logic Gates</h4>
-    
+    <p>Quantum circuits contain a lot of logic gates. It is these gates which give them their interesting computing properties. In this visualization, we explore the three purely real one-qubit logic gates.</p>
     <center>
       <br/>
       <canvas id="quantum-canvas"></canvas>
@@ -61,6 +61,49 @@
       <input placeholder="a, b" id="input" style="width: 35%" type="text" onchange="updateParams('text')" oninput="updateParams('text')">
       <p>Both amplitudes should be between -1 and 1</p>
     </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <h5>Description of Logic Gates</h5>
+    <b>Hadamard gate</b>
+    <p>This gate is mainly used for spreading and recombination of quantum states. It operates as follows:</p>
+    <center>
+      [a,b] &longrightarrow; [(a+b)/&Sqrt;2, (a-b)/&Sqrt;2]
+    </center>
+    <p>Two Hadamard gates are equivalent to an identity gate, hence the Hadamard gate is its own inverse</p>
+
+    <b>Pauli-X or NOT gate</b>
+    <p>This gate interchanges the amplitudes of the qubit's state:</p>
+    <center>
+      [a,b] &longrightarrow; [b,a]
+    </center>
+    <p>Two X gates are equivalent to an identity gate, hence the X gate is its own inverse</p>
+
+    <b>Pauli-Z or phase-flip gate</b>
+    <p>This gate flips the sign of the 2<sup>nd</sup> amplitude</p>
+    <center>
+      [a,b] &longrightarrow; [a,-b] 
+    </center>
+    <p>Two Z gates are equivalent to an identity gate, hence the Z gate is its own inverse</p>
+
+    <b>Measurement</b>
+    <p>If the final output is [a,b], then the probability that 0 is measured is given by a<sup>2</sup> and the probability that 1 is measured is given by b<sup>2</sup></p>
+
+    <br />
+    <hr />
+    <br />
+
+    <b>Note:</b>
+
+    <ol>
+      <li>The quantum state of a qubit lies in a complex 2D space. The imaginary parts are not considered here</li>
+      <li>Besides H, X and Z, there are other single qubit gates like Pauli-Y (Y), Phase (S,P), &pi; / 8 (T)</li>
+      <li>Multi qubit gates also exist: Controlled NOT (CNOT), Controlled Z (CZ), Toffoli (TOFF), SWAP</li>
+      <li>Every quantum logic gate has an associated matrix that has to be unitary in order to preserve normalization</li>
+      <li>The program does not consider your text-input until it is defined and proper</li>
+    </ol>
 
     <br />
     <hr />

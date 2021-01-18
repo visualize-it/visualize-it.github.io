@@ -1,42 +1,74 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Quantum Logic Gates | Visualize It</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Materialize -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<head>
+  <title>Quantum Logic Gates | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav class="nav-extended" style="background:black; margin-top: 0mm">
-      <div class="nav-wrapper">
-        <h3 id="main-heading">Visualize It</h3>
-      </div>
-      <div class="nav-content">
-        <ul class="tabs tabs-transparent tabs-fixed-width">
-          <li class="tab"><a href="index.html">Home</a></li>
-          <li class="tab"><a href="about.html">Abt</a></li>
-        </ul>
-      </div>
-    </nav>
-  </body>
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="quantum_logic/basic.js" defer></script>
+  <script src="quantum_logic/quantum_logic.js" defer></script>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="index.html">Home</a></li>
+        <li class="tab"><a href="about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
   <div class="text">
     <h4>Working of Quantum Logic Gates</h4>
-    <p>Under development</p>
+    
+    <center>
+      <br/>
+      <canvas id="quantum-canvas"></canvas>
+      <p id="display-input"></p>
+      <p id="display-output"></p>
+      <button onclick="addGate('H')" class="btn blue waves-effect">+H</button>
+      <button onclick="addGate('X')" class="btn blue waves-effect">+X</button>
+      <button onclick="addGate('Z')" class="btn blue waves-effect">+Z</button>
+      <br/>
+      <br/>
+      <button onclick="remove('first')" class="btn blue waves-effect">Remove first</button>
+      <button onclick="remove('last')" class="btn blue waves-effect">Remove last</button>
+      <button onclick="remove('all')" class="btn blue waves-effect">Clear</button>
+      <br/>
+      <p>Some Standard inputs:</p>
+      <button onclick="setInput('0')" class="btn blue waves-effect">0</button>
+      <button onclick="setInput('1')" class="btn blue waves-effect">1</button>  
+      <button onclick="setInput('+')" class="btn blue waves-effect">+</button> 
+      <button onclick="setInput('-')" class="btn blue waves-effect">-</button> 
+      <br/>
+      <p>Amplitudes input: Use the slider</p>
+      <p id="display-top"></p>
+      <input id="input-top" type="range" class="slider" min="0" max="100" oninput="updateParams('top-slider')" onchange="updateParams('top-slider')">
+      <p id="display-bottom"></p>
+      <input id="input-bottom" type="range" class="slider" min="0" max="100" oninput="updateParams('bottom-slider')" onchange="updateParams('bottom-slider')">
+      <p>Or type the amplitudes here</p>
+      <input placeholder="a, b" id="input" style="width: 35%" type="text" onchange="updateParams('text')" oninput="updateParams('text')">
+      <p>Both amplitudes should be between -1 and 1</p>
+    </center>
+
     <br />
     <hr />
     <br />
 
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>
+</body>
+
+
 </html>

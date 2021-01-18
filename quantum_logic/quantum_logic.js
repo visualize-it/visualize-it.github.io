@@ -1,7 +1,7 @@
 let a, b, m, n;
 let gates;
 let slider_conversion;
-let margin, padding, offset, square_half_length;
+let margin, padding, offset, square_half_length, space;
 
 function evaluate() {
     m = a;
@@ -68,18 +68,20 @@ function initParams() {
         context.font = "20px Arial";
         offset = 5;
         square_half_length = 15;
+        space = 0.7 * canvas_width;
     }
     else {
         padding = 0.15 * canvas_width;
         context.font = "30px Arial";
         offset = 10;
         square_half_length = 20;
+        space = 0.8 * canvas_width;
     }
 
-    a = 0;
-    b = 1;
+    a = 1;
+    b = 0;
     slider_conversion = 2000;
-    gates = ["X"];
+    gates = ["X","H"];
 
     top_slider.min = bottom_slider.min = - slider_conversion;
     top_slider.max = bottom_slider.max = slider_conversion;
@@ -111,7 +113,6 @@ function drawStructure() {
 
 function drawGates() {
     if (gates.length) {
-        let space = 0.8 * canvas_width;
         let x_offset;
 
         context.strokeStyle = "#ffffff";

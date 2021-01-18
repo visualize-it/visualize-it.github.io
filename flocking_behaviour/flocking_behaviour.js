@@ -66,7 +66,10 @@ function update() {
 
         // combine rules
         if (sep_dirn !== undefined) {
-            if (coh_dirn === undefined) {
+            if(!cohesion_toggle.checked) {
+                boids[i].dirn = Math.random() * sep_dirn;
+            }
+            else if(coh_dirn === undefined) {
                 boids[i].dirn = sep_dirn;
             }
         }

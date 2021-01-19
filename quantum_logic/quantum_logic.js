@@ -11,7 +11,7 @@ function update() {
     if(Math.random() < n_prob) {
         num1++;
     }
-    display_measure.innerHTML = `Measurements: 0 = ${(num0 * 100 / (num0 + num1)).toFixed(2)}%, 1 = ${(num1 * 100 / (num0 + num1)).toFixed(2)}%`;
+    // display_measure.innerHTML = `Measurements: 0 = ${(num0 * 100 / (num0 + num1)).toFixed(2)}%, 1 = ${(num1 * 100 / (num0 + num1)).toFixed(2)}%`;
 }
 
 function evaluate() {

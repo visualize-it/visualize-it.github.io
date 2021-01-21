@@ -207,10 +207,10 @@ function captionsDisplay() {
 
     context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + font_offset);
     context.fillText(`Distance on Planet: ${length.toFixed()}`, canvas_width / 4, 6 * canvas_height / 8);
-    context.fillText(`Distance perceived by Satellite: ${length_decreased.toFixed()}`, canvas_width / 4, canvas_height - font_offset);
+    context.fillText(`Distance perceived by Sat.: ${length_decreased.toFixed()}`, canvas_width / 4, canvas_height - font_offset);
 
     context.fillText("Relativistic Doppler Effect", 3 * canvas_width / 4, canvas_height / 2 + font_offset);
-    context.fillText(`Waves transmitted by Satellite: ${angular_freq.toFixed(2)} Hz`, 3 * canvas_width / 4, 6 * canvas_height / 8);
+    context.fillText(`Waves transmitted by Sat.: ${angular_freq.toFixed(2)} Hz`, 3 * canvas_width / 4, 6 * canvas_height / 8);
     context.fillText(`Waves received by Planet: ${angular_freq_decreased.toFixed(2)} Hz`, 3 * canvas_width / 4, canvas_height - font_offset);
 }
 

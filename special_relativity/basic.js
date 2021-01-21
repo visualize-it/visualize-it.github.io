@@ -18,7 +18,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 if (mobile) {
-    canvas_width = 0.9 * screen_width;
+    canvas_width = 0.99 * screen_width;
 }
 else {
     canvas_width = 0.6 * screen_width;

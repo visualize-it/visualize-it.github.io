@@ -33,7 +33,7 @@
 
 <div class="text">
     <h4>Visualization of Conic Sections</h4>
-
+    <p>Conic sections refer to the geometric figures obtained upon intersecting a cone with a plane making different angles with its axis. In polar coordinates, all conic sections are represented by a single equaion.</p>
     <center>
         <canvas id="conic-canvas"></canvas>
         <p id="scale-display"></p>
@@ -53,6 +53,35 @@
             </div>
         </div>
     </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <h5>Brief description</h5>
+    <p>The equation of a conic with a semi latus-rectum length of 'L' and eccentricity of 'e' is given by</p>
+    <center>
+        r = L / (1 + e cos &theta;)
+    </center>
+    <p>The corresponding (r, &theta;) can be converted into cartesian coordinates (x, y) and plotted</p>
+    <b>Circle</b>
+    <p>When the plane is perpendicular to the conical axis, the conic section obtained is a circle. The semi latus-rectum is just the radius. Circles have an eccentricity of 0.</p>
+    <b>Ellipse</b>
+    <p>When the plane makes an angle more than the semi-vertical angle of the cone but less than 90<sup>o</sup>, the conic section obtained is an ellipse. It like a bloated circle. Ellipses have an absolute eccentricity between 0 and 1 (exclusive).</p>
+    <b>Parabola</b>
+    <p>When the plane makes an angle lesser than the semi-vertical angle of the cone but intersections only a single motif, the conic section obtained is a parabola. They have an absolute eccentricity of 1</p>
+    <b>Hyperbola</b>
+    <p>When the plane intersects both the conical motifs, the conic section obtained is a hyperbola. They have an absolute eccentricity greater than 1.</p>
+
+    <br />
+    <hr />
+    <br />
+
+    <b>Note:</b>
+    <ol>
+        <li>Due to their open-ended nature, parabolas and hyperbolas extend into infinity. They are not efficiently drawn here.</li>
+        <li>Circles and Ellipses of huge lengths can be drawn. However, the curve may seem broken and a lot of time will be required to rescale</li>
+    </ol>
 
     <br />
     <hr />

@@ -191,7 +191,7 @@ function dopplerDisplay() {
 
 function captionsDisplay() {
     if (mobile) {
-        context.font = "10px Arial";
+        context.font = "12px Arial";
     }
     else {
         context.font = "20px Arial";

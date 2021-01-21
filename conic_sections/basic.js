@@ -1,8 +1,16 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 60;
+let fps = 30;
 
 let canvas = document.getElementById("conic-canvas");
 let context = canvas.getContext("2d");
+
+let clear_button = document.getElementById("clear-button");
+let draw_button = document.getElementById("draw-button");
+
+let scale_display = document.getElementById("scale-display");
+
+let input_e = document.getElementById("input-e");
+let input_l = document.getElementById("input-l");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;

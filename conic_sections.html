@@ -36,6 +36,22 @@
 
     <center>
         <canvas id="conic-canvas"></canvas>
+        <p id="scale-display"></p>
+        <button id="clear-button" onclick="clearPoints()" class="btn blue waves-effect">Clear</button>
+        <button id="draw-button" onclick="drawConic()" class="btn blue waves-effect">Draw</button>
+        <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col m6">
+                    <p>Length of Semi Latus-rectum</p>
+                    <input oninput="updateParams('l')" placeholder="L" type="number" id="input-l">
+                </div>
+                <div class="col m6">
+                    <p>Eccentricity</p>
+                    <input oninput="updateParams('e')" placeholder="e" type="number" id="input-e">
+                </div>
+            </div>
+        </div>
     </center>
 
     <br />

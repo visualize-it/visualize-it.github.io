@@ -13,53 +13,16 @@ function update() {
             x = cartesianX(r, angle);
             y = cartesianY(r, angle);
 
-            if(Math.abs(e) < 1) {
-                if (Math.abs(x) > origin) {
-                    if (Math.abs(x) > x_def) {
-                        x_def = Math.abs(x);
-                    }
-                }
-                if (Math.abs(y) > origin) {
-                    if (Math.abs(y) > y_def) {
-                        y_def = Math.abs(y);
-                    }
-                }
-                x = transformX(x);
-                y = transformY(y);
-
-                points.push(
-                    {
-                        x: x,
-                        y: y,
-                    }
-                );
-            }
-            else if(Math.abs(transformX(x)) < 2 * canvas_width && Math.abs(transformY(y)) < 2 * canvas_height) {
-                if (Math.abs(x) > origin) {
-                    if (Math.abs(x) > x_def) {
-                        x_def = Math.abs(x);
-                    }
-                }
-                if (Math.abs(y) > origin) {
-                    if (Math.abs(y) > y_def) {
-                        y_def = Math.abs(y);
-                    }
-                }
-                x = transformX(x);
-                y = transformY(y);
-
-                points.push(
-                    {
-                        x: x,
-                        y: y,
-                    }
-                );
+            if (canDraw(e,x,y)) {
+                drawPoint();
             }
         }
         else {
             isDrawing = false;
             angle = 0;
-            checkScaling();
+            if (!checkScaling()) {
+                draw_button.disabled = false;
+            }
         }
     }
 
@@ -71,15 +34,37 @@ function update() {
                 point.x = ((point.x - origin) * 0.99) + origin;
                 point.y = origin - ((point.y - origin) * 0.99);
             }
+            displayScale();
         }
         else {
-            console.log("Scaling done");
-
             isScaling = false;
+            draw_button.disabled = false;
             x_def = origin;
             y_def = origin;
         }
     }
+}
+
+function drawPoint() {
+    if (Math.abs(x) > origin) {
+        if (Math.abs(x) > x_def) {
+            x_def = Math.abs(x);
+        }
+    }
+    if (Math.abs(y) > origin) {
+        if (Math.abs(y) > y_def) {
+            y_def = Math.abs(y);
+        }
+    }
+    x = transformX(x);
+    y = transformY(y);
+
+    points.push(
+        {
+            x: x,
+            y: y,
+        }
+    );
 }
 
 function render() {
@@ -97,21 +82,32 @@ function render() {
     context.lineTo(canvas_height, origin);
     context.stroke();
 
+    context.fillStyle = "#ffffff";
     if (isDrawing) {
         context.beginPath();
         context.moveTo(origin, origin);
         context.lineTo(x, y);
         context.stroke();
+
+        context.fillText("Drawing...", 0, 30);
     }
 
-    context.fillStyle = "#ffffff";
+    if (isScaling) {
+        context.fillText("Rescaling...", 0, 30);
+    }
+
     for (let point of points) {
         context.fillRect(point.x, point.y, 2, 2);
     }
 }
 
 function updateParams(variable) {
-
+    if(variable == 'l') {
+        l = Number.parseFloat(input_l.value);
+    }
+    if(variable == 'e') {
+        e = Number.parseFloat(input_e.value);
+    }
 }
 
 function initParams() {
@@ -129,13 +125,23 @@ function initParams() {
     isDrawing = true;
     isScaling = false;
     scale = 1;
+    displayScale();
+
+    draw_button.disabled = true;
+    input_l.value = 50;
+    input_e.value = 0.9;
+
+    if (!mobile) {
+        context.font = "30px Arial";
+    }
+    else {
+        context.font = "20px Arial";
+    }
+    context.textAlign = "left";
 }
 
 function checkScaling() {
-    console.log(origin, x_def, y_def);
     if (x_def > origin || y_def > origin) {
-
-        console.log("Rescaling required");
 
         if (x_def > y_def) {
             scale_req = canvas_width / (2.1 * x_def);
@@ -143,10 +149,29 @@ function checkScaling() {
         else {
             scale_req = canvas_height / (2.1 * y_def);
         }
-
-        console.log(scale, scale_req);
         isScaling = true;
+        return true;
     }
+    return false;
+}
+
+function drawConic() {
+    isDrawing = true;
+    angle = 0;
+    draw_button.disabled = true;
+}
+
+function clearPoints() {
+    points = [];
+    scale = 1;
+    isDrawing = false;
+    isScaling = false;
+    draw_button.disabled = false;
+    displayScale();
+}
+
+function displayScale() {
+    scale_display.innerHTML = `Scale: 1 pixel = ${scale.toFixed(2)} length units`;
 }
 
 function cartesianX(r, theta) {
@@ -165,6 +190,6 @@ function transformY(y) {
     return origin - y;
 }
 
-function closeToInf(theta) {
-    return (theta > 1.48 && theta < 1.66);
+function canDraw(e,x,y) {
+    return (Math.abs(e) < 1 || (Math.abs(transformX(x)) < 2 * canvas_width && Math.abs(transformY(y)) < 2 * canvas_height))
 }

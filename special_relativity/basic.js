@@ -11,7 +11,7 @@ let speed_input = document.getElementById("speed-input");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
-    font_offset = 12;
+    font_offset = 15;
 } else {
     mobile = false;
     font_offset = 20;

@@ -202,7 +202,7 @@ function captionsDisplay() {
 
     context.fillText("Time Dilation", 3 * canvas_width / 4, font_offset);
     context.fillText("Clock on Planet", 5 * canvas_width / 8, canvas_height / 2 - font_offset);
-    context.fillText("Clock on Satellite", 7 * canvas_width / 8, canvas_height / 2 - font_offset);
+    context.fillText("Clock on Sat.", 7 * canvas_width / 8, canvas_height / 2 - font_offset);
     context.fillText(`1 sec on Sat. = ${(normal_time_speed / dilated_time_speed).toFixed(2)} secs on Planet`, 3 * canvas_width / 4, canvas_height / 2 - 2.5 * font_offset);
 
     context.fillText("Length Contraction", canvas_width / 4, canvas_height / 2 + font_offset);

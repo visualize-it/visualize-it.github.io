@@ -141,13 +141,14 @@ function initParams() {
 }
 
 function checkScaling() {
+    console.log(x_def, y_def, origin);
     if (x_def > origin || y_def > origin) {
-
+        console.log("Rescaling...");
         if (x_def > y_def) {
-            scale_req = canvas_width / (2.1 * x_def);
+            scale_req = (scale * canvas_width) / (2.1 * x_def);
         }
         else {
-            scale_req = canvas_height / (2.1 * y_def);
+            scale_req = (scale * canvas_height) / (2.1 * y_def);
         }
         isScaling = true;
         return true;

@@ -29,7 +29,6 @@ function checkTarget(position) {
     if(position >= target_x - 2 && position <= target_x + target_spread + 2) {
         target_hit.play();
         newTarget();
-        render();
     }
     else {
         target_miss.play();
@@ -38,6 +37,7 @@ function checkTarget(position) {
 
 function newTarget() {
     target_x = (Math.random() * 750) + 250;
+    render();
 }
 
 function shootBall() {

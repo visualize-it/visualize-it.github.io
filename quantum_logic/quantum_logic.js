@@ -3,12 +3,13 @@ let m_prob, n_prob, num0, num1;
 let gates;
 let slider_conversion;
 let margin, padding, offset, square_half_length, space;
+let toDraw;
 
 function update() {
-    if(Math.random() < m_prob) {
+    if (Math.random() < m_prob) {
         num0++;
     }
-    if(Math.random() < n_prob) {
+    if (Math.random() < n_prob) {
         num1++;
     }
     // display_measure.innerHTML = `Measurements: 0 = ${(num0 * 100 / (num0 + num1)).toFixed(2)}%, 1 = ${(num1 * 100 / (num0 + num1)).toFixed(2)}%`;
@@ -35,16 +36,19 @@ function evaluate() {
         n = output[1];
     }
     display_output.innerHTML = `Output: [${m.toFixed(4)}, ${n.toFixed(4)}]`;
-    m_prob = m*m;
-    n_prob = n*n;
+    m_prob = m * m;
+    n_prob = n * n;
 }
 
 function render() {
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
+    if (toDraw) {
+        context.fillStyle = "#000000";
+        context.fillRect(0, 0, canvas_width, canvas_height);
 
-    drawStructure();
-    drawGates();
+        drawStructure();
+        drawGates();
+        toDraw = false;
+    }
 }
 
 function updateParams(variable) {
@@ -96,7 +100,8 @@ function initParams() {
     a = 1;
     b = 0;
     slider_conversion = 2000;
-    gates = ["X","H"];
+    gates = ["X", "H"];
+    toDraw = true;
 
     top_slider.min = bottom_slider.min = - slider_conversion;
     top_slider.max = bottom_slider.max = slider_conversion;
@@ -162,6 +167,7 @@ function addGate(gate) {
     if (gate == "Z") {
         gates.push("Z");
     }
+    toDraw = true;
     evaluate();
 }
 
@@ -175,6 +181,7 @@ function remove(gate) {
     if (gate == "all") {
         gates = [];
     }
+    toDraw = true;
     evaluate();
 }
 
@@ -187,11 +194,11 @@ function setInput(input) {
         a = 0;
         b = 1;
     }
-    if(input == "+") {
+    if (input == "+") {
         a = 1 / Math.sqrt(2);
         b = a;
     }
-    if(input == "-") {
+    if (input == "-") {
         a = 1 / Math.sqrt(2);
         b = -a;
     }

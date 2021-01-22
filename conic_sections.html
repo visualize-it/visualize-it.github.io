@@ -64,14 +64,30 @@
         r = L / (1 + e cos &theta;)
     </center>
     <p>The corresponding (r, &theta;) can be converted into cartesian coordinates (x, y) and plotted</p>
+    <br/>
     <b>Circle</b>
     <p>When the plane is perpendicular to the conical axis, the conic section obtained is a circle. The semi latus-rectum is just the radius. Circles have an eccentricity of 0.</p>
+    <center>
+        <button id="circle-button" class="btn blue waves-effect" onclick="drawExample('circle')">Draw</button>
+    </center>
+    <br/>
     <b>Ellipse</b>
     <p>When the plane makes an angle more than the semi-vertical angle of the cone but less than 90<sup>o</sup>, the conic section obtained is an ellipse. It like a bloated circle. Ellipses have an absolute eccentricity between 0 and 1 (exclusive).</p>
+    <center>
+        <button id="ellipse-button" class="btn blue waves-effect" onclick="drawExample('ellipse')">Draw</button>
+    </center>
+    <br/>
     <b>Parabola</b>
     <p>When the plane makes an angle lesser than the semi-vertical angle of the cone but intersections only a single motif, the conic section obtained is a parabola. They have an absolute eccentricity of 1</p>
+    <center>
+        <button id="parabola-button" class="btn blue waves-effect" onclick="drawExample('parabola')">Draw</button>
+    </center>
+    <br/>
     <b>Hyperbola</b>
     <p>When the plane intersects both the conical motifs, the conic section obtained is a hyperbola. They have an absolute eccentricity greater than 1.</p>
+    <center>
+        <button id="hyperbola-button" class="btn blue waves-effect" onclick="drawExample('hyperbola')">Draw</button>
+    </center>
 
     <br />
     <hr />
@@ -81,6 +97,7 @@
     <ol>
         <li>Due to their open-ended nature, parabolas and hyperbolas extend into infinity. They are not efficiently drawn here.</li>
         <li>Circles and Ellipses of huge lengths can be drawn. However, the curve may seem broken and a lot of time will be required to rescale</li>
+        <li>All draw buttons are disabled during drawing and scaling</li>
     </ol>
 
     <br />

@@ -21,7 +21,8 @@ function update() {
             isDrawing = false;
             angle = 0;
             if (!checkScaling()) {
-                draw_button.disabled = false;
+                enableDrawButtons();
+                render();
             }
         }
     }
@@ -38,9 +39,10 @@ function update() {
         }
         else {
             isScaling = false;
-            draw_button.disabled = false;
+            enableDrawButtons();
             x_def = origin;
             y_def = origin;
+            render();
         }
     }
 }
@@ -101,6 +103,14 @@ function render() {
     }
 }
 
+function step() {
+    update();
+    if(isDrawing || isScaling) {
+        render();
+    }
+    animate(step);
+}
+
 function updateParams(variable) {
     if(variable == 'l') {
         l = Number.parseFloat(input_l.value);
@@ -127,7 +137,7 @@ function initParams() {
     scale = 1;
     displayScale();
 
-    draw_button.disabled = true;
+    disableDrawButtons();
     input_l.value = 50;
     input_e.value = 0.9;
 
@@ -143,7 +153,6 @@ function initParams() {
 function checkScaling() {
     console.log(x_def, y_def, origin);
     if (x_def > origin || y_def > origin) {
-        console.log("Rescaling...");
         if (x_def > y_def) {
             scale_req = (scale * canvas_width) / (2.1 * x_def);
         }
@@ -159,7 +168,29 @@ function checkScaling() {
 function drawConic() {
     isDrawing = true;
     angle = 0;
-    draw_button.disabled = true;
+    disableDrawButtons();
+}
+
+function drawExample(conic) {
+    if(conic == "circle") {
+        l = canvas_width / (3 * scale);
+        e = 0;
+    }
+    if(conic == "ellipse") {
+        l = canvas_width / (4 * scale);
+        e = 0.9;
+    }
+    if(conic == "parabola") {
+        l = 50 / scale;
+        e = 1
+    }
+    if(conic == "hyperbola") {
+        l = 50 / scale;
+        e = 1.1
+    }
+    updateText();
+    window.scrollTo(0, 100);
+    drawConic();
 }
 
 function clearPoints() {
@@ -167,8 +198,30 @@ function clearPoints() {
     scale = 1;
     isDrawing = false;
     isScaling = false;
-    draw_button.disabled = false;
+    enableDrawButtons();
     displayScale();
+    render();
+}
+
+function updateText() {
+    input_l.value = `${l.toFixed()}`;
+    input_e.value = `${e.toFixed()}`;
+}
+
+function enableDrawButtons() {
+    draw_button.disabled = false;
+    circle_button.disabled = false;
+    ellipse_button.disabled = false;
+    parabola_button.disabled = false;
+    hyperbola_button.disabled = false;
+}
+
+function disableDrawButtons() {
+    draw_button.disabled = true;
+    circle_button.disabled = true;
+    ellipse_button.disabled = true;
+    parabola_button.disabled = true;
+    hyperbola_button.disabled = true;
 }
 
 function displayScale() {

@@ -23,11 +23,13 @@ let target_spread = 35;
 
 // Scale
 let scale;
+let isFalling;
 
 function checkTarget(position) {
     if(position >= target_x - 2 && position <= target_x + target_spread + 2) {
         target_hit.play();
         newTarget();
+        render();
     }
     else {
         target_miss.play();
@@ -50,6 +52,7 @@ function shootBall() {
     time = 0;
 
     display_params.style.display = "block";
+    isFalling = true;
 }
 
 function drawTarget() {
@@ -92,6 +95,7 @@ function drawRaw() {
 
 function clearTrajectories() {
     points = [];
+    render();
 }
 
 function update_params(input) {
@@ -127,6 +131,7 @@ function update() {
             ballFired = false;
             display_params.style.display = "none";
             checkTarget(ball_x - 5);
+            isFalling = false;
         }
         display_params.innerHTML = `x: ${ball_x.toFixed(2)}, y: ${ball_y.toFixed(2)}, v<sub>x</sub>: ${ball_vx.toFixed(2)}, v<sub>y</sub>: ${ball_vy.toFixed(2)}`;
         display_stats.innerHTML = `Range: ${displacement.toFixed(2)}, Maximum height: ${max_height.toFixed(2)}, Time of flight: ${time.toFixed(2)}`;
@@ -166,6 +171,8 @@ window.onload = function () {
 
 function step() {
     update();
-    render();
+    if(isFalling) {
+        render();
+    }
     animate(step);
 };

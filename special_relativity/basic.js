@@ -11,10 +11,11 @@ let speed_input = document.getElementById("speed-input");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
-    font_offset = 8;
-} else {
+    font_offset = 9;
+}
+else {
     mobile = false;
-    font_offset = 16;
+    font_offset = 18;
 }
 
 if (mobile) {
@@ -35,7 +36,7 @@ let animate = window.requestAnimationFrame
         window.setTimeout(callback, 1000 / fps);
     };
 
-window.onload = function() {
+window.onload = function () {
     initParams();
     animate(step);
 }

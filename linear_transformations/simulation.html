@@ -33,6 +33,8 @@
 
 <div class="text">
   <h4>Linear Transformations</h4>
+  <p>A linear transformation is an operation that takes a point (x, y) to another point (x', y'). The below simulations
+    applies the given linear transformation to the entire coordinate system within [-5,-5] x [5,5]</p>
   <br />
   <center>
     <canvas id="canvas"></canvas>
@@ -62,11 +64,52 @@
       </div>
     </div>
     <p>Rotate by</p>
-    <input style="width: 25%" oninput="checkAngle()" onchange="checkAngle()" placeholder="Angle (in degrees)" id="r-input" text="number">
+    <input style="width: 50%" oninput="checkAngle()" onchange="checkAngle()" placeholder="Angle (in degrees)"
+      id="r-input" text="number">
     <br />
     <br />
     <button class="btn blue" onclick="clearValues()">Clear values</button>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Brief description</h5>
+  <p>A linear transformation L represented by a matrix M [a, b; c, d] maps x to ax + by and y to cx + dy.</p>
+  <b>Rotation matrix</b>
+  <p>A matrix that rotates the coordinate system by an angle &theta; is given by [cos &theta;, -sin &theta;; sin
+    &theta;, cos &theta;]</p>
+  <b>Determinant</b>
+  <p>The determinant of a 2x2 matrix is equal to ad - bc. Figuratively, the determinant determines the scaling of areas
+    that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant is negative
+    if the linear transformation flips the lattice points. A determinant of zero indicates that the linear
+    transformation reduces the coordinate system to a point or a line.</p>
+  <center>
+    <button onclick="zero_det()" class="btn blue pulse">View example</button>
+  </center>
+  <b>Inverse of a matrix</b>
+  <p>The inverse of a matrix M is said to be a matrix M' if MM' = M'M = I. When applied as linear transformation, M'
+    allows us to reverse the effects of M and vice versa. If the determinant of a matrix is zero, then its inverse does
+    not exist and the linear transformation cannot be reversed. For a 2x2 matrix M [a, b; c, d], its inverse is given by
+    M' = [d, -c; -b, a] / det(A). Clicking on the following button will lead to calculation of inverse of the current
+    matrix and its application.</p>
+  <center>
+    <button onclick="invert()" class="btn blue pulse">Invert</button>
+  </center>
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>The simulation involves heavy computation during transformation and may lag on some devices.</li>
+    <li>Although also seen, the coordinate system actually extends to [-10,-10] x [10,10] in order to account for
+      down-scaling</li>
+    <li>The simulation also depicts the effect of a transformation to the vector [1,0]. Efforts are being made to make
+      this vector modifiable.</li>
+  </ol>
 
   <br />
   <hr />

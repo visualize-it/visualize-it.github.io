@@ -211,6 +211,7 @@ function scale(scalar) {
 function identity() {
     a = d = 1;
     b = c = 0;
+    r_input.value = 0;
 }
 
 function radian(degree) {

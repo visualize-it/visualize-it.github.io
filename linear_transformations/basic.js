@@ -4,6 +4,12 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let a_input = document.getElementById("a-input");
+let b_input = document.getElementById("b-input");
+let c_input = document.getElementById("c-input");
+let d_input = document.getElementById("d-input");
+let r_input = document.getElementById("r-input");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

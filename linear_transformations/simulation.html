@@ -36,8 +36,40 @@
   <br />
   <center>
     <canvas id="canvas"></canvas>
+    <br />
+    <br />
+    <button class="btn blue waves-effect" onclick="reset()">Reset</button>
+    <button class="btn blue waves-effect" onclick="transform()">Transform</button>
+    <br />
+    <br />
+    <div class="container">
+      <p>Transformation matrix</p>
+      <div class="row">
+        <div class="col m6">
+          <input placeholder="a" id="a-input" type="number">
+        </div>
+        <div class="col m6">
+          <input placeholder="b" id="b-input" type="number">
+        </div>
+        <div class="col m6">
+          <input placeholder="c" id="c-input" type="number">
+        </div>
+        <div class="col m6">
+          <input placeholder="d" id="d-input" type="number">
+        </div>
+        <br/>
+        <br/>
+        <div>
+          <p>Rotate by</p>
+          <input oninput="checkAngle()" onchange="checkAngle()" placeholder="Angle (in degrees)" id="r-input" text="number">
+        </div>
+      </div>
+    </div>
+    <br/>
+    <br/>
+    <button class="btn blue" onclick="clearValues()">Clear values</button>
   </center>
-  
+
   <br />
   <hr />
   <br />

@@ -35,9 +35,3 @@ window.onload = function() {
     initParams();
     animate(step);
 }
-
-function step() {
-    update();
-    render();
-    animate(step);
-}

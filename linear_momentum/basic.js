@@ -1,10 +1,12 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 24;
+let fps = 30;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
 let x_input = document.getElementById("x-input");
+
+let pause_button = document.getElementById("pause-button");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -35,8 +37,19 @@ window.onload = function() {
     animate(step);
 }
 
-function step() {
-    update();
-    render();
-    animate(step);
+function pause() {
+  if(!paused) {
+    paused = true;
+    pause_button.innerHTML = "Resume";
+  }
+  else {
+    paused = false;
+    pause_button.innerHTML = "Pause";
+  }
+}
+
+function restart() {
+  player_points = ai_points = 0;
+  paused = false;
+  spawnBall();
 }

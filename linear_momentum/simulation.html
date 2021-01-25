@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 
-<body>
+<body style="max-width: 100%; overflow-x: hidden">
   <nav class="nav-extended" style="background:black; margin-top: 0mm">
     <div class="nav-wrapper">
       <h3 id="main-heading">Visualize It</h3>
@@ -29,7 +29,7 @@
       </ul>
     </div>
   </nav>
-</body>
+
 
 <div class="text">
   <h4>Conservation of Linear Momentum</h4>
@@ -38,7 +38,11 @@
     <br/>
     <canvas id="canvas"></canvas>
     <br/>
-    <input oninput="updateParams('x')" onchange="updateParams('x')" type="range" id="x-input">
+    <input oninput="updateParams('x')" onchange="updateParams('x')" type="range" id="x-input" step="1">
+    <p>Touch the slider with the intended position of your bar</p>
+    <button onclick="pause()" id="pause-button" class="btn blue waves-effect">Pause</button>
+    <button id="trail-button" class="btn blue waves-effect">Hide Trail</button>
+    <button onclick="restart()" class="btn blue waves-effect">Restart</button>
   </center>
 
   <br />
@@ -47,5 +51,6 @@
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>
+</body>
 
 </html>

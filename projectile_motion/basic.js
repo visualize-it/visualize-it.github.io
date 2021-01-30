@@ -13,8 +13,8 @@ let speed_display = document.getElementById("speed-display");
 let display_params = document.getElementById("display-params");
 let display_stats = document.getElementById("display-stats");
 
-let target_hit = new Audio("assets/target_hit.wav");
-let target_miss = new Audio("assets/target_miss.wav");
+let target_hit = new Audio("../assets/target_hit.wav");
+let target_miss = new Audio("../assets/target_miss.wav");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;

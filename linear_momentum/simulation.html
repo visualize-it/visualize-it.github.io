@@ -33,7 +33,7 @@
 
 <div class="text">
   <h4>Conservation of Linear Momentum</h4>
-
+  <p>While playing the game of Pong, have you ever wondered how the Computer figures out the final location of the ball? It uses conservation of Linear Momentum. The "game" below shows you the calculated trajectory of the ball. You can control the paddle on the bottom via the slider</p>
   <center>
     <br/>
     <canvas id="canvas"></canvas>
@@ -48,6 +48,31 @@
   <br />
   <hr />
   <br />
+
+  <h5>Brief Description</h5>
+  <p>According to conservation of linear momentum, the vector sum of linear momenta of a system of isolated particles is conserved. Although the direction and momentum of induvidual particles may change during collisions, the sum of components of linear momentum of the colliding particles remains same before and after the collision.</p>
+  <p>When colliding with a vertically-oriented, ideally rigid and immovable obstacle, the sign of momentum along the horizontal direction changes whereas the momentum along vertical direction remains the same</p>
+
+  <br/>
+  <hr/>
+  <br/>
+
+  <h5>Working of the game</h5>
+  <p>The game assumes the paddles and the walls to be rigid and immovable objects. The function that controls the paddle has access to the initial coordinates and the initial horizontal and vertical velocity of the ball. It creates a preudo-ball and tracks its motion. Assuming that the player manages to dodge the pseudo-ball, the function negates its vertical velocity. In the meantime, if the ball collides with the wall, the function negates its horizontal velocity. It continues mapping the trajectory of the pseudo-ball until the ball reaches the Y-coordinate of the paddle. The X-coordinate of the ball at this point is set as target for the paddle. All these calculations happen in the blink of an eye and only once per to-and-fro dodge</p>
+
+  <br/>
+  <hr/>
+  <br/>
+
+  <b>Note:</b>
+  <ol>
+    <li>To prevent the game from becoming boring, the vertical speed of the ball is increased periodically by some percentage. In such cases, the trajectory of the ball is recalculated</li>
+    <li>The simulation may lag on low-end devices</li>
+  </ol>
+
+  <br/>
+  <hr/>
+  <br/>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

@@ -10,14 +10,14 @@ let cell_slider = document.getElementById("cell-slider");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
-    canvas.addEventListener("ontouchstart", function(e) {
+    canvas.addEventListener("touchstart", function(e) {
       getTouchPosition(canvas, e);
-    })
+    });
 } else {
     mobile = false;
     canvas.addEventListener("mousedown", function(e) {
       getMousePosition(canvas, e);
-    })
+    });
 }
 
 if (mobile) {
@@ -58,8 +58,9 @@ function getMousePosition(canvas, event) {
 
 function getTouchPosition(canvas, event) {
   rect = canvas.getBoundingClientRect();
-  click_x = event.clientX - rect.left;
-  click_y = event.clientY - rect.top;
+  click_x = event.screenX - rect.left;
+  click_y = event.screenY - rect.top;
+  console.log("Touch!");
   manageClick();
 }
 

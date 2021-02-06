@@ -6,6 +6,7 @@ let context = canvas.getContext("2d");
 
 let pause_button = document.getElementById("pause-button");
 let grid_button = document.getElementById("grid-button");
+let cell_slider = document.getElementById("cell-slider");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -57,7 +58,7 @@ function manageClick() {
 }
 
 function toggleGrid() {
-  grid_button.innerHTML = showGrid ? "Hide Grid" : "Show Grid";
+  grid_button.innerHTML = showGrid ? "Show Grid" : "Hide Grid";
   showGrid = showGrid ? false : true;
 }
 

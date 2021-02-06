@@ -31,8 +31,8 @@ function render() {
 }
 
 function drawGrid() {
-  context.strokeStyle = "#ffffff";
-  context.lineWidth = 2;
+  context.strokeStyle = "#aaaaaa";
+  context.lineWidth = 0.75;
   for(let latitude of grid) {
     context.beginPath();
     context.moveTo(0, latitude);
@@ -48,13 +48,20 @@ function drawGrid() {
 }
 
 function updateParams(variable) {
-
+  if(variable == "cells") {
+    num_cells = cell_slider.value;
+    grid = [];
+    cells = [];
+    initCanvas();
+    showGrid = true;
+    grid_button.innerHTML = "Hide Grid";
+  }
 }
 
 function initParams() {
+  num_cells = 10;
   grid = [];
   cells = [];
-  num_cells = 50;
 
   initCanvas();
 

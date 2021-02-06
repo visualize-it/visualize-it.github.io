@@ -10,9 +10,16 @@ let cell_slider = document.getElementById("cell-slider");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
-    canvas.addEventListener("touchstart", function(e) {
-      getTouchPosition(canvas, e);
-    });
+    canvas.addEventListener("touchstart", function (e) {
+        getTouchPosition(canvas, e);
+  let touch = e.touches[0];
+  let mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, false);
+
 } else {
     mobile = false;
     canvas.addEventListener("mousedown", function(e) {
@@ -56,11 +63,11 @@ function getMousePosition(canvas, event) {
   manageClick();
 }
 
-function getTouchPosition(canvas, event) {
-  rect = canvas.getBoundingClientRect();
-  click_x = event.clientX - rect.left;
-  click_y = event.clientY - rect.top;
-  console.log("Touch!");
+function getTouchPosition(canvasDom, touchEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  click_x = touchEvent.touches[0].clientX - rect.left,
+  click_y = touchEvent.touches[0].clientY - rect.top
+  console.log("Touch at", click_x, click_y);
   manageClick();
 }
 

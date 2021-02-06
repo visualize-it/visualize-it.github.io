@@ -39,8 +39,8 @@ canvas.width = canvas_width;
 canvas.height = canvas_height;
 
 let animate = function (callback) {
-        window.setTimeout(callback, 200);
-    };
+        window.setTimeout(callback, 150);
+};
 
 window.onload = function() {
     initParams();
@@ -84,4 +84,17 @@ function toggleGrid() {
 function togglePause() {
   pause_button.innerHTML = isPaused ? "Pause" : "Resume";
   isPaused = isPaused ? false : true;
+}
+
+function delaySet(delay) {
+  animate = function (callback) {
+          window.setTimeout(callback, delay);
+  };
+  animate(step);
+}
+
+function alwaysResume() {
+  if(isPaused) {
+    togglePause();
+  }
 }

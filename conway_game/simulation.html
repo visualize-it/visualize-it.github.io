@@ -13,6 +13,7 @@
   <script src="basic.js" defer></script>
   <script src="conway_game.js" defer></script>
   <script src="engine.js" defer></script>
+  <script src="predef.js" defer></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -43,14 +44,72 @@
     <button class="btn blue waves-effect" id="pause-button" onclick="togglePause()">Pause</button>
     <button class="btn blue waves-effect" id="reset-button" onclick="resetCells()">Reset</button>
     <button class="btn blue waves-effect" id="grid-button" onclick="toggleGrid()">Hide Grid</button>
+    <button class="btn blue waves-effect" onclick="genCode()">Generate Code</button>
     <br/>
     <p>Use the slider to change number of cells per row/column here (min: 4 and max: 40)</p>
     <input id="cell-slider" type="range" min="4" max="40" value="10" oninput="updateParams('cells')" onchange="updateParams('cells')">
+    <br/>
   </center>
 
   <br />
   <hr />
   <br />
+
+  <h5>Predefined States</h5>
+  <ol>
+    <li><b>Steady States:</b> No change takes place. Every living cell has 2 or 3 neighbours and continues to co-exist forever:
+      <br/><br/>
+      <center>
+        <button class="btn blue waves-effect" onclick="beehiveState()">Beehive</button>
+        <button class="btn blue waves-effect" onclick="blockState()">Block</button>
+        <button class="btn blue waves-effect" onclick="boatState()">Boat</button>
+        <button class="btn blue waves-effect" onclick="loafState()">Loaf</button>
+        <button class="btn blue waves-effect" onclick="tubState()">Tub</button>
+      </center>
+    </li>
+    <br/><br/>
+    <li><b>Oscillators:</b> Interchange between the same states periodically:
+      <br/><br/>
+      <center>
+        <button class="btn blue waves-effect" onclick="beaconState()">Beacon</button>
+        <button class="btn blue waves-effect" onclick="blinkerState()">Blinker</button>
+        <button class="btn blue waves-effect" onclick="pentaState()">Penta Decathlon</button>
+        <button class="btn blue waves-effect" onclick="pulsarState()">Pulsar</button>
+        <button class="btn blue waves-effect" onclick="toadState()">Toad</button>
+      </center>
+    </li>
+    <br/><br/>
+    <li><b>Spaceships:</b> Move across the screen and periodically regain their original configuration:
+      <br/><br/>
+      <center>
+        <button class="btn blue waves-effect" onclick="gliderState()">Glider</button>
+        <button class="btn blue waves-effect" onclick="lwssState()">Lightweight ship</button>
+        <button class="btn blue waves-effect" onclick="hwssState()">Heavyweight ship</button>
+      </center>
+    </li>
+    <br/><br/>
+    <li><b>Methulselahs:</b> Evolve for a long time before stabilizing:
+      <center>
+        <button class="btn blue waves-effect" onclick="acornState()">Acorn</button>
+        <button class="btn blue waves-effect" onclick="diehardState()">Diehard</button>
+        <button class="btn blue waves-effect" onclick="pentaminoState()">R-pentamino</button>
+      </center>
+    </li>
+    <br/><br/>
+    <li><b>Glider Guns:</b> Periodically generate an infinite amount of gliders:
+      <center>
+        <button class="btn blue waves-effect" onclick="gosperState()">Gosper</button>
+        <button class="btn blue waves-effect" onclick="simkinState()">Simkin</button>
+      </center>
+    </li>
+    <br/><br/>
+    <li><b>Block layers:</b> Lay down 2x2 blocks as they propagate:
+      <center>
+        <button class="btn blue waves-effect" onclick="minimalState()">Minimal</button>
+        <button class="btn blue waves-effect" onclick="fivexfiveState()">5x5</button>
+      </center>
+    </li>
+  </ol>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

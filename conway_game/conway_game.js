@@ -99,6 +99,7 @@ function resetCells() {
 
 function initCanvas() {
   cell_length = canvas_width / num_cells;
+  grid = [];
 
   for(let pos = 1; pos < canvas_width; pos += cell_length) {
     grid.push(pos);

@@ -1,5 +1,5 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 24;
+let fps = 10;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
@@ -38,11 +38,8 @@ canvas_height = canvas_width
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
-let animate = window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || function (callback) {
-        window.setTimeout(callback, 1000 / fps);
+let animate = function (callback) {
+        window.setTimeout(callback, 250);
     };
 
 window.onload = function() {
@@ -51,7 +48,9 @@ window.onload = function() {
 }
 
 function step() {
-    update();
+    if(!isPaused) {
+      update();
+    }
     render();
     animate(step);
 }
@@ -63,11 +62,10 @@ function getMousePosition(canvas, event) {
   manageClick();
 }
 
-function getTouchPosition(canvasDom, touchEvent) {
-  var rect = canvasDom.getBoundingClientRect();
-  click_x = touchEvent.touches[0].clientX - rect.left,
-  click_y = touchEvent.touches[0].clientY - rect.top
-  console.log("Touch at", click_x, click_y);
+function getTouchPosition(canvas, event) {
+  var rect = canvas.getBoundingClientRect();
+  click_x = event.touches[0].clientX - rect.left,
+  click_y = event.touches[0].clientY - rect.top
   manageClick();
 }
 

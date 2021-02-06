@@ -58,8 +58,8 @@ function getMousePosition(canvas, event) {
 
 function getTouchPosition(canvas, event) {
   rect = canvas.getBoundingClientRect();
-  click_x = event.screenX - rect.left;
-  click_y = event.screenY - rect.top;
+  click_x = event.clientX - rect.left;
+  click_y = event.clientY - rect.top;
   console.log("Touch!");
   manageClick();
 }

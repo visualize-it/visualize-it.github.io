@@ -39,7 +39,7 @@ canvas.width = canvas_width;
 canvas.height = canvas_height;
 
 let animate = function (callback) {
-        window.setTimeout(callback, 250);
+        window.setTimeout(callback, 200);
     };
 
 window.onload = function() {

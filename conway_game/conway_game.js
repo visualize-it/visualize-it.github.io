@@ -13,60 +13,10 @@ let isPaused, showGrid;
 
 function update() {
   prepareNextState();
-
-  for(let i = 1; i < num_cells - 1; i++) {
-    for(let j = 1; j < num_cells - 1; j++) {
-      num_neigh = getNumNeighbours(i,j);
-
-      if(cells[i][j]) {
-        if(num_neigh < 2 || num_neigh > 3) {
-          next_state[i][j] = 0;
-        }
-        else {
-          next_state[i][j] = 1;
-        }
-      }
-      else {
-        if(num_neigh == 3) {
-          next_state[i][j] = 1;
-        }
-        else {
-          next_state[i][j] = 0;
-        }
-      }
-    }
-  }
-
+  middleGround();
+  edgeGround();
+  cornerGround();
   copyNextState();
-}
-
-function getNumNeighbours(i,j) {
-  let num = 0;
-  if(cells[i-1][j-1]) {
-    num++;
-  }
-  if(cells[i-1][j]) {
-    num++;
-  }
-  if(cells[i-1][j+1]) {
-    num++;
-  }
-  if(cells[i][j-1]) {
-    num++;
-  }
-  if(cells[i][j+1]) {
-    num++;
-  }
-  if(cells[i+1][j-1]) {
-    num++;
-  }
-  if(cells[i+1][j]) {
-    num++;
-  }
-  if(cells[i+1][j+1]) {
-    num++;
-  }
-  return num;
 }
 
 function render() {

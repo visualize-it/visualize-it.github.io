@@ -10,6 +10,9 @@ let cell_slider = document.getElementById("cell-slider");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
+    canvas.addEventListener("ontouchstart", function(e) {
+      getTouchPosition(canvas, e);
+    })
 } else {
     mobile = false;
     canvas.addEventListener("mousedown", function(e) {
@@ -53,8 +56,18 @@ function getMousePosition(canvas, event) {
   manageClick();
 }
 
+function getTouchPosition(canvas, event) {
+  rect = canvas.getBoundingClientRect();
+  click_x = event.clientX - rect.left;
+  click_y = event.clientY - rect.top;
+  manageClick();
+}
+
 function manageClick() {
   toggle(Math.floor(click_x / cell_length), Math.floor(click_y / cell_length));
+  if(!isPaused) {
+    togglePause();
+  }
 }
 
 function toggleGrid() {

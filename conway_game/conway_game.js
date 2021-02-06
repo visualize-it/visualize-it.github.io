@@ -50,11 +50,13 @@ function drawGrid() {
 function updateParams(variable) {
   if(variable == "cells") {
     num_cells = cell_slider.value;
+
     grid = [];
     cells = [];
-    initCanvas();
     showGrid = true;
     grid_button.innerHTML = "Hide Grid";
+
+    initCanvas();
   }
 }
 
@@ -62,11 +64,12 @@ function initParams() {
   num_cells = 10;
   grid = [];
   cells = [];
+  cell_slider.value = num_cells;
 
   initCanvas();
 
   isPaused = false;
-  showGrid = false;
+  showGrid = true;
 }
 
 function toggle(i,j) {

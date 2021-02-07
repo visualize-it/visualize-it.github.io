@@ -13,7 +13,7 @@ function genCode() {
 
 // Steady states
 function beehiveState() {
-  num_cells = 5;
+  num_cells = 6;
   initCanvas();
   toggle(2,1);
   toggle(1,2);
@@ -85,7 +85,7 @@ function blinkerState() {
 }
 
 function pentaState() {
-  num_cells = 17; initCanvas();toggle(7,6);toggle(7,11);toggle(8,4);toggle(8,5);toggle(8,7);toggle(8,8);toggle(8,9);toggle(8,10);toggle(8,12);toggle(8,13);toggle(9,6);toggle(9,11);alwaysResume();
+  num_cells = 18; initCanvas();toggle(7,6);toggle(7,11);toggle(8,4);toggle(8,5);toggle(8,7);toggle(8,8);toggle(8,9);toggle(8,10);toggle(8,12);toggle(8,13);toggle(9,6);toggle(9,11);alwaysResume();
   configSlider();
 }
 

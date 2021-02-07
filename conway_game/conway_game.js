@@ -9,13 +9,15 @@ let next_state, num_neigh;
 let rect, click_x, click_y;
 
 // states
-let isPaused, showGrid;
+let isPaused, showGrid, borderInteract;
 
 function update() {
   prepareNextState();
   middleGround();
-  edgeGround();
-  cornerGround();
+  if(borderInteract) {
+    edgeGround();
+    cornerGround();
+  }
   copyNextState();
 }
 
@@ -81,6 +83,9 @@ function initParams() {
 
   isPaused = false;
   showGrid = true;
+  borderInteract = true;
+
+  gosperState();
 }
 
 function toggle(i,j) {

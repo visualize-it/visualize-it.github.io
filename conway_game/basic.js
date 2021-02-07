@@ -5,6 +5,7 @@ let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
 let pause_button = document.getElementById("pause-button");
+let border_toggle = document.getElementById("border-toggle");
 let grid_button = document.getElementById("grid-button");
 let cell_slider = document.getElementById("cell-slider");
 
@@ -86,6 +87,11 @@ function togglePause() {
   isPaused = isPaused ? false : true;
 }
 
+function toggleBorder() {
+  borderInteract = borderInteract ? false : true
+  border_toggle.innerHTML = borderInteract ? "Disable border interactions" : "Enable border interactions";
+}
+
 function delaySet(delay) {
   animate = function (callback) {
           window.setTimeout(callback, delay);
@@ -97,4 +103,20 @@ function alwaysResume() {
   if(isPaused) {
     togglePause();
   }
+}
+
+function disableBorder() {
+  if(borderInteract) {
+    toggleBorder();
+  }
+}
+
+function enableBorder() {
+  if(!borderInteract) {
+    toggleBorder();
+  }
+}
+
+function configSlider() {
+  cell_slider.value = num_cells;
 }

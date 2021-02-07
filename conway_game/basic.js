@@ -120,3 +120,7 @@ function enableBorder() {
 function configSlider() {
   cell_slider.value = num_cells;
 }
+
+function scrollUp() {
+  window.scrollTo(0,250);
+}

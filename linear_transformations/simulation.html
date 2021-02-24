@@ -12,6 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="basic.js" defer></script>
   <script src="linear_transformations.js" defer></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -77,9 +80,10 @@
 
   <h5>Brief description</h5>
   <p>A linear transformation L represented by a matrix M [a, b; c, d] maps x to ax + by and y to cx + dy.</p>
+  \[ \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} ax + by \\ cx + dy \end{bmatrix} \]
   <b>Rotation matrix</b>
-  <p>A matrix that rotates the coordinate system by an angle &theta; is given by [cos &theta;, -sin &theta;; sin
-    &theta;, cos &theta;]</p>
+  <p>A matrix that rotates the coordinate system by an angle &theta; is given by:</p>
+  \[ \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} \]
   <b>Determinant</b>
   <p>The determinant of a 2x2 matrix is equal to ad - bc. Figuratively, the determinant determines the scaling of areas
     that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant is negative
@@ -91,8 +95,9 @@
   <b>Inverse of a matrix</b>
   <p>The inverse of a matrix M is said to be a matrix M' if MM' = M'M = I. When applied as linear transformation, M'
     allows us to reverse the effects of M and vice versa. If the determinant of a matrix is zero, then its inverse does
-    not exist and the linear transformation cannot be reversed. For a 2x2 matrix M [a, b; c, d], its inverse is given by
-    M' = [d, -c; -b, a] / det(A). Clicking on the following button will lead to calculation of inverse of the current
+    not exist and the linear transformation cannot be reversed. For a 2x2 matrix M \( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \), its inverse is given by:</p>
+    \[ M^{-1} = \frac{1}{|M|} \begin{bmatrix} d & -c \\ -b & a \end{bmatrix} \]
+  <p>Clicking on the following button will lead to calculation of inverse of the current
     matrix and its application.</p>
   <center>
     <button onclick="invert()" class="btn blue pulse">Invert</button>

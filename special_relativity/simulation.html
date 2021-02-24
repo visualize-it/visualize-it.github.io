@@ -12,6 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="basic.js" defer></script>
   <script src="special_relativity.js" defer></script>
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -66,12 +69,15 @@
 
   <h6>Brief Description</h6>
   <b>Time Dilation</b>
-  <p>According to a stationary observer on Earth, time appears to pass slower aboard the satellite. If the time period between two events on the satellite is t<sub>0</sub> aboard the satellite, then it is t = t<sub>0</sub> / (1 - v<sup>2</sup>/c<sup>2</sup>) for the observer on Earth. Observe that t<sub>0</sub> &lt; t. This phenomenon is known as time dilation.</p>
+  \[ t = \frac{t_0}{\sqrt{1 - \frac{v^2}{c^2}}} \]
+  <p>According to a stationary observer on Earth, time appears to pass slower aboard the satellite. If the time period between two events on the satellite is 't<sub>0</sub>'' aboard the satellite, then it is 't' (as calculated above) for the observer on Earth. Observe that t<sub>0</sub> &lt; t. This phenomenon is known as time dilation.</p>
   <b>Length contraction</b>
-  <p>If the length of an object on Earth is measured to be l<sub>0</sub> by a stationary observer on Earth, then an observer aboard the satellite measured the same object's length to be l = l<sub>0</sub> (1 - v<sup>2</sup>/c<sup>2</sup>). Observe that l<sub>0</sub> &gt; l. This phenomenon is known as length contraction.</p>
+  \[ l = l_0 \sqrt{1 - \frac{v^2}{c^2}} \]
+  <p>If the length of an object on Earth is measured to be 'l<sub>0</sub>'' by a stationary observer on Earth, then an observer aboard the satellite measured the same object's length to be 'l' as calculated above. Observe that l<sub>0</sub> &gt; l. This phenomenon is known as length contraction.</p>
   <b>Relativistic Doppler Effect</b>
-  <p>If the satellite transmits waves of frequency f<sub>0</sub>, then a stationary receiver on the Earth will measure the same waves to have a frequency of f = f<sub>0</sub> * (1 - v/c) / (1 + v/c). This phenomenon is known as relativistic doppler effect.</p>
-  
+  \[ f = f_0 \left( \frac{c-v}{c+v} \right) \]
+  <p>If the satellite transmits waves of frequency 'f<sub>0</sub>'', then a stationary receiver on the Earth will measure the same waves to have a frequency of 'f' as calculated above. This phenomenon is known as relativistic doppler effect.</p>
+
   <br />
   <hr />
   <br />
@@ -80,7 +86,9 @@
   <ol>
     <li>Speaking in a strict sense, a satellit orbiting the Earth won't exactly show these effects in the same manner. The orbiting satellite analogy has been provided to get a brief idea of speed. Instead, consider a spaceship going away from Earth at the same speed.</li>
     <li>This simulation is compatible with SI units</li>
-    <li><b>Gamma (&gamma;)</b> below the speed parameters is equal to the inverse of (1 - v<sup>2</sup> / c<sup>2</sup>). Hence, t = &gamma; * t<sub>0</sub> and l = l<sub>0</sub> / &gamma;</li>
+    <li><b>Gamma (&gamma;)</b> is defined as:
+        \[ \gamma = \frac{1}{1 - \frac{v^2}{c^2}} \]
+        Hence, t = &gamma; * t<sub>0</sub> and l = l<sub>0</sub> / &gamma;</li>
     <li>Gravitational effects on physical quantities have been ignored. They come under the purview of General Relativity.</li>
   </ol>
 

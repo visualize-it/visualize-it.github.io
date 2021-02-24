@@ -34,7 +34,9 @@ window.onload = function() {
 }
 
 function step() {
+  if(simulating) {
     update();
+  }
     render();
     animate(step);
 }

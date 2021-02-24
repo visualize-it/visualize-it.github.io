@@ -1,7 +1,8 @@
 // simulation params
-let temperatures = [];
+let temperatures = [], new_temperatures = [];
 let num_points;
 let highest_temp, lowest_temp, range;
+let conductivity, difference;
 
 // generation initParams
 let temperature_seed;
@@ -10,23 +11,33 @@ let change, highest_change, lowest_change;
 let increase_factor, discourage_factor;
 
 // plotting initParams
-let padding, lowest_y, highest_y;
+let padding;
 let x_scale, y_scale, y_offset;
 
-function update() {
+// states
+let simulating;
 
+function update() {
+  // intermediate
+  for(let i = 1; i < temperatures.length - 1; i++) {
+    new_temperatures.push(temperatures[i] + calculateChange(i));
+  }
+
+  // boundary
+  difference = temperatures[1] - temperatures[0];
+  new_temperatures.unshift(temperatures[0] + conductivity * difference);
+  difference = temperatures[temperatures.length - 2] - temperatures[temperatures.length - 1];
+  new_temperatures.push(temperatures[temperatures.length - 1] + conductivity * difference);
+
+  temperatures = new_temperatures;
+  new_temperatures = [];
 }
 
 function render() {
   context.fillStyle = "#000000";
   context.fillRect(0, 0, canvas_width, canvas_height);
 
-  plotTemperatures();
-}
-
-function plotTemperatures() {
   context.strokeStyle = "#ffffff";
-
   context.beginPath();
   context.moveTo(0, padding);
   context.lineTo(canvas_width, padding);
@@ -37,6 +48,10 @@ function plotTemperatures() {
   context.lineTo(canvas_width, canvas_height - padding);
   context.stroke();
 
+  plotTemperatures();
+}
+
+function plotTemperatures() {
 //  context.fillStyle = "#ffffff";
 //  for(let i = 0; i < temperatures.length; i++) {
 //    context.fillRect(i * x_scale, (canvas_height - temperatures[i]) * y_scale - y_offset, 1, 1);
@@ -117,8 +132,9 @@ function preparePlot() {
 }
 
 function initParams() {
-  num_points = 10000;
+  num_points = 100;
   temperature_seed = 298;
+  conductivity = 0.5;
 
   highest_change = 10;
   lowest_change = 2;
@@ -127,5 +143,12 @@ function initParams() {
 
   padding = mobile ? 5 : 10;
 
+  simulating = true;
+
   generateTemperatures();
+}
+
+function calculateChange(index) {
+  let average = (temperatures[index - 1] + temperatures[index + 1]) / 2;
+  return conductivity * (average - temperatures[index]);
 }

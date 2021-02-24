@@ -36,7 +36,9 @@
 
 <div class="text">
   <h4>Operation of Heat Equation in One Dimension</h4>
-
+  <p>The heat equation is a partial differential equation that models the temperature changes across the dimensions of a body, with respect to time. It basically conveys that the temperature change at a particular point is directly proportional to the difference between the average neighbourhood temperature and it's own temperature. The proportionality constant being \( \alpha \):</p>
+  \[ \frac{dT}{dt} = \alpha \left( \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2} \right) \]
+  <p>In this simulation, we look at the operation of this equation along a single dimension</p>
   <center>
     <br>
     <canvas id="canvas"></canvas>
@@ -51,6 +53,36 @@
     <input type="range" onchange="updateParams('cond')" oninput="updateParams('cond')" id="cond-slider" min="0" max="1" step="0.01">
     <input id="num-input" placeholder="Number of sampling points" type="number">
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Presets</h5>
+
+  <ol>
+    <li><b>Two rods at different temperatures:</b>
+      <center>
+        <button class="btn blue waves-effect" onclick="preset_rods()">Generate</button>
+      </center>
+      <br><br>
+    </li>
+    <li><b>Linear gradient in temperature:</b>
+      <center>
+        <button class="btn blue waves-effect" onclick="preset_linear()">Generate</button>
+      </center>
+    </li>
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>The temperature changes in the beginning are extremely rapid, after which the pace reduces</li>
+    <li>In certain cases, when the conductivity is high (> 0.9), temperatures briefly oscillate at several positions</li>
+  </ol>
 
   <br />
   <hr />

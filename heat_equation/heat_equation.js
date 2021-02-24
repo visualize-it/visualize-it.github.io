@@ -149,16 +149,46 @@ function preparePlot() {
     if(temperature > highest_temp) {
       highest_temp = temperature;
     }
-    else if(temperature < lowest_temp) {
+    if(temperature < lowest_temp) {
       lowest_temp = temperature;
     }
   }
 
   range = highest_temp - lowest_temp;
   x_scale = canvas_width / num_points;
-  y_scale = (canvas_height - 2 * padding) / range;
-  y_offset = y_scale * (canvas_height - highest_temp) - padding;
+  y_scale = (canvas_height - 4 * padding) / range;
+  y_offset = y_scale * (canvas_height - highest_temp) - 2 * padding;
 
   upper_line.innerHTML = `Upper line: ${highest_temp.toFixed(2)} K`;
   lower_line.innerHTML = `Lower line: ${lowest_temp.toFixed(2)} K`;
+}
+
+function preset_rods() {
+  temperatures = [];
+  simulating = false;
+
+  num_points = 101;
+  rod_1 = 250;
+  rod_2 = 350;
+
+  for(let i = 0; i < num_points; i++) {
+    if(i < num_points / 2) {
+      temperatures.push(rod_1);
+    }
+    else {
+      temperatures.push(rod_2);
+    }
+  }
+  preparePlot();
+}
+
+function preset_linear() {
+  temperatures = [];
+  simulating = false;
+
+  num_points = 100;
+  for(let i = 250; i < 350; i++) {
+    temperatures.push(i);
+  }
+  preparePlot();
 }

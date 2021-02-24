@@ -52,11 +52,6 @@ function render() {
 }
 
 function plotTemperatures() {
-//  context.fillStyle = "#ffffff";
-//  for(let i = 0; i < temperatures.length; i++) {
-//    context.fillRect(i * x_scale, (canvas_height - temperatures[i]) * y_scale - y_offset, 1, 1);
-//  }
-
   context.beginPath();
   context.moveTo(0, (canvas_height - temperatures[0]) * y_scale - y_offset);
   for(let i = 1; i < temperatures.length; i++) {
@@ -66,10 +61,24 @@ function plotTemperatures() {
 }
 
 function updateParams(variable) {
-
+  if(variable == "cond") {
+    conductivity = Number.parseFloat(cond_slider.value);
+    cond_display.innerHTML = `Conduction constant: ${conductivity.toFixed(2)}`;
+  }
 }
 
-function generateTemperatures() {
+function generate() {
+  let input_number = Number.parseInt(num_input.value);
+  if(Number.isNaN(input_number) || input_number < 100) {
+    num_points = 100;
+    num_input.value = 100;
+  }
+  else {
+    num_points = num_input.value;
+  }
+
+  simulating = false;
+  temperatures = [];
   temperatures.push(temperature_seed);
 
   for(let i = 0; i < num_points / 2; i++) {
@@ -89,7 +98,6 @@ function generateTemperatures() {
   }
 
   increase_factor = 0.5;
-
   for(let i = 0; i < num_points / 2; i++) {
     change = getRandom(lowest_change, highest_change);
     if(Math.random() < increase_factor) {
@@ -105,9 +113,32 @@ function generateTemperatures() {
       increase_factor = 0.5;
     }
   }
-
-  console.log(temperatures);
   preparePlot();
+}
+
+function initParams() {
+  num_points = 100;
+  num_input.value = 100;
+  temperature_seed = 298;
+
+  conductivity = 0.75;
+  cond_slider.value = conductivity;
+  cond_display.innerHTML = `Conduction constant: ${conductivity.toFixed(2)}`;
+
+  highest_change = 5;
+  lowest_change = 2;
+  increase_factor = 0.5;
+  discourage_factor = 0.03;
+
+  padding = mobile ? 5 : 10;
+
+  generate();
+  simulating = true;
+}
+
+function calculateChange(index) {
+  let average = (temperatures[index - 1] + temperatures[index + 1]) / 2;
+  return conductivity * (average - temperatures[index]);
 }
 
 function preparePlot() {
@@ -128,27 +159,6 @@ function preparePlot() {
   y_scale = (canvas_height - 2 * padding) / range;
   y_offset = y_scale * (canvas_height - highest_temp) - padding;
 
-  console.log(lowest_temp, highest_temp, range);
-}
-
-function initParams() {
-  num_points = 100;
-  temperature_seed = 298;
-  conductivity = 0.5;
-
-  highest_change = 10;
-  lowest_change = 2;
-  increase_factor = 0.5;
-  discourage_factor = 0.03;
-
-  padding = mobile ? 5 : 10;
-
-  simulating = true;
-
-  generateTemperatures();
-}
-
-function calculateChange(index) {
-  let average = (temperatures[index - 1] + temperatures[index + 1]) / 2;
-  return conductivity * (average - temperatures[index]);
+  upper_line.innerHTML = `Upper line: ${highest_temp.toFixed(2)} K`;
+  lower_line.innerHTML = `Lower line: ${lowest_temp.toFixed(2)} K`;
 }

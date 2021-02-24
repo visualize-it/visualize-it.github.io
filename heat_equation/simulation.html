@@ -12,6 +12,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="basic.js" defer></script>
   <script src="heat_equation.js" defer></script>
+  <script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -35,7 +38,18 @@
   <h4>Operation of Heat Equation in One Dimension</h4>
 
   <center>
+    <br>
     <canvas id="canvas"></canvas>
+    <br>
+    <p id="upper-line"></p>
+    <p id="lower-line"></p>
+    <br>
+    <button class="btn blue waves-effect" onclick="generate()">Generate</button>
+    <button class="btn blue waves-effect" onclick="simulate()">Simulate</button>
+    <br>
+    <p id="cond-display"></p>
+    <input type="range" onchange="updateParams('cond')" oninput="updateParams('cond')" id="cond-slider" min="0" max="1" step="0.01">
+    <input id="num-input" placeholder="Number of sampling points" type="number">
   </center>
 
   <br />

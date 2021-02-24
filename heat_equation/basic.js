@@ -4,6 +4,13 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let upper_line = document.getElementById("upper-line");
+let lower_line = document.getElementById("lower-line");
+let cond_display = document.getElementById("cond-display");
+
+let cond_slider = document.getElementById("cond-slider");
+let num_input = document.getElementById("num-input");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {
@@ -43,4 +50,8 @@ function step() {
 
 function getRandom(lower, higher) {
   return Math.random() * (higher - lower) + lower;
+}
+
+function simulate() {
+  simulating = true;
 }

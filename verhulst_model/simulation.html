@@ -36,6 +36,8 @@
 <div class="text">
   <h4>Simulation of Verhulst Model of Population Dynamics</h4>
 
+  <p>This simple model describes growth of populations by taking environmental constraints into account.</p>
+
   <br>
   <center>
     <br>
@@ -44,34 +46,67 @@
   </center>
   <br>
 
-  <div class="container">
-    <div class="row">
-      <div class="col m6">
-        <p>Initial Population</p>
-        <input id="n-input" oninput="updateParams('n')" type="number" placeholder="Initial population">
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col m6">
+          <p>Initial Population</p>
+          <input id="n-input" oninput="updateParams('n')" type="number" placeholder="N_0">
+        </div>
+        <div class="col m6">
+          <p>Carrying Capacity</p>
+          <input id="k-input" oninput="updateParams('k')" type="number" placeholder="C">
+        </div>
       </div>
-      <div class="col m6">
-        <p>Carrying Capacity</p>
-        <input id="k-input" oninput="updateParams('k')" type="number" placeholder="Carrying capacity">
+      <div class="row">
+        <div class="col m6">
+          <p>Growth Rate</p>
+          <input id="r-input" oninput="updateParams('r')" type="number" placeholder="r">
+        </div>
+        <div class="col m6">
+          <p>Number of Iterations</p>
+          <input id="i-input" oninput="updateParams('i')" type="number" placeholder="i">
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col m6">
-        <p>Growth Rate</p>
-        <input id="r-input" oninput="updateParams('r')" type="number" placeholder="Rate of Growth">
-      </div>
-      <div class="col m6">
-        <p>Number of Iterations</p>
-        <input id="i-input" oninput="updateParams('i')" type="number" placeholder="Number of Iterations">
-      </div>
-    </div>
-  </div>
+  </center>
 
   <center>
     <button class="btn blue waves-effect" onclick="plot()">Plot</button>
     <button class="btn blue waves-effect" onclick="clearPlots()">Clear</button>
     <button id="plot-toggle" class="btn blue waves-effect" onclick="togglePlots()">Draw scatter plot</button>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Brief Description</h5>
+  <br>
+  <p>In an ideal, resource-rich world, population of a certain species will increase by 'r' times the current population after every generation, 'r' being the average litter size of that species. The increase in population is directly proportional to
+    the existing population. This is known as the exponential model of growth:</p>
+  \[ N_{t+1} - N_t = r \cdot N_t \]
+  <p>However, if the environment can sustainably support only a finite population 'C', then the above model obviously does not hold good. 'C' is known as carrying capacity, a characteristic of the environment and the requirements of the species it
+    accomodates. We can model this sort of growth by making the increase in population directly proportional to the current population 'N' and the remaining capacity '1 - N/C' of the environment:</p>
+  \[ N_{t+1} - N_t = r \cdot N_t \left( 1 - \frac{N_t}{C} \right) \]
+  <p>On simplifying the above expression, we obtain:</p>
+  \[ N_{t+1} = r \cdot N_t \left( 1 - \frac{N_t}{K} \right) \]
+  <p>Contrary to popular notion, 'K' is not carrying capacity. It is found to be:</p>
+  \[ K := C \left( \frac{r}{r+1} \right) \]
+  <p>The above equation can be normalized through division of both sides by 'K'. 'N/K' is regarded as population density 'x', with a value between 0 and 1. We obtain the standard logistic growth equation:</p>
+  \[ x_{t+1} = r \cdot x_t (1 - x_t) \]
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>The above model does not account for deaths. Hence, rate of growth is supposed to be always positive. However, due to the discrete nature of the simulation, negative rates of growth are observed when the input growth rate is high, causing the
+      population to overshoot the carrying capacity and subsequently decrease.</li>
+    <li>The plotter does not take negative rates of growth into account for scaling.</li>
+  </ol>
 
   <br />
   <hr />

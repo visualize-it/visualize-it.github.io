@@ -1,8 +1,8 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 24;
+let fps = 16;
 
 let canvas = document.getElementById("canvas");
-let context = canvas.getContext("2d", {alpha: false});
+let context = canvas.getContext("2d", { alpha: false });
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -20,30 +20,47 @@ canvas_height = canvas_width / 1.46;
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;
-id = context.getImageData(0, 0, 1, 1);
+
+let animate = function (callback) {
+    window.setTimeout(callback, 1000 / fps);
+};
 
 window.onload = function () {
     initParams();
+    animate(step);
+}
+
+function step() {
+    update();
+    animate(step);
+}
+
+function toggleAnimation() {
+    animating = animating ? false : true;
 }
 
 function left() {
-    center_x -= 0.0125 * 2 * half_width / scale;
+    center_x -= 0.05 * 2 * half_width / scale;
     generate();
+    animating = false;
 }
 
 function right() {
-    center_x += 0.0125 * 2 * half_width / scale;
+    center_x += 0.05 * 2 * half_width / scale;
     generate();
+    animating = false;
 }
 
 function up() {
-    center_y -= 0.0125 * 2 * half_height / scale;
+    center_y -= 0.05 * 2 * half_height / scale;
     generate();
+    animating = false;
 }
 
 function down() {
-    center_y += 0.0125 * 2 * half_height / scale;
+    center_y += 0.05 * 2 * half_height / scale;
     generate();
+    animating = false;
 }
 
 function zoomIn() {

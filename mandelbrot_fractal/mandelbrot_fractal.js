@@ -12,6 +12,16 @@ let half_width, half_height;
 // canvas params
 let scale;
 
+// states
+let animating;
+
+function update() {
+  if(animating) {
+    zoomIn();
+    console.log("Zooming in");
+  }
+}
+
 function generate() {
   let start = performance.now();
   fractal = [];
@@ -101,12 +111,14 @@ function initParams() {
 
   scale = 1;
   max_iterations = 100;
+  animating = false;
 
   initColors();
   generate();
 }
 
 function initColors() {
+  colors = [];
   colors.push([66, 30, 15]);
   colors.push([25, 7, 26]);
   colors.push([9, 1, 47]);

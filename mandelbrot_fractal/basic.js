@@ -2,7 +2,7 @@ let screen_width = window.innerWidth, screen_height = window.innerHeight;
 let fps = 24;
 
 let canvas = document.getElementById("canvas");
-let context = canvas.getContext("2d");
+let context = canvas.getContext("2d", {alpha: false});
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -14,29 +14,16 @@ if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.4 * screen_width;
+    canvas_width = 0.5 * screen_width;
 }
 canvas_height = canvas_width / 1.46;
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;
-
-let animate = window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || function (callback) {
-        window.setTimeout(callback, 1000 / fps);
-    };
+id = context.getImageData(0, 0, 1, 1);
 
 window.onload = function () {
     initParams();
-    animate(step);
-}
-
-function step() {
-    if (toRender)
-        render();
-    animate(step);
 }
 
 function left() {

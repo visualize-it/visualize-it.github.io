@@ -112,6 +112,7 @@ function area(number) {
   }
   scale = 1;
   animating = true;
+  fps_display.style.display = "block";
   window.scrollTo(0, 175);
 }
 

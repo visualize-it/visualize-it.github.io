@@ -1,6 +1,5 @@
-// fractal
-let fractal = [];
-let colors = [];
+// fractal colors
+let colors = [], color_periodicity;
 
 // generation params 
 let max_iterations;
@@ -18,13 +17,11 @@ let animating;
 function update() {
   if(animating) {
     zoomIn();
-    console.log("Zooming in");
   }
 }
 
 function generate() {
-  let start = performance.now();
-  fractal = [];
+  let fractal = [];
 
   let start_x = center_x - (half_width / scale);
   let start_y = center_y - (half_height / scale);
@@ -34,30 +31,31 @@ function generate() {
 
   let prec = (stop_x - start_x) / canvas_width;
 
-  for (let y_0 = start_y; y_0 < stop_y; y_0 += prec) {
-    for (let x_0 = start_x; x_0 < stop_x; x_0 += prec) {
-      let x = x_temp = y = i = 0;
-      let x_square = y_square = 0;
+  for (let y0 = start_y; y0 < stop_y; y0 += prec) {
+    for (let x0 = start_x; x0 < stop_x; x0 += prec) {
+      let x = y = i = 0;
+      let x2 = y2 = 0;
 
-      while (x_square + y_square < 4 && i < max_iterations) {
-        x_temp = x_square - y_square + x_0;
-        y = 2 * x * y + y_0;
-        x = x_temp;
+      while (x2 + y2 < 4 && i < max_iterations) {
+        y = 2*x*y + y0;
+        x = x2 -y2 + x0;
+        x2 = x*x;
+        y2 = y*y
         i += 1;
-
-        x_square = x * x;
-        y_square = y * y;
       }
       fractal.push(i);
     }
     fractal.push("r");
   }
-  console.log("Generation time: ", performance.now() - start, " ms");
-  render();
+
+  return fractal;
 }
 
 function render() {
+  console.log(center_x, center_y);
   let start = performance.now();
+
+  let fractal = generate();
 
   let id = context.getImageData(0, 0, canvas_width, canvas_height);
   let pixels = id.data;
@@ -71,9 +69,9 @@ function render() {
     }
     off = (y * id.width + x) * 4;
     if (fractal[i] < max_iterations) {
-      pixels[off] = colors[fractal[i] % 16][0];
-      pixels[off + 1] = colors[fractal[i] % 16][1];
-      pixels[off + 2] = colors[fractal[i] % 16][2];
+      pixels[off] = colors[fractal[i] % color_periodicity][0];
+      pixels[off + 1] = colors[fractal[i] % color_periodicity][1];
+      pixels[off + 2] = colors[fractal[i] % color_periodicity][2];
       pixels[off + 3] = 255;
     }
     else {
@@ -95,11 +93,26 @@ function render() {
   context.lineTo(canvas_width / 2, canvas_height);
   context.stroke();
 
-  console.log("Rendering time: ", performance.now() - start, " ms");
+  if(animating)
+    fps_display.innerHTML = `${(1000 / (performance.now() - start)).toFixed()} fps`;
 }
 
-function updateParams(variable) {
-
+function area(number) {
+  if(number == 1) {
+    center_x = -0.7442799899774443;
+    center_y = -0.12115404002858504;
+  }
+  else if(number == 2) {
+    center_x = -1.787911683240298; 
+    center_y = 0;
+  }
+  else if(number == 3) {
+    center_x = -0.1097522593518249;
+    center_y = -0.9646161601143399;
+  }
+  scale = 1;
+  animating = true;
+  window.scrollTo(0, 175);
 }
 
 function initParams() {
@@ -113,26 +126,40 @@ function initParams() {
   max_iterations = 100;
   animating = false;
 
+  fps_display.style.display = "none";
+
   initColors();
-  generate();
+  render();
 }
 
 function initColors() {
   colors = [];
-  colors.push([66, 30, 15]);
-  colors.push([25, 7, 26]);
-  colors.push([9, 1, 47]);
-  colors.push([4, 4, 73]);
-  colors.push([0, 7, 100]);
-  colors.push([12, 44, 138]);
-  colors.push([24, 82, 177]);
-  colors.push([57, 125, 209]);
-  colors.push([134, 181, 229]);
-  colors.push([211, 236, 248]);
-  colors.push([241, 233, 191]);
-  colors.push([248, 201, 95]);
-  colors.push([255, 170, 0]);
-  colors.push([204, 128, 0]);
-  colors.push([153, 87, 0]);
-  colors.push([106, 52, 3]);
+  // colors.push([66, 30, 15]);
+  // colors.push([25, 7, 26]);
+  // colors.push([9, 1, 47]);
+  // colors.push([4, 4, 73]);
+  // colors.push([0, 7, 100]);
+  // colors.push([12, 44, 138]);
+  // colors.push([24, 82, 177]);
+  // colors.push([57, 125, 209]);
+  // colors.push([134, 181, 229]);
+  // colors.push([211, 236, 248]);
+  // colors.push([241, 233, 191]);
+  // colors.push([248, 201, 95]);
+  // colors.push([255, 170, 0]);
+  // colors.push([204, 128, 0]);
+  // colors.push([153, 87, 0]);
+  // colors.push([106, 52, 3]);
+
+  let red, blue, green;
+  let red_part = 255, blue_part = 255, green_part = 175;
+  color_periodicity = max_iterations;
+  for(let i = 0; i < color_periodicity; i++) {
+
+    red = (255 - red_part) + (red_part * i / color_periodicity);
+    blue = (255 - blue_part) + (blue_part * i / color_periodicity);
+    green = (255 - green_part) + (green_part * i / color_periodicity);
+
+    colors.push([red, blue, green]);
+  }
 }

@@ -37,6 +37,10 @@
 <div class="text">
   <h4>Simulation of Mandelbrot Fractal</h4>
 
+  <p>The Mandelbrot Set is a set of complex numbers \( c\) such that \( f(z) = z^2 + c \) does not diverge when
+    recursively iterated from \( z_0 = 0 + 0i \). The Mandelbrot Fractal is obtained when a coloring scheme is applied
+    based on the number of iterations taken for \( z \) to diverge.</p>
+
   <br>
   <center>
     <br>
@@ -46,7 +50,7 @@
   <br>
 
   <center>
-    <button onclick="toggleAnimation()" class="btn blue waves-effect">Start/Stop animation</button>
+    <button onclick="toggleAnimation()" class="btn blue waves-effect pulse">Start/Stop animation</button>
     <button onclick="initParams()" class="btn blue waves-effect">Reset</button>
     <br><br>
     <button onclick="left()" class="btn blue">Left</button>
@@ -56,7 +60,55 @@
     <br><br>
     <button onclick="zoomIn()" class="btn blue">Zoom in</button>
     <button onclick="zoomOut()" class="btn blue">Zoom out</button>
+    <br>
+    <p id="fps-display"></p>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Interesting Regions</h5>
+  <br>
+
+  <center>
+    <button class="btn blue waves-effect" onclick="area(1)">Spirals</button>
+    <br><br>
+    <button class="btn blue waves-effect" onclick="area(2)">Self Similar</button>
+    <br><br>
+    <button class="btn blue waves-effect" onclick="area(3)">Fractal Islands</button>
+  </center>
+  
+  <br />
+  <hr />
+  <br />
+
+  <h5>Brief Description</h5>
+  <br>
+  <p>The X-coordinate of the default configuration (press 'reset' to obtain) ranges from -2.5 to 1 whereas the
+    Y-coordinate ranges from -1 to +1. The complex number \( c \) is equal to \( x_0 + i y_0 \), where \( x_0 \) and \(
+    y_0 \) are
+    coordinates within their respective ranges of X and Y. \( f(z) \) is recursively iterated from \( z_0 = 0 + i0 \).
+    It diverges if \( |z| > 2 \). The magnitude of \( z \) is checked at every iteration, until a maximum number of
+    iterations (100 in this case). If \( |z| \) is never greater than 2, then it is highly probably that it never
+    diverges, and is a part of the Mandelbrot set.</p>
+
+  <p>Elements of the Mandelbrot set are colored black, whereas elements that diverge are coloured on the basis of number
+    of iterations they take to diverge. This coloring scheme gives rise to the Mandelbrot Fractal, which is highly
+    self-similar, detailed and hypnotic in nature.</p>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>This simulation, despite being highly optimzed, is computationally heavy, and may lag on lower-end computers.
+    </li>
+    <li>If the region being simulated has a greater proportion of elements belonging to the Mandelbrot set, then it will
+      take longer to generate.</li>
+  </ol>
 
   <br />
   <hr />

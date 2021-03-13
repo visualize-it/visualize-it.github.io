@@ -1,8 +1,10 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 16;
+let fps = 20;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d", { alpha: false });
+
+let fps_display = document.getElementById("fps-display");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -21,9 +23,12 @@ canvas_height = canvas_width / 1.46;
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
-let animate = function (callback) {
-    window.setTimeout(callback, 1000 / fps);
-};
+let animate = window.requestAnimationFrame
+    || window.webkitRequestAnimationFrame
+    || window.mozRequestAnimationFrame
+    || function (callback) {
+        window.setTimeout(callback, 1000 / fps);
+    };
 
 window.onload = function () {
     initParams();
@@ -36,39 +41,50 @@ function step() {
 }
 
 function toggleAnimation() {
-    animating = animating ? false : true;
+    if(animating) {
+        animating = false;
+        fps_display.style.display = "none";
+    }
+    else {
+        animating = true;
+        fps_display.style.display = "block";
+    }
 }
 
 function left() {
     center_x -= 0.05 * 2 * half_width / scale;
-    generate();
+    render();
     animating = false;
+    fps_display.style.display = "none";
 }
 
 function right() {
     center_x += 0.05 * 2 * half_width / scale;
-    generate();
+    render();
     animating = false;
+    fps_display.style.display = "none";
 }
 
 function up() {
     center_y -= 0.05 * 2 * half_height / scale;
-    generate();
+    render();
     animating = false;
+    fps_display.style.display = "none";
 }
 
 function down() {
     center_y += 0.05 * 2 * half_height / scale;
-    generate();
+    render();
     animating = false;
+    fps_display.style.display = "none";
 }
 
 function zoomIn() {
     scale *= 1.1
-    generate();
+    render();
 }
 
 function zoomOut() {
     scale /= 1.1
-    generate();
+    render();
 }

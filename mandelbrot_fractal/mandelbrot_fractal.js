@@ -13,9 +13,10 @@ let scale;
 
 // states
 let animating;
+let coloring_scheme;
 
 function update() {
-  if(animating) {
+  if (animating) {
     zoomIn();
   }
 }
@@ -37,10 +38,10 @@ function generate() {
       let x2 = y2 = 0;
 
       while (x2 + y2 < 4 && i < max_iterations) {
-        y = 2*x*y + y0;
-        x = x2 -y2 + x0;
-        x2 = x*x;
-        y2 = y*y
+        y = 2 * x * y + y0;
+        x = x2 - y2 + x0;
+        x2 = x * x;
+        y2 = y * y
         i += 1;
       }
       fractal.push(i);
@@ -93,20 +94,20 @@ function render() {
   context.lineTo(canvas_width / 2, canvas_height);
   context.stroke();
 
-  if(animating)
+  if (animating)
     fps_display.innerHTML = `${(1000 / (performance.now() - start)).toFixed()} fps`;
 }
 
 function area(number) {
-  if(number == 1) {
+  if (number == 1) {
     center_x = -0.7442799899774443;
     center_y = -0.12115404002858504;
   }
-  else if(number == 2) {
-    center_x = -1.787911683240298; 
+  else if (number == 2) {
+    center_x = -1.787911683240298;
     center_y = 0;
   }
-  else if(number == 3) {
+  else if (number == 3) {
     center_x = -0.1097522593518249;
     center_y = -0.9646161601143399;
   }
@@ -128,39 +129,82 @@ function initParams() {
   animating = false;
 
   fps_display.style.display = "none";
-
   initColors();
   render();
 }
 
+function color(scheme) {
+  coloring_scheme = scheme;
+  initColors();
+  render();
+  window.scrollTo(0, 175);
+}
+
 function initColors() {
   colors = [];
-  // colors.push([66, 30, 15]);
-  // colors.push([25, 7, 26]);
-  // colors.push([9, 1, 47]);
-  // colors.push([4, 4, 73]);
-  // colors.push([0, 7, 100]);
-  // colors.push([12, 44, 138]);
-  // colors.push([24, 82, 177]);
-  // colors.push([57, 125, 209]);
-  // colors.push([134, 181, 229]);
-  // colors.push([211, 236, 248]);
-  // colors.push([241, 233, 191]);
-  // colors.push([248, 201, 95]);
-  // colors.push([255, 170, 0]);
-  // colors.push([204, 128, 0]);
-  // colors.push([153, 87, 0]);
-  // colors.push([106, 52, 3]);
 
-  let red, blue, green;
-  let red_part = 255, blue_part = 255, green_part = 175;
-  color_periodicity = max_iterations;
-  for(let i = 0; i < color_periodicity; i++) {
+  if (coloring_scheme == 1) {
+    color_periodicity = 16;
+    colors.push([66, 30, 15]);
+    colors.push([25, 7, 26]);
+    colors.push([9, 1, 47]);
+    colors.push([4, 4, 73]);
+    colors.push([0, 7, 100]);
+    colors.push([12, 44, 138]);
+    colors.push([24, 82, 177]);
+    colors.push([57, 125, 209]);
+    colors.push([134, 181, 229]);
+    colors.push([211, 236, 248]);
+    colors.push([241, 233, 191]);
+    colors.push([248, 201, 95]);
+    colors.push([255, 170, 0]);
+    colors.push([204, 128, 0]);
+    colors.push([153, 87, 0]);
+    colors.push([106, 52, 3]);
+  }
+  else if(coloring_scheme == 2) {
+    let red, blue, green;
+    let red_part = 255, blue_part = 255, green_part = 175;
+    color_periodicity = max_iterations;
+    for (let i = 0; i < color_periodicity; i++) {
 
-    red = (255 - red_part) + (red_part * i / color_periodicity);
-    blue = (255 - blue_part) + (blue_part * i / color_periodicity);
-    green = (255 - green_part) + (green_part * i / color_periodicity);
+      red = (255 - red_part) + (red_part * i / color_periodicity);
+      blue = (255 - blue_part) + (blue_part * i / color_periodicity);
+      green = (255 - green_part) + (green_part * i / color_periodicity);
 
-    colors.push([red, blue, green]);
+      colors.push([red, blue, green]);
+    }
+  }
+  else if(coloring_scheme == 3) {
+    let red, blue, green;
+    let red_part = 255, blue_part = 255, green_part = 255;
+    color_periodicity = max_iterations;
+    for (let i = 0; i < color_periodicity; i++) {
+
+      red = (255 - red_part) + (red_part * i / color_periodicity);
+      blue = (255 - blue_part) + (blue_part * i / color_periodicity);
+      green = (255 - green_part) + (green_part * i / color_periodicity);
+
+      colors.push([red, blue, green]);
+    }
+  }
+  else if(coloring_scheme == 4) {
+      color_periodicity = 16;
+      colors.push([106, 52, 3]);
+      colors.push([153, 87, 0]);
+      colors.push([204, 128, 0]);
+      colors.push([255, 170, 0]);
+      colors.push([248, 201, 95]);
+      colors.push([241, 233, 191]);
+      colors.push([211, 236, 248]);
+      colors.push([134, 181, 229]);
+      colors.push([57, 125, 209]);
+      colors.push([24, 82, 177]);
+      colors.push([12, 44, 138]);
+      colors.push([0, 7, 100]);
+      colors.push([4, 4, 73]);
+      colors.push([9, 1, 47]);
+      colors.push([25, 7, 26]);
+      colors.push([66, 30, 15]);
   }
 }

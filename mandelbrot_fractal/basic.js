@@ -31,6 +31,7 @@ let animate = window.requestAnimationFrame
     };
 
 window.onload = function () {
+    coloring_scheme = 1;
     initParams();
     animate(step);
 }

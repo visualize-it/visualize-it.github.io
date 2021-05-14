@@ -26,7 +26,12 @@ function update() {
         if (current_permutation == permutation_set.length - 1) {
             solving = false;
             solved = true;
-            console.log("Shortest Path Length: ", shortest_path_length);
+
+            add_button.disabled = false;
+            remove_button.disabled = false;
+            insert_button.disabled = false;
+
+            displaySolution();
         }
     }
 }
@@ -39,15 +44,21 @@ function render() {
     renderShortestPath();
     renderCurrentPath();
     renderProgressBar();
+
+    renderTarget();
 }
 
-function calcPathLength(path) {
-    let length = 0;
-    for (let i = 1; i < path.length; i++) {
-        length += distanceBetween(permutation_set[current_permutation][i-1], permutation_set[current_permutation][i]);
+function displaySolution()
+{
+    let solution_string = "<b>Solution</b>: ";
+
+    for(let i = 0; i < coords.length; i++)
+    {
+        solution_string += `(${coords[shortest_path[i]].x}, ${100 - coords[shortest_path[i]].y}) &rarr; `;
     }
-    console.log("Path Length: ", length);
-    return length;
+    solution_string += `(${coords[shortest_path[0]].x}, ${100 - coords[shortest_path[0]].y}) `;
+    solution.style.display = "block";
+    solution.innerHTML = solution_string + ` with distance ${shortest_path_length.toFixed(2)} units`;
 }
 
 function updateParams(variable) {
@@ -55,6 +66,9 @@ function updateParams(variable) {
 }
 
 function initParams() {
+    x_bar.value = 50;
+    y_bar.value = 50;
+
     radius = 2 ? mobile : 4;
     padding = 2 * radius;
     scale = (canvas_width - 2 * padding) / 100;
@@ -83,49 +97,79 @@ function getPermutations(array) {
 }
 
 function addRandom(number) {
+    let ideal;
+    let new_x, new_y;
+
     for (let i = 0; i < number; i++) {
+
+        if (coords.length == 0) {
+            new_x = Math.floor(Math.random() * 100);
+            new_y = Math.floor(Math.random() * 100);
+        }
+
+        else {
+            ideal = false;
+            while (!ideal) {
+                new_x = Math.floor(Math.random() * 100);
+                new_y = Math.floor(Math.random() * 100);
+
+                ideal = true;
+                for (let i = 0; i < coords.length; i++) {
+                    if (Math.pow(coords[i].x - new_x, 2) + Math.pow(coords[i].y - new_y, 2) < 100) {
+                        ideal = false;
+                    }
+                }
+
+                if(new_x < 5 || new_x > 95 || new_y < 5 || new_y > 95)
+                {
+                    ideal = false;
+                }
+            }
+        }
+
         coords.push(
             {
-                x: Math.floor(Math.random() * 100),
-                y: Math.floor(Math.random() * 100),
+                x: new_x,
+                y: new_y,
             }
-        )
+        );
     }
 }
 
-function removeLast(number) {
-    for (let i = 0; i < number && coords.length > 0; i++) {
-        coords.pop();
-    }
-}
-
-function clearCoords() {
-    coords = [];
-    solving = false;
-    solved = false;
-    shortest_path = [];
+function insert()
+{
+    coords.push(
+        {
+            x: x_bar.value,
+            y: 100 - y_bar.value,
+        }
+    )
 }
 
 function solve() {
-    if (!solving) {
+    if (!solving && coords.length > 1) {
         solving = true;
+        solution.style.display = "none";
 
         let array = [];
         for (let i = 0; i < coords.length; i++) {
             array.push(i);
         }
 
-        let start = performance.now();
         let permutations = getPermutations(array);
-        console.log(permutations);
-        console.log(performance.now() - start, " ms");
+        for(let permutation of permutations)
+        {
+            permutation.push(permutation[0]);
+        }
         permutation_set = permutations;
 
         current_permutation = 0;
-        shortest_path_length = Infinity;
+        shortest_path = permutation_set[current_permutation]
+        shortest_path_length = calcPathLength(shortest_path);
+
+        add_button.disabled = true;
+        remove_button.disabled = true;
+        insert_button.disabled = true;
     }
 }
 
-function distanceBetween(point1, point2) {
-    return Math.sqrt(Math.pow(coords[point2].x - coords[point1].x, 2) + Math.pow(coords[point2].y - coords[point1].y, 2));
-}

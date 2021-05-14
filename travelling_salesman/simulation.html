@@ -37,22 +37,62 @@
 
 <div class="text">
   <h4>Solution of Travelling Salesman Problem using Brute Force</h4>
-
+  <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that
+    visits each city exactly once and returns to the origin city?</p>
   <br>
   <center>
     <br>
     <canvas id="canvas"></canvas>
     <br>
+    <p id="solution"></p>
   </center>
   <br>
   <center>
     <button class="btn blue waves-effect" onclick="solve()">Solve</button>
-    <button class="btn blue waves-effect" onclick="clearCoords()">Clear</button> 
+    <button class="btn blue waves-effect" onclick="clearCoords()">Clear</button>
     <br>
     <br>
-    <button class="btn blue waves-effect" onclick="addRandom(1)">Add Random</button>
-    <button class="btn blue" onclick="removeLast(1)">Remove Last</button>
+    <button id="add-button" class="btn blue waves-effect" onclick="addRandom(1)">Add Random</button>
+    <button id="remove-button" class="btn blue" onclick="removeLast(1)">Remove Last</button>
   </center>
+
+  <br><br>
+  <center>
+    <center>
+      <button id="insert-button" class="btn blue waves-effect" onclick="insert()">Insert</button>
+    </center>
+  </center>
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        <input id="x-bar" type="range" min="1" , max="100">
+      </div>
+      <div class="col s6">
+        <input id="y-bar" type="range" min="1" , max="100">
+      </div>
+      <center>
+        Use the above sliders to adjust the position of the point to be inserted
+      </center>
+    </div>
+  </div>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Trivia</h5>
+  <p>This problem is classified as NP-hard since it's time complexity is \( \mathcal{O} (n^2) \) (Along with a space complexity of \( \mathcal{O} (n) \)). The Brute-Force method looks at all possible permutations and determines the one with the least distance. Runtimes go into minutes when there are ~7 points and into hours when there are ~9 points. A lot of improvements exist, and computing the solution of this problem is of special interest to theorertical computer scientists and operational researchers.</p>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>When there are 8+ points, then an initial lag is expected before the solving process starts</li>
+    <li>With 10 points, an average time of 49 minutes was required to find the solution to the route</li>
+    <li>Simulation may lag on lower-end computers and phones</li>
+  </ol>
 
   <br />
   <hr />

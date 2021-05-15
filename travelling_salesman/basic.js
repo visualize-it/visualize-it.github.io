@@ -56,6 +56,7 @@ function removeLast(number) {
 
 function clearCoords() {
     coords = [];
+
     solving = false;
     solved = false;
     shortest_path = [];

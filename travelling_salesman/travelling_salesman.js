@@ -17,6 +17,7 @@ let solving, solved;
 function update() {
     if (solving) {
         let current_path_length = calcPathLength(permutation_set[current_permutation]);
+        // console.log(current_path_length);
         if (current_path_length < shortest_path_length) {
             shortest_path = permutation_set[current_permutation];
             shortest_path_length = current_path_length;

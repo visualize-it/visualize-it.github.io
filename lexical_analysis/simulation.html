@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Lexical Analysis (Compiler Theory) | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="basic.js" defer></script>
+  <script src="lexical_analysis.js" defer></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h4>Lexical Analysis in Action (Compiler Theory)</h4>
+
+  <br>
+  <p>Lexical Analysis is the first step carried out during compilation. It involves breaking code into tokens and
+    identifying their type, removing white-spaces and comments, and identifying any errors. The tokens are subsequently
+    passed to a syntax analyser before heading to the pre-processor. This page provides a sample lexical analyser that
+    identifies four types of tokens: numbers, text, operators and syntax and ignores white-spaces.</p>
+
+  <h5>Input</h5>
+  <input id="input-text" placeholder="Type text here" style="background: black;" type="text" width="100%"
+    onchange="analyse()" oninput="analyse()">
+
+  <br>
+  <br>
+
+  <h5>Output</h5>
+  <p id="output-text" style="background: black; text-align: center; padding: 10px" width="100%"></p>
+
+  <br />
+  <hr />
+  <br />
+
+  <h4>Brief Description</h4>
+  <br>
+
+  <p>While scanning a string, the lexical analyser keeps track of changes in state (number, text, operator or syntax).
+    It keeps building up a character stack as long as the state remains the same. When the state changes, the
+    pre-existing character stack is pushed into the <b>value stack</b> and it's type is pushed into the <b>type
+      stack</b>. A new character stack is built up with the new state in mind. This process goes on until the entire
+    string is scanned. A token consists of a (value, type) pair, and the lexical analyser outputs a list of these tokens.
+    It is highly suggested that you view "lexical_analysis.js" (the code that runs lexical_analysis here).
+  </p>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>The string data type can be scanned by triggering the string state when double-quotes (") are encountered. The character stack of the string is built up until double-quotes (") are encountered again.</li>
+    <li>The syntax analyser looks for unpaired containers, adjacent neighbours that make no sense (like two number tokens next to each other) and operations that are not defined on the operands (like division of a string).</li>
+    <li>The preprocessor views the text tokens and tries to associate pre-defined variables or functions with them. If none can be found, then it throws an error. If an unknown variable is to the left side of an assignment operator (=), then a new variable is created and assigned with the value on the right.</li>
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

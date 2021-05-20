@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Bifurcation Diagram of Logistic Map | Visualize It</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="" defer></script>
+    <script src="" defer></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="nav-extended" style="background:black; margin-top: 0mm">
+        <div class="nav-wrapper">
+            <h3 id="main-heading">Visualize It</h3>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="../index.html">Home</a></li>
+                <li class="tab"><a href="../about.html">Abt</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+<div class="text">
+    <h4>Bifurcation Diagram of Logistic Map</h4>
+
+    <center>
+        <iframe id="frame" style="border: 0">
+        </iframe>
+    </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <script type="application/javascript">
+        window.onload = function () {
+            frame.src = "index.html";
+            frame = document.getElementById("frame");
+
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                mobile = true;
+            } else {
+                mobile = false;
+            }
+
+            if(mobile) {
+                frame.width = 0.95 * window.innerWidth;
+            }
+            else {
+                frame.width = 0.5 * window.innerWidth;
+            }
+            frame.height = frame.width / 1.33;
+        }
+    </script>
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+
+
+</html>

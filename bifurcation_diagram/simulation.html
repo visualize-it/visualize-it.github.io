@@ -37,6 +37,11 @@
 <div class="text">
     <h4>Bifurcation Diagram of Logistic Map</h4>
 
+    <br>
+    <p>A bifurcation diagram of a dynamical system depicts the long term behaviour as a function of a parameter of the
+        system. In the below canvas, the bifurcation diagram of logistic map is plotted</p>
+    <br>
+
     <center>
         <iframe id="frame" style="border: 0">
         </iframe>
@@ -45,6 +50,29 @@
     <br />
     <hr />
     <br />
+
+    <h5>Brief Description</h5>
+
+    <p>The logistic map is represented by: \[ x_{n+1} = r \cdot x_n (1 - x_n) \]</p>
+    <p>In the above simulation, the X-axis represents \( r \) and ranges from -2 to +4. The Y-axis is supposed to depict
+        the fixed points, but is chaotic for certain ranges of values of \( r \). For a particular value of \( r \), the
+        above equation is repetitively iterated (starting from \( x_0 = 0.5 \) atleast 2000 times, and around 40% of the
+        last points are plotted. A period of 1 is represented by white, and further periods are represented by blue,
+        red, yellow and orange respectively.</p>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+        <li>This simulation uses <a href="https://www.processing.org" target="_blank">Processing</a> and is written in p5.js</li>
+        <li>The state diverges to infinity if \( r \) takes values greater than 4 or lesser than 2</li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
 
     <script type="application/javascript">
         window.onload = function () {
@@ -57,7 +85,7 @@
                 mobile = false;
             }
 
-            if(mobile) {
+            if (mobile) {
                 frame.width = 0.95 * window.innerWidth;
             }
             else {

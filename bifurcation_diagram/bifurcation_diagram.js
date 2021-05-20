@@ -6,7 +6,7 @@ let r = -2;
 let x_scale, y_scale;
 
 let padding = 5;
-let draw_per_frame = 5;
+let draw_per_frame = 10;
 let width, height;
 
 function setup() {
@@ -79,6 +79,10 @@ function getColor(period) {
     return color("yellow");
   case 5:
     return color("red");
+  case 6:
+    return color("orange");
+  case 7:
+    return color("brown");
   default:
     return color(128, 128, 128);
   }

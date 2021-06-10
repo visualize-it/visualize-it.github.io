@@ -45,6 +45,7 @@ let animate = window.requestAnimationFrame
 window.onload = function () {
     initialize();
     addBoids(30);
+    highlight_index = getHighlightIndex();
     animate(step);
 }
 

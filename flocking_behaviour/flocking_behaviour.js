@@ -140,16 +140,10 @@ function moveBoids() {
 
 function updateParams(variable) {
     if(variable == "align") {
-        /* if(align_slider.value > coh_slider.value) {
-            align_slider.value = coh_radius;
-        }*/
         align_radius = align_slider.value;
         align_display.innerHTML = `Radius of Alignment region: ${align_slider.value}`;
     }
     if(variable == "coh") {
-        /*if(coh_slider.value < align_slider.value) {
-            coh_slider.value = align_slider.value;
-        }*/
         coh_radius = coh_slider.value;
         coh_display.innerHTML = `Radius of Cohesion region: ${coh_slider.value}`;
     }  

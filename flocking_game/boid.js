@@ -113,6 +113,7 @@ class Boid {
     }
     click_kill() {
         this.isAlive = false;
+        drawHistograms();
     }
 }
 
@@ -120,8 +121,21 @@ function addBoids(number) {
     for (let i = 0; i < number; i++) {
         boids.push(new Boid());
     }
+    drawHistograms();
 }
 
 function clearBoids() {
     boids = [];
+    drawHistograms();
+}
+
+function numAliveBoids() {
+    let num = 0;
+
+    for(let boid of boids) {
+        if(boid.isAlive) {
+            num++;
+        }
+    }
+    return num;
 }

@@ -16,6 +16,7 @@
     <script src="math.js" defer></script>
     <script src="boid.js" defer></script>
     <script src="simulator.js" defer></script>
+    <script src="histograms.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -33,6 +34,11 @@
         <button class="btn blue" onclick="addBoids(1)">Add Boid</button>
         <button class="btn blue" onclick="clearBoids()">Clear</button>
     </center>
+    <br>
+    <center>
+        <canvas id="histogram-canvas"></canvas>
+    </center>
+    <p>Red histogram - Attraction; Blue histogram - Orientation; Green histogram - Persistence</p>
 </body>
 
 </html>

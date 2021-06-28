@@ -1,33 +1,34 @@
+
+
 class Boid {
-    constructor(params) {
+    constructor(position_params, social_params, highlight) {
         this.index = boids.length;
 
         this.spoke_length = 5;
-        this.move_speed = 1.5;
+        this.move_speed = 1;
         this.rotate_speed = 5;
 
         this.isAlive = true;
+        this.highlight = (highlight === undefined) ? false : highlight;
 
-        if (params === undefined) {
-            this.setPosition();
-            this.setBehaviour();
+        if (position_params === undefined) {
+            this.setPosition(); 
         }
         else {
             this.x = params.x;
             this.y = params.y;
             this.angle = params.angle;
-
-            if (params.a === undefined) {
-                this.attraction = 0.4;
-                this.orientation = 0.3;
-                this.persistence = 0.2;
-            }
-            else {
-                this.attraction = params.a;
-                this.orientation = params.o;
-                this.persistence = params.p;
-            }
         }
+
+        if(social_params === undefined) {
+            this.setBehaviour();
+        }
+        else {
+            this.attraction = social_params.a;
+            this.orientation = social_params.o;
+            this.persistence = social_params.p;
+        }
+
         this.normaliseBehaviour();
         this.setColor();
     }
@@ -67,15 +68,38 @@ class Boid {
             this.color = "#ff00ff";
         }
     }
-    orient(angle) {
-        if (Math.abs(angle, this.angle) < this.rotate_speed) {
-            this.angle = angle;
+    orient(angle, cause) {
+        let orient_angle = minimiseDifference(angle, this.angle);
+
+        if(debug) {
+            console.log("Boid index:", this.index, "Initial angle:", this.angle, "Orientation angle:", orient_angle, "Cause:", cause);
         }
-        else if (this.angle < angle) {
+
+        if (Math.abs(orient_angle - this.angle) < this.rotate_speed) {
+            this.angle = orient_angle;
+
+            let direction = (orient_angle - this.angle > 0) ? "anticlockwise" : "clockwise";
+
+            if(debug) {
+                console.log("Aligned", direction, "with orientation angle");
+            }
+        }
+        else if(Math.abs(orient_angle - this.angle) == 180) {
             this.angle += this.rotate_speed;
+        }
+        else if (this.angle < orient_angle) {
+            this.angle += this.rotate_speed;
+            
+            if(debug) {
+                console.log("Rotated clockwise to", this.angle);
+            }
         }
         else {
             this.angle -= this.rotate_speed;
+
+            if(debug) {
+                console.log("Rotate anticlockwise to", this.angle);
+            }
         }
     }
     move() {
@@ -100,13 +124,22 @@ class Boid {
     }
     render() {
         if (this.isAlive) {
+            if(this.highlight) {
+                context.fillStyle = "#aaaaaa";
+                context.beginPath();
+                context.arc(this.x, canvas_height - this.y, 3 * this.spoke_length, 0, 2 * Math.PI, false);
+                context.closePath();
+                context.fill();
+                this.highlight = false;
+            }
+
             context.fillStyle = "#ffffff";
             context.strokeStyle = "#ffffff";
             context.beginPath();
-            context.moveTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle)), this.y + this.spoke_length * Math.sin(toRadian(this.angle)));
-            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle + 150)), this.y + this.spoke_length * Math.sin(toRadian(this.angle + 150)));
-            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle + 210)), this.y + this.spoke_length * Math.sin(toRadian(this.angle + 210)));
-            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle)), this.y + this.spoke_length * Math.sin(toRadian(this.angle)));
+            context.moveTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle)), (canvas_height - this.y) - this.spoke_length * Math.sin(toRadian(this.angle)));
+            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle + 150)), (canvas_height - this.y) - this.spoke_length * Math.sin(toRadian(this.angle + 150)));
+            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle + 210)), (canvas_height - this.y) - this.spoke_length * Math.sin(toRadian(this.angle + 210)));
+            context.lineTo(this.x + this.spoke_length * Math.cos(toRadian(this.angle)), (canvas_height - this.y) - this.spoke_length * Math.sin(toRadian(this.angle)));
             context.closePath();
             context.fill();
         }
@@ -114,6 +147,9 @@ class Boid {
     click_kill() {
         this.isAlive = false;
         drawHistograms();
+    }
+    getSocialParams() {
+        return {a: this.attraction, o: this.orientation, p: this.persistence}
     }
 }
 
@@ -138,4 +174,23 @@ function numAliveBoids() {
         }
     }
     return num;
+}
+
+function reproduceBoid() {
+    let alive_boid_indices = [];
+
+    for(let boid of boids) {
+        if(boid.isAlive) {
+            alive_boid_indices.push(boid.index);
+        }
+    }
+
+    let social_params = boids[alive_boid_indices[Math.floor(Math.random() * alive_boid_indices.length)]].getSocialParams();
+
+    boids.push(new Boid(undefined, social_params, true));
+}
+
+function restartSimulation() {
+    clearBoids();
+    addBoids(32);
 }

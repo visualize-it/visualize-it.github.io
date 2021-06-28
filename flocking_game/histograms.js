@@ -3,7 +3,7 @@ let histogram_context = histogram_canvas.getContext("2d");
 
 histogram_canvas.width = canvas_width;
 histogram_canvas.height = 200;
-let bar_thickness = canvas_width / 32;
+let bar_thickness = canvas_width / 30;
 
 let attraction_histogram = [], orientation_histogram = [], persistence_histogram = [];
 
@@ -33,14 +33,27 @@ function drawHistograms() {
     histogram_context.fillStyle = "#000000";
     histogram_context.fillRect(0, 0, histogram_canvas.width, histogram_canvas.height);
 
-    if (numAliveBoids()) {
+    let num_alive_boids = numAliveBoids();
+    if (num_alive_boids > 0) {
         for (let i = 0; i < 10; i++) {
             histogram_context.fillStyle = "#ff0000";
-            histogram_context.fillRect(i * bar_thickness, (numAliveBoids() - attraction_histogram[i]) * histogram_canvas.height / numAliveBoids(), bar_thickness, attraction_histogram[i] * histogram_canvas.height / numAliveBoids());
+            histogram_context.fillRect(i * bar_thickness, (num_alive_boids - attraction_histogram[i]) * histogram_canvas.height / num_alive_boids, bar_thickness, attraction_histogram[i] * histogram_canvas.height / num_alive_boids);
             histogram_context.fillStyle = "#00ff00";
-            histogram_context.fillRect((11 + i) * bar_thickness, (numAliveBoids() - orientation_histogram[i]) * histogram_canvas.height / numAliveBoids(), bar_thickness, orientation_histogram[i] * histogram_canvas.height / numAliveBoids());
+            histogram_context.fillRect((10 + i) * bar_thickness, (num_alive_boids - orientation_histogram[i]) * histogram_canvas.height / num_alive_boids, bar_thickness, orientation_histogram[i] * histogram_canvas.height / num_alive_boids);
             histogram_context.fillStyle = "#0000ff";
-            histogram_context.fillRect((22 + i) * bar_thickness, (numAliveBoids() - persistence_histogram[i]) * histogram_canvas.height / numAliveBoids(), bar_thickness, persistence_histogram[i] * histogram_canvas.height / numAliveBoids());
+            histogram_context.fillRect((20 + i) * bar_thickness, (num_alive_boids - persistence_histogram[i]) * histogram_canvas.height / num_alive_boids, bar_thickness, persistence_histogram[i] * histogram_canvas.height / num_alive_boids);
         }
     }
+
+    histogram_context.strokeStyle = "#ffffff";
+
+    histogram_context.beginPath();
+    histogram_context.moveTo(10 * bar_thickness, 0);
+    histogram_context.lineTo(10 * bar_thickness, histogram_canvas.height);
+    histogram_context.stroke();
+
+    histogram_context.beginPath();
+    histogram_context.moveTo(20 * bar_thickness, 0);
+    histogram_context.lineTo(20 * bar_thickness, histogram_canvas.height);
+    histogram_context.stroke();
 }

@@ -1,8 +1,11 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
 let fps = 24;
 
+window.addEventListener('keydown', getKeyPress, false);
+
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
+let error = new Audio("./../assets/error.wav");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -49,7 +52,9 @@ window.onload = function () {
 }
 
 function step() {
-    update();
+    if(!isPaused) {
+        update();
+    }
     render();
     animate(step);
 }
@@ -66,4 +71,10 @@ function getTouchPosition(canvas, event) {
     click_x = event.touches[0].clientX - rect.left,
     click_y = event.touches[0].clientY - rect.top
     manageClick();
+}
+
+function getKeyPress(event) {
+    if(event.key == "p" || event.key == "P") {
+        isPaused = isPaused ? false : true;
+    }
 }

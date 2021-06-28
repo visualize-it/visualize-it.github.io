@@ -1,9 +1,9 @@
 function toRadian(degrees) {
-    return degrees * 0.0175;
+    return degrees * Math.PI / 180;
 }
 
 function toDegrees(radians) {
-    return radians * 57.296
+    return radians * 180 / Math.PI;
 }
 
 function distanceBetween(b1, b2) {
@@ -23,7 +23,7 @@ function normalisedY(b1, b2) {
 }
 
 function getAngle(direction) {
-    if (direction.x > 0 && direction.y > 0) {
+    if (direction.x >= 0 && direction.y >= 0) {
         return toDegrees(Math.atan(direction.y / direction.x));
     }
     else if (direction.x < 0 && direction.y > 0) {
@@ -40,4 +40,17 @@ function getAngle(direction) {
 function toHex(c) {
     var hex = c.toString(16);
     return hex.length == 1 ? "0" + hex : hex;
+}
+
+function minimiseDifference(orient_angle, boid_angle) {
+    let new_angle = orient_angle - 1080;
+
+    while(Math.abs(new_angle - boid_angle) > 180) {
+        new_angle += 360;
+
+        if(new_angle > 5000) {
+            return orient_angle;
+        }
+    }
+    return new_angle;
 }

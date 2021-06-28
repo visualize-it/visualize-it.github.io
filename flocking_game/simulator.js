@@ -1,14 +1,22 @@
 let boids = [];
 
-let repulsion_zone = 20;
+let repulsion_zone = 25;
 let social_zone = 50;
 
 let click_x, click_y;
 let click_zone = 15;
-
 let click_circle = false;
 
+let isPaused = false;
+let debug = false;
+
+let cooldown = 0, cooldown_max = 120;
+
 function update() {
+    if (cooldown > 0) {
+        cooldown--;
+    }
+
     for (let boid of boids) {
         if (boid.isAlive) {
             let repulsionPresent = false;
@@ -29,7 +37,11 @@ function update() {
             }
 
             if (repulsionPresent) {
-                boid.orient(getAngle(away_direction));
+                boid.orient(getAngle(away_direction), "repulsion");
+
+                if (debug) {
+                    console.log("Away direction:", away_direction.x, away_direction.y);
+                }
             }
             else {
                 let neighboursPresent = false;
@@ -68,7 +80,11 @@ function update() {
                         x: boid.attraction * attraction_direction.x + boid.orientation * orientation_direction.x + boid.persistence * own_direction.x,
                         y: boid.attraction * attraction_direction.y + boid.orientation * orientation_direction.y + boid.persistence * own_direction.y,
                     }
-                    boid.orient(getAngle(weighted_direction));
+                    boid.orient(getAngle(weighted_direction), "social interaction");
+
+                    if (debug) {
+                        console.log("Attraction:", attraction_direction.x, attraction_direction.y, "Orientation:", orientation_direction.x, orientation_direction.y, "Persistence:", own_direction.x, own_direction.y, "Weighted:", weighted_direction.x, weighted_direction.y);
+                    }
                 }
             }
         }
@@ -90,41 +106,54 @@ function render() {
     if (click_circle) {
         context.fillStyle = "#aaaaaa";
         context.beginPath();
-        context.arc(click_x, click_y, click_zone, 0, 2 * Math.PI, false);
+        context.arc(click_x, canvas_height - click_y, click_zone, 0, 2 * Math.PI, false);
         context.stroke();
         context.closePath();
         context.fill();
 
         click_circle = false;
     }
+
+    if (cooldown > 0) {
+        context.fillStyle = "#ffffff";
+        context.fillRect(0, 0, cooldown * canvas_width / cooldown_max, 2);
+    }
 }
 
 function manageClick() {
-    let entries = [];
+    if (cooldown == 0) {
+        let entries = [];
 
-    click_circle = true;
+        click_circle = true;
+        click_y = canvas_height - click_y;
 
-    for (let boid of boids) {
-        let distance_from_click = distanceFromClick(boid, click_x, click_y);
+        for (let boid of boids) {
+            let distance_from_click = distanceFromClick(boid, click_x, click_y);
 
-        if (distance_from_click < click_zone) {
-            entries.push({ index: boid.index, distance: distance_from_click });
-        }
-    }
-
-    if (entries.length > 0) {
-        let min_distance = Infinity, boid_index = -1;
-
-        for (let entry of entries) {
-            if (entry.distance < min_distance) {
-                min_distance = entry.distance;
-                boid_index = entry.index;
+            if (distance_from_click < click_zone) {
+                entries.push({ index: boid.index, distance: distance_from_click });
             }
         }
 
-        if (boid_index != -1) {
-            boids[boid_index].click_kill();
+        if (entries.length > 0) {
+            let min_distance = Infinity, boid_index = -1;
+
+            for (let entry of entries) {
+                if (entry.distance < min_distance) {
+                    min_distance = entry.distance;
+                    boid_index = entry.index;
+                }
+            }
+
+            if (boid_index != -1) {
+                boids[boid_index].click_kill();
+                cooldown = cooldown_max;
+                reproduceBoid();
+            }
         }
+    }
+    else {
+        error.play();
     }
 }
 
@@ -133,8 +162,12 @@ function updateParams(variable) {
 }
 
 function initParams() {
-    boids.push(new Boid({ x: canvas_width / 2, y: canvas_height / 4, angle: 270 }));
-    boids.push(new Boid({ x: canvas_width / 2, y: 3 * canvas_height / 4, angle: 90 }));
-    addBoids(30);
+    // boids.push(new Boid({ x: canvas_width / 2, y: canvas_height / 4, angle: 90 }));
+    // boids.push(new Boid({ x: canvas_width / 2, y: 3 * canvas_height / 4, angle: 270 }));
+
+    // boids.push(new Boid({x: canvas_width / 4, y: canvas_height / 2, angle: 0}));
+    // boids.push(new Boid({ x: 3 * canvas_width / 4, y: canvas_height / 2, angle: 180}));
+
+    addBoids(32);
     console.log(boids);
 }

@@ -6,6 +6,10 @@ function toDegrees(radians) {
     return radians * 180 / Math.PI;
 }
 
+function displacement(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
 function distanceBetween(b1, b2) {
     return Math.sqrt(Math.pow(b2.x - b1.x, 2) + Math.pow(b2.y - b1.y, 2));
 }

@@ -11,11 +11,29 @@ let isPaused = false;
 let debug = false;
 
 let cooldown = 0, cooldown_max = 120;
+let tortuosity_step = 0, tortuosity_max = 180;
+
+let density;
 
 function update() {
     if (cooldown > 0) {
         cooldown--;
     }
+
+    if(tortuosity_step == 0) {
+        for (let boid of boids) {
+            boid.storePosition();
+        }
+    }
+
+    else if(tortuosity_step == tortuosity_max) {
+        tortuosity_step = -1;
+        for(let boid of boids) {
+            boid.calculateTortuosity();
+        }
+        drawTortuosityHistogram();
+    }
+    tortuosity_step++;
 
     for (let boid of boids) {
         if (boid.isAlive) {
@@ -158,16 +176,19 @@ function manageClick() {
 }
 
 function updateParams(variable) {
-
+    if(variable == "number") {
+        number_display.textContent = `Number of boids: ${boids.length}`;
+    }
+    if(variable == "density") {
+        density = density_slider.value;
+        density_display.textContent = `Density per 100 x 100 square units: ${density}`;
+    }
 }
 
 function initParams() {
-    // boids.push(new Boid({ x: canvas_width / 2, y: canvas_height / 4, angle: 90 }));
-    // boids.push(new Boid({ x: canvas_width / 2, y: 3 * canvas_height / 4, angle: 270 }));
+    density_slider.value = 0.5;
+    updateParams("density");
 
-    // boids.push(new Boid({x: canvas_width / 4, y: canvas_height / 2, angle: 0}));
-    // boids.push(new Boid({ x: 3 * canvas_width / 4, y: canvas_height / 2, angle: 180}));
-
-    addBoids(32);
+    addBoids(density * canvas_width * canvas_height / 10000);
     console.log(boids);
 }

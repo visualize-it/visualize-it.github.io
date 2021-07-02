@@ -1,4 +1,4 @@
-
+let tortousity_steps = 120;
 
 class Boid {
     constructor(position_params, social_params, highlight) {
@@ -10,6 +10,8 @@ class Boid {
 
         this.isAlive = true;
         this.highlight = (highlight === undefined) ? false : highlight;
+
+        this.tortuosity = undefined;
 
         if (position_params === undefined) {
             this.setPosition(); 
@@ -109,16 +111,32 @@ class Boid {
 
             if (this.x < 0) {
                 this.x = canvas_width;
+
+                if(this.prev_x !== undefined) {
+                    this.prev_x += canvas_width;
+                }
             }
             else if (this.x > canvas_width) {
                 this.x = 0;
+
+                if(this.prev_x !== undefined) {
+                    this.prev_x -= canvas_width;
+                }
             }
 
             if (this.y < 0) {
                 this.y = canvas_height;
+
+                if(this.prev_y !== undefined) {
+                    this.prev_y += canvas_height;
+                }
             }
             else if (this.y > canvas_height) {
                 this.y = 0;
+
+                if(this.prev_y !== undefined) {
+                    this.prev_y -= canvas_height;
+                }
             }
         }
     }
@@ -151,18 +169,38 @@ class Boid {
     getSocialParams() {
         return {a: this.attraction, o: this.orientation, p: this.persistence}
     }
+    storePosition() {
+        this.prev_x = this.x;
+        this.prev_y = this.y;
+    }
+    calculateTortuosity() {
+        if(this.prev_x !== undefined && this.prev_y !== undefined) {
+            this.tortuosity = 1 - (displacement(this.prev_x, this.prev_y, this.x, this.y) / (this.move_speed * tortuosity_max));
+            
+            if(this.tortuosity > 1) {
+                this.tortuosity = 1;
+            }
+        }
+        else {
+            this.tortuosity = undefined;
+        }
+    }
 }
 
 function addBoids(number) {
     for (let i = 0; i < number; i++) {
         boids.push(new Boid());
     }
+    updateParams("number");
     drawHistograms();
+    drawTortuosityHistogram();
 }
 
 function clearBoids() {
     boids = [];
+    updateParams("number");
     drawHistograms();
+    drawTortuosityHistogram();
 }
 
 function numAliveBoids() {
@@ -192,5 +230,5 @@ function reproduceBoid() {
 
 function restartSimulation() {
     clearBoids();
-    addBoids(32);
+    addBoids(density * canvas_width * canvas_height / 10000);
 }

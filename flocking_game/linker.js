@@ -7,6 +7,10 @@ let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 let error = new Audio("./../assets/error.wav");
 
+let density_slider = document.getElementById("density-slider");
+let density_display = document.getElementById("density-display");
+let number_display = document.getElementById("number-display");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

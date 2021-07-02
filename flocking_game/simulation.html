@@ -31,10 +31,27 @@
     </center>
     <br>
     <center>
+        <p id="number-display"></p>
         <button class="btn blue" onclick="addBoids(1)">Add Boid</button>
         <button class="btn blue" onclick="clearBoids()">Clear</button>
         <button class="btn blue" onclick="restartSimulation()">Restart</button>
     </center>
+    <br>
+    <br>
+    <center>
+        <p>Density slider: Press 'restart' for changes to reflect</p>
+        <input oninput="updateParams('density')" onchange="updateParams('density')" id="density-slider" type="range" min="0" max="5" step="0.01" value="0.5">
+        <p id="density-display"></p>
+    </center>
+    <br>
+    <br>
+    <center>
+        <canvas id="tortuosity-canvas"></canvas>
+    </center>
+    <center>
+        <p>Tortuosity histogram - updated every 180 time steps</p>
+    </center>
+    <br>
     <br>
     <center>
         <canvas id="histogram-canvas"></canvas>

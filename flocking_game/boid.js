@@ -163,8 +163,11 @@ class Boid {
         }
     }
     click_kill() {
+        records.push({x: this.attraction, y: this.orientation});
+        console.log(records);
         this.isAlive = false;
         drawHistograms();
+        drawFrequencies();
     }
     getSocialParams() {
         return {a: this.attraction, o: this.orientation, p: this.persistence}

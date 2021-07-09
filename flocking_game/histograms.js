@@ -113,8 +113,6 @@ function drawTortuosityHistogram() {
         }
     }
 
-    console.log(tortuosity_histogram);
-
     tortuosity_context.fillStyle = "#000000";
     tortuosity_context.fillRect(0, 0, tortuosity_canvas.width, tortuosity_canvas.height);
 

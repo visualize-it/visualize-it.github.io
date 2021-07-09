@@ -17,6 +17,7 @@
     <script src="boid.js" defer></script>
     <script src="simulator.js" defer></script>
     <script src="histograms.js" defer></script>
+    <script src="frequency.js" defer></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -58,6 +59,14 @@
     </center>
     <center>
         <p>Red histogram - Attraction; Blue histogram - Orientation; Green histogram - Persistence</p>
+    </center>
+    <br>
+    <br>
+    <center>
+        <canvas id="frequency-canvas"></canvas>
+    </center>
+    <center>
+        <p>X-axis: Attraction, Y-axis: Orientation. Parameter: Number of deaths (lighter color implies more relative deaths)</p>
     </center>
 </body>
 

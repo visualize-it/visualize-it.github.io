@@ -8,6 +8,10 @@ let freq_context = freq_canvas.getContext("2d");
 freq_context.fillStyle = "#000000";
 freq_context.fillRect(0, 0, freq_canvas.width, freq_canvas.height);
 
+// for(let i = 0; i < 100; i++) {
+//     console.log(gaussianNoise(0, 5.7));
+// }
+
 function drawFrequencies() {
     let frequencies = [];
 

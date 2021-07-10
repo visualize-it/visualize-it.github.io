@@ -106,9 +106,9 @@ class Boid {
     }
     move() {
         if (this.isAlive) {
-            let noise = gaussianNoise(-5.7, 5.7);
-            this.x += this.move_speed * Math.cos(toRadian(this.angle + noise));
-            this.y += this.move_speed * Math.sin(toRadian(this.angle + noise));
+            this.angle += gaussianNoise(-10, 10);
+            this.x += this.move_speed * Math.cos(toRadian(this.angle));
+            this.y += this.move_speed * Math.sin(toRadian(this.angle));
 
             if (this.x < 0) {
                 this.x = canvas_width;

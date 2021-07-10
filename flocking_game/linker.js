@@ -43,10 +43,7 @@ else {
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
-let animate = window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || function (callback) {
+let animate = function (callback) {
         window.setTimeout(callback, 1000 / fps);
     };
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Simulation of solution of Lorenz System | Visualize It</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="basic.js" defer></script>
+    <script src="lorenz_system.js" defer></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="nav-extended" style="background:black; margin-top: 0mm">
+        <div class="nav-wrapper">
+            <h3 id="main-heading">Visualize It</h3>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="../index.html">Home</a></li>
+                <li class="tab"><a href="../about.html">Abt</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+<div class="text">
+    <h4>Simulation of Solution of Lorenz System</h4>
+
+    <center>
+        <br>
+        <canvas id="canvas"></canvas>
+        <br>
+    </center>
+    <br>
+    <center>
+        <button class="btn blue" onclick="zoomIn()">Zoom in</button>
+        <button class="btn blue" onclick="zoomOut()">Zoom out</button>
+    </center>
+    <br>
+    <center>
+        <div class="container">
+            <div class="row">
+                <div class="col s4 l4">
+                    <h6>Rho</h6>
+                    <input id="rho" type="number">
+                </div>
+
+                <div class="col s4 l4">
+                    <h6>Sigma</h6>
+                    <input id="sigma" type="number">
+                </div>
+
+                <div class="col s4 l4">
+                    <h6>Beta</h6>
+                    <input id="beta" type="number">
+                </div>
+            </div>
+        </div>
+    </center>
+    <br>
+    <center>
+        <b>Click the below button to restart the simulation with modified parameters</b>
+        <br>
+        <br>
+        <button class="btn blue" onclick="restart()">Restart</button>
+    </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <h5 class="center">Brief Description</h5>
+    <p>The Lorenz system is a set of ordinary differential equations originally studied by Edward Lorenz as a simplified
+        model for atmospheric convection. Several of its solutions were known for their chaotic nature, wherein a small
+        nudge to initial conditions changed the future course of the solution altogether. The mapping of one of these
+        chaotic solutions (known as lorenz attractor) onto 3D space generates a trajectory akin to the wings of a
+        butterfly. The term "butterfly effect" was coined from this uncanny resemblance. The equations are as follows:
+    </p>
+
+    \[
+    \frac{dx}{dt} = \sigma (y - x) \\
+    \frac{dy}{dt} = x(\rho - z) - y \\
+    \frac{dz}{dt} = xy - \beta z \\
+    \]
+
+    <br />
+    <hr />
+    <br />
+
+    <p>
+        <b>Note:</b>
+    <ol>
+        <li>
+            A 3D, optimised and interactive version of the same simulation can be downloaded for the native environments
+            for Windows and Linux from my <a href="https://github.com/chanrt/lorenz-system">GitHub</a>
+        </li>
+        <li>
+            Simulation may lag on lower-end devices.
+        </li>
+        <li>Work is being done to render the output in 3D</li>
+    </ol>
+    </p>
+
+    <br />
+    <hr />
+    <br />
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

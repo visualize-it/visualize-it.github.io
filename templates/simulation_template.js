@@ -11,5 +11,5 @@ function updateParams(variable) {
 }
 
 function initParams() {
-    
+
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Prime Counting Function | Visualize It</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="basic.js" defer></script>
+    <script src="prime_counting.js" defer></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <nav class="nav-extended" style="background:black; margin-top: 0mm">
+        <div class="nav-wrapper">
+            <h3 id="main-heading">Visualize It</h3>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="../index.html">Home</a></li>
+                <li class="tab"><a href="../about.html">Abt</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+<div class="text">
+    <h4>Graphing the Prime Counting Function</h4>
+
+    <center>
+        <br>
+        <canvas id="canvas"></canvas>
+        <br>
+    </center>
+    <br>
+    <center>
+        <p id="report-display"></p>
+    </center>
+    <br>
+    <center>
+        <b>Enter limit here:</b>
+        <br>
+        <input style="width: 200px" id="limit-input" type="number">
+        <br>
+        <button class="btn blue" onclick="graph()">Draw Graph</button>
+    </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <h5>Trivia</h5>
+    <p>
+        The distribution of prime numbers has been of central interest to mathematicians, purely due to recreational
+        reasons. The prime counting function (often denoted as &pi;(x)) has been numerically graphed here. As the limit
+        tends to infinite, it is observed that &pi;(x) takes on an increasinsly linear form. Several
+        logarithmic functions and integrals are known to approximate it. It is well-known that the sequence of prime
+        numbers is infinite, merely because the number obtained by adding 1 to the product of known primes is a prime
+        number (due to its very method of construction).
+    </p>
+
+    <br />
+    <hr />
+    <br />
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

@@ -48,11 +48,8 @@ function initialise() {
 
     speed = Math.ceil(limit / 100);
     x_scale = canvas_width * step_size / limit;
-
     current_num = 1;
     num_primes = 0;
-
-    console.log(intervals);
 }
 
 function isPrime(num) {

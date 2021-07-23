@@ -110,10 +110,10 @@ function initialise() {
     translate = res / 2;
     hue_start = Math.random() * 255;
 
-    if(order < 5) {
+    if(order <= 4) {
         speed = Math.pow(2, order);
     }
-    else if(order < 10) {
+    else if(order <= 8) {
         speed = Math.pow(2, order+1);
     }
     else if(order < 15) {

@@ -13,11 +13,11 @@ function render() {
 
     for (let i = 0; i < speed && counter < num_points; i++, counter++) {
         hue = hue_start + counter * 255 / num_points;
-        if(hue > 255) {
+        if (hue > 255) {
             hue_start -= 255;
         }
         console.log(hue);
-        
+
         point1 = getPoint(counter - 1);
         point2 = getPoint(counter);
         context.strokeStyle = `hsl(${hue}, 50%, 50%)`;
@@ -110,18 +110,21 @@ function initialise() {
     translate = res / 2;
     hue_start = Math.random() * 255;
 
-    if(order <= 4) {
+    if (order <= 4) {
         speed = Math.pow(2, order);
     }
-    else if(order <= 8) {
-        speed = Math.pow(2, order+1);
+    else if (order <= 8) {
+        speed = Math.pow(2, order + 1);
     }
-    else if(order < 15) {
-        speed = Math.pow(2, order+2);
+    else if (order <= 12) {
+        speed = Math.pow(2, order + 2);
     }
-    
+    else if (order <= 16) {
+        speed = Math.pow(2, order + 3);
+    }
+
     counter = 1;
-    
+
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
 

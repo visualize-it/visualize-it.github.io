@@ -22,11 +22,11 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-M95CKRP8HB');
+    gtag('config', 'G-M95CKRP8HB');
 </script>
 
 <body>
@@ -46,7 +46,14 @@
 <div class="text">
     <h4>Graphing the Prime Counting Function</h4>
 
+    <p>
+        The prime counting function &pi;(x) outputs the number of prime numbers between 1 and x inclusive. Although the
+        distribution of prime is seemingly random, as x tends to larger natural numbers, &pi;(x) takes an increasingly
+        linear form, as can be discerned from the below graph. The main reason that explains the hype around Riemann
+        Hypothesis is that it's proof will provide us with insights into distribution of prime numbers.
+    </p>
     <center>
+        <b>Graph of y = &pi;(x)</b>
         <br>
         <canvas id="canvas"></canvas>
         <br>

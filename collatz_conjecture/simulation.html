@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Collatz Conjecture in Operation | Visualize It</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="basic.js" defer></script>
+    <script src="collatz_conjecture.js" defer></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+    <nav class="nav-extended" style="background:black; margin-top: 0mm">
+        <div class="nav-wrapper">
+            <h3 id="main-heading">Visualize It</h3>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent tabs-fixed-width">
+                <li class="tab"><a href="../index.html">Home</a></li>
+                <li class="tab"><a href="../about.html">Abt</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+<div class="text">
+    <h4>Collatz Conjecture in Operation</h4>
+    <p>
+        The Collatz problem is one of those unsolved problems in mathematics which can be understood (ironically) by
+        common people. Beginning with any positive integer x<sub>1</sub> = k, we successively iterate using
+        x<sub>n</sub>
+        = x<sub>n-1</sub> / 2 if x<sub>n-1</sub> is even or x<sub>n</sub> = 3 * x<sub>n-1</sub> + 1 otherwise. Collatz
+        conjecture claims that x<sub>n</sub> eventually reaches '1' for every positive integer k that we begin with. The
+        following graph portrays the behaviour of the input number when subjected to the aforementioned iterations.
+        Stopping time is the number of iterations after which we obtain '1'.
+    </p>
+    <center>
+        <b>X-axis: iterations; Y-axis: number</b>
+        <br>
+        <canvas id="canvas"></canvas>
+        <br>
+    </center>
+
+    <center>
+        <p id="max-value-display"></p>
+        <p id="stoptime-display"></p>
+        <input type="number" id="number-input" style="max-width: 300px;" placeholder="Enter number">
+        <br>
+        <button class="btn blue waves-effect" onclick="iterate()">Iterate</button>
+    </center>
+
+    <br />
+    <hr />
+    <br />
+
+    <h5 class="center">Brief Description</h5>
+
+    <p>
+        Despite the apparent simplicity of the conjecture, no one has been able to prove it. It has been found correct
+        for number until 300 quintillion, via brute-force computation). However, that is hardly a proof. There are two
+        circumstances under which this conjecture is false: 1) If there is a number that never converges to 1 or 2) If
+        the number go about in an infinitely repeating loop. There are a lot of proofs which convey that this conjecture
+        is true for <em>almost</em> all numbers. or that <em>most</em> numbers, on average, decrease during iterations.
+        A conclusive proof is
+        at large.
+    </p>
+
+    <br />
+    <hr />
+    <br />
+
+    <b>Note:</b>
+
+    <ol>
+        <li>Obtain interesting data about stopping times from <a href="https://en.wikipedia.org/wiki/Collatz_conjecture#Empirical_data" target="_blank">here</a>.</li>
+        <li>Some numbers undergo a lot of iterations before reaching 1. In such cases, the graph may look horizontally compressed if your device is low-width.</li>
+        <li>Some numbers iterate through a large range of values. The maximum value attained is displayed at the end. If this value is high, then small changes go unnoticed.</li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

@@ -4,6 +4,8 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let algo_select = document.getElementById("algo-select");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

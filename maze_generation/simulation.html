@@ -59,11 +59,23 @@
   </center>
   <br>
   
+  <label>Choose a maze generation algorithm:</label>
+  <div class="input-field col s12 black">
+    <select class="browser-default" id="algo-select" onchange="updateParams('algo')">
+      <option value="dfs" selected>Iterative Depth First Search</option>
+      <option value="kruskal">Randomized Kruskal</option>
+    </select>
+  </div>
+
   <br />
   <hr />
   <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>
+
+<script>
+  M.AutoInit();
+</script>
 
 </html>

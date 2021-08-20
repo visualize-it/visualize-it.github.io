@@ -17,7 +17,10 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if(variable == "algo") {
+        algo = algo_select.value;
+        initFunctions();
+    }
 }
 
 function initParams() {
@@ -25,8 +28,11 @@ function initParams() {
     length = Math.floor(canvas_width / num_rows);
     resizeCanvas();
 
-    algo = "kruskal";
+    algo_select.value = "dfs";
+    updateParams("algo");
+}
 
+function initFunctions() {
     if(algo == "dfs") {
         initMaze = initDFS;
         updateMaze = updateDFS;

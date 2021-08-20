@@ -10,6 +10,7 @@ let DFS = {
 function updateDFS() {
     if (DFS.stack.length > 0) {
         let current_cell = DFS.stack.pop();
+        current_cell.inStack = false;
         let i = current_cell.i, j = current_cell.j;
         DFS.current_cell.i = i, DFS.current_cell.j = j;
 
@@ -28,6 +29,7 @@ function updateDFS() {
         }
 
         if (emptyNeighbours.length > 0) {
+            current_cell.inStack = true;
             DFS.stack.push(current_cell);
             let chosen_cell = randomCell(emptyNeighbours);
             let i_new = chosen_cell.i, j_new = chosen_cell.j;
@@ -53,6 +55,7 @@ function updateDFS() {
             }
 
             chosen_cell.visited = true;
+            chosen_cell.inStack = true;
             DFS.stack.push(chosen_cell);
         }
     }
@@ -69,11 +72,12 @@ function renderDFS() {
         }
     }
 
-    context.fillStyle = "#ffff00";
+    context.fillStyle = "#39ff14";
     context.fillRect(DFS.current_cell.j * length, DFS.current_cell.i * length, length, length);
 }
 
 function initDFS() {
+    clearDFS();
     DFS.grid = get2Darray(num_rows, num_cols);
 
     for (let i = 0; i < num_rows; i++) {
@@ -84,5 +88,13 @@ function initDFS() {
 
     let initial_cell = DFS.grid[randInt(0, num_rows)][randInt(0, num_cols)];
     initial_cell.visited = true;
+    initial_cell.inStack = true;
     DFS.stack.push(initial_cell);
+}
+
+function clearDFS() {
+    DFS.grid = [];
+    DFS.stack = [];
+    DFS.current_cell.x = -1;
+    DFS.current_cell.y = -1;
 }

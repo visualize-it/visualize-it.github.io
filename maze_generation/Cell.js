@@ -13,6 +13,10 @@ class Cell {
             context.fillStyle = "#00008b";
             context.fillRect(this.x, this.y, length, length);
         }
+        if(this.inStack) {
+            context.fillStyle = "#ff3131";
+            context.fillRect(this.x, this.y, length, length);
+        }
         context.strokeStyle = "#ffffff";
         if(this.walls[0]) {
             drawLine(this.x, this.y, this.x + length, this.y);

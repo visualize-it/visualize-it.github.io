@@ -54,6 +54,9 @@ function updateKruskal() {
             }
 
             if (set1.disjoint(set2)) {
+                getKruskalCell(i1, j1).visited = true;
+                getKruskalCell(i2, j2).visited = true;
+
                 kruskal.walls[kruskal.index].deleted = true;
                 removeElement(kruskal.sets, set1);
                 removeElement(kruskal.sets, set2);
@@ -65,12 +68,16 @@ function updateKruskal() {
 }
 
 function renderKruskal() {
+    for(let cell of kruskal.naked_cells) {
+        cell.render();
+    }
     for (let wall of kruskal.walls) {
         wall.render();
     }
 }
 
 function initKruskal() {
+    clearKruskal();
     for (let i = 0; i < num_rows; i++) {
         for (let j = 0; j < num_cols; j++) {
             let naked_cell = new NakedCell(i, j);
@@ -96,4 +103,11 @@ function initKruskal() {
 
 function getKruskalCell(i, j) {
     return kruskal.naked_cells[i * num_cols + j];
+}
+
+function clearKruskal() {
+    kruskal.walls = [];
+    kruskal.sets = [];
+    kruskal.naked_cells = [];
+    kruskal.index = 0;
 }

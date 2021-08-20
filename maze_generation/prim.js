@@ -62,7 +62,7 @@ function renderPrim() {
     for (let wall of Prim.walls) {
         wall.render();
     }
-    drawCurrentWall();
+    drawPrimCurrentWall();
 }
 
 function initPrim() {
@@ -129,7 +129,7 @@ function setCurrentWall(wall) {
     Prim.current_wall.j2 = wall.j2;
 }
 
-function drawCurrentWall() {
+function drawPrimCurrentWall() {
     context.strokeStyle = "#ffff00";
     drawLine(Prim.current_wall.j1 * length, Prim.current_wall.i1 * length, Prim.current_wall.j2 * length, Prim.current_wall.i2 * length);
 }

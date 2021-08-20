@@ -24,15 +24,15 @@ function updateParams(variable) {
 }
 
 function initParams() {
-    num_rows = num_cols = 10;
+    num_rows = num_cols = 15;
     length = Math.floor(canvas_width / num_rows);
     resizeCanvas();
 
     if(mobile) {
-        context.lineWidth = 3;
+        context.lineWidth = 2;
     }
     else {
-        context.lineWidth = 5;
+        context.lineWidth = 4;
     }
 
     algo_select.value = "dfs";

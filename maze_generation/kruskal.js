@@ -74,6 +74,7 @@ function renderKruskal() {
     for (let wall of kruskal.walls) {
         wall.render();
     }
+    drawKruskalCurrentWall();
 }
 
 function initKruskal() {
@@ -99,6 +100,12 @@ function initKruskal() {
     }
 
     kruskal.walls = shuffle(kruskal.walls);
+}
+
+function drawKruskalCurrentWall() {
+    context.strokeStyle = "#ffff00";
+    let current_wall = kruskal.walls[kruskal.index];
+    drawLine(current_wall.x1, current_wall.y1, current_wall.x2, current_wall.y2);
 }
 
 function getKruskalCell(i, j) {

@@ -10,7 +10,7 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <!-- UI control -->
   <script src="basic.js" defer></script>
 
@@ -38,7 +38,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -69,28 +69,92 @@
   <center>
     <button class="btn blue" onclick="initMaze()">Restart</button>
   </center>
+  <br>
+  <center>
+    <b>Choose a maze generation algorithm</b>
+    <div class="input-field col s12 black">
+      <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
+        <option value="dfs">Iterative Depth First Search</option>
+        <option value="kruskal">Randomized Kruskal</option>
+        <option value="prim">Randomized Prim</option>
+      </select>
+    </div>
+  </center>
 
-  <label>Choose a maze generation algorithm:</label>
-  <div class="input-field col s12 black">
-    <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
-      <option value="dfs">Iterative Depth First Search</option>
-      <option value="kruskal">Randomized Kruskal</option>
-      <option value="prim">Randomized Prim</option>
-    </select>
-  </div>
+  <br />
+  <hr />
+  <br />
 
+  <h5 class="center">Brief Description</h5>
+
+  <p>Maze algorithms are used to generate mazes. They are given a grid of cell separated by walls, and they output a
+    maze by systematically breaking down a set of walls. Due to the method of generation, it is assured that there is
+    only one path between two points on the maze. There are several maze generation algorithms, each with their own pros
+    and cons in terms of length of passages, frequency and length of dead ends, and computational resources demanded.
+  </p>
+  <br>
+
+  <b>1) Iterated Depth First Search: </b> Maintains a stack of cells whose neighbours haven't been explored yet
+  <p>
+  <ol>
+    <li>A random cell is chosen, marked as visited and pushed to the stack</li>
+    <li>While the stack is not empty, the following steps are carried out:</li>
+    <ol>
+      <li>The last cell from the stack is obtained and designated as the current cell</li>
+      <li>If it has any neighbouring cell(s) that have not been visited yet, then the current cell is again added to the
+        stack. An unvisited neighbour is chosen at random, marked as visited and designated as the chosen cell. The wall
+        between the current cell and the chosen cell is removed. The chosen cell is pushed to the stack</li>
+      <li>If it does not have any neighbouring unvisited cell, then it's exploraton potential has been fully utilised
+        </li>
+    </ol>
+  </ol>
+  </p>
+  <p>
+    The current cell is painted yellow. Cells that are suspected of having unexplored neighbours are red while those that surely don't have any unexplored neighbours are blue.
+  </p>
+  <br>
+
+  <b>2) Randomized Kruskal: Requires a randomized list of all walls and a list of sets, each containing only one cell at the beginning</b>
+  <p>
+    For each wall in the list of walls, if the cells divided by the wall lie in disjoint sets, then the wall is removed and the sets are merged.
+  </p> 
+  <p>
+    Cells whose parent sets have been merged atleast once are colored blue. The current wall is stroked yellow.
+  </p>
+  <br>
+
+  <b>3) Randomized Prim: Requires a stack of walls which surround the currently visited cells.  </b>
+  <p>
+    <ol>
+      <li>A random cell is chosen, marked as visited. It's surrounding walls are pushed to the stack</li>
+      <li>While the wall stack is not empty, the following steps are repeated:</li>
+        <ol>
+          <li>A random wall is selected from the stack. If either cell separated by the wall is unvisited, then the unvisited cell is marked as visited, and it's surrounding walls are added to the stack</li>
+          <li>The aforementioned wall is removed from the stack as well as the maze.</li>
+        </ol>
+    </ol>
+  </p>
+  <p>
+    Visited cells are marked with blue and the wall under consideration is stroked with yellow.
+  </p>
+
+  <br>
+  <hr>
+  <br>
+
+  <h5 class="center">Analysis of Algorithms</h5>
+
+  <ol class="browser-default">
+    <li>Iterated Depth First Search: Has a bias for generating long corridors, due to its very method of operation. Considerably difficult for humans to solve. Moderate space and time complexity</li>
+    <li>Randomized Kruskal: Generates lot of small dead-ends. Simple for humans to solve. High space complexity and moderate time complexity</li>
+    <li>Randomized Prim: Generates more dead-ends than Kruskal. Extremely simple for humans to solve. Moderate space and time complexity. Considerable resources wasted on redundant tasks</li>
+  </ol>
+  
   <br />
   <hr />
   <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>
-
-<script>
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   var elems = document.querySelectorAll('select');
-  //   var instances = M.FormSelect.init(elems, options);
-  // });
-</script>
 
 </html>

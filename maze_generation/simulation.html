@@ -58,10 +58,13 @@
     <canvas id="canvas"></canvas>
   </center>
   <br>
+  <center>
+    <button class="btn blue" onclick="initMaze()">Restart</button>
+  </center>
   
   <label>Choose a maze generation algorithm:</label>
   <div class="input-field col s12 black">
-    <select class="browser-default" id="algo-select" onchange="updateParams('algo')">
+    <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
       <option value="dfs" selected>Iterative Depth First Search</option>
       <option value="kruskal">Randomized Kruskal</option>
     </select>

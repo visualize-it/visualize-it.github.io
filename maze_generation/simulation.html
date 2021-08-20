@@ -19,6 +19,7 @@
 
   <script src="dfs.js" defer></script>
   <script src="kruskal.js" defer></script>
+
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -61,11 +62,11 @@
   <center>
     <button class="btn blue" onclick="initMaze()">Restart</button>
   </center>
-  
+
   <label>Choose a maze generation algorithm:</label>
   <div class="input-field col s12 black">
     <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
-      <option value="dfs" selected>Iterative Depth First Search</option>
+      <option value="dfs">Iterative Depth First Search</option>
       <option value="kruskal">Randomized Kruskal</option>
     </select>
   </div>
@@ -78,7 +79,10 @@
 </div>
 
 <script>
-  M.AutoInit();
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, options);
+  });
 </script>
 
 </html>

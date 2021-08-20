@@ -23,12 +23,16 @@ canvas_height = canvas_width;
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
-let animate = window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || function (callback) {
-        window.setTimeout(callback, 1000 / fps);
-    };
+// let animate = window.requestAnimationFrame
+//     || window.webkitRequestAnimationFrame
+//     || window.mozRequestAnimationFrame
+//     || function (callback) {
+//         window.setTimeout(callback, 1000 / fps);
+//     };
+
+let animate = function (callback) {
+    window.setTimeout(callback, 1000 / 30);
+}
 
 window.onload = function () {
     initParams();
@@ -70,6 +74,10 @@ function get2Darray(r, c) {
 
 function randomCell(cells) {
     return cells[Math.floor(Math.random() * cells.length)];
+}
+
+function randomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
 
 function randInt(lower, upper) {

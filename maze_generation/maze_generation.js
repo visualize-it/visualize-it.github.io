@@ -28,6 +28,13 @@ function initParams() {
     length = Math.floor(canvas_width / num_rows);
     resizeCanvas();
 
+    if(mobile) {
+        context.lineWidth = 3;
+    }
+    else {
+        context.lineWidth = 5;
+    }
+
     algo_select.value = "dfs";
     updateParams("algo");
 }
@@ -38,10 +45,15 @@ function initFunctions() {
         updateMaze = updateDFS;
         renderMaze = renderDFS;
     }
-    else if(algo = "kruskal") {
+    else if(algo == "kruskal") {
         initMaze = initKruskal;
         updateMaze = updateKruskal;
         renderMaze = renderKruskal;
+    }
+    else if(algo == "prim") {
+        initMaze = initPrim;
+        updateMaze = updatePrim;
+        renderMaze = renderPrim;
     }
 
     initMaze();

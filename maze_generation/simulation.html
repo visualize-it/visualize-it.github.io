@@ -10,15 +10,22 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  <!-- UI control -->
   <script src="basic.js" defer></script>
-  <script src="maze_generation.js" defer></script>
 
+  <!-- Objects-->
   <script src="NakedCell.js" defer></script>
   <script src="Wall.js" defer></script>
   <script src="Cell.js" defer></script>
 
+  <!-- Algorithms -->
   <script src="dfs.js" defer></script>
   <script src="kruskal.js" defer></script>
+  <script src="prim.js" defer></script>
+
+  <!-- Algo control -->
+  <script src="maze_generation.js" defer></script>
 
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -68,6 +75,7 @@
     <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
       <option value="dfs">Iterative Depth First Search</option>
       <option value="kruskal">Randomized Kruskal</option>
+      <option value="prim">Randomized Prim</option>
     </select>
   </div>
 
@@ -79,10 +87,10 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-  });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   var elems = document.querySelectorAll('select');
+  //   var instances = M.FormSelect.init(elems, options);
+  // });
 </script>
 
 </html>

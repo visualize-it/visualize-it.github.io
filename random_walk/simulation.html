@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Unbiased Random Walks | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="basic.js" defer></script>
+  <script src="random_walk.js" defer></script>
+  <script src="Animal.js" defer></script>
+  <script src="graph.js" defer></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">Abt</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h4>Simulation of Unbiased Random Walks</h4>
+
+  <br>
+  <center>
+    <canvas id="canvas"></canvas>
+  </center>
+  <br>
+  <center>
+      <canvas id="graph-canvas"></canvas>
+  </center>
+  <br>
+  <center>
+      <button class="btn blue" onclick="initialize()">Restart</button>
+  </center>
+
+  <br>
+  <div class="container">
+      <div class="row">
+          <div class="col s12 l6">
+              <label>Number of animals:</label>
+              <input id="animals-input" type="number" placeholder="Enter number of animals">
+          </div>
+          <div class="col s12 l6">
+              <label>Number of steps:</label>
+              <input id="steps-input" type="number" placeholder="Enter number of steps">
+          </div>
+      </div>
+  </div>
+  
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

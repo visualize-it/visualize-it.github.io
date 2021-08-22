@@ -25,7 +25,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -47,34 +47,84 @@
 
 <div class="text">
   <h4>Simulation of Unbiased Random Walks</h4>
-
+  <br>
+  <p>
+    This simulation aims to show the connection between unbiased random walks and normal distribution. It also showcases
+    the relationship between Standard deviation, Mean squared displacement and number of steps. An animal which has
+    equal probability of moving towards the left or towards the right, is said to execute an unbiased random walk.
+  </p>
   <br>
   <center>
     <canvas id="canvas"></canvas>
   </center>
   <br>
   <center>
-      <canvas id="graph-canvas"></canvas>
+    <p id="params-display"></p>
+    <p>
+      Mean is expected to be around 0, standard deviation around &Sqrt;N and MSD around N
+    </p>
   </center>
   <br>
   <center>
-      <button class="btn blue" onclick="initialize()">Restart</button>
+    <canvas id="graph-canvas"></canvas>
+  </center>
+  <br>
+  <center>
+    <button class="btn blue" onclick="initialize()">Restart</button>
   </center>
 
   <br>
   <div class="container">
-      <div class="row">
-          <div class="col s12 l6">
-              <label>Number of animals:</label>
-              <input id="animals-input" type="number" placeholder="Enter number of animals">
-          </div>
-          <div class="col s12 l6">
-              <label>Number of steps:</label>
-              <input id="steps-input" type="number" placeholder="Enter number of steps">
-          </div>
+    <div class="row">
+      <div class="col s12 l6">
+        <label>Number of animals:</label>
+        <input id="animals-input" type="number" placeholder="Enter number of animals">
       </div>
+      <div class="col s12 l6">
+        <label>Number of steps (N):</label>
+        <input id="steps-input" type="number" placeholder="Enter number of steps">
+      </div>
+    </div>
+    <center>
+      <p>Press "restart" for changes to take effect</p>
+    </center>
   </div>
-  
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Resemblance with Normal distribution</h5>
+
+  <p>
+    The probability of an animal reaching a particular point can be modelled as a binomial distribution. Due to the
+    Central Limit Theorem - as the sample size increases, the distribution becomes more similar to a normal
+    distribution. Another way to look at it is via Pascal's triangle. The N-th row of Pascal's triangle (where N is the
+    number of steps) has N elements. The values are the middle are greater than the values at the ends. To put it in
+    more concrete terms - the entry at a particular point on Pascal's triangle shows the number of steps one can take to
+    reach it. Hence more animals end up at the middle than at the extremes.
+  </p>
+  <p>
+    This simulation is a codified form of Galton board, check it out <a target="blank" href="https://galtonboard.com/">here</a>.
+  </p>
+
+  <br />
+  <hr />
+  <br />
+
+  <h5>Parameters and their Formulae</h5>
+
+  <p>
+    <b>1) Mean: </b> since an animal is equally likely to go left or right, the mean position of an animal is expected to be zero.
+    <br>
+    <b>2) Mean Squared Displacement: </b> MSD is the mean of the square of displacements. It is calculated to be Na<sup>2</sup>, where 'a' is the displacement in one step (a = 1 in our case) and 'N' is the number of steps. Hence MSD = N. 
+    <br>
+    <b>3) Standard Deviation: </b> is given by &Sqrt;(MSD - Mean<sup>2</sup>). Evaluates to &Sqrt;N in our case
+  </p>
+  <p>
+    The more animals we consider, the greater agreement we find between our measured and expected parameters.
+  </p>
+
   <br />
   <hr />
   <br />

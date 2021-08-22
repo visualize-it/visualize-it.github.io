@@ -10,6 +10,8 @@ let graph_context = graph_canvas.getContext("2d");
 let animals_input = document.getElementById("animals-input");
 let steps_input = document.getElementById("steps-input");
 
+let params_display = document.getElementById("params-display");
+
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

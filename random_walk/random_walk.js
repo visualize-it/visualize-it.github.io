@@ -44,7 +44,7 @@ function calcParams() {
     sd = Math.sqrt(squared_distance_from_mean / num_animals);
 
     normaliser = sd * Math.sqrt(2 * Math.PI);
-    
+
     console.log(mean, sd, normaliser);
     params_display.innerHTML = `Mean: ${mean.toFixed(6)} <br> Standard Deviation: ${sd.toFixed(6)} <br> Mean Squared Displacement: ${msd.toFixed(6)}`;
 }
@@ -86,7 +86,7 @@ function initialize() {
 function initParams() {
     animals_input.value = 3000;
     steps_input.value = 500;
-    
+
     initialize();
 }
 

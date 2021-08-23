@@ -106,9 +106,10 @@ function initParams() {
         }
     }
 
-    for (let i = canvas_height / 2 - 200; i < canvas_height / 2 + 200; i++) {
-        for (let j = canvas_width / 2 - 200; j < canvas_width / 2 + 200; j++) {
-            old_grid[i][j].b = 1;
+    for (let i = canvas_height / 2 - 10; i < canvas_height / 2 + 10; i++) {
+        for (let j = canvas_width / 2 - 10; j < canvas_width / 2 + 10; j++) {
+            console.log(i, j);
+            old_grid[Math.floor(i)][Math.floor(j)].b = 1;
         }
     }
 }

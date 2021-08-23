@@ -10,7 +10,9 @@ let dt, time, speed;
 
 let pattern;
 
-let paused;
+let paused, drawMode;
+
+let click_x, click_y, thickness
 
 function update() {
     for (let iteration = 0; iteration < speed; iteration++) {
@@ -104,6 +106,18 @@ function setPattern(pattern_input) {
     }
 }
 
+function manageClick() {
+    if(drawMode) {
+        for (let i = 0; i < canvas_height; i++) {
+            for (let j = 0; j < canvas_width; j++) {
+                if(distance(j, i, click_x, click_y) < thickness) {
+                    old_grid[i][j].b = 1;
+                }
+            }
+        }
+    }
+}
+
 function initialize() {
     paused = false;
 
@@ -138,8 +152,11 @@ function initialize() {
 }
 
 function initParams() {
-    defaults();
+    drawMode = false;
+    thickness = 5;
     pattern = "big square";
+
+    defaults();
     initialize();
 }
 
@@ -177,4 +194,59 @@ function setInitialGrid() {
             }
         }
     }
+}
+
+function clearGrid() {
+    for (let i = 0; i < canvas_height; i++) {
+        for (let j = 0; j < canvas_width; j++) {
+            old_grid[i][j].a = 1;
+            old_grid[i][j].b = 0;
+            new_grid[i][j].a = 1;
+            new_grid[i][j].b = 0;
+            initial_grid[i][j].a = 1;
+            initial_grid[i][j].b = 0;
+        }
+    }
+}
+
+function normaliseInitials() {
+    let sum = initial_a + initial_b;
+    initial_a /= sum;
+    initial_b /= sum;
+}
+
+function normaliseWeights() {
+    let sum = 4 * (adjacent_weight + diagonal_weight);
+    adjacent_weight /= sum;
+    diagonal_weight /= sum;
+}
+
+function safeGetA(i, j) {
+    if (i < 0 || i >= canvas_height || j < 0 || j >= canvas_width) {
+        return 0;
+    }
+    else return old_grid[i][j].a;
+}
+
+function safeGetB(i, j) {
+    if (i < 0 || i >= canvas_height || j < 0 || j >= canvas_width) {
+        return 0;
+    }
+    else return old_grid[i][j].b;
+}
+
+function limit(value) {
+    if (value > 1) {
+        return 1;
+    }
+    else if (value < 0) {
+        return 0;
+    }
+    else {
+        return value;
+    }
+}
+
+function distance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }

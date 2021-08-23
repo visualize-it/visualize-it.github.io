@@ -24,7 +24,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -47,6 +47,12 @@
 <div class="text">
   <h4>Simulation of Reaction Diffusion System</h4>
 
+  <center>
+    <b>Set the Draw mode to 'ON' for introducing 'B' by clicking or touching the canvas. Pausing is recommended</b> 
+    <br>
+    <button class="btn blue" onclick="clearGrid()">Clear</button>
+    <button id="brush-button" class="btn blue" onclick="brush()" clear>Toggle Draw mode: Off</button>
+  </center>
   <br>
   <center>
     <canvas id="canvas"></canvas>
@@ -68,11 +74,13 @@
       <div class="row">
         <div class="col s12 l6">
           <p>Diffusion rate of A:</p>
-          <input id="diffusion-a-input" type="number" placeholder="D_A" oninput="updateValues()" onchange="updateValues()">
+          <input id="diffusion-a-input" type="number" placeholder="D_A" oninput="updateValues()"
+            onchange="updateValues()">
         </div>
         <div class="col s12 l6">
           <p>Diffusion rate of B:</p>
-          <input id="diffusion-b-input" type="number" placeholder="D_B" oninput="updateValues()" onchange="updateValues()">
+          <input id="diffusion-b-input" type="number" placeholder="D_B" oninput="updateValues()"
+            onchange="updateValues()">
         </div>
         <div class="col s12 l6">
           <p>Regeneration rate of A:</p>
@@ -94,7 +102,7 @@
     </div>
     <button class="btn blue" onclick="defaults()">Restore to Defaults</button>
   </center>
-  
+
   <br />
   <hr />
   <br />

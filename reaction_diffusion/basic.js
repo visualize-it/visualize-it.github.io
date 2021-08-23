@@ -4,6 +4,7 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let brush_button = getElement("brush-button");
 let pause_button = getElement("pause-button");
 let time_framerate_display = getElement("time-framerate-display");
 
@@ -22,9 +23,23 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 
 if (mobile) {
     canvas_width = Math.floor(0.9 * screen_width);
+
+    canvas.addEventListener("touchstart", function (e) {
+        getTouchPosition(canvas, e);
+        let touch = e.touches[0];
+        let mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
 }
 else {
     canvas_width = Math.floor(0.4 * screen_width);
+
+    canvas.addEventListener("mousedown", function (e) {
+        getMousePosition(canvas, e);
+    });
 }
 canvas_height = canvas_width;
 
@@ -57,46 +72,18 @@ function step() {
     animate(step);
 }
 
-function normaliseInitials() {
-    let sum = initial_a + initial_b;
-    initial_a /= sum;
-    initial_b /= sum;
+function getMousePosition(canvas, event) {
+    rect = canvas.getBoundingClientRect();
+    click_x = event.clientX - rect.left;
+    click_y = event.clientY - rect.top;
+    manageClick();
 }
 
-function normaliseWeights() {
-    let sum = 4 * (adjacent_weight + diagonal_weight);
-    adjacent_weight /= sum;
-    diagonal_weight /= sum;
-}
-
-function safeGetA(i, j) {
-    if (i < 0 || i >= canvas_height || j < 0 || j >= canvas_width) {
-        return 0;
-    }
-    else return old_grid[i][j].a;
-}
-
-function safeGetB(i, j) {
-    if (i < 0 || i >= canvas_height || j < 0 || j >= canvas_width) {
-        return 0;
-    }
-    else return old_grid[i][j].b;
-}
-
-function limit(value) {
-    if (value > 1) {
-        return 1;
-    }
-    else if (value < 0) {
-        return 0;
-    }
-    else {
-        return value;
-    }
-}
-
-function distance(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+function getTouchPosition(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    click_x = event.touches[0].clientX - rect.left,
+    click_y = event.touches[0].clientY - rect.top
+    manageClick();
 }
 
 function downloadImage(element) {
@@ -112,6 +99,17 @@ function pause() {
     else {
         paused = false;
         pause_button.innerHTML = "Pause";
+    }
+}
+
+function brush() {
+    if(!drawMode) {
+        drawMode = true;
+        brush_button.innerHTML = "Toggle Draw Mode: ON";
+    }
+    else {
+        drawMode = false;
+        brush_button.innerHTML = "Toggle Draw Mode: OFF";
     }
 }
 

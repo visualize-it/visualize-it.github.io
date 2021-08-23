@@ -14,6 +14,7 @@ ids.push(
     "cs",
     "auto",
     "bio",
+    "chem",
     "ill",
 );
 

@@ -4,8 +4,15 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
-let time_display = document.getElementById("time-display");
-let framerate_display = document.getElementById("framerate-display");
+let pause_button = getElement("pause-button");
+let time_framerate_display = getElement("time-framerate-display");
+
+let diffusion_a_input = getElement("diffusion-a-input");
+let diffusion_b_input = getElement("diffusion-b-input");
+let increase_a_input = getElement("increase-a-input");
+let decrease_b_input = getElement("decrease-b-input");
+let prec_input = getElement("prec-input");
+let speed_input = getElement("speed-input");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -38,33 +45,16 @@ window.onload = function () {
 
 function step() {
     let start = performance.now();
-    update();
-    render();
-    framerate_display.innerHTML = `Time: ${time} s ; Framerate: ${(1000/(performance.now() - start)).toFixed(0)} fps`;
+    if(!paused) {
+        update();
+    }
     
+    render();
+    if(!paused) {
+        time_framerate_display.innerHTML = `Time: ${time} s ; Framerate: ${(1000 / (performance.now() - start)).toFixed(0)} fps`;
+    }
+
     animate(step);
-}
-
-function lapA(i, j) {
-    return adjacent_weight * (old_grid[i - 1][j].a + old_grid[i][j - 1].a + old_grid[i + 1][j].a + old_grid[i][j + 1].a) + diagonal_weight * (old_grid[i - 1][j - 1].a + old_grid[i - 1][j + 1].a + old_grid[i + 1][j - 1].a + old_grid[i + 1][j + 1].a) - old_grid[i][j].a;
-}
-
-function safeLapA(i, j) {
-    let dot_product = -old_grid[i][j].a;
-    dot_product += adjacent_weight * (safeRetrieveA(i - 1, j) + safeRetrieveA(i, j - 1) + safeRetrieveA(i + 1, j) + safeRetrieveA(i, j + 1));
-    dot_product += diagonal_weight * (safeRetrieveA(i - 1, j - 1) + safeRetrieveA(i - 1, j + 1) + safeRetrieveA(i + 1, j - 1) + safeRetrieveA(i + 1, j + 1));
-    return dot_product;
-}
-
-function lapB(i, j) {
-    return adjacent_weight * (old_grid[i - 1][j].b + old_grid[i][j - 1].b + old_grid[i + 1][j].b + old_grid[i][j + 1].b) + diagonal_weight * (old_grid[i - 1][j - 1].b + old_grid[i - 1][j + 1].b + old_grid[i + 1][j - 1].b + old_grid[i + 1][j + 1].b) - old_grid[i][j].b;
-}
-
-function safeLapB(i, j) {
-    let dot_product = -old_grid[i][j].b;
-    dot_product += adjacent_weight * (safeRetrieveB(i - 1, j) + safeRetrieveB(i, j - 1) + safeRetrieveB(i + 1, j) + safeRetrieveB(i, j + 1));
-    dot_product += diagonal_weight * (safeRetrieveB(i - 1, j - 1) + safeRetrieveB(i - 1, j + 1) + safeRetrieveB(i + 1, j - 1) + safeRetrieveB(i + 1, j + 1));
-    return dot_product;
 }
 
 function normaliseInitials() {
@@ -93,19 +83,40 @@ function safeGetB(i, j) {
     else return old_grid[i][j].b;
 }
 
-function getGrayScale(cell) {
-    return 255 * cell.a / (cell.a + cell.b)
-}
-
 function limit(value) {
-    if(value > 1) {
+    if (value > 1) {
         return 1;
     }
-    else if(value < 0) {
+    else if (value < 0) {
         return 0;
     }
     else {
         return value;
     }
+}
+
+function distance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
+function downloadImage(element) {
+    var image = canvas.toDataURL("image/png");
+    element.href = image;
+}
+
+function pause() {
+    if(!paused) {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
+    else {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+}
+
+function restart() {
+    old_grid = initial_grid;
+    paused = false;
 }
 

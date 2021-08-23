@@ -1,6 +1,11 @@
+// DOM
+function getElement(id) {
+    return document.getElementById(id);
+}
+
 // Random 
 function randInt(lower, upper) {
-    return lower + Math.floor(Math.random() * (upper - lower));
+    return Math.floor(lower + Math.random() * (upper - lower));
 }
 
 function randomElement(array) {

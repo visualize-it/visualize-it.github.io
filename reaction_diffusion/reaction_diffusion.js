@@ -1,13 +1,14 @@
-let old_grid, new_grid;
+let old_grid, new_grid, initial_grid;
 
 let initial_a, initial_b;
 let diffusion_a, diffusion_b;
-let increase_a, decrease_a;
-let increase_b, decrease_b;
+let increase_a, decrease_b;
 
 let diagonal_weight, adjacent_weight;
 
 let dt, time, speed;
+
+let paused;
 
 function update() {
     for (let iteration = 0; iteration < speed; iteration++) {
@@ -68,30 +69,48 @@ function updateParams(variable) {
 
 }
 
-function initParams() {
-    console.log("Resolution:", canvas_width, canvas_height);
+function setPattern(pattern) {
+    if(pattern == "squares") {
+        let square_length = 10;
+        let num_squares = 100;
+
+        for(let square = 0; square < num_squares; square++) {
+            let x = randInt(square_length, canvas_width - square_length);
+            let y = randInt(square_length, canvas_height - square_length);
+
+            console.log(x, y);
+            for(let i = y; i < y + square_length; i++) {
+                for(let j = x; j < x + square_length; j++) {
+                    old_grid[i][j].b = 1;
+                }
+            }
+        }
+    }
+    else if(pattern == "big square") {
+        let square_half_length = 0.4 * canvas_width;
+        
+        for(let i = canvas_height / 2 - square_half_length; i < canvas_height / 2 + square_half_length; i++) {
+            for(let j = canvas_width / 2 - square_half_length; j < canvas_width / 2 + square_half_length; j++) {
+                old_grid[Math.floor(i)][Math.floor(j)].b = 1;
+            }
+        }
+    }
+}
+
+function initialize() {
+    paused = false;
+
     old_grid = new2dArray(canvas_height, canvas_width);
     new_grid = new2dArray(canvas_height, canvas_width);
+    initial_grid = new2dArray(canvas_height, canvas_width);
 
     initial_a = 1;
     initial_b = 0;
     normaliseInitials();
 
-    diffusion_a = 1;
-    diffusion_b = 0.5;
-
     adjacent_weight = 0.2;
     diagonal_weight = 0.05;
     normaliseWeights();
-
-    increase_a = 0.055;
-    decrease_a = 0;
-    increase_b = 0;
-    decrease_b = 0.062;
-
-    dt = 1;
-    time = 0;
-    speed = 1;
 
     for (let i = 0; i < canvas_height; i++) {
         for (let j = 0; j < canvas_width; j++) {
@@ -100,51 +119,49 @@ function initParams() {
                 b: 0
             };
             new_grid[i][j] = {
-                a: 1,
+                a: 0,
                 b: 0
             }
         }
     }
+    setPattern('big square');
+    setInitialGrid();
 
-    for (let i = canvas_height / 2 - 10; i < canvas_height / 2 + 10; i++) {
-        for (let j = canvas_width / 2 - 10; j < canvas_width / 2 + 10; j++) {
-            console.log(i, j);
-            old_grid[Math.floor(i)][Math.floor(j)].b = 1;
-        }
-    }
+    time = 0;
 }
 
-function handleBorders() {
-    let i = 0;
-    for (let j = 0; j < canvas_width; j++) {
-        a = old_grid[i][j].a;
-        b = old_grid[i][j].b;
+function initParams() {
+    defaults();
+    initialize();
+}
 
-        new_grid[i][j].a = a + (diffusion_a * safeLapA(i, j) - a * b * b + increase_a * (1 - a)) * dt;
-        new_grid[i][j].b = b + (diffusion_b * safeLapB(i, j) + a * b * b - (decrease_b + increase_a) * b) * dt;
-    }
-    i = canvas_height - 1;
-    for (let j = 0; j < canvas_width; j++) {
-        a = old_grid[i][j].a;
-        b = old_grid[i][j].b;
+function defaults() {
+    diffusion_a_input.value = 1;
+    diffusion_b_input.value = 0.5;
+    increase_a_input.value = 0.055;
+    decrease_b_input.value = 0.062;
+    prec_input.value = 1;
+    speed_input.value = 1;
 
-        new_grid[i][j].a = a + (diffusion_a * safeLapA(i, j) - a * b * b + increase_a * (1 - a)) * dt;
-        new_grid[i][j].b = b + (diffusion_b * safeLapB(i, j) + a * b * b - (decrease_b + increase_a) * b) * dt;
-    }
-    let j = 0;
+    updateValues();
+}
+
+function updateValues() {
+    diffusion_a = Number.parseFloat(diffusion_a_input.value);
+    diffusion_b = Number.parseFloat(diffusion_b_input.value);
+    increase_a = Number.parseFloat(increase_a_input.value);
+    decrease_b = Number.parseFloat(decrease_b_input.value);
+    dt = Number.parseFloat(prec_input.value);
+    speed = Number.parseInt(speed_input.value);
+}
+
+function setInitialGrid() {
     for (let i = 0; i < canvas_height; i++) {
-        a = old_grid[i][j].a;
-        b = old_grid[i][j].b;
-
-        new_grid[i][j].a = a + (diffusion_a * safeLapA(i, j) - a * b * b + increase_a * (1 - a)) * dt;
-        new_grid[i][j].b = b + (diffusion_b * safeLapB(i, j) + a * b * b - (decrease_b + increase_a) * b) * dt;
-    }
-    j = canvas_width - 1;
-    for (let i = 0; i < canvas_height; i++) {
-        a = old_grid[i][j].a;
-        b = old_grid[i][j].b;
-
-        new_grid[i][j].a = a + (diffusion_a * safeLapA(i, j) - a * b * b + increase_a * (1 - a)) * dt;
-        new_grid[i][j].b = b + (diffusion_b * safeLapB(i, j) + a * b * b - (decrease_b + increase_a) * b) * dt;
+        for (let j = 0; j < canvas_width; j++) {
+            initial_grid[i][j] = {
+                a: old_grid[i][j].a,
+                b: old_grid[i][j].b
+            }
+        }
     }
 }

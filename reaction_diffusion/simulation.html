@@ -53,10 +53,54 @@
   </center>
   <br>
   <center>
-    <p id="time-display"></p>
-    <p id="framerate-display"></p>
+    <button id="pause-button" class="btn blue" onclick="pause()">Pause</button>
+    <button class="btn blue" onclick="restart()">Restart</button>
+    <a download="pattern.png" href="" class="btn blue" onclick="downloadImage(this)">Download</a>
+  </center>
+  <br>
+  <center>
+    <p id="time-framerate-display"></p>
+  </center>
+  <br>
+  <center>
+    <b>A change to the below parameters gets immediately reflected. Pausing is recommended</b>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <p>Diffusion rate of A:</p>
+          <input id="diffusion-a-input" type="number" placeholder="D_A" oninput="updateValues()" onchange="updateValues()">
+        </div>
+        <div class="col s12 l6">
+          <p>Diffusion rate of B:</p>
+          <input id="diffusion-b-input" type="number" placeholder="D_B" oninput="updateValues()" onchange="updateValues()">
+        </div>
+        <div class="col s12 l6">
+          <p>Regeneration rate of A:</p>
+          <input id="increase-a-input" type="number" placeholder="r" oninput="updateValues()" onchange="updateValues()">
+        </div>
+        <div class="col s12 l6">
+          <p>Elimination rate of B:</p>
+          <input id="decrease-b-input" type="number" placeholder="e" oninput="updateValues()" onchange="updateValues()">
+        </div>
+        <div class="col s12 l6">
+          <p>Precision (value of &Delta;t):</p>
+          <input id="prec-input" type="number" placeholder="Δt" oninput="updateValues()" onchange="updateValues()">
+        </div>
+        <div class="col s12 l6">
+          <p>Iterations per frame:</p>
+          <input id="speed-input" type="number" placeholder="N" oninput="updateValues()" onchange="updateValues()">
+        </div>
+      </div>
+    </div>
+    <button class="btn blue" onclick="defaults()">Restore to Defaults</button>
   </center>
   
+  <br />
+  <hr />
+  <br />
+
+  <h5>Patterns</h5>
+
   <br />
   <hr />
   <br />

@@ -116,6 +116,8 @@ function brush() {
 function restart() {
     time = 0;
     old_grid = initial_grid;
-    paused = false;
+    if(paused) {
+        pause();
+    }
 }
 

@@ -116,6 +116,7 @@ function pause() {
 }
 
 function restart() {
+    time = 0;
     old_grid = initial_grid;
     paused = false;
 }

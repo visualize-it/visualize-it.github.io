@@ -8,6 +8,8 @@ let diagonal_weight, adjacent_weight;
 
 let dt, time, speed;
 
+let pattern;
+
 let paused;
 
 function update() {
@@ -65,12 +67,8 @@ function render() {
     context.putImageData(id, 0, 0);
 }
 
-function updateParams(variable) {
-
-}
-
-function setPattern(pattern) {
-    if(pattern == "squares") {
+function setPattern(pattern_input) {
+    if(pattern_input == "squares") {
         let square_length = 10;
         let num_squares = 100;
 
@@ -86,9 +84,18 @@ function setPattern(pattern) {
             }
         }
     }
-    else if(pattern == "big square") {
-        let square_half_length = 0.4 * canvas_width;
+    else if(pattern_input == "big square") {
+        let square_half_length = 0.35 * canvas_width;
         
+        for(let i = canvas_height / 2 - square_half_length; i < canvas_height / 2 + square_half_length; i++) {
+            for(let j = canvas_width / 2 - square_half_length; j < canvas_width / 2 + square_half_length; j++) {
+                old_grid[Math.floor(i)][Math.floor(j)].b = 1;
+            }
+        }
+    }
+    else if(pattern_input == "small square") {
+        let square_half_length = 5;
+
         for(let i = canvas_height / 2 - square_half_length; i < canvas_height / 2 + square_half_length; i++) {
             for(let j = canvas_width / 2 - square_half_length; j < canvas_width / 2 + square_half_length; j++) {
                 old_grid[Math.floor(i)][Math.floor(j)].b = 1;
@@ -124,14 +131,20 @@ function initialize() {
             }
         }
     }
-    setPattern('big square');
+    
+    setPattern(pattern);
     setInitialGrid();
-
     time = 0;
 }
 
 function initParams() {
     defaults();
+    pattern = "big square";
+    initialize();
+}
+
+function initPattern(pattern_input) {
+    pattern = pattern_input;
     initialize();
 }
 

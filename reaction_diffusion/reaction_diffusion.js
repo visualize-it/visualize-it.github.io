@@ -117,15 +117,27 @@ function initialize() {
 function initParams() {
     drawMode = false;
     thickness = 5;
-    pattern = "coral";
+    pattern = "frame";
 
     defaults();
+    speed_input.value = 5;
     initialize();
 }
 
 function initPattern(pattern_input) {
     pattern = pattern_input;
-    window.scrollTo(0, 100);
+    window.scrollTo(0, 750);
     initialize();
+}
+
+function defaults() {
+    diffusion_a_input.value = 1;
+    diffusion_b_input.value = 0.5;
+    increase_a_input.value = 0.055;
+    decrease_b_input.value = 0.062;
+    prec_input.value = 1;
+    speed_input.value = 5;
+
+    updateValues();
 }
 

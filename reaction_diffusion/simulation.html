@@ -50,8 +50,16 @@
 <div class="text">
   <h4>Simulation of Reaction Diffusion System</h4>
 
+  <p>A reaction diffusion system is used to model the spatial dynamics of two chemical reactants 'A' and 'B'. Wherein A + 2B &rightarrow; 3B. The 'plate' is initially filled with 'A'. 'B' is added in a localised manner. Both chemical species react with each other and diffuse across the plate to varying degrees, governed by the following equations:</p>
+  \[ \frac{\partial A_n}{\partial t} = D_A \nabla^2 A_n + f_A (A_n) \]
+  \[ \frac{\partial B_n}{\partial t} = D_B \nabla^2 B_n + f_B (B_n) \]
+  <p>Where A<sub>n</sub> and B<sub>n</sub> denotes the concentration of the chemical species in the n<sup>th</sup> cell of a grid. D<sub>A</sub> and D<sub>B</sub> are their diffusion constants. According to the chemical reaction, one species of A gets converted to one species of B, in the presence of two other B's. Hence, we add A at a rate 'r' and remove B at a rate 'e'. Therefore, the reaction functions are:</p>
+  \[ f_A (A_n) = - A_n B_n^2 + r \]
+  \[ f_B (B_n) = + A_n B_n^2 - e \]
+  <p>After a long period of time, if either reactant hasn't fizzled out completely, then we obtain intricate patterns. The mechanics of Reaction - Diffusion are important for chemical and biological morphogenesis. Infact, the texture of certain pigments found in nature are similar to the patterns obtained here.</p>
   <center>
     <b>Set the Draw mode to 'ON' for introducing 'B' by clicking or touching the canvas. Pausing is recommended</b> 
+    <br>
     <br>
     <button class="btn blue" onclick="clearGrid()">Clear</button>
     <button id="brush-button" class="btn blue" onclick="brush()" clear>Toggle Draw mode: Off</button>
@@ -113,11 +121,49 @@
   <h5>Patterns</h5>
 
   <center>
-    <button class="btn blue" onclick="initPattern('big square')">Big Square</button>
-    <button class="btn blue" onclick="initPattern('small square')">Small Square</button>
-    <button class="btn blue" onclick="initPattern('mitosis')">Mitosis</button>
-    <button class="btn blue" onclick="initPattern('coral')">Coral</button>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 l4">
+          <h6>Frame</h6>
+          <img class="responsive-img" src="frame.jpeg">
+          <button class="btn blue pulse" onclick="initPattern('frame')">Begin</button>
+          <br>
+          <br>
+        </div>
+        <div class="col s12 m6 l4">
+          <h6>Coral</h6>
+          <img class="responsive-img" src="coral.jpeg">
+          <button class="btn blue pulse" onclick="initPattern('coral')">Begin</button>
+          <br>
+          <br>
+        </div>
+        <div class="col s12 m6 l4">
+          <h6>Mitosis</h6>
+          <img class="responsive-img" src="mitosis.jpeg">
+          <button class="btn blue pulse" onclick="initPattern('mitosis')">Begin</button>
+          <br>
+          <br>
+        </div>
+        <div class="col s12 m6 l4">
+          <h6>Flower</h6>
+          <img class="responsive-img" src="flower.jpeg">
+          <button class="btn blue pulse" onclick="initPattern('flower')">Begin</button>
+          <br>
+          <br>
+        </div>
+      </div>
+    </div>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>It takes a lot of time to form patterns. The simulation can be speeded up in two ways: 1) increasing &Delta;t or 2) Increasing iterations per frame. (1) results in loss of accuracy whereas (2) can cause serious lag in lower end machines</li>
+    <li>Simulation is still in alpha stage. Certain values of parameters can easily break it. </li>
+  </ol>
 
   <br />
   <hr />

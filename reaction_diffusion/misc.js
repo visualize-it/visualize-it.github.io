@@ -1,14 +1,3 @@
-function defaults() {
-    diffusion_a_input.value = 1;
-    diffusion_b_input.value = 0.5;
-    increase_a_input.value = 0.055;
-    decrease_b_input.value = 0.062;
-    prec_input.value = 1;
-    speed_input.value = 1;
-
-    updateValues();
-}
-
 function updateValues() {
     diffusion_a = Number.parseFloat(diffusion_a_input.value);
     diffusion_b = Number.parseFloat(diffusion_b_input.value);

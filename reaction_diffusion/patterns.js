@@ -15,7 +15,7 @@ function setPattern(pattern_input) {
             }
         }
     }
-    else if(pattern_input == "big square") {
+    else if(pattern_input == "frame") {
         let square_half_length = 0.35 * canvas_width;
         
         for(let i = canvas_height / 2 - square_half_length; i < canvas_height / 2 + square_half_length; i++) {
@@ -24,7 +24,7 @@ function setPattern(pattern_input) {
             }
         }
     }
-    else if(pattern_input == "small square") {
+    else if(pattern_input == "coral") {
         let square_half_length = 5;
 
         for(let i = canvas_height / 2 - square_half_length; i < canvas_height / 2 + square_half_length; i++) {
@@ -45,10 +45,10 @@ function setPattern(pattern_input) {
         decrease_b_input.value = 0.0649;
         updateValues();
     }
-    else if(pattern_input == "coral") {
+    else if(pattern_input == "flower") {
         for(let i = 0; i < canvas_height; i++) {
             for(let j = 0; j < canvas_width; j++) {
-                if(distance(canvas_width / 2, canvas_height / 2, j, i) < 8) {
+                if(distance(canvas_width / 2, canvas_height / 2, j, i) < 5) {
                     old_grid[i][j].b = 1;
                 }
             }

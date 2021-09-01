@@ -13,7 +13,7 @@ function update() {
             x = cartesianX(r, angle);
             y = cartesianY(r, angle);
 
-            if (canDraw(e,x,y)) {
+            if (canDraw(e, x, y)) {
                 drawPoint();
             }
         }
@@ -73,16 +73,16 @@ function render() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
 
-    context.strokeStyle = "#ffffff";
-    context.beginPath();
-    context.moveTo(origin, 0);
-    context.lineTo(origin, canvas_width);
-    context.stroke();
+    // context.strokeStyle = "#ffffff";
+    // context.beginPath();
+    // context.moveTo(origin, 0);
+    // context.lineTo(origin, canvas_width);
+    // context.stroke();
 
-    context.beginPath();
-    context.moveTo(0, origin);
-    context.lineTo(canvas_height, origin);
-    context.stroke();
+    // context.beginPath();
+    // context.moveTo(0, origin);
+    // context.lineTo(canvas_height, origin);
+    // context.stroke();
 
     context.fillStyle = "#ffffff";
     if (isDrawing) {
@@ -98,24 +98,33 @@ function render() {
         context.fillText("Rescaling...", 0, 30);
     }
 
-    for (let point of points) {
-        context.fillRect(point.x, point.y, 2, 2);
+    // context.strokeStyle = "#ffffff"
+    // context.beginPath();
+    // context.moveTo(points[0].x, points[0].y);
+    // for (let i = 1; i < points.length; i++) {
+    //     context.lineTo(points[i].x, points[i].y);
+    // }
+    // context.stroke();
+
+    context.fillStyle = "#ffffff";
+    for(let point of points) {
+        context.fillRect(point.x, point.y, 3, 3);
     }
 }
 
 function step() {
     update();
-    if(isDrawing || isScaling) {
+    if (isDrawing || isScaling) {
         render();
     }
     animate(step);
 }
 
 function updateParams(variable) {
-    if(variable == 'l') {
+    if (variable == 'l') {
         l = Number.parseFloat(input_l.value);
     }
-    if(variable == 'e') {
+    if (variable == 'e') {
         e = Number.parseFloat(input_e.value);
     }
 }
@@ -172,19 +181,19 @@ function drawConic() {
 }
 
 function drawExample(conic) {
-    if(conic == "circle") {
+    if (conic == "circle") {
         l = canvas_width / (3 * scale);
         e = 0;
     }
-    if(conic == "ellipse") {
+    if (conic == "ellipse") {
         l = canvas_width / (4 * scale);
         e = 0.9;
     }
-    if(conic == "parabola") {
+    if (conic == "parabola") {
         l = 50 / scale;
         e = 1
     }
-    if(conic == "hyperbola") {
+    if (conic == "hyperbola") {
         l = 50 / scale;
         e = 1.1
     }
@@ -244,6 +253,6 @@ function transformY(y) {
     return origin - y;
 }
 
-function canDraw(e,x,y) {
+function canDraw(e, x, y) {
     return (Math.abs(e) < 1 || (Math.abs(transformX(x)) < 2 * canvas_width && Math.abs(transformY(y)) < 2 * canvas_height))
 }

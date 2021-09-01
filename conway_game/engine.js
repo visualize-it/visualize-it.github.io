@@ -2,6 +2,7 @@ function middleGround() {
   for(let i = 1; i < num_cells - 1; i++) {
     for(let j = 1; j < num_cells - 1; j++) {
       num_neigh = getNumNeighbours(i,j);
+      neighbours[i][j] = num_neigh;
       decideState(i,j,num_neigh);
     }
   }
@@ -47,6 +48,7 @@ function getNumNeighbours(i,j) {
   if(cells[i+1][j+1]) {
     num++;
   }
+  neighbours[i][j] = num_neigh;
   return num;
 }
 
@@ -108,6 +110,7 @@ function lowerEdge() {
     if(cells[0][j+1]) {
       num_neigh++;
     }
+    neighbours[i][j] = num_neigh;
     decideState(num_cells-1,j,num_neigh);
   }
 }
@@ -139,6 +142,7 @@ function leftEdge() {
     if(cells[i+1][num_cells-1]) {
       num_neigh++;
     }
+    neighbours[i][j] = num_neigh;
     decideState(i,0,num_neigh);
   }
 }
@@ -170,6 +174,7 @@ function rightEdge() {
     if(cells[i+1][num_cells-2]) {
       num_neigh++;
     }
+    neighbours[i][j] = num_neigh;
     decideState(i,num_cells-1,num_neigh);
   }
 }
@@ -200,6 +205,7 @@ function upperLeft() {
   if(cells[num_cells-1][num_cells-1]) {
     num_neigh++;
   }
+  neighbours[i][j] = num_neigh;
   decideState(0,0,num_neigh);
 }
 
@@ -229,6 +235,7 @@ function upperRight() {
   if(cells[num_cells-1][0]) {
     num_neigh++;
   }
+  neighbours[i][j] = num_neigh;
   decideState(0,num_cells-1,num_neigh);
 }
 
@@ -258,6 +265,7 @@ function lowerLeft() {
   if(cells[num_cells-1][1]) {
     num_neigh++;
   }
+  neighbours[i][j] = num_neigh;
   decideState(num_cells-1,0,num_neigh);
 }
 
@@ -287,6 +295,7 @@ function lowerRight() {
   if(cells[num_cells-2][0]) {
     num_neigh++;
   }
+  neighbours[i][j] = num_neigh;
   decideState(num_cells-1,num_cells-1,num_neigh);
 }
 

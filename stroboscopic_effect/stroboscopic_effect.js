@@ -32,7 +32,7 @@ function render() {
     context.lineTo(canvas_width / 2, canvas_height);
     context.stroke();
 
-    context.strokeStyle = "#ffffff";
+    context.strokeStyle = "#ff51ff";
     context.beginPath();
     context.moveTo(canvas_width / 4 + wheel_radius * Math.cos(toRadian(wheel_angle)), canvas_height / 2 - wheel_radius * Math.sin(toRadian(wheel_angle)) + y_offset);
     if (wheel_angle >= 180) {
@@ -43,7 +43,11 @@ function render() {
     }
     context.stroke();
 
-    context.strokeStyle = "#ffffff";
+    context.beginPath();
+    context.arc(canvas_width / 4, canvas_height / 2 + y_offset, wheel_radius, 0, 2 * Math.PI);
+    context.stroke();
+
+    context.strokeStyle = "#ffff00";
     context.beginPath();
     context.moveTo(3 * canvas_width / 4 + wheel_radius * Math.cos(toRadian(camera_angle)), canvas_height / 2 - wheel_radius * Math.sin(toRadian(camera_angle)) + y_offset);
     if (wheel_angle >= 180) {
@@ -55,15 +59,10 @@ function render() {
     context.stroke();
 
     context.beginPath();
-    context.arc(canvas_width / 4, canvas_height / 2 + y_offset, wheel_radius, 0, 2 * Math.PI);
-    context.stroke();
-
-
-    context.beginPath();
     context.arc(3 * canvas_width / 4, canvas_height / 2 + y_offset, wheel_radius, 0, 2 * Math.PI);
     context.stroke();
 
-    if(mobile) {
+    if (mobile) {
         context.font = "15px Arial";
     }
     else {

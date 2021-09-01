@@ -56,7 +56,7 @@ function render() {
 
     context.fillStyle = "#ffffff";
     for (let point of points) {
-        context.fillRect(x_origin + point.x, y_origin - point.y, 1, 1);
+        context.fillRect(x_origin + point.x, y_origin - point.y, 2, 2);
     }
 
     context.strokeStyle = "#ffff00";

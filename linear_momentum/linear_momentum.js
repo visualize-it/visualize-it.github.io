@@ -207,14 +207,20 @@ function drawBall() {
 }
 
 function drawBars() {
+  context.fillStyle = "#b5e61d";
   context.fillRect(player_bar_x - half_bar_length, player_bar_y, bar_length, bar_thickness);
+  context.fillStyle = "#00a2e8";
   context.fillRect(ai_bar_x - half_bar_length, ai_bar_y, bar_length, bar_thickness);
 }
 
 function drawTrails() {
+  context.lineWidth = 2;
+  context.strokeStyle = "#ffffff";
+  context.beginPath();
   for(let trail of trails) {
-    context.fillRect(trail.x, trail.y, 2, 2);
+    context.lineTo(trail.x, trail.y);
   }
+  context.stroke();
 }
 
 function drawNormal(bar) {

@@ -69,3 +69,11 @@ function initParams() {
     start_hue = Math.random() * 255;
     steps_per_frame = 10;
 }
+
+function zoomIn() {
+    scale += 1;
+}
+
+function zoomOut() {
+    scale -= 1;
+}

@@ -37,7 +37,7 @@
     <div class="nav-content">
       <ul class="tabs tabs-transparent tabs-fixed-width">
         <li class="tab"><a href="../index.html">Home</a></li>
-        <li class="tab"><a href="../about.html">Abt</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
       </ul>
     </div>
   </nav>
@@ -55,8 +55,8 @@
     <p id="upper-line"></p>
     <p id="lower-line"></p>
     <br>
-    <button class="btn blue waves-effect" onclick="generate()">Generate</button>
-    <button class="btn blue waves-effect" onclick="simulate()">Simulate</button>
+    <button class="btn purple darken-4" onclick="generate()">Generate</button>
+    <button class="btn purple darken-4" onclick="simulate()">Simulate</button>
     <br>
     <p id="cond-display"></p>
     <input type="range" onchange="updateParams('cond')" oninput="updateParams('cond')" id="cond-slider" min="0" max="1" step="0.01">
@@ -72,13 +72,13 @@
   <ol>
     <li><b>Two rods at different temperatures:</b>
       <center>
-        <button class="btn blue waves-effect" onclick="preset_rods()">Generate</button>
+        <button class="btn purple darken-4" onclick="preset_rods()">Generate</button>
       </center>
       <br><br>
     </li>
     <li><b>Linear gradient in temperature:</b>
       <center>
-        <button class="btn blue waves-effect" onclick="preset_linear()">Generate</button>
+        <button class="btn purple darken-4" onclick="preset_linear()">Generate</button>
       </center>
     </li>
   </ol>

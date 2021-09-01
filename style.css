@@ -1,12 +1,14 @@
 body {
   background-color: #06040ae1;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 p {
   color: white;
 }
 
-input{
+input {
     color: white;
     width: 50%;
     text-align: center;
@@ -16,28 +18,26 @@ b {
   color: white;
 }
 
-.text {
-  margin: 2%;
-  color: white;
-}
-
 a {
   color: rgba(143, 173, 255, 0.979);
 }
 
-h4 {
+button:hover {
+  opacity: 80%;
+}
+
+h1, h2, h3, h4, h5 {
   color: white;
   text-align: center;
 }
 
-h5 {
-  color: white;
-  text-align: center;
+h3 {
+  margin-top: 50px;
 }
 
-h6 {
-  color: white;
-  text-align: center;
+.text {
+  margin: 2%;
+  font-size: large;
 }
 
 ul li::before {
@@ -47,6 +47,10 @@ ul li::before {
 li {
   list-style-type: circle;
   color: white;
+}
+
+nav div ul li {
+  font-size: large;
 }
 
 #main-heading {
@@ -69,4 +73,14 @@ li {
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
   transition: opacity 0.2s;
+}
+
+hr {
+  margin: 10px;
+  padding: 0px;
+  display:block;
+  clear: both;
+  width: 100%;               
+  background-color:#ffffff;
+  height: 1px;
 }

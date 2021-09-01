@@ -36,7 +36,7 @@
     <div class="nav-content">
       <ul class="tabs tabs-transparent tabs-fixed-width">
         <li class="tab"><a href="../index.html">Home</a></li>
-        <li class="tab"><a href="../about.html">Abt</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
       </ul>
     </div>
   </nav>
@@ -56,11 +56,11 @@
     <canvas id="canvas"></canvas>
     <br/>
     <br/>
-    <button class="btn blue waves-effect" id="pause-button" onclick="togglePause()">Pause</button>
-    <button class="btn blue waves-effect" id="reset-button" onclick="resetCells()">Reset</button>
-    <button class="btn blue waves-effect" id="grid-button" onclick="toggleGrid()">Hide Grid</button>
+    <button class="btn purple darken-4" id="pause-button" onclick="togglePause()">Pause</button>
+    <button class="btn purple darken-4" id="reset-button" onclick="resetCells()">Reset</button>
+    <button class="btn purple darken-4" id="grid-button" onclick="toggleGrid()">Hide Grid</button>
     <br/><br/>
-    <button class="btn blue waves-effect" id="border-toggle" onclick="toggleBorder()">Disable border interactions</button>
+    <button class="btn purple darken-4" id="border-toggle" onclick="toggleBorder()">Disable border interactions</button>
     <p>Use the slider to change number of cells per row/column here (min: 4 and max: 40)</p>
     <input id="cell-slider" type="range" min="4" max="40" value="10" oninput="updateParams('cells')" onchange="updateParams('cells')">
     <br/>
@@ -75,47 +75,47 @@
     <li><b>Steady States:</b> No change takes place. Every living cell has 2 or 3 neighbours and continues to co-exist forever:
       <br/><br/>
       <center>
-        <button class="btn blue waves-effect" onclick="beehiveState()">Beehive</button>
-        <button class="btn blue waves-effect" onclick="loafState()">Loaf</button>
+        <button class="btn purple darken-4" onclick="beehiveState()">Beehive</button>
+        <button class="btn purple darken-4" onclick="loafState()">Loaf</button>
       </center>
     </li>
     <br/><br/>
     <li><b>Oscillators:</b> Interchange between the same states periodically:
       <br/><br/>
       <center>
-        <button class="btn blue waves-effect" onclick="pentaState()">Penta Decathlon</button>
-        <button class="btn blue waves-effect" onclick="pulsarState()">Pulsar</button>
+        <button class="btn purple darken-4" onclick="pentaState()">Penta Decathlon</button>
+        <button class="btn purple darken-4" onclick="pulsarState()">Pulsar</button>
       </center>
     </li>
     <br/><br/>
     <li><b>Spaceships:</b> Move across the screen and periodically regain their original configuration:
       <br/><br/>
       <center>
-        <button class="btn blue waves-effect" onclick="gliderState()">Glider</button>
-        <button class="btn blue waves-effect" onclick="lwssState()">Small ship</button>
-        <button class="btn blue waves-effect" onclick="hwssState()">Big ship</button>
+        <button class="btn purple darken-4" onclick="gliderState()">Glider</button>
+        <button class="btn purple darken-4" onclick="lwssState()">Small ship</button>
+        <button class="btn purple darken-4" onclick="hwssState()">Big ship</button>
       </center>
     </li>
     <br/><br/>
     <li><b>Methulselahs:</b> Evolve for a long time before stabilizing:
       <center>
-        <button class="btn blue waves-effect" onclick="acornState()">Acorn</button>
-        <button class="btn blue waves-effect" onclick="diehardState()">Diehard</button>
-        <button class="btn blue waves-effect" onclick="pentaminoState()">R-pentamino</button>
+        <button class="btn purple darken-4" onclick="acornState()">Acorn</button>
+        <button class="btn purple darken-4" onclick="diehardState()">Diehard</button>
+        <button class="btn purple darken-4" onclick="pentaminoState()">R-pentamino</button>
       </center>
     </li>
     <br/><br/>
     <li><b>Glider Guns:</b> Periodically generate an infinite amount of gliders:
       <center>
-        <button class="btn blue waves-effect" onclick="gosperState()">Gosper</button>
-        <button class="btn blue waves-effect" onclick="simkinState()">Simkin</button>
+        <button class="btn purple darken-4" onclick="gosperState()">Gosper</button>
+        <button class="btn purple darken-4" onclick="simkinState()">Simkin</button>
       </center>
     </li>
     <br/><br/>
     <li><b>Block layers:</b> Lay down 2x2 blocks as they propagate:
       <center>
-        <button class="btn blue waves-effect" onclick="minimalState()">Minimal</button>
-        <button class="btn blue waves-effect" onclick="fivexfiveState()">5x5</button>
+        <button class="btn purple darken-4" onclick="minimalState()">Minimal</button>
+        <button class="btn purple darken-4" onclick="fivexfiveState()">5x5</button>
       </center>
     </li>
     <br/><br/>

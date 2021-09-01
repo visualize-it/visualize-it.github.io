@@ -10,7 +10,6 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="home.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -19,7 +18,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -28,416 +27,428 @@
 <body>
   <nav class="nav-extended" style="background: black; margin-top: 0mm">
     <div class="nav-wrapper">
-      <h3 id="main-heading">Visualize It</h3>
+      <h1 id="main-heading">Visualize It</h1>
     </div>
     <div class="nav-content">
       <ul class="tabs tabs-transparent tabs-fixed-width">
         <li class="tab"><a class="active" href="#">Home</a></li>
-        <li class="tab"><a href="about.html">Abt</a></li>
+        <li class="tab"><a href="about.html">About</a></li>
       </ul>
     </div>
   </nav>
 
-  <div class="text">
+  <br>
 
-    <h4>Visualize It</h4>
+  <div class="container">
+    <div class="row">
 
-    <center>
-      <b>View scientific concepts at work. Anytime. Anywhere.</b>
-    </center>
-    <br />
-    <hr />
-    <br />
-    <h5>Topics</h5>
-    <center>
-      <br />
-      <a href="physics.html"><button id="phy" class="btn blue waves-effect">Physics</button></a>
-      <br />
-      <br />
-      <a href="mathematics.html"><button id="math" class="btn blue waves-effect">Mathematics</button></a>
-      <br />
-      <br />
-      <a href="computer_science.html"><button id="cs" class="btn blue waves-effect">Computer Science</button></a>
-      <br />
-      <br />
-      <a href="automatons.html"><button id="auto" class="btn blue waves-effect">Automatons</button></a>
-      <br />
-      <br />
-      <a href="biology.html"><button id="bio" class="btn blue waves-effect">Biology</button></a>
-      <br />
-      <br />
-      <a href="chemistry.html"><button id="chem" class="btn blue waves-effect">Chemistry</button></a>
-      <br />
-      <br />
-      <a href="illusions.html"><button id="ill" class="btn blue waves-effect">Illusions</button></a>
-    </center>
+      <center>
+        <b class="flow-text">View scientific concepts at work. Anytime. Anywhere.</b>
+      </center>
 
-    <br />
-    <hr />
-    <br />
+      <hr>
 
-    <h4>Feed</h4>
-    <h5 class="left-align">Effects of Special Relativity</h5>
-    <ol>
-      <li>Interactive simulation of effects of special relativity. All parameters can be altered</li>
-      <li>Time dilation, length contraction and relativistic doppler effect can be observed</li>
-      <li>Brief explanation of the above effects and inclusion of basic formulae</li>
-    </ol>
-    <center>
-      <a href="special_relativity/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-    <br>
-    <hr>
-    <br>
+      <h2>Featured</h2>
 
-    <h5 class="left-align">Working of Maze Generation Algorithms</h5>
-    <ol>
-      <li>Real time operation of three maze generation algorithms</li>
-      <li>Brief description of maze generation algorithms and pseudocode of the ones showcased here</li>
-      <li>The showcased algorithms have also been analysed</li>
-    </ol>
-    <center>
-      <a href="maze_generation/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Special Relativity</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/special_relativity.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Find out what Einstein's 1905 brain-child is about. Make your vehicle move as fast as you want (but within
+          physical limits) and view Time dilation, Length contraction and Relativistic Doppler Effect in action.
+        </p>
+        <center>
+          <a href="special_relativity/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Emergence in Flocking behaviour of Boids</h5>
-    <ol>
-      <li>An example of emergent behaviour with three simple, togglable rules</li>
-      <li>Number of boids can be altered. A specific boid's purview regions can be seen</li>
-      <li>Brief description of the simple rules that give rise to complex, pseudo-mutual behaviour</li>
-      <li>Radius of purview regions can be altered, except the one which may lead to crashes</li>
-    </ol>
-    <center>
-      <a href="flocking_behaviour/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Maze Generation</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/maze_generation.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Ever wondered how maze generation algorithms work? This simulation encompasses three maze generation algorithm
+          (as of now). Brief description of the step-by-step working of these algorithm, along with their pros and cons.
+        </p>
+        <center>
+          <a href="maze_generation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Flocking Behaviour</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/flocking_behaviour.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Can a simple set of rules give rise to complex behaviour? This question is answered beautifully by the classic
+          Flocking simulation, first formulated by Craig Reynolds in 1987. Vary all the parameters and view how the
+          simulation changes! Learn how it works behind the hood.
+        </p>
+        <center>
+          <a href="flocking_behaviour/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Conway's Game of Life</h5>
-    <ol>
-      <li>Simulation of the classic cellular-automaton. Dimensions of the world and states of each cell can be toggled</li>
-      <li>A plethora of predefined states, grouped into categories</li>
-      <li>Brief introduction and interesting facts about this game</li>
-    </ol>
-    <center>
-      <a href="conway_game/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Trigonometric Functions</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/trig_functions.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Does trigonometry still bring in the sweats? Or do you want to intuitively understand them? Whatever be the
+          case, this interactive simulation provides a highly intuitive and visual understanding of all six
+          Trigonometric functions, their properties and identities.
+        </p>
+        <center>
+          <a href="trig_functions/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Mandelbrot Fractal</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/mandelbrot_fractal.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          The Mandelbrot Fractal ought to erase any doubts about the beauty of Math. View a plethora of gorgeous,
+          self-repeating patterns obtained from iterating a simple operation! Zoom in and explore the beauutiful sights.
+          Learn how it comes about.
+        </p>
+        <center>
+          <a href="mandelbrot_fractal/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Mandelbrot Fractal</h5>
-    <ol>
-      <li>Interactive Simulation of the Mandelbrot Fractal</li>
-      <li>Coloring scheme can be altered, viewing frame can be moved and rescaled</li>
-      <li>Brief description about the math and the computation involved</li>
-      <li>Predefined interesting regions within the Mandelbrot Set</li>
-      <li>Highly optimized, but sacrifices detail</li>
-    </ol>
-    <center>
-      <a href="mandelbrot_fractal/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Lorenz System</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/lorenz_system.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Ever come across the term "Butterfly Effect" in the context of chaos? It is generated by the Lorenz system of
+          equations. Vary the parameters a little and see the trajectory change a lot! Come across the set of equations
+          that generate these patterns.
+        </p>
+        <center>
+          <a href="lorenz_system/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Spring Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/spring_motion.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Springs: the simplest non-linear physical system whose working is intuituvely obvious. Vary all parameters,
+          from spring constant to dispersion! View damped oscillations in action!
+        </p>
+        <center>
+          <a href="spring_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Solution of Travelling Salesman problem using Brute Force</h5>
-    <ol>
-      <li>Simulation of brute force solution of the travelling salesman problem</li>
-      <li>Points can be randomly placed, or inserted at specific positions</li>
-      <li>All possible permutations are shown, along with the shortest path discovered until that instant</li>
-      <li>Brief introduction about the problem and its importance</li>
-    </ol>
-    <center>
-      <a href="travelling_salesman/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Reaction Diffusion System</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img width="100%" class="responsive-img" src="images/reaction_diffusion.jpeg">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          A complex spatio-temporal model known to generate beautiful and intricate patterns! Reaction Diffusion systems
+          have various uses in chemistry, physics, biology and ecology. This simulation allows you to draw on the canvas
+          and watch both reaction and diffusion in action!
+        </p>
+        <center>
+          <a href="reaction_diffusion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br/>
-    <hr/>
-    <br/>
+      <div class="col s12">
+        <h3>Conway's Game of Life</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/conways_game.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Let us ask the same question again: Can a simple set of rules give rise to complex behaviour? Conway's Game of
+          Life is also based on a simple set of rules, put forth by John Conway in 1960s. From simple patterns like
+          Gliders, to self replicating entities and Turing complete computers have been devised in Conway's universe.
+        </p>
+        <center>
+          <a href="conway_game/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Working of Quantum Logic Gates</h5>
-    <ol>
-      <li>Interactive simulation of a single quantum wire with any number of single-qubit, purely real logic gates</li>
-      <li>Gates available: Hadamard, Pauli-X and Pauli-Z</li>
-      <li>Amplitudes are adjustable. Standard inputs are also defined</li>
-      <li>Brief description of logic gates and measurement</li>
-    </ol>
-    <center>
-      <a href="quantum_logic/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Planetary Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/planetary_motion.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Let us ask the same question again: Can a simple set of rules give rise to complex behaviour? Conway's Game of
+          Life is also based on a simple set of rules, put forth by John Conway in 1960s. From simple patterns like
+          Gliders, to self replicating entities and Turing complete computers have been devised in Conway's universe.
+        </p>
+        <center>
+          <a href="planetary_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Hilbert Curve</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/hilbert_curve.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Is it possible to cover a traverse through entire space with a line that doesn't cross itself? Hilbert curve
+          is a 2D space filling curve that does the job. Increase the order to see the curve progressively fill up the
+          entire space.
+        </p>
+        <center>
+          <a href="hilbert_curve/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Solution of Lorenz System</h5>
-    <ol>
-      <li>Plots solution of the Lorenz system with respect to the given parameters</li>
-      <li>Parameters can be altered</li>
-      <li>Brief description about the Lorenz system and its importance</li>
-    </ol>
-    <center>
-      <a href="lorenz_system/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Travelling Salesman</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/travelling_salesman.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          A salesman wants to cover all places of interest through the shortest path possible and without visiting the
+          same place twice. What path should he follow? This deceptively simple looking problem becomes extremely
+          diffucult to solve as the number of places increases!
+        </p>
+        <center>
+          <a href="travelling_salesman/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Projectile Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/projectile_motion.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          An everyday example of 2D motion. Explore projectile motion through the lens of a game. Try to hit the blue
+          target with the correct initial velocity and angle!
+        </p>
+        <center>
+          <a href="projectile_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Reaction Diffusion System</h5>
-    <ol>
-      <li>Highly optimised and interactive simulation of Reaction Diffusion System with two chemical species</li>
-      <li>All relevant parameters can be altered. Simulation can be speeded up at the cost of accuracy and lag</li>
-      <li>Obtained patterns can be downloaded. Initial conditions for certain patterns have been provided</li>
-      <li>Description of the system, the involved equations and its importance in morphogenesis</li>
-    </ol>
-    <center>
-      <a href="reaction_diffusion/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Bell Curve and Random Walks</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/random_walks.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Explore the subtle relationship between unbiased random walks, binomial distribution, central limit theorem,
+          Pascal's law and normal distribution. Simulate thousands of animals walking any distance you want and analyse
+          their distribution!
+        </p>
+        <center>
+          <a href="random_walk/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Linear Momentum</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/linear_momentum.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          The conservation of linear momentum is a central topic in all avenues of Physics. Observe the computer AI
+          crush you repeatedly at Pong by using this concept!
+        </p>
+        <center>
+          <a href="linear_momentum/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Lexical Analysis in Action (Compiler Theory)</h5>
-    <ol>
-      <li>A simple, working version of a lexical analyser</li>
-      <li>Brief introduction and insight into its working</li>
-      <li>Overview of a compiler</li>
-    </ol>
-    <center>
-      <a href="lexical_analysis/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Heat Equation (1D)</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/heat_equation_1d.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Observe how temperature changes across an unevenly heated bar! This also serves as a simulation for the
+          Diffusion equation, with heat being the diffused entity.
+        </p>
+        <center>
+          <a href="heat_equation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br/>
-    <hr/>
-    <br/>
+      <div class="col s12">
+        <h3>Linear Transformations</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/linear_transformations.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Play around with the operation that is central to linear algebra. The coordinate system is your playground.
+          Scale, rotate and skew! Encounter rotation matrices and inverses. See what a matrix with zero determinant does
+          to the linear space.
+        </p>
+        <center>
+          <a href="linear_transformations/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Rendering Hilbert Curves</h5>
-    <ol>
-      <li>Fast and Optimised renderer of pseudo Hilbert curves</li>
-      <li>Order can be changed</li>
-      <li>Iterative implementation and cascade rendering implies that higher order curves can be drawn</li>
-      <li>Brief description of the Hilbert curve and it's uses</li>
-    </ol>
-    <center>
-      <a href="hilbert_curve/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Stroboscopic Effect</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/stroboscopic_effect.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          Haven't you observed weird stuff happening with rotating objects? A reversal of direction? Spokes rotating
+          slower than they ought to? Or a flying helicopter with stationary rotors? This simulation explains and
+          showcases this illusion.
+        </p>
+        <center>
+          <a href="stroboscopic_effect/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3>Collatz Conjecture</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/collatz_conjecture.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          The statement of the Collatz Conjecture is simple enough to be universally understood. Yet its proof eludes
+          the best of modern-day Mathematicians.
+        </p>
+        <center>
+          <a href="collatz_conjecture/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Unbiased Random Walks</h5>
-    <ol>
-      <li>Simulation of multiple animals executing unbiased random walks for a given number of stpes</li>
-      <li>Brief description about unbiased random walks and its connection with normal distribution</li>
-      <li>Discussion of formulae of various parameters and their agreement with actual measurements</li>
-    </ol>
-    <center>
-      <a href="random_walk/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Visualization of Conic Sections</h5>
-    <ol>
-      <li>Interactive simulation of conic sections in polar coordinate system. All parameters can be altered</li>
-      <li>Circles, ellipses, parabolae and hyperbolae can be drawn</li>
-      <li>Brief discussion on how they are obtained and their eccentricities</li>
-    </ol>
-    <center>
-      <a href="conic_sections\simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Verhulst model of Population Dynamics</h5>
-    <ol>
-      <li>Interactive simulation of population dynamics using Verhulst model</li>
-      <li>The population and rate of growth are plotted with respect to time. Multiple plots can be stacked and compared</li>
-      <li>Brief description and intuition of the model</li>
-    </ol>
-    <center>
-      <a href="verhulst_model/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Planetary Motion</h5>
-    <ol>
-      <li>Interactive simulation of gravitational interactions between any number of objects. All parameters can be
-        altered</li>
-      <li>Introduction to Universal Law of Gravitation and some of its concepts</li>
-      <li>Brief explanation of gravitational fields and potentials, along with their formulae</li>
-      <li>Discussion of Kepler's laws and of Stellar systems</li>
-      <li>Includes pre-defined initial simulation parameters of some planetary and stellar phenomena</li>
-    </ol>
-    <center>
-      <a href="planetary_motion/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Visualization of Linear Transformations</h5>
-    <ol>
-      <li>Interactive simulation of a linear transformation in two dimensions</li>
-      <li>The matrix representing the linear transformation can be altered. Rotation matrices are automatically entered</li>
-      <li>Brief description of linear transformations, determinant and inverse of a matrix</li>
-      <li>The effects of a linear transformation to a particular vector can be observed</li>
-    </ol>
-    <center>
-      <a href="linear_transformations/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Spring Motion</h5>
-    <ol>
-      <li>Interactive simulation of spring motion. All parameters can be altered, including damping</li>
-      <li>Brief introduction to Simple Harmonic Motion</li>
-      <li>Practical demonstration of dependence of frequency of spring oscillations on spring constant and mass</li>
-      <li>Relationship of SHM with sines and cosines</li>
-      <li>Differences between ideal and actual conditions for spring motion</li>
-    </ol>
-    <center>
-      <a href="spring_motion\simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Collatz Conjecture in Operation</h5>
-    <ol>
-      <li>View the path taken by iterating over natural numbers as they allegedly obey the Collatz conjecture</li>
-      <li>Starting number can be input. Stopping time and maximum value attained are displayed at the end</li>
-      <li>Brief description about its notoriety</li>
-    </ol>
-    <center>
-      <a href="collatz_conjecture/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Operation of Heat Equation in One Dimension</h5>
-    <ol>
-      <li>Interactive simulation of operation of heat equation along a single dimension</li>
-      <li>Number of points and the conduction constant can be altered</li>
-      <li>Brief intuition about what the equation conveys</li>
-    </ol>
-    <center>
-      <a href="heat_equation/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Visualization of Trigonometric Functions</h5>
-    <ol>
-      <li>Interactive presentation of all six trigonometric functions in a unit circle</li>
-      <li>Existence of trigonometric functions outside of triangles and for angles more than 90 degrees.</li>
-      <li>Intuition for values of trigonometric functions for multiples of 90 degrees</li>
-      <li>Showcasing the odd nature of Sine and even nature of Cosine</li>
-      <li>Visual proof of the three fundamental trigonometric identities</li>
-    </ol>
-    <center>
-      <a href="trig_functions\simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Projectile Motion</h5>
-    <ol>
-      <li>Interactive simulation of projectile motion. All parameters can be altered</li>
-      <li>Brief introduction to Projectile Motion</li>
-      <li>Derivation of general equation of projectile motion, time of flight, maximum height and range</li>
-      <li>Demonstrating the conditions when maximum range and maximum possible heights are attained for a given initial
-        velocity</li>
-      <li>Also includes a target practice game!</li>
-    </ol>
-    <center>
-      <a href="projectile_motion\simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Conservation of Linear Momentum</h5>
-    <ol>
-      <li>Presented from the viewpoint of a Pong game</li>
-      <li>Brief explanation of conservation of linear momentum and reflection on a rigid and immovable object</li>
-      <li>Insight into working of the game. Calculated trajectory of the game is shown</li>
-    </ol>
-    <center>
-      <a href="linear_momentum/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Bifurcation Diagram of Logistic Map</h5>
-    <ol>
-      <li>Plots the bifurcation diagram of Logistic Map</li>
-      <li>Brief description of bifurcation diagrams</li>
-      <li>Insight into the working of the simulation</li>
-      <li>Made using Processing and written in 05.js</li>
-    </ol>
-    <center>
-      <a href="bifurcation_diagram/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3>Conic Sections</h3>
+        <br>
+      </div>
+      <div class="col s12 l6">
+        <img class="responsive-img" src="images/conic_sections.png">
+      </div>
+      <div class="col s12 l6">
+        <p class="flow-text">
+          A group of curves obtained by intersection a plane with a nappe/double cone <br> (Requires improvement)
+        </p>
+        <center>
+          <a href="conic_sections/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+    </div>
 
     <br>
     <hr>
     <br>
 
-    <h5 class="left-align">Occurence of Stroboscopic Effect</h5>
-    <ol>
-      <li>Interactive simulation of Stroboscopic Effect. All parameter can be altered</li>
-      <li>Brief intuition for occurence of Stroboscopic Effect</li>
-      <li>Predefined cases of stationary, wagon-wheel, near-complete aliasing and oscillating wheel</li>
-    </ol>
-    <center>
-      <a href="stroboscopic_effect\simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+    <h2>Technical</h2>
 
-    <br>
-    <hr>
-    <br>
+    <div class="row">
+      <div class="col s12 l6">
+        <h3>Quantum Logic Gates</h3>
+        <p class="flow-text">
+          Quantum Computers are all the hype nowadays! Learn about the working of their building blocks
+        </p>
+        <center>
+          <a href="quantum_logic/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+      <div class="col s12 l6">
+        <h3>Lexical Analysis</h3>
+        <p class="flow-text">
+          A simple version of a Lexical Analyser: the first building block of compilers.
+        </p>
+        <center>
+          <a href="lexical_analysis/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+    </div>
 
-    <h5 class="left-align">Graphing the Prime Counting Function</h5>
-    <ol>
-      <li>Graphs the prime counting function until the given limit</li>
-      <li>Brief descripton about the infinitude of prime numbers</li>
-    </ol>
-    <center>
-      <a href="prime_counting/simulation.html"><button class="btn blue pulse">Visit</button></a>
-    </center>
+    <div class="row">
+      <div class="col s12 l6">
+        <h3>Verhulst Model</h3>
+        <p class="flow-text">
+          The simplest ecological model that factors-in density dependent growth.
+        </p>
+        <center>
+          <a href="verhulst_model/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+      <div class="col s12 l6">
+        <h3>Distribution of Primes</h3>
+        <p class="flow-text">
+          A problem of central interest to Number theorists and Cryptographers alike.
+        </p>
+        <center>
+          <a href="prime_counting/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+    </div>
 
     <br>
     <hr>
@@ -447,6 +458,7 @@
       <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
     </center>
   </div>
+
 </body>
 
 </html>

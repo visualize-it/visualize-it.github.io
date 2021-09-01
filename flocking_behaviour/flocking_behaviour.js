@@ -4,6 +4,7 @@ let sep_radius = 20, align_radius = 40, coh_radius = 60;
 let is_paused = false;
 let is_highlighted = true, highlight_index;
 let seek_x, seek_y, seek_angle;
+let spoke_length;
 
 function update() {
     for (let i = 0; i < boids.length; i++) {
@@ -104,9 +105,15 @@ function render() {
         drawVectors();
     }
 
-    context.fillStyle = "#ffffff";
+    context.fillStyle = "#ffff00";
     for (let boid of boids) {
-        context.fillRect(boid.x, boid.y, 3, 3);
+        context.beginPath();
+        context.moveTo(boid.x + spoke_length * Math.cos(radian(boid.dirn)), boid.y - spoke_length * Math.sin(radian(boid.dirn)));
+        context.lineTo(boid.x + spoke_length * Math.cos(radian(boid.dirn + 150)), boid.y - spoke_length * Math.sin(radian(boid.dirn + 150)));
+        context.lineTo(boid.x + spoke_length * Math.cos(radian(boid.dirn + 210)), boid.y - spoke_length * Math.sin(radian(boid.dirn + 210)));
+        context.lineTo(boid.x + spoke_length * Math.cos(radian(boid.dirn)), boid.y - spoke_length * Math.sin(radian(boid.dirn)));
+        context.stroke();
+        context.fill();
     }
 }
 
@@ -164,6 +171,8 @@ function initialize() {
 
     align_slider.value = 40;
     coh_slider.value = 60;
+
+    spoke_length = 7;
 
     align_display.innerHTML = `Radius of Alignment region: ${align_slider.value}`;
     coh_display.innerHTML = `Radius of Cohesion region: ${coh_slider.value}`;

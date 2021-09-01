@@ -1,5 +1,5 @@
 // cell related
-let cells, num_cells, cell_length;
+let cells, neighbours, num_cells, cell_length;
 let grid;
 
 // simulation related
@@ -33,6 +33,15 @@ function render() {
   for(let i = 0; i < num_cells; i++) {
     for(let j = 0; j < num_cells; j++) {
       if(cells[i][j]) {
+        if(neighbours[i][j] == 1) {
+          context.fillStyle = "#ff0000";
+        }
+        else if(neighbours[i][j] == 2) {
+          context.fillStyle = "#00ff00";
+        }
+        else {
+          context.fillStyle = "#0000ff";
+        }
         context.fillRect(grid[i], grid[j], cell_length, cell_length);
       }
     }
@@ -77,6 +86,7 @@ function initParams() {
   num_cells = 10;
   grid = [];
   cells = [];
+  neighbours = [];
   cell_slider.value = num_cells;
 
   initCanvas();
@@ -99,6 +109,7 @@ function toggle(i,j) {
 
 function resetCells() {
   cells = new2dArray(num_cells);
+  neighbours = new2dArray(num_cells);
   next_state = new2dArray(num_cells);
 }
 

@@ -61,10 +61,12 @@ function render() {
     context.fillRect(0, 0, canvas_width, canvas_height);
 
     context.strokeStyle = "#ffffff";
+    context.fillStyle = "#ffffff";
     for (let body of params) {
         context.beginPath();
         context.arc(transformX(body.x * scale) - radius, transformY(body.y * scale) - radius, radius, 0, 2 * Math.PI);
         context.stroke();
+        context.fill();
         trails.unshift({
             x: transformX(body.x * scale) - radius,
             y: transformY(body.y * scale) - radius,

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Bezier Curves | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="../helper.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="Point.js" defer></script>
+  <script src="bezier_curves.js" defer></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h3 id="main-heading">Visualize It</h3>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h4>Bezier Curves</h4>
+
+  <br>
+  <center>
+    <canvas id="canvas"></canvas>
+  </center>
+  <br>
+  <center>
+      <button class="btn purple darken-4" onclick="updateParams('red')">Red</button>
+      <button class="btn purple darken-4" onclick="updateParams('green')">Green</button>
+      <button class="btn purple darken-4" onclick="updateParams('blue')">Blue</button>
+      <button class="btn purple darken-4" onclick="updateParams('orange')">Orange</button>
+  </center>
+  <br>
+  <center>
+    <div class="container">
+        <div class="row">
+            <div class="col s12 l6">
+                <p>X coordinate:</p>
+                <input id="x-input" type="range" min="0" max="1" step="1" oninput="updateParams('x')" onchange="updateParams('x')">
+            </div>
+            <div class="col s12 l6">
+                <p>Y coordinate:</p>
+                <input id="y-input" type="range" min="0" max="1" step="1" oninput="updateParams('y')" onchange="updateParams('y')">
+            </div>
+        </div>
+    </div>
+  </center>
+  
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

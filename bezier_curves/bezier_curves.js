@@ -104,7 +104,7 @@ function updateSelected() {
 
 function initParams() {
     control_points = [];
-    point_radius = 5;
+    point_radius = 6;
     prec = 0.01;
     interpolated = false;
     selected = false;

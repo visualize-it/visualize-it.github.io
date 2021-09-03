@@ -42,6 +42,11 @@ if (mobile) {
         clicked(canvas, e);
     });
 
+    canvas.addEventListener("mouseup", function (e) {
+        getMousePosition(canvas, e);
+        released(canvas, e);
+    });
+
     canvas.addEventListener("mousemove", function (e) {
         getMousePosition(canvas, e);
         moved(canvas, e);
@@ -106,6 +111,12 @@ function clicked() {
     updateSelected();
 }
 
+function released() {
+    selected = false;
+    enableScroll();
+    updateSelected();
+}
+
 function moved() {
     if (selected) {
         updateParams("pointer");
@@ -122,6 +133,19 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+
+    if(click_x < 0) {
+        click_x = 0;
+    }
+    else if(click_x > canvas_width) {
+        click_x = canvas_width;
+    }
+    if(click_y < 0) {
+        click_y = 0;
+    }
+    else if(click_y > canvas_height) {
+        click_y = canvas_height;
+    }
 }
 
 // Scroll disable part

@@ -3,6 +3,19 @@ function getElement(id) {
     return document.getElementById(id);
 }
 
+// Math
+function getDistance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+}
+
+function toRadian(degrees) {
+    return degrees * Math.PI / 180;
+}
+
+function toDegree(radian) {
+    return radian * 180 / Math.PI;
+}
+
 // Random 
 function randInt(lower, upper) {
     return Math.floor(lower + Math.random() * (upper - lower));

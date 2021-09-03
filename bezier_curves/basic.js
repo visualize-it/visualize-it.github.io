@@ -24,7 +24,8 @@ if (mobile) {
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    });
+        clicked();
+    }, false);
 
     canvas.addEventListener("touchmove", function (e) {
         getTouchPosition(canvas, e);
@@ -34,16 +35,19 @@ if (mobile) {
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-    });
+        moved();
+    }, false);
 } else {
     canvas_width = 0.3 * screen_width;
 
     canvas.addEventListener("mousedown", function (e) {
+        getMousePosition(canvas, e);
         clicked(canvas, e);
     });
 
     canvas.addEventListener("mousemove", function (e) {
-        mouseMoved(canvas, e);
+        getMousePosition(canvas, e);
+        moved(canvas, e);
     });
 }
 canvas_height = canvas_width;
@@ -80,10 +84,6 @@ function getProspectivePoint() {
 }
 
 function clicked() {
-    rect = canvas.getBoundingClientRect();
-    click_x = event.clientX - rect.left;
-    click_y = event.clientY - rect.top;
-
     let prospective_point = getProspectivePoint();
 
     if (!selected) {
@@ -94,7 +94,7 @@ function clicked() {
         if (prospective_point < 0) {
             selected = false;
         }
-        else if(prospective_point == selected_point) {
+        else if (prospective_point == selected_point) {
             selected = false;
         }
         else {
@@ -105,13 +105,16 @@ function clicked() {
     updateSelected();
 }
 
-function mouseMoved(canvas, event) {
+function moved() {
     if (selected) {
-        rect = canvas.getBoundingClientRect();
-        click_x = event.clientX - rect.left;
-        click_y = event.clientY - rect.top;
         updateParams("pointer");
     }
+}
+
+function getMousePosition(canvas, event) {
+    rect = canvas.getBoundingClientRect();
+    click_x = event.clientX - rect.left;
+    click_y = event.clientY - rect.top;
 }
 
 function getTouchPosition(canvas, event) {

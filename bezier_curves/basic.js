@@ -4,9 +4,6 @@ let fps = 24;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
-let x_input = document.getElementById("x-input");
-let y_input = document.getElementById("y-input");
-
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {
@@ -76,7 +73,7 @@ function step() {
 function getProspectivePoint() {
     let prospective_point = -1;
     for (let i = 0; i < control_points.length; i++) {
-        if (getDistance(click_x, click_y, control_points[i].x, control_points[i].y) < 5) {
+        if (getDistance(click_x, click_y, control_points[i].x, control_points[i].y) < leeway) {
             prospective_point = i;
         }
     }

@@ -6,6 +6,7 @@ let point_radius, prec;
 
 let click_x, click_y;
 let selected;
+let leeway;
 
 // states
 let interpolated;
@@ -107,9 +108,13 @@ function initParams() {
     prec = 0.01;
     interpolated = false;
     selected = false;
-    
-    x_input.max = canvas_width;
-    y_input.max = canvas_height;
+
+    if(mobile) {
+        leeway = 12;
+    }
+    else {
+        leeway = 5;
+    }
 
     control_points.push(new Point("#ff0000"));
     control_points.push(new Point("#00ff00"));

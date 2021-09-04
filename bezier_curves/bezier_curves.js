@@ -144,3 +144,9 @@ function removePoint() {
         interpolated = false;
     }
 }
+
+function printRelativeCoords() {
+    for(let point of control_points) {
+        console.log(`pushPoint(${(point.x/canvas_width).toFixed(4)}, ${(point.y/canvas_height).toFixed(4)})`);
+    }
+}

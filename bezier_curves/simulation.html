@@ -14,18 +14,21 @@
   <script src="basic.js" defer></script>
   <script src="Point.js" defer></script>
   <script src="bezier_curves.js" defer></script>
+  <script src="patterns.js" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
+
+  <link rel="icon" type="image/png" href="../images/bezier_curves.png">
 </head>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -47,13 +50,39 @@
 
 <div class="text">
   <h4>Bezier Curves</h4>
-
+  <p>
+    A Bezier curve is a parametric curve used widely in designing and computer graphics. It was first used by French
+    engineer Pierre Bezier in the 1960s. A bezier curve is generated through the process of recursive linear
+    interpolation of control points. All text on computers are rendered as Bezier curves, since it is more efficient to
+    store a bunch of coordinates than to store pixel data.
+  </p>
   <br>
   <center>
+    <b>Click and drag a control point to move it</b>
+    <br>
     <canvas id="canvas"></canvas>
   </center>
   <br>
-  
+  <center>
+    <button class="btn purple darken-4" onclick="addPoint()">Add</button>
+    <button class="btn purple darken-4" onclick="clearPoints()">Clear</button>
+    <button class="btn purple darken-4" onclick="removePoint()">Remove</button>
+  </center>
+
+  <br>
+  <hr>
+  <br>
+
+  <h5>Brief Description</h5>
+
+  <p>
+    Suppose there are N ordered control points. Then we have N-1 lines connecting them. Let 't' a fraction moved along a
+    line ('t' is between 0 and 1). We get N-1 points by moving along 't' portion of all N-1 lines. This process is
+    continued again, this time with N-1 ordered points and N-2 lines joining them, until we end up with just one point
+    that constitutes the Bezier curve. The set of points obtained by varying 't' from 0 to 1 is the complete Bezier
+    curve.
+  </p>
+
   <br />
   <hr />
   <br />

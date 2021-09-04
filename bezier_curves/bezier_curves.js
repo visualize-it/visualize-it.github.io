@@ -2,7 +2,9 @@ let control_points = [];
 let render_points = [];
 let selected_point;
 
-let point_radius, prec;
+let num_default, num_points;
+
+let point_radius, prec, num_inter;
 
 let click_x, click_y;
 let selected;
@@ -15,47 +17,30 @@ function update() {
     if (!interpolated) {
         render_points = [];
 
-        // control points
-        let p1 = control_points[0];
-        let p2 = control_points[1];
-        let p3 = control_points[2];
-        let p4 = control_points[3];
+        if (num_points > 1) {
+            let old_points = [], new_points = [];
 
-        // first level
-        let a_x, a_y;
-        let b_x, b_y;
-        let c_x, c_y;
+            for (let i = 0; i < 1; i += prec) {
+                old_points = control_points;
 
-        // second level
-        let d_x, d_y;
-        let e_x, e_y;
+                for (let level = old_points.length - 1; level > 0; level--) {
+                    new_points = [];
+                    for (let index = 1; index < old_points.length; index++) {
+                        new_points.push({
+                            x: (1 - i) * old_points[index - 1].x + i * old_points[index].x,
+                            y: (1 - i) * old_points[index - 1].y + i * old_points[index].y
+                        });
+                    }
+                    old_points = new_points;
+                }
 
-        // point
-        let p_x, p_y;
-        for (let i = 0; i < 1; i += prec) {
-            a_x = (1 - i) * p1.x + i * p2.x;
-            a_y = (1 - i) * p1.y + i * p2.y;
-
-            b_x = (1 - i) * p2.x + i * p3.x;
-            b_y = (1 - i) * p2.y + i * p3.y;
-
-            c_x = (1 - i) * p3.x + i * p4.x;
-            c_y = (1 - i) * p3.y + i * p4.y;
-
-            d_x = (1 - i) * a_x + i * b_x;
-            d_y = (1 - i) * a_y + i * b_y;
-
-            e_x = (1 - i) * b_x + i * c_x;
-            e_y = (1 - i) * b_y + i * c_y;
-
-            p_x = (1 - i) * d_x + i * e_x;
-            p_y = (1 - i) * d_y + i * e_y;
-
-            render_points.push({
-                x: p_x,
-                y: p_y
-            });
+                render_points.push({
+                    x: new_points[0].x,
+                    y: new_points[0].y
+                });
+            }
         }
+
         interpolated = true;
     }
 }
@@ -68,25 +53,27 @@ function render() {
         point.render();
     }
 
-    context.strokeStyle = "#ffffff";
-    context.beginPath();
-    context.moveTo(render_points[0].x, render_points[0].y);
-    for (let i = 1; i < render_points.length; i++) {
-        context.lineTo(render_points[i].x, render_points[i].y);
+    if (num_points > 1) {
+        context.strokeStyle = "#ffffff";
+        context.beginPath();
+        context.moveTo(render_points[0].x, render_points[0].y);
+        for (let i = 1; i < render_points.length; i++) {
+            context.lineTo(render_points[i].x, render_points[i].y);
+        }
+        context.stroke();
     }
-    context.stroke();
 }
 
 function updateParams(variable) {
-    if(variable == "x") {
+    if (variable == "x") {
         control_points[selected_point].x = click_x;
         interpolated = false;
     }
-    if(variable == "y") {
+    if (variable == "y") {
         control_points[selected_point].y = canvas_height - y_input.value;
         interpolated = false;
     }
-    if(variable == "pointer") {
+    if (variable == "pointer") {
         control_points[selected_point].x = click_x;
         control_points[selected_point].y = click_y;
         interpolated = false;
@@ -94,10 +81,10 @@ function updateParams(variable) {
 }
 
 function updateSelected() {
-    for(let point of control_points) {
+    for (let point of control_points) {
         point.selected = false;
     }
-    if(selected) {
+    if (selected) {
         control_points[selected_point].selected = true;
     }
 }
@@ -105,19 +92,55 @@ function updateSelected() {
 function initParams() {
     control_points = [];
     point_radius = 6;
-    prec = 0.01;
+    num_inter = 100;
+    prec = 1 / num_inter;
+
     interpolated = false;
     selected = false;
 
-    if(mobile) {
+    if (mobile) {
         leeway = 12;
     }
     else {
         leeway = 5;
     }
 
-    control_points.push(new Point("#ff0000"));
-    control_points.push(new Point("#00ff00"));
-    control_points.push(new Point("#0000ff"));
-    control_points.push(new Point("#ffa500"));
+    setPattern("treble");
+}
+
+function getHue(number) {
+    return Math.floor(number * 255 / num_inter);
+}
+
+function addPoint() {
+    if (num_points == 0) {
+        control_points.push(new Point("#ff0000"));
+    }
+    else if (num_points == 1) {
+        control_points.push(new Point("#0000ff"));
+    }
+    else if (num_points > 1) {
+        let temp_point = control_points.pop();
+        control_points.push(new Point("#00ff00"));
+        control_points.push(temp_point);
+    }
+    num_points++;
+    interpolated = false;
+}
+
+function clearPoints() {
+    control_points = [];
+    num_points = 0;
+    interpolated = false;
+}
+
+function removePoint() {
+    if(num_points > 0) {
+        control_points.pop();
+        if(num_points > 2) {
+            control_points[control_points.length - 1].color = "#0000ff";
+        }
+        num_points--;
+        interpolated = false;
+    }
 }

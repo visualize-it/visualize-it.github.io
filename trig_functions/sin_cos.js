@@ -11,11 +11,13 @@ let cos = document.getElementById("cos");
 canvas_1.width = canvas_width;
 canvas_1.height = canvas_height;
 
+let animating = true;
+
 function drawRaw_1() {
     context_1.strokeStyle = "#ffffff";
     context_1.beginPath();
-    context_1.moveTo(5, canvas_height/2);
-    context_1.lineTo(canvas_width-5, canvas_height/2);
+    context_1.moveTo(5, canvas_height / 2);
+    context_1.lineTo(canvas_width - 5, canvas_height / 2);
     context_1.stroke();
 
     context_1.beginPath();
@@ -45,7 +47,7 @@ function drawPerpendiculars_1() {
     context_1.strokeStyle = "#ffffff";
     context_1.beginPath();
     context_1.moveTo(canvas_width / 2 + (Math.cos(Math.PI * slider_1.value / 180)) * canvas_height / 3, canvas_height / 2 + (-Math.sin(radian(slider_1.value))) * canvas_height / 3);
-    context_1.lineTo(canvas_width / 2 ,canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
+    context_1.lineTo(canvas_width / 2, canvas_height / 2 + (Math.sin(-Math.PI * slider_1.value / 180)) * canvas_height / 3);
     context_1.stroke();
 
     // Perpendicular to Y-axis
@@ -68,7 +70,7 @@ function drawProjections_1() {
     context_1.lineWidth = 3;
     context_1.beginPath();
     context_1.moveTo(canvas_width / 2, canvas_height / 2);
-    context_1.lineTo(canvas_width / 2 ,canvas_height / 2 + (-Math.sin(radian(slider_1.value))) * canvas_height / 3);
+    context_1.lineTo(canvas_width / 2, canvas_height / 2 + (-Math.sin(radian(slider_1.value))) * canvas_height / 3);
     context_1.stroke();
 }
 
@@ -80,14 +82,31 @@ function render_1() {
     drawLine_1();
     drawPerpendiculars_1();
     drawProjections_1();
+
+    if(animating) {
+        update_animation();
+    }
+}
+
+function update_animation() {
+    slider_1.value = Number.parseFloat(slider_1.value) + 1;
+    console.log(slider_1.value);
+    while (slider_1.value >= 360) {
+        slider_1.value = slider_1.value - 360;
+    }
+    angle_1.innerHTML = `&theta; = ${slider_1.value}<sup>o</sup>`;
+
+    sin.innerHTML = `Sin(&theta;) = length of red line = ${Math.sin(radian(slider_1.value)).toFixed(4)}`;
+    cos.innerHTML = `Cos(&theta;) = length of blue line = ${Math.cos(radian(slider_1.value)).toFixed(4)}`;
 }
 
 function update_1(changed) {
-    if(changed == 'slide') {
+    animating = false;
+    if (changed == 'slide') {
         angle_1.innerHTML = `&theta; = ${slider_1.value}`;
     }
-    else if(changed == 'typed') {
-        if(type_1.value != "") {
+    else if (changed == 'typed') {
+        if (type_1.value != "") {
             slider_1.value = type_1.value;
             angle_1.innerHTML = `&theta; = ${type_1.value}`;
         }

@@ -68,6 +68,8 @@ function initParams() {
     scale = 6;
     start_hue = Math.random() * 255;
     steps_per_frame = 10;
+
+    context.lineWidth = 2;
 }
 
 function zoomIn() {
@@ -76,4 +78,12 @@ function zoomIn() {
 
 function zoomOut() {
     scale -= 1;
+}
+
+function restart() {
+    points = [];
+
+    updateParams("rho");
+    updateParams("sigma");
+    updateParams("beta");
 }

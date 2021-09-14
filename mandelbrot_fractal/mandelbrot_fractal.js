@@ -15,6 +15,8 @@ let scale;
 let animating;
 let coloring_scheme;
 
+let downloading;
+
 function update() {
   if (animating) {
     zoomIn();
@@ -113,13 +115,13 @@ function area(number) {
   scale = 1;
   animating = true;
   fps_display.style.display = "block";
-  window.scrollTo(0, 175);
+  window.scrollTo(0, 275);
 }
 
 function iterations(num) {
   max_iterations = num;
   render();
-  window.scrollTo(0, 175);
+  window.scrollTo(0, 275);
 }
 
 function initParams() {

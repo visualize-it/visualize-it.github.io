@@ -29,6 +29,7 @@ window.onload = function () {
     update_1('slide');
     update_2('slide');
     update_3('slide');
+    animating = true;
     animate(step);
 }
 
@@ -40,7 +41,7 @@ function step() {
 };
 
 function distance(x1, y1, x2, y2) {
-    return Math.sqrt((x1 - x2)^2 + (y2 - y1)^2);
+    return Math.sqrt((x1 - x2) ^ 2 + (y2 - y1) ^ 2);
 }
 
 function radian(degrees) {

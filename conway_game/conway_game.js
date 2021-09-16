@@ -37,10 +37,10 @@ function render() {
           context.fillStyle = "#ff0000";
         }
         else if(neighbours[i][j] == 2) {
-          context.fillStyle = "#00ff00";
+          context.fillStyle = "#e2d810";
         }
         else {
-          context.fillStyle = "#0000ff";
+          context.fillStyle = "#12a4d9";
         }
         context.fillRect(grid[i], grid[j], cell_length, cell_length);
       }
@@ -92,7 +92,7 @@ function initParams() {
   initCanvas();
 
   isPaused = false;
-  showGrid = true;
+  showGrid = false;
   borderInteract = true;
 
   gosperState();

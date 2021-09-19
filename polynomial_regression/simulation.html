@@ -50,7 +50,10 @@
 
 <div class="text">
   <h2>Polynomial Regression</h2>
-
+  <p>
+    Polynomial regression is used to find the coefficients of an m-degree polynomial that best fits the given set of
+    points. It involves elementary multivariable calculus and linear algebra.
+  </p>
   <br>
   <div class="container">
     <div class="row">
@@ -68,7 +71,7 @@
           <p id="m-display"></p>
           <input type="range" id="m-input" min="0" max="12" step="1" oninput="updateParams('m')"
             onchange="updateParams('m')">
-          
+
           <p id="c-display"></p>
           <b id="warn-display">
             Proper fitting with a polynomial of degree m requires atleast m+1 points.
@@ -79,6 +82,35 @@
   </div>
 
   <br>
+  <hr>
+  <br>
+
+  <h3>Brief Description</h3>
+  <p>
+    The cost function expresses the discrepancy between the polynmial under consideration, and the given set of points.
+    If m is the order of the polynomial being considered for a fit, then the cost function takes m+1 inputs,
+    corresponding to the m+1 polynomial coefficients. Our aim is to find the coefficients for which the cost function is
+    minimum or zero. Using the fact that the derivative is zero at a minima, we obtain m+1 equations by partially
+    differentiating the cost function with respect to m+1 polynomial coefficients (the unknowns). By expressing the set
+    of m+1 equations in terms of matrices, one can easily find the unknown coefficients using linear algebra (either
+    Gaussian elimination + back-substitution, or inversion).
+    <br>
+    <br>
+    Please refer to <a target="_blank" href="http://polynomialregression.drque.net/math.html">this website</a> for viewing the exact
+    mathematics involved in polynomial regression.
+  </p>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>A set of n points can be exactly fitted with a polynomial of degree n-1. This is the general analogue of the
+      fact that there is always a line (which is a 1 dimensional polynomial) joining 2 points.</li>
+    <li>A polynomial of degree m requires atleast m+1 points for a proper fit. If this condition is not satisfied, then
+      the extra coefficients will be extremely low or zero, which badly skewes the curve.</li>
+  </ol>
 
   <br />
   <hr />

@@ -61,7 +61,6 @@ function update() {
             }
             coeffs.push(dot_product);
         }
-        console.log(coeffs);
         c_display.innerHTML = "Polynomial coefficients: <br>";
         for(let i = 0; i <= polynomial_degree; i++) {
             c_display.innerHTML += `c<sub>${i}</sub>: ${coeffs[i].toFixed(6)} <br>`;
@@ -98,14 +97,26 @@ function updateParams(variable) {
 function initParams() {
     range = 10;
 
-    m_input.value = 2;
+    m_input.value = 4;
     updateParams("m");
 
-    point_radius = 5;
+    if(!mobile) {
+        point_radius = 8;
+    }   
+    else {
+        point_radius = 6;
+    }
     curve_prec = 100;
     updated = false;
 
     scale = range / canvas_width;
+    for(let i = 0; i <= m_input.value; i++) {
+        points.push({
+            y: 0.9 * (Math.random() * range - range / 2),
+            x: (i + 0.5 - Math.ceil(m_input.value / 2)) * 0.8 * range / m_input.value + (Math.random() * range / 10 - range / 5),
+        });
+    }
+    console.log(points);
 }
 
 function f(x) {

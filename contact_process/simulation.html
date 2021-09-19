@@ -49,7 +49,11 @@
 
 <div class="text">
   <h2>Contact Process</h2>
-
+  <p>
+    In the context of Stochastic and Spatial Dynamics, Contact Process is used to model population growth in a set of
+    interactive cells. In essence, it is a randomised cellular automaton: a zero player game that follows a set of rules
+    coupled with randomness.
+  </p>
   <br>
   <center>
     <b>
@@ -86,6 +90,40 @@
       </div>
     </div>
   </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <h3>Brief Description</h3>
+
+  <p>
+    For the contact process taking place in a two dimensional lattice of cells, the rules are as follows:
+  <ol class="browser-default">
+    <li>Select a random cell</li>
+    <li>If the selected cell is empty, then repeat the previous step. If the selected cell is occupied, then proceed to next step with the selected cell as the 'current cell'</li>
+    <li>The next step is probabilistic, with a probability 'p' of birth and '1-p' of death</li>
+    <ol>
+      <li>
+        <b>Birth:</b> Randomly select a cell adjacent to the current cell. If it is empty, then spawn an occupant there. If it is already occupied then do nothing
+      </li>
+      <li>
+        <b>Death:</b> Kill the occupant of the current cell
+      </li>
+    </ol>
+    <li>Repeat from the beginning</li>
+  </ol>
+  </p>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>If p < 0.5, then there is a pretty high chance that your population will go extinct within a couple of steps</li>
+    <li>If you want to paint a pattern and watch it's evolution, then pause the simulation while doing so</li>
+  </ol>
 
   <br />
   <hr />

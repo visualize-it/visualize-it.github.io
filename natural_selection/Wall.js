@@ -44,6 +44,9 @@ class Wall {
         if(this.x < click_x && click_x < this.x + this.width && this.y < click_y && click_y < this.y + this.height) {
             return true;
         }
+        else {
+            return false;
+        }
     }
     render() {
         context.fillStyle = "#ffffff";

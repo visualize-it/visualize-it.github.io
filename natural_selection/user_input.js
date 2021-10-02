@@ -2,7 +2,11 @@ function clicked() {
     for(let movable of movables) {
         if(movable.clicked()) {
             movable.select();
+            break;
         }
+    }
+    if(mobile) {
+        disableScroll();
     }
 }
 
@@ -19,6 +23,9 @@ function released() {
         if(movable.selected) {
             movable.release();
         }
+    }
+    if(mobile) {
+        enableScroll();
     }
 }
 

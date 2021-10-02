@@ -52,10 +52,11 @@ class Boid {
         this.fitness = 1 / distance;
 
         if(this.reached) {
-            this.fitness *= reached_bias;
-
             if(!reached_target) {
                 this.fitness *= this.early;
+            }
+            else {
+                this.fitness *= reached_bias;
             }
         }
         if(!this.alive) {

@@ -12,7 +12,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let gene_canvas = document.getElementById("gene-canvas");
+let gene_context = gene_canvas.getContext("2d");
+
+let pause_button = document.getElementById("pause-button");
 let fitness_display = document.getElementById("fitness-display");
+let generation_display = document.getElementById("generation-display");
 
 if (mobile) {
     canvas_width = 0.8 * screen_width;
@@ -25,7 +30,8 @@ canvas_height = canvas_width;
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
-console.log(canvas_width, canvas_height);
+gene_canvas.width = canvas_width;
+gene_canvas.height = 30;
 
 let animate = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame

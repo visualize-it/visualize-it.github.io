@@ -2,6 +2,7 @@ let boids = [];
 let pool = [];
 let generation;
 let avg_fitness;
+let max_fitness_gene;
 
 let walls = [];
 let source, target;
@@ -31,6 +32,7 @@ function makePool() {
         new_avg_fitness += boid.fitness;
         if (boid.fitness > max_fitness) {
             max_fitness = boid.fitness;
+            max_fitness_gene = boid.gene;
         }
         if (boid.reached) {
             num_reached++;
@@ -55,6 +57,7 @@ function makePool() {
         fitness_display.innerHTML += `<br> Evolution: ${percent_change.toFixed(2)} %`;
     }
     avg_fitness = new_avg_fitness;
+    drawGene();
 }
 
 function mate() {
@@ -67,28 +70,20 @@ function mate() {
         parent1_dna = randomParent().gene.dna;
         parent2_dna = randomParent().gene.dna;
 
-        // uniform mixing
-        for (let i = 0; i < lifespan; i++) {
-            if (Math.random() > 0.5) {
-                new_dna.push(parent1_dna[i]);
-            } else {
-                new_dna.push(parent2_dna[i]);
-            }
+        for(let i = 0; i < lifespan / 2; i++) {
+            new_dna.push(parent1_dna[i]);
         }
-
-        // crossover
-        // for(let i = 0; i < lifespan / 2; i++) {
-        //     new_dna.push(parent1_dna[i]);
-        // }
-        // for(let i = Math.floor(lifespan / 2); i < lifespan; i++) {
-        //     new_dna.push(parent2_dna[i]);
-        // }
+        for(let i = Math.floor(lifespan / 2); i < lifespan; i++) {
+            new_dna.push(parent2_dna[i]);
+        }
         new_gene = new Gene(new_dna);
         new_gene.mutate();
         boids.push(new Boid(new_gene));
     }
 
     current_age = 0;
+    reached_target = false;
+    generation_display.innerHTML = `Generation: ${generation}`;
 }
 
 function update() {
@@ -135,8 +130,8 @@ function initParams() {
     num_boids = 100;
 
     mutation_rate = 0.05;
-    reached_bias = 10;
-    dead_bias = 5;
+    reached_bias = 4;
+    dead_bias = 3;
 
     pool_multiplier = 100;
     velocity_multiplier = canvas_width / 60;
@@ -146,6 +141,10 @@ function initParams() {
     wall_width_factor = 5;
     wall_height_factor = 30;
 
+    initialize();
+}
+
+function initialize() {
     source = new Source(canvas_width / 2, 7 * canvas_height / 8);
     target = new Target(canvas_width / 2, canvas_height / 8);
 
@@ -153,9 +152,20 @@ function initParams() {
 
     updateMovables();
     makeInitPopulation();
+
+    fitness_display.innerHTML = "";
+    fitness_display.innerHTML = `Maximum fitness: 0 <br> Average fitness: 0`;
+
+    gene_context.fillStyle = "#000000";
+    gene_context.fillRect(0, 0, gene_canvas.width, gene_canvas.height);
+
+    if(paused) {
+        pauseToggle();
+    }
 }
 
 function makeInitPopulation() {
+    boids = [];
     for (let i = 0; i < num_boids; i++) {
         boids.push(new Boid(new Gene()));
     }
@@ -163,6 +173,27 @@ function makeInitPopulation() {
     current_age = 0;
     num_reached = 0;
     reached_target = false;
+
+    generation_display.innerHTML = `Generation: ${generation}`;
+}
+
+function drawLifespan() {
+    let width = Math.floor(canvas_width * (1 - current_age / lifespan));
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, width, 2);
+}
+
+function drawGene() {
+    gene_context.fillStyle = "#ffff00";
+    gene_context.fillRect(0, 0, gene_canvas.width, gene_canvas.height);
+
+    let width = Math.ceil(canvas_width / lifespan);
+    let hue;
+    for(let i = 0; i < lifespan; i += width) {
+        hue = Math.floor(255 * max_fitness_gene.dna[i] / (2 * Math.PI));
+        gene_context.fillStyle = `hsl(${hue}, 50%, 50%)`;
+        gene_context.fillRect(i * width, 0, (i + 1) * width, gene_canvas.height);
+    } 
 }
 
 function updateMovables() {
@@ -184,12 +215,17 @@ function clearWalls() {
     updateMovables();
 }
 
-function drawLifespan() {
-    let width = Math.floor(canvas_width * (1 - current_age / lifespan));
-    context.fillStyle = "#ffffff";
-    context.fillRect(0, 0, width, 2);
-}
-
 function randomParent() {
     return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function pauseToggle() {
+    if(paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
 }

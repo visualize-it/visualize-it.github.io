@@ -52,25 +52,45 @@
   </nav>
 </body>
 <div class="text">
+  <h2>Natural Selection</h2>
+
+  <p>This simulation uses survival of the fittest to determine the gene pool of the next generation of boids. All boids
+    emerge from the blue circle (source). Fitness is calculated based on how close a boid gets towards the red circle
+    (target). The boids also need to avoid colliding with the wall or the borders. The higher the fitness of a boid, the
+    more chances that it's genes are present in the next generation of boids. The genes of a boid determine it's motion
+    during it's entire lifespan.
+  </p>
   <div class="container">
     <div class="row">
-      <h2>Natural Selection</h2>
-
       <div class="col s12 l8">
         <center>
           <canvas id="canvas"></canvas>
+          <br> <br>
+          Gene with maximum fitness:
+          <br>
+          <canvas id="gene-canvas"></canvas>
         </center>
       </div>
       <div class="col s12 l4">
         <center>
+          <p id="generation-display"></p>
+          <hr>
           <p id="fitness-display"></p>
-        </center>
-        <center>
+          <hr>
+          <br>
+          <b>Drag an entity to change it's location</b>
+          <br> <br>
           <button class="btn purple darken-4" onclick="addWall('h')">Add Horizontal wall</button>
           <br> <br>
           <button class="btn purple darken-4" onclick="addWall('v')">Add Vertical wall</button>
           <br> <br>
           <button class="btn purple darken-4" onclick="clearWalls()">Clear walls</button>
+          <br> <br>
+          <hr>
+          <br>
+          <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="initialize()">Restart Evolution</button>
         </center>
       </div>
     </div>
@@ -79,6 +99,19 @@
   <br />
   <hr />
   <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>Changing the location of the source, target or the obstacles during the course of evolution will redirect it's
+      course. Boids will eventually adapt to the new conditions</li>
+    <li>Each boid has a lifespan of 500 frames. A boid that collides with the obstacle or the walls of the space is
+      considered as dead</li>
+  </ol>
+
+  <br>
+  <hr>
+  <br>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

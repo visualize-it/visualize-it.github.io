@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Natural Selection | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="../helper.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="Boid.js" defer></script>
+  <script src="Wall.js" defer></script>
+  <script src="natural_selection.js" defer></script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h1 id="main-heading">Visualize It</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <div class="container">
+    <div class="row">
+      <h2>Natural Selection</h2>
+
+      <div class="col s12 l8">
+        <br>
+        <center>
+          <canvas id="canvas"></canvas>
+        </center>
+        <br>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <button class="btn purple darken-4" onclick="addWall('h')">Add Horizontal wall</button>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="addWall('v')">Add Vertical wall</button>
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <br />
+        <hr />
+        <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

@@ -145,6 +145,8 @@ function initParams() {
 }
 
 function initialize() {
+    walls = [];
+    
     source = new Source(canvas_width / 2, 7 * canvas_height / 8);
     target = new Target(canvas_width / 2, canvas_height / 8);
 

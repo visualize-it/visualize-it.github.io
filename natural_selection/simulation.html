@@ -16,6 +16,7 @@
   <script src="user_input.js" defer></script>
   <script src="Source.js" defer></script>
   <script src="Target.js" defer></script>
+  <script src="Gene.js" defer></script>
   <script src="Boid.js" defer></script>
   <script src="Wall.js" defer></script>
   <script src="natural_selection.js" defer></script>
@@ -50,20 +51,20 @@
     </div>
   </nav>
 </body>
-
 <div class="text">
   <div class="container">
     <div class="row">
       <h2>Natural Selection</h2>
 
       <div class="col s12 l8">
-        <br>
         <center>
           <canvas id="canvas"></canvas>
         </center>
-        <br>
       </div>
       <div class="col s12 l4">
+        <center>
+          <p id="fitness-display"></p>
+        </center>
         <center>
           <button class="btn purple darken-4" onclick="addWall('h')">Add Horizontal wall</button>
           <br> <br>
@@ -76,8 +77,8 @@
   </div>
 
   <br />
-        <hr />
-        <br />
+  <hr />
+  <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

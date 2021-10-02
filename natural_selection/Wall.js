@@ -48,6 +48,14 @@ class Wall {
             return false;
         }
     }
+    inside(boid) {
+        if(this.x < boid.x && boid.x < this.x + this.width && this.y < boid.y && boid.y < this.y + this.height) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     render() {
         context.fillStyle = "#ffffff";
         context.fillRect(this.x, this.y, this.width, this.height);

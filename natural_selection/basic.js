@@ -12,8 +12,10 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let fitness_display = document.getElementById("fitness-display");
+
 if (mobile) {
-    canvas_width = 0.9 * screen_width;
+    canvas_width = 0.8 * screen_width;
 }
 else {
     canvas_width = 0.4 * screen_width;

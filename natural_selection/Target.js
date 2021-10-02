@@ -34,6 +34,14 @@ class Target {
             return false;
         }
     }
+    inside(boid) {
+        if(getDistance(this.x, this.y, boid.x, boid.y) < this.radius) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     render() {
         context.fillStyle = "#ff0000";
         context.beginPath();

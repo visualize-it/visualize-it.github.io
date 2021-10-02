@@ -70,11 +70,9 @@ if (mobile) {
     }, false);
 
     canvas.addEventListener("touchend", function (e) {
-        getTouchPosition(canvas, e);
-        let touch = e.touches[0];
         let mouseEvent = new MouseEvent("mouseup", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
+            clientX: click_x,
+            clientY: click_y
         });
         canvas.dispatchEvent(mouseEvent);
         pressed = false;

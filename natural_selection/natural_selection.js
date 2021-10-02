@@ -139,9 +139,9 @@ function initParams() {
     dead_bias = 5;
 
     pool_multiplier = 100;
-    velocity_multiplier = 10;
+    velocity_multiplier = canvas_width / 60;
 
-    spoke_length = 10;
+    spoke_length = canvas_width / 60;
     radius_factor = 40;
     wall_width_factor = 5;
     wall_height_factor = 30;

@@ -9,11 +9,11 @@ class Boid {
 
         this.alive = true;
         this.reached = false;
-        this.early = 0;
+        this.first_reached = false;
     }
     update() {
         if (this.alive && !this.reached) {
-            this.angle = this.gene.dna[current_age];
+            this.angle += this.gene.dna[current_age];
             this.x += velocity_multiplier * Math.cos(this.angle);
             this.y += velocity_multiplier * Math.sin(this.angle);
         }
@@ -30,7 +30,12 @@ class Boid {
 
         if(target.inside(this)) {
             this.reached = true;
-            this.early = lifespan - current_age;
+            
+            if(!reached_target) {
+                reached_target = true;
+                this.first_reached = true;
+                fastest_time = current_age;
+            }
         }
     }
     render() {
@@ -52,11 +57,9 @@ class Boid {
         this.fitness = 1 / distance;
 
         if(this.reached) {
-            if(!reached_target) {
-                this.fitness *= this.early;
-            }
-            else {
-                this.fitness *= reached_bias;
+            this.fitness *= reached_bias;
+            if(this.first_reached) {
+                this.fitness *= early_bias;
             }
         }
         if(!this.alive) {

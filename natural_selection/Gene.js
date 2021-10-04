@@ -9,15 +9,15 @@ class Gene {
         }
     }
     generateRandom() {
-        this.dna = [];
-        for(let i = 0; i < this.lifespan; i++) {
-            this.dna.push(Math.random() * 2 * Math.PI);
+        this.dna = [Math.random() * 2 * Math.PI];
+        for(let i = 1; i < this.lifespan; i++) {
+            this.dna.push(Math.random() * 2 * half_angle - half_angle);
         }
     }
     mutate() {
-        for(let i = 0; i < this.lifespan; i++) {
+        for(let i = 1; i < this.lifespan; i++) {
             if(Math.random() < mutation_rate) {
-                this.dna[i] = Math.random() * 2 * Math.PI
+                this.dna[i] = Math.random() * 2 * half_angle - half_angle;
             }
         }
     }

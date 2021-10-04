@@ -9,9 +9,10 @@ let source, target;
 
 let lifespan, current_age;
 let num_boids, num_reached;
-let reached_target;
+let reached_target, fastest_time;
 
-let reached_bias, dead_bias, mutation_rate;
+let reached_bias, dead_bias, early_bias;
+let mutation_rate, half_angle;
 
 let velocity_multiplier, pool_multiplier;
 
@@ -51,11 +52,17 @@ function makePool() {
         }
     }
 
-    fitness_display.innerHTML = `Maximum fitness: ${max_fitness.toFixed(6)} <br> Average fitness: ${new_avg_fitness.toFixed(6)}`;
+    fitness_display.innerHTML = `Maximum fitness: ${max_fitness.toFixed(6)} <br>`;
+    fitness_display.innerHTML += `Average fitness: ${new_avg_fitness.toFixed(6)} <br>`;
     if(generation > 2) {
         let percent_change = 100 * (new_avg_fitness - avg_fitness) / avg_fitness;
-        fitness_display.innerHTML += `<br> Evolution: ${percent_change.toFixed(2)} %`;
+        fitness_display.innerHTML += `Evolution: ${percent_change.toFixed(2)} % <br>`;
     }
+    fitness_display.innerHTML += `${num_reached} boids reached target <br>`;
+    if(num_reached > 0) {
+        fitness_display.innerHTML += `Fastest time in prev gen: ${fastest_time} steps`;
+    }
+
     avg_fitness = new_avg_fitness;
     drawGene();
 }
@@ -65,7 +72,8 @@ function mate() {
     let parent1_dna, parent2_dna;
     let new_gene;
     let new_dna = []
-    for (let i = 0; i < num_boids; i++) {
+
+    for (let i = 10; i < num_boids; i++) {
         new_dna = [];
         parent1_dna = randomParent().gene.dna;
         parent2_dna = randomParent().gene.dna;
@@ -80,6 +88,12 @@ function mate() {
         new_gene.mutate();
         boids.push(new Boid(new_gene));
     }
+    for (let i = 0; i < 10; i++) {
+        new_dna = randomChild().gene.dna;
+        new_gene = new Gene(new_dna);
+        new_gene.dna[0] = Math.random() * 2 * Math.PI;
+        boids.push(new Boid(new_gene));
+    }
 
     current_age = 0;
     reached_target = false;
@@ -87,6 +101,17 @@ function mate() {
 }
 
 function update() {
+    let num_alive = 0;
+
+    for(let boid of boids) {
+        if(boid.alive && !boid.reached) {
+            num_alive++;
+        }
+    }
+    if(num_alive == 0) {
+        current_age = lifespan;
+    }
+
     if (current_age < lifespan) {
         for (let boid of boids) {
             boid.update();
@@ -128,10 +153,12 @@ function updateParams(variable) {
 function initParams() {
     lifespan = 500;
     num_boids = 100;
+    half_angle = Math.PI / 6;
 
-    mutation_rate = 0.05;
-    reached_bias = 4;
-    dead_bias = 3;
+    mutation_rate = 0.02;
+    reached_bias = 10;
+    dead_bias = 10;
+    early_bias = 3;
 
     pool_multiplier = 100;
     velocity_multiplier = canvas_width / 60;
@@ -145,12 +172,13 @@ function initParams() {
 }
 
 function initialize() {
-    walls = [];
+    if(walls.length == 0) {
+        walls.push(new Wall(2 * canvas_width / 5, 2 * canvas_height / 5, "h"));
+        walls.push(new Wall(3 * canvas_width / 5, 2 * canvas_height / 5, "h"));
+    }
     
     source = new Source(canvas_width / 2, 7 * canvas_height / 8);
     target = new Target(canvas_width / 2, canvas_height / 8);
-
-    walls.push(new Wall(canvas_width / 2, canvas_height / 2, "h"));
 
     updateMovables();
     makeInitPopulation();
@@ -191,8 +219,8 @@ function drawGene() {
 
     let width = Math.ceil(canvas_width / lifespan);
     let hue;
-    for(let i = 0; i < lifespan; i += width) {
-        hue = Math.floor(255 * max_fitness_gene.dna[i] / (2 * Math.PI));
+    for(let i = 1; i < lifespan; i += width) {
+        hue = Math.floor(255 * (max_fitness_gene.dna[i] + half_angle) / (2 * half_angle));
         gene_context.fillStyle = `hsl(${hue}, 50%, 50%)`;
         gene_context.fillRect(i * width, 0, (i + 1) * width, gene_canvas.height);
     } 
@@ -219,6 +247,10 @@ function clearWalls() {
 
 function randomParent() {
     return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function randomChild() {
+    return boids[Math.floor(Math.random() * boids.length)];
 }
 
 function pauseToggle() {

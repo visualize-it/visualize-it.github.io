@@ -10,13 +10,17 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
+  <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
-  <script src="update.js" defer></script>
-  <script src="render.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="bubble_sort.js" defer></script>
+  <script src="selection_sort.js" defer></script>
   <script src="sorting_algos.js" defer></script>
-  <script src="utility.js" defer></script>
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -46,15 +50,24 @@
 </body>
 
 <div class="text">
+  <h2>Sorting Algorithms</h2>
 
-  <h4>Visualization of Sorting Algorithms</h4>
-
+  <br>
   <center>
-    <br>
     <canvas id="canvas"></canvas>
-    <br>
   </center>
-
+  <br>
+  <center>
+    <b>Choose a sorting algorithm algorithm</b>
+    <div class="input-field col s12 black">
+      <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
+      </select>
+    </div>
+  </center>
+  
   <br />
   <hr />
   <br />

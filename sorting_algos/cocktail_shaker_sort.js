@@ -14,6 +14,8 @@ function updateCocktail() {
                     num_position_c = scanning_index_c;
                 }
                 scanning_index_c++;
+
+                array_access++;
             }
             else {
                 swap(num_position_c, right_sorted_index_c);
@@ -23,7 +25,10 @@ function updateCocktail() {
                 scanning_index_c = right_sorted_index_c;
 
                 num_interest_c = num_numbers;
+
+                swaps++;
             }
+            comparisons++;
         }
         else if(state_c == "min") {
             if(scanning_index_c >= left_sorted_index_c) {
@@ -32,6 +37,9 @@ function updateCocktail() {
                     num_position_c = scanning_index_c;
                 }
                 scanning_index_c--;
+
+                comparisons++;
+                array_access += 2;
             }
             else {
                 swap(num_position_c, left_sorted_index_c);
@@ -41,8 +49,11 @@ function updateCocktail() {
                 scanning_index_c = left_sorted_index_c;
 
                 num_interest_c = 0;
+
+                swaps++;
             }
         }
+        iterations++;
     }
     else {
         num_position_c = -1;

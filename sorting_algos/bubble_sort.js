@@ -6,13 +6,19 @@ function updateBubble() {
         if(scanning_index_b < sorted_position_b) {
             if(array[scanning_index_b - 1] > array[scanning_index_b]) {
                 swap(scanning_index_b - 1, scanning_index_b);
+
+                swaps++;
+                array_access += 2;
             }
             scanning_index_b++;
+
+            comparisons++;
         }
         else {
             scanning_index_b = 1;
             sorted_position_b--;
         }
+        iterations++;
     }
     else {
         scanning_index_b = -2;

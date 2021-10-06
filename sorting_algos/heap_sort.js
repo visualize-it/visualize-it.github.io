@@ -13,12 +13,14 @@ function updateHeap() {
             heap_builder_index_h--;
             array = zeroArray();
         }
+        iterations++;
     }
     else if(heap_builder_index_h > -1) {
         let root_element = heap_h.getRoot();
         heap_h.deleteElement(root_element);
         array[heap_builder_index_h] = root_element;
         heap_builder_index_h--;
+        iterations++;
     }
 }
 

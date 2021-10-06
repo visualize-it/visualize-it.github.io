@@ -6,8 +6,12 @@ let num_numbers, x_scale, y_scale;
 
 let initAlgo, updateAlgo, renderAlgo;
 
+let iterations, comparisons, array_access, swaps;
+
 function update() {
     updateAlgo();
+    params_display.innerHTML = `Iterations: ${iterations}, Comparisons: ${comparisons}, `;
+    params_display.innerHTML += `Array accesses: ${array_access}, Swaps: ${swaps}`;
 }
 
 function render() {
@@ -45,6 +49,11 @@ function updateParams(variable) {
             updateAlgo = updateHeap;
             renderAlgo = renderHeap;
         }
+        else if(algo == "quick") {
+            initAlgo = initQuick;
+            updateAlgo = updateQuick;
+            renderAlgo = renderQuick;
+        }
     }
     initAlgo();
 }
@@ -60,7 +69,7 @@ function initParams() {
     x_scale = canvas_width / num_numbers;
     y_scale = canvas_height / num_numbers;
 
-    algo_select.value = "insertion";
+    algo_select.value = "quick";
     updateParams("algo");
 }
 
@@ -70,6 +79,11 @@ function makeArray() {
         array.push(i);
     }
     array = shuffleKnuth(array);
+
+    iterations = 0;
+    comparisons = 0;
+    array_access = 0;
+    swaps = 0;
 }
 
 function drawArray() {

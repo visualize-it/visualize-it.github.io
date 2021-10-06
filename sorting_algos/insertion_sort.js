@@ -10,19 +10,27 @@ function updateInsertion() {
             if(array[backtrack_index_i] < array[backtrack_index_i - 1]) {
                 swap(backtrack_index_i - 1, backtrack_index_i);
                 backtrack_index_i--;
+
+                array_access += 2;
+                swaps++;
             }
             else {
                 backtracking = false;
             }
+            comparisons++;
         }
         else if(array[scanning_index_i] < array[sorted_index_i]) {
             backtracking = true;
             backtrack_index_i = scanning_index_i;
+
+            array_access += 2;
         }
         else {
             scanning_index_i++;
             sorted_index_i++;
         }
+        comparisons++;
+        iterations++;
     }
 }
 

@@ -12,6 +12,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let params_display = document.getElementById("params-display");
 let algo_select = document.getElementById("algo-select");
 
 if (mobile) {
@@ -31,6 +32,10 @@ let animate = window.requestAnimationFrame
     || function (callback) {
         window.setTimeout(callback, 1000 / fps);
     };
+
+// let animate = function (callback) {
+//     window.setTimeout(callback, 100);
+// }
 
 function step() {
     if (!paused) {

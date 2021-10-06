@@ -7,6 +7,10 @@ class Heap {
         if (pos >= 0 && this.array[pos] > this.array[index]) {
             this.swap(pos, index);
             this.percolateUp(index);
+
+            swaps++;
+            comparisons += 1;
+            array_access += 2;
         }
     }
     percolateDown(pos) {
@@ -14,19 +18,33 @@ class Heap {
             if (this.array[2 * pos + 1] > this.array[2 * pos + 2]) {
                 this.swap(pos, 2 * pos + 1);
                 this.percolateDown(2 * pos + 1);
+
+                swaps++;
+                comparisons += 2;
+                array_access += 4;
             }
             else {
                 this.swap(pos, 2 * pos + 2);
                 this.percolateDown(2 * pos + 2);
+
+                swaps++;
             }
         }
         else if (this.array.length > 2 * pos + 1 && this.array[pos] < this.array[2 * pos + 1]) {
             this.swap(pos, 2 * pos + 1);
             this.percolateDown(2 * pos + 1);
+
+            swaps++;
+            comparisons += 1;
+            array_access += 2;
         }
         else if (this.array.length > 2 * pos + 2 && this.array[pos] < this.array[2 * pos + 2]) {
             this.swap(pos, 2 * pos + 2);
             this.percolateDown(2 * pos + 2);
+
+            swaps++;
+            comparisons += 1;
+            array_access += 2;
         }
     }
     insertElement(d) {

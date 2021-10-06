@@ -10,6 +10,9 @@ function updateSelection() {
                 max_position_s = scanning_index_s;
             }
             scanning_index_s++;
+
+            comparisons++;
+            array_access += 2;
         }
         else {
             swap(max_position_s, last_position_s);
@@ -18,7 +21,10 @@ function updateSelection() {
             scanning_index_s = 0;
             max_number_s = 0;
             max_position_s = -1;
+
+            swaps++;
         }
+        iterations++;
     }
     else {
         last_position_s = -1;

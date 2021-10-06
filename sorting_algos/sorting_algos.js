@@ -30,6 +30,16 @@ function updateParams(variable) {
             updateAlgo = updateBubble;
             renderAlgo = renderBubble;
         }
+        else if(algo == "insertion") {
+            initAlgo = initInsertion;
+            updateAlgo = updateInsertion;
+            renderAlgo = renderInsertion;
+        }
+        else if(algo == "cocktail") {
+            initAlgo = initCocktail;
+            updateAlgo = updateCocktail;
+            renderAlgo = renderCocktail;
+        }
     }
     initAlgo();
 }
@@ -45,7 +55,7 @@ function initParams() {
     x_scale = canvas_width / num_numbers;
     y_scale = canvas_height / num_numbers;
 
-    algo_select.value = "bubble";
+    algo_select.value = "cocktail";
     updateParams("algo");
 }
 

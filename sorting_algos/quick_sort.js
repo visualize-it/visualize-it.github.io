@@ -142,7 +142,4 @@ function initNewSeriesQuick() {
             break;
         }
     } while(true);
-
-    console.log("Pointers:", series_start_q, series_end_q, left_pointer_q, right_pointer_q, pivot_q);
-    console.log("Records:", series_record_q);
 }

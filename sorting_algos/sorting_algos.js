@@ -54,22 +54,27 @@ function updateParams(variable) {
             updateAlgo = updateQuick;
             renderAlgo = renderQuick;
         }
+        else if(algo == "merge") {
+            initAlgo = initMerge;
+            updateAlgo = updateMerge;
+            renderAlgo = renderMerge;
+        }
     }
     initAlgo();
 }
 
 function initParams() {
     if(mobile) {
-        num_numbers = 35;
+        num_numbers = 32;
     }
     else {
-        num_numbers = 50;
+        num_numbers = 64;
     }
     
     x_scale = canvas_width / num_numbers;
     y_scale = canvas_height / num_numbers;
 
-    algo_select.value = "quick";
+    algo_select.value = "merge";
     updateParams("algo");
 }
 

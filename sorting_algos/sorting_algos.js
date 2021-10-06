@@ -40,6 +40,11 @@ function updateParams(variable) {
             updateAlgo = updateCocktail;
             renderAlgo = renderCocktail;
         }
+        else if(algo == "heap") {
+            initAlgo = initHeap;
+            updateAlgo = updateHeap;
+            renderAlgo = renderHeap;
+        }
     }
     initAlgo();
 }
@@ -72,4 +77,8 @@ function drawArray() {
     for(let i = 0; i < num_numbers; i++) {
         context.fillRect(i * x_scale, canvas_height - array[i] * y_scale, x_scale, array[i] * y_scale);
     }
+}
+
+function swap(index1, index2) {
+    [array[index1], array[index2]] = [array[index2], array[index1]];
 }

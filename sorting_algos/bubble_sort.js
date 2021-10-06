@@ -5,9 +5,7 @@ function updateBubble() {
     if(sorted_position_b > 0) {
         if(scanning_index_b < sorted_position_b) {
             if(array[scanning_index_b - 1] > array[scanning_index_b]) {
-                let temp = array[scanning_index_b - 1];
-                array[scanning_index_b - 1] = array[scanning_index_b];
-                array[scanning_index_b] = temp;
+                swap(scanning_index_b - 1, scanning_index_b);
             }
             scanning_index_b++;
         }

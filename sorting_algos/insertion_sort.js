@@ -8,10 +8,7 @@ function updateInsertion() {
     if(sorted_index_i < num_numbers) {
         if(backtracking) {
             if(array[backtrack_index_i] < array[backtrack_index_i - 1]) {
-                let temp = array[backtrack_index_i];
-                array[backtrack_index_i] = array[backtrack_index_i - 1];
-                array[backtrack_index_i - 1] = temp;
-
+                swap(backtrack_index_i - 1, backtrack_index_i);
                 backtrack_index_i--;
             }
             else {

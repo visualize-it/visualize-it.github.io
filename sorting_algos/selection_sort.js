@@ -12,9 +12,7 @@ function updateSelection() {
             scanning_index_s++;
         }
         else {
-            let temp = array[last_position_s];
-            array[last_position_s] = array[max_position_s];
-            array[max_position_s] = temp;
+            swap(max_position_s, last_position_s);
 
             last_position_s--;
             scanning_index_s = 0;

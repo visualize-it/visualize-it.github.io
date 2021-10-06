@@ -16,10 +16,7 @@ function updateCocktail() {
                 scanning_index_c++;
             }
             else {
-                let temp = array[num_position_c];
-                array[num_position_c] = array[right_sorted_index_c];
-                array[right_sorted_index_c] = temp;
-
+                swap(num_position_c, right_sorted_index_c);
                 right_sorted_index_c--;
 
                 state_c = "min";
@@ -37,10 +34,7 @@ function updateCocktail() {
                 scanning_index_c--;
             }
             else {
-                let temp = array[num_position_c];
-                array[num_position_c] = array[left_sorted_index_c];
-                array[left_sorted_index_c] = temp;
-
+                swap(num_position_c, left_sorted_index_c);
                 left_sorted_index_c++;
 
                 state_c = "max";

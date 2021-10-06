@@ -34,7 +34,7 @@ function renderInsertion() {
         if(backtracking && i == backtrack_index_i) {
             context.fillStyle = "#ffffff";
         }
-        else if(i <= sorted_index_i) {
+        else if(i <= sorted_index_i + 1) {
             context.fillStyle = "#0000ff";
         }
         else {

@@ -55,7 +55,7 @@ function initParams() {
     x_scale = canvas_width / num_numbers;
     y_scale = canvas_height / num_numbers;
 
-    algo_select.value = "cocktail";
+    algo_select.value = "insertion";
     updateParams("algo");
 }
 

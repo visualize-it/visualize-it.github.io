@@ -10,7 +10,7 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
@@ -35,7 +35,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -72,16 +72,91 @@
     <div class="input-field col s12 black">
       <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
         <option value="bubble">Bubble Sort</option>
-        <option value="insertion">Insertion Sort</option>
         <option value="selection">Selection Sort</option>
+        <option value="insertion">Insertion Sort</option>
         <option value="cocktail">Cocktail Shaker Sort</option>
         <option value="heap">Heap Sort</option>
-        <option value="merge">Merge Sort</option>
         <option value="quick">Quick Sort</option>
+        <option value="merge">Merge Sort</option>
       </select>
     </div>
   </center>
-  
+
+  <br />
+  <hr />
+  <br />
+
+  <h3>Brief Description</h3>
+  <ol>
+    <li>
+      <b>Bubble sort:</b> A simple sorting algorithm that just goes through the list comparing adjacent elements and
+      swapping them if they are not in order. It's performance and utiity are very poor, and is primarily taught for
+      educational purposes. It has an average time complexity of O(n<sup>2</sup>). However, if the machine performing
+      the sort has a sizeable probability of not comparing elements properly, then bubble sort is the most fault
+      tolerant algorithm in this list (since it makes frequent comparisons, and can detect mistakes made previously).
+    </li>
+    <br>
+    <li>
+      <b>Selection sort:</b> Another simple sorting algorithm. It scans all N elements, finds the largest one, and puts
+      it at the Nth position. Then, it scans all N-1 elements, finds the largest one, puts it at the (N-1)th position,
+      and so on. It is as worse as bubble sort, with an average time complexity of O(n<sup>2</sup>). It doesn't use the
+      advantages from an approimately sorted list. However, it is noted for it's simplicity.
+    </li>
+    <br>
+    <li>
+      <b>Insertion sort:</b> An algorithm that most humans likely use unconsciously to sort things. It considers the
+      first k elements to be sorted, and figures out where the (k+1)th element should be placed within the sorted
+      portion. Although it's time complexity is still O(n<sup>2</sup>), insertion sort has significant advantages over
+      the last two. It is extremely good to sorting lists that are already approximately sorted, nearing a time
+      complexity of O(n) in this case. Even if a list is already sorted, it can readily accept another element and put
+      it in it's correct place.
+    </li>
+    <br>
+    <li>
+      <b>Cocktail Shaker sort:</b> A variation of selection sort that scans for the maximum element while going forward,
+      and the minimum element while going backwards. It is useful for electromechanical machines that use a physical
+      data reader to scan and sort through values sorted in a tape.
+    </li>
+    <br>
+    <li>
+      <b>Heap sort:</b> A slightly complex sorting algorithm that uses a data structure called heaps. First algorithm on
+      this list to have a time complexity of O(n log n), although it comes with a space complexity of O(n), and the only
+      algorithm on this list to require explicit space. It is extremely good at keeping frequently updated lists sorted
+      dynamically, an advantage conferred by the data structure that it is built on.
+    </li>
+    <br>
+    <li>
+      <b>Quick sort:</b> As the name implies, it has the fastest time complexity of O(n log n) despite not requiring any
+      explicit memory. It randomly choses an element as a pivot, and transports all elements lower than the pivot to the
+      left, and the elements greater than the pivot to the right of the pivot. The same operation is repeated on the
+      portion of the list to the left and right of the pivot, recursively. Despite it's charasmatic name, it is
+      difficult to implement, and certain choices of pivots can be disastrous on it's runtime.
+    </li>
+    <br>
+    <li>
+      <b>Merge sort:</b> The industrial standard for sorting huge lists. It recursively divides the list into smaller
+      lists, sorts the smaller ones and merges them in the right way. It always has a time complexity of O(n log n). A
+      merge sort routine with multithreading support can sort billions of numbers in no time. However, it uses some
+      auxillary memory while merging, and is really difficult to implement.
+    </li>
+  </ol>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Legend:</b>
+
+  <ol>
+    <li>Sorted sections of the list are shown in blue, whereas unsorted sections are shown in red.</li>
+    <li>In divide and conquer algorithms like quick sort and merge sort, sections of the list being ignored are colored
+      gray.</li>
+    <li>White shows the position of the iterators whereas yellow depicts elements of interest, like the maximum element
+      encountered so far in selection sort.</li>
+    <li>In quick sort, the pivot is shown in purple color, and is at the end of the portion of the list under
+      consideration.</li>
+  </ol>
+
   <br />
   <hr />
   <br />

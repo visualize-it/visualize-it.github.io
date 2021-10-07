@@ -208,7 +208,7 @@ function makeInitPopulation() {
 
 function layouts(name) {
     walls = [];
-    if (name == "default") {
+    if (name == "detour") {
         walls.push(new Wall(canvas_width / 10, 2 * canvas_height / 3, "h"));
         walls.push(new Wall(3 * canvas_width / 10, 2 * canvas_height / 3, "h"));
         walls.push(new Wall(5 * canvas_width / 10, 2 * canvas_height / 3, "h"));
@@ -220,7 +220,7 @@ function layouts(name) {
         walls.push(new Wall(2 * canvas_width / 5, 2 * canvas_height / 5, "h"));
         walls.push(new Wall(3 * canvas_width / 5, 2 * canvas_height / 5, "h"));
     }
-    else if (name == "detour") {
+    else if (name == "default") {
         walls.push(new Wall(canvas_width / 2, 2 * canvas_height / 3, "h"));
         walls.push(new Wall(3 * canvas_width / 10, canvas_height / 3, "h"));
         walls.push(new Wall(7 * canvas_width / 10, canvas_height / 3, "h"));

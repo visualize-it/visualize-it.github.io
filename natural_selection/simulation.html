@@ -96,6 +96,37 @@
     </div>
   </div>
 
+  <br>
+  <hr>
+
+  <h3>Layouts</h3>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l4">
+        <center>
+          <h4>Default</h4>
+          <img class="responsive-img" src="default.png">
+          <button class="btn purple darken-4" onclick="layouts('default')">Load</button>
+        </center>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <h4>Simple</h4>
+          <img class="responsive-img" src="simple.png">
+          <button class="btn purple darken-4" onclick="layouts('simple')">Load</button>
+        </center>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <h4>Detour</h4>
+          <img class="responsive-img" src="detour.png">
+          <button class="btn purple darken-4" onclick="layouts('detour')">Load</button>
+        </center>
+      </div>
+    </div>
+  </div>
+
   <br />
   <hr />
   <br />
@@ -103,6 +134,8 @@
   <b>Note:</b>
 
   <ol>
+    <li>If evolution is taking longer than usual, or if the boids have gone down a irrecoverable/fruitless path of
+      evolution, then please consider restarting the evolution by clicking the last button</li>
     <li>Changing the location of the source, target or the obstacles during the course of evolution will redirect it's
       course. Boids will eventually adapt to the new conditions</li>
     <li>Each boid has a lifespan of 500 frames. A boid that collides with the obstacle or the walls of the space is

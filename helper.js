@@ -8,6 +8,10 @@ function getDistance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
+function getMagn(x, y) {
+    return Math.sqrt(x * x + y * y);
+}
+
 function toRadian(degrees) {
     return degrees * Math.PI / 180;
 }

@@ -1,6 +1,9 @@
 function clicked() {
     disturbance_position = canvas_height / 2 - click_y;
     drawing = false;
+    if(mobile) {
+        disableScroll();
+    }
 }
 
 function moved() {
@@ -10,7 +13,9 @@ function moved() {
 }
 
 function released() {
-    
+    if(mobile) {
+        enableScroll();
+    }
 }
 
 function keyPressed(key) {

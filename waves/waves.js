@@ -117,6 +117,7 @@ function resetWave() {
         });
     }
     disturbance_position = 0;
+    drawing = false;
 }
 
 function sineWave() {

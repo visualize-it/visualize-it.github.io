@@ -51,7 +51,19 @@
   <h2>Waves</h2>
   
   <center>
+    <b>Drag the blue line to induce a disturbance at the left end</b>
+    <br>
     <canvas id="canvas"></canvas>
+  </center>
+  <center>
+    <button onclick="resetWave()" class="btn purple darken-4">Reset</button>
+    <button id="pause-button" onclick="pause()" class="btn purple darken-4">Pause</button>
+  </center>
+  <br>
+  <center>
+    <button onclick="sineWave()" class="btn purple darken-4">Sine Wave</button>
+    <button onclick="squareWave()" class="btn purple darken-4">Square Wave</button>
+    <button onclick="triangleWave()" class="btn purple darken-4">Triangle Wave</button>
   </center>
   
   <br />

@@ -1,5 +1,6 @@
 function clicked() {
     disturbance_position = canvas_height / 2 - click_y;
+    drawing = false;
 }
 
 function moved() {
@@ -9,7 +10,7 @@ function moved() {
 }
 
 function released() {
-
+    
 }
 
 function keyPressed(key) {

@@ -87,8 +87,8 @@ hr {
 
 .loader {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;

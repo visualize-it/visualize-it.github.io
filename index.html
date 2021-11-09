@@ -42,7 +42,7 @@
     </div>
   </nav>
 
-  <div class="loader"></div> 
+  <div class="loader"></div>
 
   <br>
 
@@ -534,9 +534,11 @@
 </body>
 
 <script>
-  AOS.init();
+  AOS.init({
+    startEvent: 'load',
+  });
 
-  window.onload = function() {
+  window.onload = function () {
     loader = document.getElementsByClassName("loader")[0];
     loader.style.display = "none";
 

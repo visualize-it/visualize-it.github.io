@@ -120,6 +120,10 @@ function getTouchPosition(canvas, event) {
     click_y = event.touches[0].clientY - rect.top;
 }
 
-function pauseToggleKey() {
+function pauseToggle() {
     paused = !paused;
+}
+
+function gridToggle() {
+    show_grid = !show_grid;
 }

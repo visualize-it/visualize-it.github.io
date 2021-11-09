@@ -12,7 +12,10 @@ function released() {
 
 function keyPressed(key) {
     if(key == 80) {
-        pauseToggleKey();
+        pauseToggle();
+    }
+    else if(key == 71) {
+        gridToggle();
     }
 }
 

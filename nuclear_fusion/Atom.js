@@ -22,21 +22,21 @@ class Atom {
         this.x += this.vx * dt;
         this.y += this.vy * dt;
 
-        if(this.x < 0) {
+        if(this.x - this.radius < 0) {
             this.vx = Math.abs(this.vx);
-            this.x = 0;
+            this.x = this.radius;
         }
-        else if(this.x > canvas_width) {
+        else if(this.x + this.radius > canvas_width) {
             this.vx = -Math.abs(this.vx);
-            this.x = canvas_width;
+            this.x = canvas_width - this.radius;
         }
-        if(this.y < 0) {
+        if(this.y - this.radius < 0) {
             this.vy = Math.abs(this.vy);
-            this.y = 0;
+            this.y = this.radius;
         }
-        else if(this.y > canvas_height) {
+        else if(this.y + this.radius > canvas_height) {
             this.vy = -Math.abs(this.vy);
-            this.y = canvas_height;
+            this.y = canvas_height - this.radius;
         }
 
         this.ax = 0;

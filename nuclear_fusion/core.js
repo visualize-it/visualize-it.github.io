@@ -60,69 +60,7 @@ function update() {
         measureTemperature();
     }
 
-    if(inertial_confinement) {
-        if(frame == 0) {
-            heatIC();
-        }
-        else if(frame == fps - 1) {
-            for(let i = 0; i < nuclei.length; i++) {
-                if(i % 5 == ic_cycle) {
-                    nuclei[i].compress();
-                }
-            }
-            ic_cycle++;
-            if(ic_cycle == 5) {
-                toggleIC();
-            }
-        }
-    }
-}
-
-function render() {
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
-
-    drawHeatMap();
-    if (show_grid) {
-        drawGrid();
-    }
-
-    for (let nucleus of nuclei) {
-        nucleus.render();
-    }
-
-    for(let fusion_event of fusion_events) {
-        fusion_event.render();
-    }
-}
-
-function diffuseHeat() {
-    syncGrids();
-    diffuseCenter();
-    diffuseEdges();
-    diffuseCorners();
-    cooldown();
-}
-
-function heatUp() {
-    let row = Math.floor(click_y / cell_length);
-    let col = Math.floor(click_x / cell_length);
-    grid[row][col] = 1;
-}
-
-function heatIC() {
-    let cols = [0, 1, num_cols - 2, num_cols - 1];
-    for(let col of cols) {
-        for(let row = 0; row < num_rows; row++) {
-            grid[row][col] = ic_heat;
-        }
-    }
-    let rows = [0, 1, num_rows - 2, num_rows - 1];
-    for(let row of rows) {
-        for(let col = 0; col < num_cols; col++) {
-            grid[row][col] = ic_heat;
-        }
-    }
+    IC()
 }
 
 function internuclearInteractions() {
@@ -147,6 +85,14 @@ function internuclearInteractions() {
     }
 }
 
+function diffuseHeat() {
+    syncGrids();
+    diffuseCenter();
+    diffuseEdges();
+    diffuseCorners();
+    cooldown();
+}
+
 function nuclearFusion(i, j, nucleus1, nucleus2) {
     nuclei.splice(j, 1);
     nuclei.splice(i, 1);
@@ -160,6 +106,25 @@ function nuclearFusion(i, j, nucleus1, nucleus2) {
     new_fusion_event = new Fusion_event(new_nucleus.x, new_nucleus.y, new_nucleus.radius);
     fusion_events.push(new_fusion_event);
     updateAtomic();
+}
+
+function IC() {
+    if(inertial_confinement) {
+        if(frame == 0) {
+            heatIC();
+        }
+        else if(frame == fps - 1) {
+            for(let i = 0; i < nuclei.length; i++) {
+                if(i % 5 == ic_cycle) {
+                    nuclei[i].compress();
+                }
+            }
+            ic_cycle++;
+            if(ic_cycle == 5) {
+                toggleIC();
+            }
+        }
+    }
 }
 
 function measureTemperature() {
@@ -234,25 +199,8 @@ function initParams() {
     ic_heat = 0.05;
     ic_force = 1e5;
     
-    makeGrid();
     makeScene();
-}
-
-function makeGrid() {
-    grid = [];
-    num_rows = Math.ceil(canvas_height / cell_length);
-    num_cols = Math.ceil(canvas_width / cell_length);
-
-    for (let row = 0; row < num_rows; row++) {
-        new_row = [];
-        for (let col = 0; col < num_cols; col++) {
-            new_row.push(0);
-        }
-        grid.push(new_row);
-    }
-
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
+    makeGrid();
 }
 
 function makeScene() {
@@ -278,32 +226,27 @@ function makeScene() {
     }
 }
 
+function makeGrid() {
+    grid = [];
+    num_rows = Math.ceil(canvas_height / cell_length);
+    num_cols = Math.ceil(canvas_width / cell_length);
+
+    for (let row = 0; row < num_rows; row++) {
+        new_row = [];
+        for (let col = 0; col < num_cols; col++) {
+            new_row.push(0);
+        }
+        grid.push(new_row);
+    }
+
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, canvas_width, canvas_height);
+}
+
 function distanceBetweenCoordAndNucleus(x, y, nucleus) {
     return distance_scaling * Math.sqrt(Math.pow(x - nucleus.x, 2) + Math.pow(y - nucleus.y, 2));
 }
 
 function distanceBetween(nucleus1, nucleus2) {
     return distance_scaling * Math.sqrt(Math.pow(nucleus2.x - nucleus1.x, 2) + Math.pow(nucleus2.y - nucleus1.y, 2));
-}
-
-function getMagn(x, y) {
-    return Math.sqrt(x * x + y * y);
-}
-
-function getHeat(n) {
-    let numerator = max_heat * Math.pow(n, sigmoid_exponent);
-    let denominator = Math.pow(half_maxima, sigmoid_exponent) + Math.pow(n, sigmoid_exponent);
-    return numerator / denominator;
-}
-
-function getGridCoord(x, y) {
-    row = Math.floor(y / cell_length);
-    col = Math.floor(x / cell_length);
-    return [row, col];
-}
-
-function removeElement(array, element) {
-    return array.filter(function (dummy) {
-        return dummy != element;
-    });
 }

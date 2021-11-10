@@ -87,6 +87,27 @@ function diffuseCorners() {
     grid[row][col] += (diffusion_constant * laplacian) * dt;
 }
 
+function heatUp() {
+    let row = Math.floor(click_y / cell_length);
+    let col = Math.floor(click_x / cell_length);
+    grid[row][col] = 1;
+}
+
+function heatIC() {
+    let cols = [0, 1, num_cols - 2, num_cols - 1];
+    for(let col of cols) {
+        for(let row = 0; row < num_rows; row++) {
+            grid[row][col] = ic_heat;
+        }
+    }
+    let rows = [0, 1, num_rows - 2, num_rows - 1];
+    for(let row of rows) {
+        for(let col = 0; col < num_cols; col++) {
+            grid[row][col] = ic_heat;
+        }
+    }
+}
+
 function cooldown() {
     for (let row = 0; row < num_rows; row++) {
         for (let col = 0; col < num_cols; col++) {

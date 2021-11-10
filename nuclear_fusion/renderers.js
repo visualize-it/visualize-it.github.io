@@ -1,3 +1,21 @@
+function render() {
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, canvas_width, canvas_height);
+
+    drawHeatMap();
+    if (show_grid) {
+        drawGrid();
+    }
+
+    for (let nucleus of nuclei) {
+        nucleus.render();
+    }
+
+    for(let fusion_event of fusion_events) {
+        fusion_event.render();
+    }
+}
+
 function drawGrid() {
     context.strokeStyle = "#aaaaaa";
     for (let row = 0; row < num_rows; row++) {
@@ -23,26 +41,5 @@ function drawHeatMap() {
             context.fillStyle = `rgb(${red_value}, 0, 0)`;
             context.fillRect(col * cell_length, row * cell_length, cell_length, cell_length);
         }
-    }
-}
-
-function fusionEffect() {
-    console.log("Fusion!");
-    context.fillStyle = "#ffffff";
-    context.beginPath();
-    context.arc(fusion_x, fusion_y, fusion_radius * fusion_radius, 0, 2 * Math.PI, false);
-    context.fill();
-    console.log(fusion_x, fusion_y, fusion_radius * fusion_radius);
-}
-
-function getRedValue(temperature) {
-    if(temperature == 0) {
-        return 0;
-    }
-    else if(temperature > 0.5) {
-        return 255;
-    }
-    else if(temperature > 0.3) {
-        return 128;
     }
 }

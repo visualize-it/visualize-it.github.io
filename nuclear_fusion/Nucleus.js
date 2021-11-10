@@ -1,5 +1,5 @@
-class Atom {
-    constructor(x, y, mass, charge, velocity) {
+class Nucleus {
+    constructor(x, y, atomic_number, charge, velocity) {
         this.x = x;
         this.y = y;
         this.velocity = velocity;
@@ -8,7 +8,7 @@ class Atom {
         this.ax = 0;
         this.ay = 0;
 
-        this.mass = mass_factor * mass;
+        this.mass = mass_factor * atomic_number;
         this.charge = charge_factor * charge;
         this.radius = radius_factor * Math.cbrt(3 * this.mass / (4 * Math.PI));
         this.assignColor();
@@ -75,7 +75,7 @@ class Atom {
             this.color = "#00ff00";
         }
         else {
-            this.color = "#ff0000";
+            this.color = "#aaaaaa";
         }
     }
 }

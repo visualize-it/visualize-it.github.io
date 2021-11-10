@@ -12,6 +12,14 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let n_input = document.getElementById("n-input");
+
+let temp_display = document.getElementById("temp-display");
+let z_display = document.getElementById("z-display");
+let n_display = document.getElementById("n-display");
+
+let pause_button = document.getElementById("pause-button");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -118,12 +126,4 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
-}
-
-function pauseToggle() {
-    paused = !paused;
-}
-
-function gridToggle() {
-    show_grid = !show_grid;
 }

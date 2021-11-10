@@ -13,9 +13,11 @@
   
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
-  <script src="Atom.js" defer></script>
+  <script src="Nucleus.js" defer></script>
+  <script src="Fusion_event.js" defer></script>
+  <script src="diffusion.js" defer></script>
   <script src="renderers.js" defer></script>
-  <script src="simulation.js" defer></script>
+  <script src="core.js" defer></script>
 
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -42,11 +44,45 @@
 <div class="text">
   <h2>Nuclear Fusion</h2>
 
-  <br>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="temp-display"></p>
+        </div>
+        <div class="col s12 l6">
+          <p id="z-display"></p>
+        </div>
+      </div>
+    </div>
+  </center>
   <center>
     <canvas id="canvas"></canvas>
   </center>
   <br>
+  <center>
+    <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+    <button class="btn purple darken-4" onclick="restart()">Restart</button>
+  </center>
+  <br>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="n-display"></p>
+          <button class="btn purple darken-4" onclick="addNucleus(1)">Add</button>
+          <button class="btn purple darken-4" onclick="addNucleus(10)">Add (10)</button>
+          <button class="btn purple darken-4" onclick="removeNucleus(1)">Remove</button>
+          <button class="btn purple darken-4" onclick="clearNuclei()">Clear</button>
+        </div>
+        <div class="col s12 l6">
+          <br>
+          <span>Enter number of nuclei (and click on restart):</span>
+          <input id="n-input" type="number" placeholder="Not more than 1000">
+        </div>
+      </div>
+    </div>
+  </center>
   
   <br />
   <hr />

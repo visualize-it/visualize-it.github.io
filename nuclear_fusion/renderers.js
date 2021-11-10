@@ -18,11 +18,31 @@ function drawHeatMap() {
     let red_value;
     for (let row = 0; row < num_rows; row++) {
         for (let col = 0; col < num_cols; col++) {
-            if (grid[row][col] > 0) {
-                red_value = Math.floor(255 * grid[row][col]);
-                context.fillStyle = `rgb(${red_value}, 20, 20)`;
-                context.fillRect(col * cell_length, row * cell_length, cell_length, cell_length);
-            }
+            // I don't know why but this particular formula gives nice results
+            red_value = 64 * Math.floor(64 * grid[row][col]);
+            context.fillStyle = `rgb(${red_value}, 0, 0)`;
+            context.fillRect(col * cell_length, row * cell_length, cell_length, cell_length);
         }
+    }
+}
+
+function fusionEffect() {
+    console.log("Fusion!");
+    context.fillStyle = "#ffffff";
+    context.beginPath();
+    context.arc(fusion_x, fusion_y, fusion_radius * fusion_radius, 0, 2 * Math.PI, false);
+    context.fill();
+    console.log(fusion_x, fusion_y, fusion_radius * fusion_radius);
+}
+
+function getRedValue(temperature) {
+    if(temperature == 0) {
+        return 0;
+    }
+    else if(temperature > 0.5) {
+        return 255;
+    }
+    else if(temperature > 0.3) {
+        return 128;
     }
 }

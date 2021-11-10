@@ -64,6 +64,11 @@ class Nucleus {
         this.vx *= multiplier;
         this.vy *= multiplier;
     }
+    compress() {
+        let compress_x = (canvas_width / 2) - this.x;
+        let compress_y = (canvas_height / 2) - this.y;
+        this.applyForce(ic_force * compress_x, ic_force * compress_y);
+    }
     render() {
         context.fillStyle = this.color;
         context.beginPath();

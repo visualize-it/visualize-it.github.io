@@ -43,6 +43,82 @@
 
 <div class="text">
   <h2>Nuclear Fusion</h2>
+  <p>
+    This simulation has been developed as a part of a project in one of my courses. It attempts to recreate the
+    situations under which self sustaining nuclear fusion reactions can occur. It involves a plethora of idealisations
+    and ad-hoc assumptions, therefore the viewer is advised to interpret the observations made here with a pinch of
+    salt.
+  </p>
+
+  <br>
+  <hr>
+  <br>
+
+  <h3>Components</h3>
+  <ol>
+    <li>
+      <b>System</b> <br>
+      <p>
+        The system is a rectangular area that contains positive nuclei and allows for diffusion of heat. It is enclosed
+        by a rigid wall. The world begins with only hydrogen nuclei (blue). As fusion takes place, some of them fuse to
+        form helium nuclei (yellow). Further fusion leads to the formation of heavier nuclei (light gray).
+      </p>
+    </li>
+    <li>
+      <b>Dynamics</b> <br>
+      <p>
+        The motion of nuclei obtained using the following equations:
+        \[ a = F / m \]
+        \[ v(t + \Delta t) = v(t) + a \Delta t \]
+        \[ x(t + \Delta t) = x(t) + v(t + \Delta t) \Delta t \]
+        Where \( \Delta t = 10^{-3} \ units \). Further, when a nucleus moves through a heated cell, it gets agitated,
+        resulting in an increase in it's velocity. Lighter nuclei are more influenced by heat than heavier nuclei.
+      </p>
+    </li>
+    <li>
+      <b>Coulombic Force of Repulsion</b> <br>
+      <p>
+        Every nuclei is positively charged. Hence it feels a repulsive force due to the presence of all other nuclei.
+        The magnitude of this force between two charges is directly proportional to the product of their charges and
+        inversely proportional to the square of the distance of separation between them:
+        \[ \vec{F_{12}} = \frac{k q_1 q_2}{r^2} \vec{r_{12}} \]
+      </p>
+    </li>
+    <li>
+      <b>Nuclear Fusion</b> <br>
+      <p>
+        If two nuclei have sufficient kinetic energy to overcome the repulsive force, then they undergo the process of
+        nuclear fusion. In this simulation, the condition for nuclear fusion to take place is:
+        \[ r_{12} < min(r_1, r_2) \] Nuclear fusion results in emission of heat. Certain fusion reactions generate more
+          heat than others. </p>
+    </li>
+    <li>
+      <b>Diffusion of Heat</b> <br>
+      <p>
+        The world is divided into a rectangular array of cells. Whenever two nuclei fuse, they release heat into their
+        corresponding cell, thereby increasing it's temperature. Relatively hotter cells are rendered with a brighter
+        shade of red. Heat spreads across the world according to the diffusion equation:
+        \[ \frac{\partial T}{\partial t} = \alpha \nabla^2 T \ \ where \ \ \nabla^2 \equiv \begin{bmatrix} 0.05 & 0.2 &
+        0.05 \\ 0.2 & -1 & 0.2 \\ 0.05 & 0.2 & 0.05 \end{bmatrix} \]
+        Heat also gets dissipated at a constant rate.
+      </p>
+    </li>
+    <li>
+      <b>Introduction of Energy</b> <br>
+      <p>
+        When number density of nuclei is low, or if nuclei have less kinetic energy, then fusion events are rare. In
+        such cases, energy can be introduced in the form of heat. One can drag the mouse pointer across the screen to
+        introduce heat in the corresponding cells. One can also instantaneously heat the entire container to a given
+        temperature. Inertial confinement involves heating as well as compression.
+      </p>
+    </li>
+  </ol>
+
+  <br>
+  <hr>
+  <br>
+
+  <h2>Simulation</h2>
 
   <center>
     <div class="container">
@@ -89,7 +165,8 @@
       <div class="row">
         <div class="col s12 l6">
           <p id="heat-display"></p>
-          <input id="heat-input" type="range" min="0.01" max="0.2" step="0.01" oninput="updateParams('h')" onchange="updateParams('h')">
+          <input id="heat-input" type="range" min="0.01" max="0.2" step="0.01" oninput="updateParams('h')"
+            onchange="updateParams('h')">
           <button class="btn purple darken-4" onclick="heatContainer()">Heat Container</button>
         </div>
         <div class="col s12 l6">
@@ -100,9 +177,66 @@
     </div>
   </center>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
+  <br>
+
+  <h2>Analysis</h2>
+
+  <p>
+    In the default scenario, we have 300 hydorgen nuclei at the start. The number density is high enough for self
+    ignition to take place. The heat generated in initial reactions is enough to sustain the process for a few seconds.
+    With time, more and more heavier nuclei are formed. Heavier nuclei get less agitated by heat and are less likely to
+    fuse with each other. Hence, the reaction eventually stops. At this stage, heating up the container or carrying out
+    inertial confinement will be of little help. It is also noticed that if we begin the simulation with more nuclei,
+    the process will be of higher intensity but will terminate faster. This is similar to how massive stars have lower
+    lifespans since they burn out their fuel at a faster rate.
+  </p>
+  <p>
+    With 50 - 70 hydrogen nuclei, nuclear fusion is a sporadic occurence. However, either heating the container to 100
+    units of temperature or carrying out inertial confinement will trigger some fusion reactions. The process can be
+    sustained for upto a minute by adding 10 hydrogen nuclei whenever the number of nuclei drops below 50.
+  </p>
+  <p>
+    Inertial confinement involves heating the outer layer of fuel-laden capsules and compressing it's contents. We have
+    attempted to recreate such an process here. When inertial confinement is turned on, the edges of the system get
+    heated. The nuclei are directed towards the center of the container in a batchwise manner. However, inertial
+    confienemnt is relatively useless when the system involves higher proportions of heavier nuclei.
+  </p>
+  <p>
+    The observation that high number density and high temperature are two approaches to initiate and maintain fusion
+    reactions in this system suggest that we have appreciably recreated Lawson's criteria within the confines of this
+    simulation.
+  </p>
+
+  <br>
+  <hr>
+  <br>
+
+  <b>Note:</b>
+  <ol>
+    <li>This simulation should preferably be viewed on desktops. Weird behaviour is observed on mobiles.</li>
+    <li>Avoid introducing more than 1000 nuclei. This simulation involves calculation of forces among all pairs of
+      nuclei, application of laws of dynamics on all nuclei, collision detection between nuclei as well as calculation
+      of Laplacians for all cells. All of this happens in a single frame. This simulation is computationally heavy and
+      may lag on lower-end devices.</li>
+    <li>
+      In order to lower total potential energy, lot of nuclei (especially heavier ones) get stuck to the boundaries.
+      This sometimes creates conditions of electric confinement wherein all the nuclei stuck to the wall repel any
+      nuclei coming close to the wall.
+    </li>
+    <li>
+      When number density of nuclei are low, fusion reactions are more likely to happen at the corners, since nuclei
+      have less freedom to move away from approaching nuclei.
+    </li>
+    <li>
+      The units of temperature used in this simulation are completely arbitrary.
+    </li>
+  </ol>
+
+  <br>
+  <hr>
+  <br>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

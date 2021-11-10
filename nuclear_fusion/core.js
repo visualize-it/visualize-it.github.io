@@ -13,6 +13,9 @@ let adjacent_weight, diagonal_weight;
 // agitation
 let heat_efficiency;
 
+// inertial_confinement
+let ic_heat, ic_force, ic_cycle;
+
 // fusion related;
 let max_heat, half_maxima, sigmoid_exponent;
 
@@ -56,6 +59,23 @@ function update() {
     if(frame == 0) {
         measureTemperature();
     }
+
+    if(inertial_confinement) {
+        if(frame == 0) {
+            heatIC();
+        }
+        else if(frame == fps - 1) {
+            for(let i = 0; i < nuclei.length; i++) {
+                if(i % 5 == ic_cycle) {
+                    nuclei[i].compress();
+                }
+            }
+            ic_cycle++;
+            if(ic_cycle == 5) {
+                toggleIC();
+            }
+        }
+    }
 }
 
 function render() {
@@ -88,6 +108,21 @@ function heatUp() {
     let row = Math.floor(click_y / cell_length);
     let col = Math.floor(click_x / cell_length);
     grid[row][col] = 1;
+}
+
+function heatIC() {
+    let cols = [0, 1, num_cols - 2, num_cols - 1];
+    for(let col of cols) {
+        for(let row = 0; row < num_rows; row++) {
+            grid[row][col] = ic_heat;
+        }
+    }
+    let rows = [0, 1, num_rows - 2, num_rows - 1];
+    for(let row of rows) {
+        for(let col = 0; col < num_cols; col++) {
+            grid[row][col] = ic_heat;
+        }
+    }
 }
 
 function internuclearInteractions() {
@@ -195,6 +230,9 @@ function initParams() {
     fusion_event = false;
     inertial_confinement = false;
     show_grid = true;
+
+    ic_heat = 0.05;
+    ic_force = 1e5;
     
     makeGrid();
     makeScene();

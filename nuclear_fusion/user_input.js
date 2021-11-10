@@ -82,6 +82,7 @@ function toggleIC() {
     else {
         inertial_confinement = true;
         ic_button.innerHTML = "Turn off Inertial Confinement";
+        ic_cycle = 0;
     }
 }
 
@@ -93,6 +94,7 @@ function restart() {
 
     z_display.innerHTML = "";
     temp_display.innerHTML = "";
+    inertial_confinement = false;
     updateAtomic();
 }
 

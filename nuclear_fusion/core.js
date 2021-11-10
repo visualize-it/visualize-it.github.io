@@ -10,6 +10,9 @@ let num_rows, num_cols;
 let diffusion_constant, cooldown_rate;
 let adjacent_weight, diagonal_weight;
 
+// agitation
+let heat_efficiency;
+
 // fusion related;
 let max_heat, half_maxima, sigmoid_exponent;
 
@@ -26,6 +29,7 @@ let avg_temp, avg_z;
 
 // states
 let show_grid;
+let inertial_confinement;
 
 // simulation
 let frame;
@@ -43,10 +47,32 @@ function update() {
     diffuseHeat();
     internuclearInteractions();
 
+    if(pressed) {
+        heatUp();
+    }
+
     frame++;
     frame = frame % fps
     if(frame == 0) {
         measureTemperature();
+    }
+}
+
+function render() {
+    context.fillStyle = "#000000";
+    context.fillRect(0, 0, canvas_width, canvas_height);
+
+    drawHeatMap();
+    if (show_grid) {
+        drawGrid();
+    }
+
+    for (let nucleus of nuclei) {
+        nucleus.render();
+    }
+
+    for(let fusion_event of fusion_events) {
+        fusion_event.render();
     }
 }
 
@@ -56,6 +82,12 @@ function diffuseHeat() {
     diffuseEdges();
     diffuseCorners();
     cooldown();
+}
+
+function heatUp() {
+    let row = Math.floor(click_y / cell_length);
+    let col = Math.floor(click_x / cell_length);
+    grid[row][col] = 1;
 }
 
 function internuclearInteractions() {
@@ -95,24 +127,6 @@ function nuclearFusion(i, j, nucleus1, nucleus2) {
     updateAtomic();
 }
 
-function render() {
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
-
-    drawHeatMap();
-    if (show_grid) {
-        drawGrid();
-    }
-
-    for (let nucleus of nuclei) {
-        nucleus.render();
-    }
-
-    for(let fusion_event of fusion_events) {
-        fusion_event.render();
-    }
-}
-
 function measureTemperature() {
     let sum = 0;
 
@@ -139,22 +153,28 @@ function updateParams(variable) {
     if(variable == "n") {
         num_nuclei = Number.parseInt(n_input.value);
     }
+    if(variable == "h") {
+        heat_temperature = Number.parseFloat(heat_input.value);
+        heat_display.innerHTML = `Temperature: ${heat_temperature * 1000}`;
+    }
 }
 
 function initParams() {
     n_input.value = num_nuclei;
     updateParams("n");
+    heat_input.value = 0.1;
+    updateParams("h");
 
     mass_factor = 1;
     charge_factor = 1;
     force_factor = 1e9;
     distance_scaling = 1;
 
-    show_grid = true;
     diffusion_constant = 100;
     adjacent_weight = 0.2;
     diagonal_weight = 0.05;
     cooldown_rate = 0.2;
+    heat_efficiency = 0.2;
 
     if(mobile) {
         cell_length = 10;
@@ -173,6 +193,8 @@ function initParams() {
     frame = 0;
 
     fusion_event = false;
+    inertial_confinement = false;
+    show_grid = true;
     
     makeGrid();
     makeScene();
@@ -191,13 +213,13 @@ function makeGrid() {
         grid.push(new_row);
     }
 
-    // clear screen
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
 }
 
 function makeScene() {
     nuclei = [];
+    fusion_events = [];
 
     let x, y, passed;
     for (let i = 0; i < num_nuclei; i++) {

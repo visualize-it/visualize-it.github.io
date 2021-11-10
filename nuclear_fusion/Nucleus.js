@@ -19,6 +19,8 @@ class Nucleus {
         this.vx += this.ax * dt;
         this.vy += this.ay * dt;
 
+        this.agitate();
+
         this.x += this.vx * dt;
         this.y += this.vy * dt;
 
@@ -55,6 +57,12 @@ class Nucleus {
             this.ax += force_x / this.mass;
             this.ay += force_y / this.mass;
         }
+    }
+    agitate() {
+        let heat = grid[Math.floor(this.y / cell_length)][Math.floor(this.x / cell_length)]; 
+        let multiplier = 1 + (heat_efficiency * heat) / this.mass;
+        this.vx *= multiplier;
+        this.vy *= multiplier;
     }
     render() {
         context.fillStyle = this.color;

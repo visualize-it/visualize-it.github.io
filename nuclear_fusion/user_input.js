@@ -53,6 +53,16 @@ function removeNucleus(number = 1) {
     updateAtomic();
 }
 
+function heatContainer() {
+    temperature = Number.parseFloat(heat_input.value);
+
+    for(let row = 0; row < num_rows; row++) {
+        for(let col = 0; col < num_cols; col++) {
+            grid[row][col] = temperature;
+        }
+    }
+}
+
 function pauseToggle() {
     if (paused) {
         paused = false;
@@ -64,6 +74,17 @@ function pauseToggle() {
     }
 }
 
+function toggleIC() {
+    if (inertial_confinement) {
+        inertial_confinement = false;
+        ic_button.innerHTML = "Turn on Inertial Confinement";
+    }
+    else {
+        inertial_confinement = true;
+        ic_button.innerHTML = "Turn off Inertial Confinement";
+    }
+}
+
 function restart() {
     updateParams("n");
 
@@ -72,6 +93,11 @@ function restart() {
 
     z_display.innerHTML = "";
     temp_display.innerHTML = "";
+    updateAtomic();
+}
+
+function clearNuclei() {
+    nuclei = [];
 }
 
 function gridToggle() {

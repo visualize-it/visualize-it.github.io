@@ -14,11 +14,15 @@ let context = canvas.getContext("2d");
 
 let n_input = document.getElementById("n-input");
 
+let heat_display = document.getElementById("heat-display");
+let heat_input = document.getElementById("heat-input");
+
 let temp_display = document.getElementById("temp-display");
 let z_display = document.getElementById("z-display");
 let n_display = document.getElementById("n-display");
 
 let pause_button = document.getElementById("pause-button");
+let ic_button = document.getElementById("ic-button");
 
 if (mobile) {
     canvas_width = 0.9 * screen_width;

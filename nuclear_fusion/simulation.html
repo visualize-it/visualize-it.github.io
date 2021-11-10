@@ -10,7 +10,7 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
   <script src="Nucleus.js" defer></script>
@@ -83,7 +83,23 @@
       </div>
     </div>
   </center>
-  
+  <br>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="heat-display"></p>
+          <input id="heat-input" type="range" min="0.01" max="0.2" step="0.01" oninput="updateParams('h')" onchange="updateParams('h')">
+          <button class="btn purple darken-4" onclick="heatContainer()">Heat Container</button>
+        </div>
+        <div class="col s12 l6">
+          <br> <br>
+          <button id="ic-button" onclick="toggleIC()" class="btn purple darken-4">Turn on Intertial Confinement</button>
+        </div>
+      </div>
+    </div>
+  </center>
+
   <br />
   <hr />
   <br />

@@ -1,0 +1,60 @@
+--- To Be Implemented ---
+
+Marching squares
+Collision detection algorithms
+K-means clustering
+Monte Carlo simulation for approximating pi
+Wave equation
+Perlin noise
+2D heat equation
+Bifurcations
+Doppler effect
+Phase space of a pendulum
+Double pendula
+Firefly synchronization
+Graph algorithms
+Random boolean networks
+Fourier transforms
+Transcription and Translation
+Working of compilers
+Factorisation of numbers
+Interference
+Fluids
+Splines
+Ideal gas
+Particle diffusion
+Kinetic theory of gases
+Orbital mechanics
+
+--- Already Implemented ---
+
+Special relativity
+Maze generation algorithms
+Flocking Behaviour
+Trigonometric functions
+Mandelbrot fractal
+Lorenz system
+Spring motion
+Bezier curves
+Reaction diffusion system
+Conway's game of life
+Planetary motion
+Hilbert curves
+Travelling salesman
+Projectile motion
+Bell curve and Random walks
+Conservation of linear momentum
+1D heat equation
+Linear transforms
+Stroboscopic effect
+Collatz conjecture
+Conic sections
+Quantum logic gates
+Lexical analysis
+Verhulst model
+Distribution of Primes
+Contact Process
+Polynomial Regression
+Soring algorithms 
+Natural selection
+Nuclear fusion

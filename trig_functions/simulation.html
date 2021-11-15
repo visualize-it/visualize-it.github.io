@@ -20,14 +20,14 @@
   <script src="tan_cot.js" defer></script>
   <script src="sec_cosec.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  </script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -46,7 +46,7 @@
     </div>
   </nav>
   <div class="text">
-    <h4>Visualization of Trigonometric Functions</h4>
+    <h2>Visualization of Trigonometric Functions</h2>
     <hr />
     <p class="center-align">
       <b>
@@ -59,7 +59,7 @@
       </b>
     </p>
     <hr />
-    <h5>Contents</h5>
+    <h3>Contents</h3>
     <ul>
       <li><a href="#sine-cosine">Visualization of Sine and Cosine</a></li>
       <li><a href="#tan-cot">Visualization of Tangent and Cotangent</a></li>
@@ -67,48 +67,56 @@
     </ul>
     <hr />
 
-    <h5>The Age-old Brothers:<br />Sine and Cosine</h5>
-    <p>
-      <b>Etymology:</b> The word "sine" is derived from the latin word "Sinus"
-      which means a "bay" or a "fold". It's Sanskrit, Arabic and Persian
-      versions are dervided from the Greek word "khorde" which signifies a
-      bow-string. In the below visualization, if we imagine the X-axis to act like a mirror, the image would become
-      symmetrical. The line segments OP and OP' look like the strings of a bow, and the perpendiculars to X axis (whose
-      length is equal to 2sin(&theta;)) looks like a bow
-      <br /><br />
+    <h3>The Age-old Brothers:<br />Sine and Cosine</h3>
 
-      <b>Visualization:</b> Consider a unit circle (a circle of radius 1).
-      Consider a line drawn from the origin O, that makes an angle &theta;
-      with the X-axis in the anti-clockwise direction. This line intersects the
-      circle at a point P. The length of the projection of the line segment OP on the
-      Y-axis is equal to the Sine of &theta;<br /><br />
+    <b>Etymology:</b> The word "sine" is derived from the latin word "Sinus"
+    which means a "bay" or a "fold". It's Sanskrit, Arabic and Persian
+    versions are dervided from the Greek word "khorde" which signifies a
+    bow-string. In the below visualization, if we imagine the X-axis to act like a mirror, the image would become
+    symmetrical. The line segments OP and OP' look like the strings of a bow, and the perpendiculars to X axis (whose
+    length is equal to 2sin(&theta;)) looks like a bow
+    <br /><br />
 
-      <br />
-      <center>
-        <canvas id="sine-cosine"></canvas>
-        <p id="angle-1"></p>
-        <p id="sin"></p>
-        <p id="cos"></p>
-        <p><b>Adjust angle using the following slider:</b></p>
-        <div class="slidecontainer">
-          <input type="range" min="0" max="360" value="30" id="slider-1" oninput="update_1('slide')"
-            onchange="update_1('slide')" class="slider" step="1">
+    <b>Visualization:</b> Consider a unit circle (a circle of radius 1).
+    Consider a line drawn from the origin O, that makes an angle &theta;
+    with the X-axis in the anti-clockwise direction. This line intersects the
+    circle at a point P. The length of the projection of the line segment OP on the
+    Y-axis is equal to the Sine of &theta;<br /><br />
+
+    <br />
+    <center>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 l8">
+            <canvas id="sine-cosine"></canvas>
+          </div>
+          <div class="col s12 l4">
+            <p id="angle-1"></p>
+            <p id="sin"></p>
+            <p id="cos"></p>
+
+            <p><b>Adjust angle using the following slider:</b></p>
+            <input type="range" min="0" max="360" value="30" id="slider-1" oninput="update_1('slide')"
+              onchange="update_1('slide')" class="slider" step="1">
+
+            <p><b>Or, type the angle here:</b></p>
+            <div style="width: 50%">
+              <input type="number" max="360" min="0" id="type-1" value="30" oninput="update_1('typed')"
+                onchange="update_1('typed')">
+            </div>
+          </div>
         </div>
-        <p><b>Or, type the angle here:</b></p>
-        <div style="width: 30%">
-          <input type="number" max="360" min="0" id="type-1" value="30" oninput="update_1('typed')"
-            onchange="update_1('typed')">
-        </div>
-      </center>
-      <br />
-
-      <b>Relationship between Sine and Cosine:</b>
+      </div>
+    </center>
+    <br />
+    <b>Relationship between Sine and Cosine:</b>
     <p>
       Cosine has a serendipitous
       co-existence with Sine. The length of projection of the same line
       segment OP on the X-axis is equal to the Cosine of &theta;
     </p><br /><br />
-    <h5>Deductions</h5>
+
+    <h4>Deductions</h4>
     <b>The basic trigonometric identity:</b>
     \[ \sin^2 \theta + \cos^2 \theta = 1 \]
     <p>Just using pythagoras theorem, we see that sin(&theta;)^2 + cos(&theta;)^2
@@ -166,37 +174,44 @@
     </p>
     <hr />
 
-    <h5>The Circle Grazers:<br>Tangent and Cotangent</h5>
-    <p>
-      <b>Etymology:</b> The word "tangent" comes from the Latin verb "tangere" which means "to touch"
-      <br /><br />
-      <b>Visualization:</b> Consider the same unit cirle with the same line segment OP. Consider a tangent drawn to the
-      circle at point P. The length between the point P and the point where this tangent intersects the X-axis is equal
-      to the tangent of the angle &theta;
-      <br />
-      <center>
-        <canvas id="tan-cot"></canvas>
-        <p id="angle-2"></p>
-        <p id="tan"></p>
-        <p id="cot"></p>
-        <p><b>Adjust angle using the following slider:</b></p>
-        <div class="slidecontainer">
-          <input type="range" min="0" max="360" value="30" id="slider-2" oninput="update_2('slide')"
-            onchange="update_2('slide')" class="slider">
+    <h3>The Circle Grazers:<br>Tangent and Cotangent</h3>
+    <b>Etymology:</b> The word "tangent" comes from the Latin verb "tangere" which means "to touch"
+    <br /><br />
+    <b>Visualization:</b> Consider the same unit cirle with the same line segment OP. Consider a tangent drawn to the
+    circle at point P. The length between the point P and the point where this tangent intersects the X-axis is equal
+    to the tangent of the angle &theta;
+    <br />
+    <br>
+    <center>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 l8">
+            <canvas id="tan-cot"></canvas>
+          </div>
+          <div class="col s12 l4">
+            <p id="angle-2"></p>
+            <p id="tan"></p>
+            <p id="cot"></p>
+            <p><b>Adjust angle using the following slider:</b></p>
+            <input type="range" min="0" max="360" value="30" id="slider-2" oninput="update_2('slide')"
+              onchange="update_2('slide')" class="slider">
+            <p><b>Or, type the angle here:</b></p>
+            <div style="width: 50%">
+              <input type="number" max="360" min="0" id="type-2" value="45" oninput="update_2('typed')"
+                onchange="update_2('typed')">
+            </div>
+          </div>
         </div>
-        <p><b>Or, type the angle here:</b></p>
-        <div style="width: 30%">
-          <input type="number" max="360" min="0" id="type-2" value="45" oninput="update_2('typed')"
-            onchange="update_2('typed')">
-        </div>
-      </center>
-      <br />
-      <b>Relationship between Tangent and Cotangentt:</b>
+      </div>
+
+    </center>
+    <br />
+    <b>Relationship between Tangent and Cotangentt:</b>
     <p>
       The length of the same tangent, but from the point P to its
       point of intersection with the Y-axis is equal to the Cotangent of &theta;
     </p>
-    <h5>Deductions</h5>
+    <h4>Deductions</h4>
 
     <b>Values of Tangents and Cotangents of multiples of 90 degrees</b>
     <ol>
@@ -209,7 +224,7 @@
     </p>
     <hr />
 
-    <h5>The Inner Perpetrators:<br>Secant and Cosecant</h5>
+    <h3>The Inner Perpetrators:<br>Secant and Cosecant</h3>
     <p>
       <b>Etymology:</b> The word "secant" is derived from the French verb "secanter" which means "to cut"
       <br /><br />
@@ -217,21 +232,32 @@
       circle at point P. The length between the Origin and the point where the tangent intersects the X-axis is equal to
       the Secant of &theta;
       <br />
+      <br>
       <center>
-        <canvas id="sec-cosec"></canvas>
-        <p id="angle-3"></p>
-        <p id="sec"></p>
-        <p id="cosec"></p>
-        <p><b>Adjust angle using the following slider:</b></p>
-        <div class="slidecontainer">
-          <input type="range" min="0" max="360" value="30" id="slider-3" oninput="update_3('slide')"
-            onchange="update_3('slide')" class="slider">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 l8">
+              <canvas id="sec-cosec"></canvas>
+            </div>
+            <div class="col s12 l4">
+              <p id="angle-3"></p>
+              <p id="sec"></p>
+              <p id="cosec"></p>
+              <p><b>Adjust angle using the following slider:</b></p>
+              <div class="slidecontainer">
+                <input type="range" min="0" max="360" value="30" id="slider-3" oninput="update_3('slide')"
+                  onchange="update_3('slide')" class="slider">
+              </div>
+              <p><b>Or, type the angle here:</b></p>
+              <div style="width: 50%">
+                <input type="number" max="360" min="0" id="type-3" value="60" oninput="update_3('typed')"
+                  onchange="update_3('typed')">
+              </div>
+            </div>
+          </div>
         </div>
-        <p><b>Or, type the angle here:</b></p>
-        <div style="width: 30%">
-          <input type="number" max="360" min="0" id="type-3" value="60" oninput="update_3('typed')"
-            onchange="update_3('typed')">
-        </div>
+
+
       </center>
       <br />
       <b>Relationship between Secant and Cosecant:</b>
@@ -239,7 +265,7 @@
       The distance between the Origin and the point where the same tangent intersects the Y-axis is equal to the
       Cosecant of &theta;
     </p>
-    <h5>Deductions</h5>
+    <h4>Deductions</h4>
     <b>Trigonometric identities:</b>
     <p>On applying Pythagoras theorem to the two traingles, we obtain:</p>
     \[ 1 + \tan^2 \theta = \sec^2 \theta \]

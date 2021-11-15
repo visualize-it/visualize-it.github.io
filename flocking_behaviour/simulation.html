@@ -20,7 +20,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -40,67 +40,61 @@
   </nav>
 
   <div class="text">
-    <h4>Flocking Behaviour of Boids</h4>
+    <h2>Flocking Behaviour of Boids</h2>
     <p>Flocking behaviour of boids is an example of emergence, wherein a simple set of rules can be used to achieve
       complex behaviour.</p>
 
+    <br>
     <center>
-      <br />
-      <canvas id="flocking-canvas"></canvas>
-      <br />
-      <p>Highlighter:</p>
-      <button class="btn purple darken-4" onclick="prev()">Previous</button>
-      <button class="btn purple darken-4" id="highlight-toggle" onclick="highlight()">Highlight: ON</button>
-      <button class="btn purple darken-4" onclick="next()">Next</button>
-      <br />
-      <br />
-      <button id="pause-button" class="btn purple darken-4" onclick="pause()">Pause</button>
-      <button class="btn purple darken-4" onclick="restart()">Restart</button>
-      <br />
-      <br />
-      <p id="boid-number"></p>
-      <button onclick="addBoids()" class="btn purple darken-4">Add</button>
-      <button onclick="clearBoids()" class="btn purple darken-4">Clear</button>
-      <button onclick="removeBoids()" class="btn purple darken-4">Remove</button>
-      <br />
-      <br />
-      <p>Behaviour toggles:</p>
-      <div class="container" style="color: white">
+      <div class="container" style="margin-left: 0px; margin-right: 0px;">
         <div class="row">
-          <div class="col s4">
+          <div class="col s12 l8">
+            <canvas id="flocking-canvas"></canvas>
+          </div>
+          <div class="col s12 l4">
+            <p id="boid-number"></p>
+            <button onclick="addBoids()" class="btn purple darken-4">Add</button>
+            <button onclick="clearBoids()" class="btn purple darken-4">Clear</button>
+            <button onclick="removeBoids()" class="btn purple darken-4">Remove</button>
+            <br>
+            <p>Highlighter:</p>
+            <button class="btn purple darken-4" onclick="prev()">Previous</button>
+            <button class="btn purple darken-4" id="highlight-toggle" onclick="highlight()">Highlight: ON</button>
+            <button class="btn purple darken-4" onclick="next()">Next</button>
+            <p>Behaviour toggles:</p>
             <label>
               <input id="separation-toggle" type="checkbox" />
               <span>Separation</span>
             </label>
-          </div>
-          <div class="col s4">
+            <br>
             <label>
               <input id="alignment-toggle" type="checkbox" />
               <span>Alignment</span>
             </label>
-          </div>
-          <div class="col s4">
+            <br>
             <label>
               <input id="cohesion-toggle" type="checkbox" />
               <span>Cohesion</span>
             </label>
+            <br>
+            <p id="align-display"></p>
+            <input type="range" min="15" max="100" value="40" id="align-slider" oninput="updateParams('align')"
+              onchange="updateParams('align')" class="slider">
+            <p id="coh-display"></p>
+            <input type="range" min="15" max="100" value="60" id="coh-slider" oninput="updateParams('coh')"
+              onchange="updateParams('coh')" class="slider">
+            <button id="pause-button" class="btn purple darken-4" onclick="pause()">Pause</button>
+            <button class="btn purple darken-4" onclick="restart()">Restart</button>
           </div>
         </div>
       </div>
-      <br/>
-      <p id="align-display"></p>
-      <input type="range" min="15" max="100" value="40" id="align-slider" oninput="updateParams('align')"
-        onchange="updateParams('align')" class="slider">
-      <p id="coh-display"></p>
-      <input  type="range" min="15" max="100" value="60" id="coh-slider" oninput="updateParams('coh')"
-        onchange="updateParams('coh')" class="slider">
     </center>
 
     <br />
     <hr />
     <br />
 
-    <h5>Rules</h5>
+    <h3>Rules</h3>
     <p><b>Separation:</b> If two boids come close to each other, they try moving in different directions to avoid
       colliding. There is no
       form of communication between them. The light-gray circle denotes the region around the boid where this rule comes

@@ -4,6 +4,7 @@ let fps = 20;
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d", { alpha: false });
 
+let play_button = document.getElementById("play-button");
 let fps_display = document.getElementById("fps-display");
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -16,7 +17,7 @@ if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.5 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width / 1.46;
 
@@ -46,10 +47,12 @@ function toggleAnimation() {
     if(animating) {
         animating = false;
         fps_display.style.display = "none";
+        play_button.innerHTML = "Start";
     }
     else {
         animating = true;
         fps_display.style.display = "block";
+        play_button.innerHTML = "Stop";
     }
 }
 

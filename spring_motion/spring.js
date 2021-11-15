@@ -111,7 +111,7 @@ function render() {
     context.strokeStyle = "#ffffff";
     context.beginPath();
     context.moveTo(origin, 0);
-    context.lineTo(origin, 400);
+    context.lineTo(origin, canvas_height);
     context.stroke();
 
     context.fillStyle = "#ffffff";

@@ -35,7 +35,7 @@ if (mobile) {
         moved();
     }, false);
 } else {
-    canvas_width = 0.3 * screen_width;
+    canvas_width = 0.35 * screen_width;
 
     canvas.addEventListener("mousedown", function (e) {
         getMousePosition(canvas, e);

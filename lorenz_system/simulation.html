@@ -22,11 +22,11 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-M95CKRP8HB');
+    gtag('config', 'G-M95CKRP8HB');
 </script>
 
 <body>
@@ -44,39 +44,26 @@
 </body>
 
 <div class="text">
-    <h4>Simulation of Solution of Lorenz System</h4>
+    <h2>Simulation of Solution of Lorenz System</h2>
 
-    <center>
-        <br>
-        <canvas id="canvas"></canvas>
-        <br>
-    </center>
-    <br>
-    <center>
-        <button class="btn purple darken-4" onclick="zoomIn()">Zoom in</button>
-        <button class="btn purple darken-4" onclick="zoomOut()">Zoom out</button>
-    </center>
     <br>
     <center>
         <div class="container">
             <div class="row">
-                <div class="col s4 l4">
-                    <h6>Rho</h6>
-                    <input id="rho" type="number">
+                <div class="col s12 l8">
+                    <canvas id="canvas"></canvas>
                 </div>
-
-                <div class="col s4 l4">
-                    <h6>Sigma</h6>
-                    <input id="sigma" type="number">
-                </div>
-
-                <div class="col s4 l4">
-                    <h6>Beta</h6>
-                    <input id="beta" type="number">
+                <div class="col s12 l4">
+                    <b>Parameters:</b> <br>
+                    <p>Rho: <input id="rho" type="number" style="width: 30%"></p>
+                    <p>Sigma: <input id="sigma" type="number" style="width: 30%"></p>
+                    <p>Beta: <input id="beta" type="number" style="width: 30%"></p>
+                    <br>
+                    <button class="btn purple darken-4" onclick="zoomIn()">Zoom in</button> <br> <br>
+                    <button class="btn purple darken-4" onclick="zoomOut()">Zoom out</button>
                 </div>
             </div>
         </div>
-    </center>
     <br>
     <center>
         <b>Click the below button to restart the simulation with modified parameters</b>
@@ -89,7 +76,7 @@
     <hr />
     <br />
 
-    <h5 class="center">Brief Description</h5>
+    <h3 class="center">Brief Description</h3>
     <p>The Lorenz system is a set of ordinary differential equations originally studied by Edward Lorenz as a simplified
         model for atmospheric convection. Several of its solutions were known for their chaotic nature, wherein a small
         nudge to initial conditions changed the future course of the solution altogether. The mapping of one of these

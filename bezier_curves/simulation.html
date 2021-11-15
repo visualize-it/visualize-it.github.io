@@ -49,7 +49,7 @@
 </body>
 
 <div class="text">
-  <h4>Bezier Curves</h4>
+  <h2>Bezier Curves</h2>
   <p>
     A Bezier curve is a parametric curve used widely in designing and computer graphics. It was first used by French
     engineer Pierre Bezier in the 1960s. A bezier curve is generated through the process of recursive linear
@@ -58,24 +58,29 @@
   </p>
   <br>
   <center>
-    <b>Click and drag a control point to move it</b>
-    <br>
-    <b>On Mobiles: If unable to scroll, then touch the below canvas and try again</b>
-    <br>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button class="btn purple darken-4" onclick="addPoint()">Add</button>
-    <button class="btn purple darken-4" onclick="clearPoints()">Clear</button>
-    <button class="btn purple darken-4" onclick="removePoint()">Remove</button>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l8">
+          <canvas id="canvas"></canvas>
+        </div>
+        <div class="col s12 l4">
+          <b>Click and drag a control point to move it</b>
+          <br> <br>
+          <b>On Mobiles: If unable to scroll, then touch the below canvas and try again</b>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="addPoint()">Add</button> <br> <br>
+          <button class="btn purple darken-4" onclick="clearPoints()">Clear</button> <br> <br>
+          <button class="btn purple darken-4" onclick="removePoint()">Remove</button> <br> <br>
+        </div>
+      </div>
+    </div>
   </center>
 
   <br>
   <hr>
   <br>
 
-  <h5>Brief Description</h5>
+  <h3>Brief Description</h3>
 
   <p>
     Suppose there are N ordered control points. Then we have N-1 lines connecting them. Let 't' a fraction moved along a

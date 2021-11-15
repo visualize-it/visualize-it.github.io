@@ -103,7 +103,7 @@ function update_animation() {
 function update_1(changed) {
     animating = false;
     if (changed == 'slide') {
-        angle_1.innerHTML = `&theta; = ${slider_1.value}`;
+        angle_1.innerHTML = `&theta; = ${slider_1.value}&deg;`;
     }
     else if (changed == 'typed') {
         if (type_1.value != "") {

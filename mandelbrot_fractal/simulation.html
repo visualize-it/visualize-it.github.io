@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -44,7 +44,7 @@
 </body>
 
 <div class="text">
-  <h4>Simulation of Mandelbrot Fractal</h4>
+  <h2>Simulation of Mandelbrot Fractal</h2>
 
   <p>The Mandelbrot Set is a set of complex numbers \( c\) such that \( f(z) = z^2 + c \) does not diverge when
     recursively iterated from \( z_0 = 0 + 0i \). The Mandelbrot Fractal is obtained when a coloring scheme is applied
@@ -52,80 +52,72 @@
 
   <br>
   <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l8">
+          <canvas id="canvas"></canvas>
+          <br>
+          <p id="fps-display"></p>
+        </div>
+        <div class="col s12 l4">
+          <button onclick="toggleAnimation()" class="btn purple darken-4" id="play-button">Start</button>
+          <button onclick="initParams()" class="btn purple darken-4">Reset</button>
+          <br> <br>
+          <button onclick="zoomIn()" class="btn purple darken-4">Zoom in</button>
+          <button onclick="zoomOut()" class="btn purple darken-4">Zoom out</button>
+          <br> <br>
+          <b>Movement Controls</b>
+          <br> <br>
+          <button onclick="left()" class="btn purple darken-4">Left</button>
+          <button onclick="right()" class="btn purple darken-4">Right</button>
+          <br> <br>
+          <button onclick="up()" class="btn purple darken-4">Up</button>
+          <button onclick="down()" class="btn purple darken-4">Down</button>
+          <br> <br>
+
+          <b>Interesting regions</b>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="area(1)">Spirals</button>
+          <br><br>
+          <button class="btn purple darken-4" onclick="area(2)">Self Similar</button>
+          <br><br>
+          <button class="btn purple darken-4" onclick="area(3)">Fractal Islands</button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col s12 l6">
+          <b>Coloring Schemes</b>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="color(1)">Full Color 1</button>
+          <button class="btn purple darken-4" onclick="color(4)">Full Color 2</button>
+          <br><br>
+          <button class="btn purple darken-4" onclick="color(2)">Blue Scale</button>
+          <button class="btn purple darken-4" onclick="color(3)">Gray Scale</button>
+        </div>
+        <div class="col s12 l6">
+          <b>Number of iterations</b>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="iterations(100)">100</button>
+          <button class="btn purple darken-4" onclick="iterations(128)">128</button>
+          <button class="btn purple darken-4" onclick="iterations(256)">256</button>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="iterations(512)">512</button>
+          <button class="btn purple darken-4" onclick="iterations(768)">768</button>
+          <button class="btn purple darken-4" onclick="iterations(1024)">1024</button>
+        </div>
+      </div>
+    </div>
     <br>
-    <canvas id="canvas"></canvas>
+
     <br>
   </center>
-  <br>
-
-  <center>
-    <button onclick="toggleAnimation()" class="btn purple darken-4">Start/Stop animation</button>
-    <button onclick="initParams()" class="btn purple darken-4">Reset</button>
-    <br><br>
-    <button onclick="left()" class="btn purple darken-4">Left</button>
-    <button onclick="right()" class="btn purple darken-4">Right</button>
-    <button onclick="up()" class="btn purple darken-4">Up</button>
-    <button onclick="down()" class="btn purple darken-4">Down</button>
-    <br><br>
-    <button onclick="zoomIn()" class="btn purple darken-4">Zoom in</button>
-    <button onclick="zoomOut()" class="btn purple darken-4">Zoom out</button>
-    <br>
-    <p id="fps-display"></p>
-  </center>
 
   <br />
   <hr />
   <br />
 
-  <h5>Interesting Regions</h5>
-  <br>
-
-  <center>
-    <button class="btn purple darken-4" onclick="area(1)">Spirals</button>
-    <br><br>
-    <button class="btn purple darken-4" onclick="area(2)">Self Similar</button>
-    <br><br>
-    <button class="btn purple darken-4" onclick="area(3)">Fractal Islands</button>
-  </center>
-
-  <br />
-  <hr />
-  <br />
-
-  <h5>Coloring Scheme</h5>
-  <br>
-
-  <center>
-    <button class="btn purple darken-4" onclick="color(1)">Full Color 1</button>
-    <br><br>
-    <button class="btn purple darken-4" onclick="color(4)">Full Color 2</button>
-    <br><br>
-    <button class="btn purple darken-4" onclick="color(2)">Blue Scale</button>
-    <br><br>
-    <button class="btn purple darken-4" onclick="color(3)">Gray Scale</button>
-  </center>
-
-  <br />
-  <hr />
-  <br />
-
-  <h5>Number of iterations</h5>
-  <p>This is equal to hundred by default. Framerate decreases as you increase number of iterations. Even the fastest
-    computers will lag at 1024. More number of iterations is associated with more detailed features, especially in the
-    vicinity of the Mandelbrot set.</p>
-  <center>
-    <button class="btn purple darken-4" onclick="iterations(100)">100</button>
-    <button class="btn purple darken-4" onclick="iterations(128)">128</button>
-    <button class="btn purple darken-4" onclick="iterations(256)">256</button>
-    <button class="btn purple darken-4" onclick="iterations(512)">512</button>
-    <button class="btn purple darken-4" onclick="iterations(1024)">1024</button>
-  </center>
-
-  <br />
-  <hr />
-  <br />
-
-  <h5>Brief Description</h5>
+  <h3>Brief Description</h3>
   <br>
   <p>The X-coordinate of the default configuration (press 'reset' to obtain) ranges from -2.5 to 1 whereas the
     Y-coordinate ranges from -1 to +1. The complex number \( c \) is equal to \( x_0 + i y_0 \), where \( x_0 \) and \(

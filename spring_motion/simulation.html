@@ -13,8 +13,8 @@
   <script src="basic.js" defer></script>
   <script src="spring.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -44,7 +44,7 @@
 </body>
 
 <div class="text">
-  <h4>Simulation of Spring Motion</h4>
+  <h2>Simulation of Spring Motion</h2>
   <p>Spring motion belongs to a subset of periodic motion known as Simple Harmonic Motion (SHM), where the restoring
     force is directly proportional to the objects displacement magnitude and acts towards the objects equilibrium
     position. The proportionality factor between restoring force and displacement plays a key role in determining the
@@ -56,55 +56,66 @@
     In essence, it quantifies the 'stiffness' of the spring. 'm' is mass of the spring.
   </p>
   <p>
-    The time period of SHM is universally given by \( \frac{2\pi}{\omega} \). For a spring, \( T = 2\pi \sqrt{\frac{m}{k}} \). Frequency of
-    vibration is given by \( \frac{1}{T} \). For a spring, \( f = \frac{1}{2\pi} \sqrt{\frac{k}{m}} \). Hence, a lighter but stiffer spring oscillates
+    The time period of SHM is universally given by \( \frac{2\pi}{\omega} \). For a spring, \( T = 2\pi
+    \sqrt{\frac{m}{k}} \). Frequency of
+    vibration is given by \( \frac{1}{T} \). For a spring, \( f = \frac{1}{2\pi} \sqrt{\frac{k}{m}} \). Hence, a lighter
+    but stiffer spring oscillates
     faster than a heavier but looser spring. In the below interactive simulation, increase 'k' or decrease 'm' and
     observe what happens to the frequency of oscillation:
   </p>
   <center>
-    <canvas id="spring-canvas"></canvas>
-  </center>
-  <center>
-    <button id="pause" class="btn purple darken-4" onclick="button('pause')">Pause</button>
-    <button class="btn purple darken-4" onclick="button('restart')">Restart</button>
-    <br>
-    <br>
-    <b>If you wish to repeat a simulation with the previous parameters, then press 'restart'</b>
-    <br>
-    <p id="scale-display"></p>
-    <p id="position-display"></p>
-    <p id="velocity-display"></p>
-    <p id="acceleration-display"></p>
-    <button class="btn purple darken-4" onclick="button('simulate')">Simulate</button>
-    <br>
-    <br>
-    <b>If you've changed the below parameters, then click on 'simulate' to consider the new parameters</b>
-  </center>
-  <br>
-  <div class="container" style="color: white">
-    <div class="row">
-      <div class="col m6">
-        <center>
-          Initial position:
-          <input id="position" type="number">
-          Initial velocity:
-          <input id="velocity" type="number">
-          Spring constant:
-          <input id="spring-constant" type="number">
-        </center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l8">
+          <canvas id="spring-canvas"></canvas>
+        </div>
+        <div class="col s12 l4">
+          <p>Initial position:
+            <input id="position" type="number" style="width: 30%">
+          </p>
+          <p>Initial velocity:
+            <input id="velocity" type="number" style="width: 30%">
+          </p>
+          <p>Spring constant:
+            <input id="spring-constant" type="number" style="width: 30%">
+          </p>
+          <p>Mass of spring:
+            <input id="mass" type="number" style="width: 30%">
+          </p>
+          <p>Damping constant:
+            <input placeholder="Enter '0' for ignoring air resistance" id="damping" type="number" style="width: 30%">
+          </p>
+          <p>Precision:
+            <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10" style="width: 30%">
+          </p>
+          
+        </div>
       </div>
-      <div class="col m6">
-        <center>
-          Mass of spring:
-          <input id="mass" type="number">
-          Damping constant:
-          <input placeholder="Enter '0' for ignoring air resistance" id="damping" type="number">
-          Precision:
-          <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10">
-        </center>
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="scale-display"></p>
+          <p id="position-display"></p>
+          <p id="velocity-display"></p>
+          <p id="acceleration-display"></p>
+        </div>
+        <div class="col s12 l6">
+          <b>If you wish to repeat a simulation with the previous parameters, then press 'restart'</b>
+          <br> <br>
+          <button id="pause" class="btn purple darken-4" onclick="button('pause')">Pause</button>
+          <button class="btn purple darken-4" onclick="button('restart')">Restart</button>
+          <br> <br>
+          <b>If you've changed the below parameters, then click on 'simulate' to consider the new parameters</b>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="button('simulate')">Simulate</button>
+        </div>
       </div>
     </div>
-  </div>
+  </center>
+  <br>
+  <hr>
+  <br>
+
+  <h3>Description</h3>
   <b>Relationship of SHM with sines and cosine:</b><br>
   <p>
     Any periodic function can be expressed as a superposition of sines and cosine. Fourier transformation deals with
@@ -120,14 +131,18 @@
   <b>Idealisations:</b>
   <p>
     In the real world, resistive forces are always present. Hence, vibrations are always damped. Moreover, since Hooke's
-    law is not valid outside elastic limits, the relationship between restoring force 'F' and displacement from mean position
+    law is not valid outside elastic limits, the relationship between restoring force 'F' and displacement from mean
+    position
     'x' becomes non-linear.
   </p>
   <b>Notes:</b>
   <ol>
     <li>Fully compatible with SI units</li>
-    <li>By convention, measurements to the right of the central line is taken positive whereas measurements to the left of the central line are regarded to be negative. Hence, a positive position and negative velocity implies that the edge of spring is towards the right of the central line but moving towards the left</li>
-    <li>Precision of 2 is ideal. Precision of 1 is associated with less accuracy and greater frequencies. If precision is greater 2, the simulation becomes slower because more computation is involved per cycle</li>
+    <li>By convention, measurements to the right of the central line is taken positive whereas measurements to the left
+      of the central line are regarded to be negative. Hence, a positive position and negative velocity implies that the
+      edge of spring is towards the right of the central line but moving towards the left</li>
+    <li>Precision of 2 is ideal. Precision of 1 is associated with less accuracy and greater frequencies. If precision
+      is greater 2, the simulation becomes slower because more computation is involved per cycle</li>
     <li>Simulation may lag on lower-end desktops and mobile phones</li>
   </ol>
   <br>

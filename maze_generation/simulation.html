@@ -59,33 +59,44 @@
 </body>
 
 <div class="text">
-  <h4>Working of Maze Generation Algorithms</h4>
+  <h2>Working of Maze Generation Algorithms</h2>
 
   <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button class="btn purple darken-4" onclick="initMaze()">Restart</button>
-  </center>
-  <br>
-  <center>
-    <b>Choose a maze generation algorithm</b>
-    <div class="input-field col s12 black">
-      <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
-        <option value="dfs">Iterative Depth First Search</option>
-        <option value="kruskal">Randomized Kruskal</option>
-        <option value="prim">Randomized Prim</option>
-      </select>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l8">
+        <center>
+          <canvas id="canvas"></canvas>
+        </center>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <b>Choose a maze generation algorithm</b>
+          <div class="input-field col s12">
+            <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
+              <option value="dfs">Iterative Depth First Search</option>
+              <option value="kruskal">Randomized Kruskal</option>
+              <option value="prim">Randomized Prim</option>
+            </select>
+          </div>
+        </center>
+        <center>
+          <button class="btn purple darken-4" onclick="initMaze()">Restart</button>
+        </center>
+      </div>
     </div>
-  </center>
+  </div>
+  
+  <br>
+  
+  <br>
+  
 
   <br />
   <hr />
   <br />
 
-  <h5 class="center">Brief Description</h5>
+  <h3 class="center">Brief Description</h3>
 
   <p>Maze algorithms are used to generate mazes. They are given a grid of cell separated by walls, and they output a
     maze by systematically breaking down a set of walls. Due to the method of generation, it is assured that there is
@@ -142,7 +153,7 @@
   <hr>
   <br>
 
-  <h5 class="center">Analysis of Algorithms</h5>
+  <h3 class="center">Analysis of Algorithms</h3>
 
   <ol class="browser-default">
     <li>Iterated Depth First Search: Has a bias for generating long corridors, due to its very method of operation. Considerably difficult for humans to solve. Moderate space and time complexity</li>

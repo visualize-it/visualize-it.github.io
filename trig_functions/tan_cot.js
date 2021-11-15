@@ -68,7 +68,7 @@ function render_2() {
 
 function update_2(changed) {
     if(changed == 'slide') {
-        angle_2.innerHTML = `&theta; = ${slider_2.value}`;
+        angle_2.innerHTML = `&theta; = ${slider_2.value}&deg;`;
     }
     else if(changed == 'typed') {
         if(type_2.value != "") {

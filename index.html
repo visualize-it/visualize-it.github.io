@@ -42,11 +42,9 @@
     </div>
   </nav>
 
-  <div class="loader"></div>
-
   <br>
 
-  <div class="container" style="display: none">
+  <div class="container">
     <div class="row">
 
       <center>
@@ -537,14 +535,6 @@
   AOS.init({
     startEvent: 'load',
   });
-
-  window.onload = function () {
-    loader = document.getElementsByClassName("loader")[0];
-    loader.style.display = "none";
-
-    container = document.getElementsByClassName("container")[0];
-    container.style.display = "block";
-  }
 </script>
 
 </html>

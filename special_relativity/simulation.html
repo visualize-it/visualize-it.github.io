@@ -13,8 +13,8 @@
   <script src="basic.js" defer></script>
   <script src="special_relativity.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -44,7 +44,7 @@
 </body>
 
 <div class="text">
-  <h4>Effects of Special Relativity</h4>
+  <h2>Effects of Special Relativity</h2>
 
   <p>Special relativity explains the relationship between space and time. It's based on two postulates: 1) The laws of
     physics are same in all inertial frames of reference and 2) The speed of light in vacuum is same for all observers.
@@ -60,32 +60,47 @@
   <br />
 
   <center>
-    <p id="speed-display"></p>
-    <div class="slidecontainer">
-      <input type="range" min="0" max="1000" value="700" id="speed-slider" oninput="updateParams('speed-slide')"
-        onchange="updateParams('speed-slide')" class="slider" style="width: 100%">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="speed-display"></p>
+        </div>
+        <div class="col s12 l6">
+          <input type="range" min="0" max="1000" value="700" id="speed-slider" oninput="updateParams('speed-slide')"
+            onchange="updateParams('speed-slide')" class="slider" style="width: 100%">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 l6">
+          <p class="text-white">Or type the % of speed of light here:</p>
+        </div>
+        <div class="col s12 l6">
+          <input max="100" min="0" id="speed-input" value="70.0" oninput="updateParams('speed-typed')"
+            onchange="updateParams('speed-typed')">
+        </div>
+      </div>
     </div>
-    <p class="text-white">Or type the % of speed of light here</p>
-    <div style="width:30%">
-      <input max="100" min="0" id="speed-input" value="70.0" oninput="updateParams('speed-typed')"
-        onchange="updateParams('speed-typed')">
-    </div>
-
   </center>
   <br />
   <hr />
   <br />
 
-  <h6>Brief Description</h6>
+  <h3>Brief Description</h3>
   <b>Time Dilation</b>
   \[ t = \frac{t_0}{\sqrt{1 - \frac{v^2}{c^2}}} \]
-  <p>According to a stationary observer on Earth, time appears to pass slower aboard the satellite. If the time period between two events on the satellite is 't<sub>0</sub>'' aboard the satellite, then it is 't' (as calculated above) for the observer on Earth. Observe that t<sub>0</sub> &lt; t. This phenomenon is known as time dilation.</p>
+  <p>According to a stationary observer on Earth, time appears to pass slower aboard the satellite. If the time period
+    between two events on the satellite is 't<sub>0</sub>'' aboard the satellite, then it is 't' (as calculated above)
+    for the observer on Earth. Observe that t<sub>0</sub> &lt; t. This phenomenon is known as time dilation.</p>
   <b>Length contraction</b>
   \[ l = l_0 \sqrt{1 - \frac{v^2}{c^2}} \]
-  <p>If the length of an object on Earth is measured to be 'l<sub>0</sub>'' by a stationary observer on Earth, then an observer aboard the satellite measured the same object's length to be 'l' as calculated above. Observe that l<sub>0</sub> &gt; l. This phenomenon is known as length contraction.</p>
+  <p>If the length of an object on Earth is measured to be 'l<sub>0</sub>'' by a stationary observer on Earth, then an
+    observer aboard the satellite measured the same object's length to be 'l' as calculated above. Observe that
+    l<sub>0</sub> &gt; l. This phenomenon is known as length contraction.</p>
   <b>Relativistic Doppler Effect</b>
   \[ f = f_0 \left( \frac{c-v}{c+v} \right) \]
-  <p>If the satellite transmits waves of frequency 'f<sub>0</sub>'', then a stationary receiver on the Earth will measure the same waves to have a frequency of 'f' as calculated above. This phenomenon is known as relativistic doppler effect.</p>
+  <p>If the satellite transmits waves of frequency 'f<sub>0</sub>'', then a stationary receiver on the Earth will
+    measure the same waves to have a frequency of 'f' as calculated above. This phenomenon is known as relativistic
+    doppler effect.</p>
 
   <br />
   <hr />
@@ -93,12 +108,15 @@
 
   <b>Note:</b>
   <ol>
-    <li>Speaking in a strict sense, a satellit orbiting the Earth won't exactly show these effects in the same manner. The orbiting satellite analogy has been provided to get a brief idea of speed. Instead, consider a spaceship going away from Earth at the same speed.</li>
+    <li>Speaking in a strict sense, a satellit orbiting the Earth won't exactly show these effects in the same manner.
+      The orbiting satellite analogy has been provided to get a brief idea of speed. Instead, consider a spaceship going
+      away from Earth at the same speed.</li>
     <li>This simulation is compatible with SI units</li>
     <li><b>Gamma (&gamma;)</b> is defined as:
-        \[ \gamma = \frac{1}{1 - \frac{v^2}{c^2}} \]
-        Hence, t = &gamma; * t<sub>0</sub> and l = l<sub>0</sub> / &gamma;</li>
-    <li>Gravitational effects on physical quantities have been ignored. They come under the purview of General Relativity.</li>
+      \[ \gamma = \frac{1}{1 - \frac{v^2}{c^2}} \]
+      Hence, t = &gamma; * t<sub>0</sub> and l = l<sub>0</sub> / &gamma;</li>
+    <li>Gravitational effects on physical quantities have been ignored. They come under the purview of General
+      Relativity.</li>
   </ol>
 
   <br />

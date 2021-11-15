@@ -82,7 +82,7 @@ function removeBoids(number = 1) {
     }
     boid_number.innerHTML = `Number of boids: ${boids.length}`;
 
-    if(boids.length == 0) {
+    if (boids.length == 0) {
         is_highlighted = false;
         highlight_toggle.innerHTML = "Highlight: OFF";
     }
@@ -140,14 +140,14 @@ function getHighlightIndex() {
 
 function next() {
     highlight_index++;
-    if(highlight_index == boids.length) {
+    if (highlight_index == boids.length) {
         highlight_index = 0;
     }
 }
 
 function prev() {
     highlight_index--;
-    if(highlight_index == 0) {
+    if (highlight_index == 0) {
         highlight_index = boids.length - 1;
     }
 }

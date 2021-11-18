@@ -10,40 +10,23 @@ class Animal {
 
         this.hunger = max_hunger / 2;
         this.alive = true;
+
+        this.targeting = false;
+        this.target_x = 0;
+        this.target_y = 0;
     }
     update() {
         if (this.alive) {
-            let random_angle = turning_angle * Math.random() - (turning_angle / 2);
-            let f = this.getHomesickness();
-            let g = this.getExploration();
-
-            this.vx = this.dna[0] * f * (-this.x) + this.dna[1] * g * Math.cos(this.heading + random_angle);
-            this.vy = this.dna[0] * f * (-this.y) + this.dna[1] * g * Math.sin(this.heading + random_angle);
+            if (this.targeting) {
+                this.seekTarget();
+            }
+            else {
+                this.biasedWalk();
+            }
             this.calculateHeading();
             this.normalizeVelocity();
-
-            this.x += v_animal * this.vx * dt;
-            this.y += v_animal * this.vy * dt;
-
-            if (this.x < -canvas_width / 2) {
-                this.x = canvas_width / 2;
-            }
-            else if (this.x > canvas_width / 2) {
-                this.x = -canvas_width / 2;
-            }
-            if (this.y < -canvas_height / 2) {
-                this.y = canvas_height / 2;
-            }
-            else if (this.y > canvas_height / 2) {
-                this.y = -canvas_height / 2;
-            }
-
-            this.hunger--;
-            if (this.hunger <= 0) {
-                this.alive = false;
-            }
-
-            this.checkFood();
+            this.move();
+            this.manageHunger();
         }
     }
     render() {
@@ -57,6 +40,88 @@ class Animal {
             context.fill();
         }
     }
+    seekTarget() {
+        let row = Math.ceil((canvas_height / 2 - this.target_y) / res);
+        let col = Math.ceil((canvas_width / 2 + this.target_x) / res);
+
+        row = row % grid.length;
+        col = col % grid[0].length;
+
+        if (grid[row][col] == 0) {
+            this.targeting = false;
+            this.seekFood();
+        }
+        else {
+            if (Math.abs(this.x - this.target_x) < res / 2) {
+                this.vx = 0;
+            }
+            else if (this.x < this.target_x) {
+                this.vx = 1;
+            }
+            else {
+                this.vx = -1;
+            }
+
+            if (Math.abs(this.y - this.target_y) < res / 2) {
+                this.vy = 0;
+            }
+            else if (this.y < this.target_y) {
+                this.vy = 1;
+            }
+            else {
+                this.vy = -1;
+            }
+        }
+    }
+    biasedWalk() {
+        let random_angle = turning_angle * Math.random() - (turning_angle / 2);
+        let f = this.getHomesickness();
+        let g = this.getExploration();
+
+        this.vx = this.dna[0] * f * (-this.x) + this.dna[1] * g * Math.cos(this.heading + random_angle);
+        this.vy = this.dna[0] * f * (-this.y) + this.dna[1] * g * Math.sin(this.heading + random_angle);
+    }
+    move() {
+        this.x += v_animal * this.vx * dt;
+        this.y += v_animal * this.vy * dt;
+
+        if (this.x < -canvas_width / 2) {
+            this.x = canvas_width / 2;
+        }
+        else if (this.x > canvas_width / 2) {
+            this.x = -canvas_width / 2;
+        }
+        if (this.y < -canvas_height / 2) {
+            this.y = canvas_height / 2;
+        }
+        else if (this.y > canvas_height / 2) {
+            this.y = -canvas_height / 2;
+        }
+    }
+    manageHunger() {
+        this.hunger--;
+        if (this.hunger <= 0) {
+            this.alive = false;
+        }
+
+        if (!this.targeting && this.hunger / max_hunger < trigger_seek) {
+            this.seekFood();
+        }
+
+        this.checkFood();
+    }
+    seekFood() {
+        let row = Math.ceil((canvas_height / 2 - this.y) / res);
+        let col = Math.ceil((canvas_width / 2 + this.x) / res);
+
+        let outreach = 1;
+        while (outreach <= outreach_limit && !this.targeting) {
+            if (row - outreach > -1 && row + outreach < grid.length && col - outreach > -1 && col + outreach < grid[0].length) {
+                this.searchFood(row, col, outreach);
+            }
+            outreach++;
+        }
+    }
     checkFood() {
         let row = Math.ceil((canvas_height / 2 - this.y) / res);
         let col = Math.ceil((canvas_width / 2 + this.x) / res);
@@ -64,13 +129,14 @@ class Animal {
         row = row % grid.length;
         col = col % grid[0].length;
 
-        if(grid[row][col] == 1) {
+        if (grid[row][col] == 1) {
             grid[row][col] = 0;
             this.hunger = max_hunger;
+            this.targeting = false;
         }
     }
     getExploration() {
-        return (max_hunger - this.hunger);
+        return 1;
     }
     getHomesickness() {
         let d = getMagn(this.x, this.y);
@@ -87,5 +153,58 @@ class Animal {
             // feature of coordinate system
             this.heading += Math.PI;
         }
+    }
+    searchFood(row, col, distance) {
+        let i, j;
+
+        // upper edge
+        i = row - distance
+        j = col - distance;
+
+        while (j <= col + distance) {
+            if (grid[i][j] == 1) {
+                this.setTarget(i, j);
+                return;
+            }
+            j++;
+        }
+
+        // right edge
+        j = col + distance;
+        i = row - distance;
+        while (i <= row + distance) {
+            if (grid[i][j] == 1) {
+                this.setTarget(i, j);
+                return;
+            }
+            i++;
+        }
+
+        // bottom edge
+        i = row + distance;
+        j = col - distance;
+        while (j <= col + distance) {
+            if (grid[i][j] == 1) {
+                this.setTarget(i, j);
+                return;
+            }
+            j++;
+        }
+
+        // left edge
+        j = col - distance;
+        i = row - distance;
+        while (i <= row + distance) {
+            if (grid[i][j] == 1) {
+                this.setTarget(i, j);
+                return;
+            }
+            i++;
+        }
+    }
+    setTarget(row, col) {
+        this.target_x = res * (col - 0.5) - canvas_width / 2;
+        this.target_y = -res * (row - 0.5) + canvas_height / 2;
+        this.targeting = true;
     }
 }

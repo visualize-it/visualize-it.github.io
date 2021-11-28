@@ -55,6 +55,34 @@
 <div class="text">
   <h2>Home Range</h2>
 
+  <p>This simulation was developed as a part of a project in one of my courses. It uses the same Evolutionary Algorithm
+    Framework as in our <a href="../natural_selection/simulation.html">Natural Selection among random walks</a>
+    simulation. Animals (triangles) have a single behavioural gene with two nucleotides. One controls their homesickenss
+    instinct whereas the other controls their exploration instinct. Every animal's behaviour is influenced by these two
+    instincts.
+  </p>
+  <p>
+    Food distribution across the world is modeled in form of a grid. A cell with food is light grey whereas one without
+    food is black. When an unsaturated animal walks into a cell with food, it consumes it. After certain time of
+    starvation, an animal dies. Food is generated according to the regeneration rate specified by the user.
+  </p>
+  <p>
+    Additionally, the world consists of predators (red circles). They move randomly. In general, they avoid the home
+    range of the animal but the boundary is not sharp. If a predator gets very close to an animal, it kills the animal.
+    No hunger or behavioural dynamics are present in the predator (for sake of simplicity). Number of predators can be
+    controlled by the user.
+  </p>
+  <p>
+    Every time an animal dies due to starvation or predation, another animal is generated. It obtains it's genes from
+    it's parents, subjected to the processes of recombination and mutation. The parents are chosen from the alive
+    animals, based on their fitness. Fitness is calculated on the basis of lifespan.
+  </p>
+  <p>
+    <b>Indicators:</b> The blue circle represents the distance from the home (origin) at which homesickness instinct
+    becomes half maximum. A saturated animal is blue in colour. The more starved an animal is, the redder it becomes. A
+    death is signaled by an expanding circle. At the top of the canvas, the blue section indicates prevalence of the
+    homesickness instinct whereas the red section indicates that of the exploration instinct.
+  </p>
   <br>
   <div class="container">
     <div class="row">
@@ -92,12 +120,46 @@
       <div class="col s4">
         <center>
           <p id="regen-display"></p>
-          <input id="regen-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('regen')" onchange="updateParams('regen')">
+          <input id="regen-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('regen')"
+            onchange="updateParams('regen')">
         </center>
       </div>
     </div>
   </div>
+
   <br>
+  <hr>
+
+  <h3>Analysis</h3>
+
+  <p>
+    <b>Factors that induce homesickness:</b> High rate of food regeneration, low population of animals and high number
+    of predators. Generally speaking, homesickness instinct is prevalent in most cases. This shows that it is an
+    extremely important instinct to possess for the sake of survival.
+  </p>
+  <p>
+    <b>Factors that induce exploration:</b> Low rate of food regeneration, high population of animals and low number of
+    predators.
+  </p>
+  <p>
+
+  </p>
+
+  <br>
+  <hr>
+
+  <b>Note:</b>
+  <ol>
+    <li>Since every death is replaced, the population stays constant. If you want to simulate with a different
+      population size, enter the intended population size in the input and click on the restart button.</li>
+    <li>Rate of predation and rate of food regeneration can be adjusted dynamically. It takes considerable time for
+      allele frequencies to change after such changes are made</li>
+    <li>Refer to <a href="refined_intro.pdf">this</a> document for more details on modelling</li>
+    <li>Compared to the predators, the animals are actually smarter. Animals can sense food from a certain radius
+      (dependent on their exploration instinct). Once they find food, they steer towards it.</li>
+    <li>The food sensing instinct is a bit buggy. If an animal finds food in multiple equidistant locations, it may
+      spend some time incessantly turning in the same location, before choosing one location to pursue.</li>
+  </ol>
 
   <br />
   <hr />

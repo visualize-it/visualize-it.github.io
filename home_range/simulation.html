@@ -10,12 +10,15 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
   <script src="Gene.js" defer></script>
+  <script src="Murder.js" defer></script>
   <script src="Animal.js" defer></script>
+  <script src="Predator.js" defer></script>
+  <script src="selection.js" defer></script>
   <script src="simulation.js" defer></script>
 
   <script type="text/javascript" async
@@ -29,7 +32,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -53,11 +56,49 @@
   <h2>Home Range</h2>
 
   <br>
+  <div class="container">
+    <div class="row">
+      <div class="col s4">
+        <p id="instinct-display"></p>
+      </div>
+      <div class="col s4">
+        <p id="hunger-display"></p>
+      </div>
+      <div class="col s4">
+        <p id="kill-display"></p>
+      </div>
+    </div>
+  </div>
   <center>
     <canvas id="canvas"></canvas>
   </center>
+  <div class="container">
+    <div class="row">
+      <div class="col s4">
+        <center>
+          <p id="predator-display"></p>
+          <button class="btn purple darken-4" onclick="addPredator()">Add</button>
+          <button class="btn purple darken-4" onclick="removePredator()">Remove</button>
+          <button class="btn purple darken-4" onclick="clearPredators()">Clear</button>
+        </center>
+      </div>
+      <div class="col s4">
+        <center>
+          <p>Number of Animals</p>
+          <input id="num-input" type="number" value="50">
+          <button class="btn purple darken-4" onclick="restart()">Restart</button>
+        </center>
+      </div>
+      <div class="col s4">
+        <center>
+          <p id="regen-display"></p>
+          <input id="regen-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('regen')" onchange="updateParams('regen')">
+        </center>
+      </div>
+    </div>
+  </div>
   <br>
-  
+
   <br />
   <hr />
   <br />

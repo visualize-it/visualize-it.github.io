@@ -3,42 +3,41 @@ class Animal {
         this.x = x;
         this.y = y;
         this.dna = gene.dna;
+        this.outreach_limit = Math.ceil(10 * this.dna[1]);
 
         this.vx = 0;
         this.vy = 0;
         this.heading = 2 * Math.PI * Math.random();
 
         this.hunger = max_hunger / 2;
-        this.alive = true;
 
         this.targeting = false;
         this.target_x = 0;
         this.target_y = 0;
+
+        this.lifespan = 0;
     }
     update() {
-        if (this.alive) {
-            if (this.targeting) {
-                this.seekTarget();
-            }
-            else {
-                this.biasedWalk();
-            }
-            this.calculateHeading();
-            this.normalizeVelocity();
-            this.move();
-            this.manageHunger();
+        this.lifespan++;
+        if (this.targeting) {
+            this.seekTarget();
         }
+        else {
+            this.biasedWalk();
+        }
+        this.calculateHeading();
+        this.normalizeVelocity();
+        this.move();
+        this.manageHunger();
     }
     render() {
-        if (this.alive) {
-            context.fillStyle = `hsl(${Math.floor(256 * this.hunger / max_hunger)}, 50%, 50%)`
-            context.beginPath();
-            context.moveTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading)));
-            context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading + 2.62), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading + 2.62)));
-            context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading + 3.67), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading + 3.67)));
-            context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading)));
-            context.fill();
-        }
+        context.fillStyle = `hsl(${Math.floor(256 * this.hunger / max_hunger)}, 50%, 50%)`
+        context.beginPath();
+        context.moveTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading)));
+        context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading + 2.62), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading + 2.62)));
+        context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading + 3.67), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading + 3.67)));
+        context.lineTo(canvas_width / 2 + this.x + spoke_length * Math.cos(this.heading), canvas_height / 2 - (this.y + spoke_length * Math.sin(this.heading)));
+        context.fill();
     }
     seekTarget() {
         let row = Math.ceil((canvas_height / 2 - this.target_y) / res);
@@ -101,7 +100,9 @@ class Animal {
     manageHunger() {
         this.hunger--;
         if (this.hunger <= 0) {
-            this.alive = false;
+            animals = removeElement(animals, this);
+            naturalSelection(1);
+            updateParams("hunger");
         }
 
         if (!this.targeting && this.hunger / max_hunger < trigger_seek) {
@@ -115,7 +116,7 @@ class Animal {
         let col = Math.ceil((canvas_width / 2 + this.x) / res);
 
         let outreach = 1;
-        while (outreach <= outreach_limit && !this.targeting) {
+        while (outreach <= this.outreach_limit && !this.targeting) {
             if (row - outreach > -1 && row + outreach < grid.length && col - outreach > -1 && col + outreach < grid[0].length) {
                 this.searchFood(row, col, outreach);
             }
@@ -206,5 +207,13 @@ class Animal {
         this.target_x = res * (col - 0.5) - canvas_width / 2;
         this.target_y = -res * (row - 0.5) + canvas_height / 2;
         this.targeting = true;
+    }
+    getLocation() {
+        let row = Math.ceil((canvas_height / 2 + this.y) / res);
+        let col = Math.ceil((canvas_width / 2 + this.x) / res);
+        return [row, col];
+    }
+    kill() {
+        animals = removeElement(animals, this);
     }
 }

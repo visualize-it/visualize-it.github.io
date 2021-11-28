@@ -1,31 +1,29 @@
 "use strict"
 
-let animals = [];
-let num_animals;
+// arrays
+let animals = [], num_animals;
+let predators = [], num_predators;
+let murder_locations = [];
+let grid = [], num_rows, num_cols, res;
 
-let grid = [];
-let num_rows, num_cols, res;
+// movement related
+let v_animal, v_predator;
+let turning_angle, dt;
 
-// velocity of animal
-let v_animal;
-
-// max saturation of animal
-let max_hunger;
-
-// food seeking params
-let trigger_seek, outreach_limit;
-
-// maximum homesickness, and distance at which homesickness is half maximum
+// homesickness related
 let k1, d0;
 
-// size of animal
-let spoke_length;
+// sizes
+let spoke_length, predator_radius;
 
 // food related
+let max_hunger;
 let init_food_fraction, regen_rate;
+let trigger_seek, outreach_limit;
 
-let turning_angle;
-let dt;
+// counters
+let kill_deaths, hunger_deaths, frame;
+let total_fitness, mean_h, mean_e;
 
 function update() {
     if (Math.random() < regen_rate) {
@@ -34,6 +32,38 @@ function update() {
 
     for (let animal of animals) {
         animal.update();
+    }
+
+    for (let predator of predators) {
+        predator.update();
+    }
+
+    for (let murder_location of murder_locations) {
+        murder_location.update();
+    }
+
+    let animal_location, predator_location;
+    for (let animal of animals) {
+        animal_location = animal.getLocation();
+        for (let predator of predators) {
+            predator_location = predator.getLocation();
+
+            if (!animal.targeting && animal_location.join(",") === predator_location.join(",")) {
+                animal.kill();
+                naturalSelection(1);
+                updateParams("kill");
+                murder_locations.push(new Murder(animal.x + canvas_width / 2, animal.y + canvas_height / 2));
+                break;
+            }
+        }
+    }
+
+    if (frame == 0) {
+        calcTotalFitness();
+    }
+    frame++;
+    if (frame == fps) {
+        frame = 0;
     }
 }
 
@@ -47,10 +77,20 @@ function render() {
     for (let animal of animals) {
         animal.render();
     }
+
+    for (let predator of predators) {
+        predator.render();
+    }
+
+    for (let murder_location of murder_locations) {
+        murder_location.render();
+    }
+
+    drawGenes();
 }
 
 function drawFood() {
-    context.fillStyle = "#222222";
+    context.fillStyle = "#333333";
     for (let i = 0; i < num_rows; i++) {
         for (let j = 0; j < num_cols; j++) {
             if (grid[i][j] == 1) {
@@ -67,34 +107,77 @@ function drawHomeRange() {
     context.stroke();
 }
 
-function updateParams(variable) {
+function drawGenes() {
+    let cutoff = Math.floor(mean_h * canvas_width);
 
+    context.fillStyle = "#0000ff";
+    context.fillRect(0, 0, cutoff, 10);
+
+    context.fillStyle = "#ff0000";
+    context.fillRect(cutoff, 0, canvas_width - cutoff, 10);
+}
+
+function updateParams(variable) {
+    if (variable == "predator") {
+        predator_display.innerHTML = `Number of predators: ${predators.length}`;
+    }
+    else if (variable == "hunger") {
+        hunger_deaths++;
+        hunger_display.innerHTML = `Deaths due to hunger: ${hunger_deaths}`;
+    }
+    else if (variable == "kill") {
+        kill_deaths++;
+        kill_display.innerHTML = `Deaths due to predation: ${kill_deaths}`;
+    }
+    else if (variable == "instinct") {
+        let diff = Math.abs(mean_h - mean_e);
+        if (mean_h > mean_e) {
+            instinct_display.innerHTML = `Net instinct: homesickness (+${diff.toFixed(2)})`;
+        }
+        else {
+            instinct_display.innerHTML = `Net instinct: exploration (+${diff.toFixed(2)})`;
+        }
+    }
+    else if (variable == "regen") {
+        regen_rate = Number.parseFloat(regen_input.value);
+        regen_display.innerHTML = `Food regeneration rate: ${regen_rate.toFixed(2)}`;
+    }
+    else if (variable == "num") {
+        num_animals = Number.parseInt(num_input.value);
+    }
 }
 
 function initParams() {
-    num_animals = 100;
-    res = 20;
+    num_input.value = 100;
+    updateParams("num");
 
+    res = 20;
     num_rows = Math.ceil(canvas_height / res);
     num_cols = Math.ceil(canvas_width / res);
 
     max_hunger = 500;
+    init_food_fraction = 0.4;
+    regen_input.value = 0.8;
+    updateParams("regen");
+    trigger_seek = 0.5;
+    outreach_limit = 5;
 
     v_animal = 5;
-
-    trigger_seek = 0.5;
-    outreach_limit = 3;
-
-    k1 = 0.01;
-    d0 = 175;
+    v_predator = 5;
+    turning_angle = toRadian(120);
     dt = 1;
 
-    init_food_fraction = 0.5;
-    regen_rate = 0.1;
+    k1 = 0.001;
+    d0 = 175;
 
-    turning_angle = toRadian(120);
+    predators = [];
+    num_predators = 10;
+    addPredator(num_predators);
 
     spoke_length = 10;
+    predator_radius = 10;
+    
+    frame = 0;
 
     makeScene();
 }
@@ -133,6 +216,25 @@ function makeScene() {
             }
         }
     }
+
+    hunger_deaths = -1;
+    kill_deaths = -1;
+
+    updateParams("predator");
+    updateParams("hunger");
+    updateParams("kill");
+}
+
+function calcTotalFitness() {
+    mean_e = 0, mean_h = 0;
+
+    for (let animal of animals) {
+        mean_e += animal.dna[1];
+        mean_h += animal.dna[0];
+    }
+    mean_e /= num_animals;
+    mean_h /= num_animals;
+    updateParams("instinct");
 }
 
 function addFood() {
@@ -180,4 +282,9 @@ function getDistanceFromCenter(x, y) {
 
 function toRadian(degrees) {
     return Math.PI * degrees / 180;
+}
+
+function restart() {
+    num_animals = Number.parseInt(num_input.value)
+    makeScene();
 }

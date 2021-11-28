@@ -12,6 +12,15 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let predator_display = document.getElementById("predator-display");
+let instinct_display = document.getElementById("instinct-display");
+let hunger_display = document.getElementById("hunger-display");
+let regen_display = document.getElementById("regen-display");
+let kill_display = document.getElementById("kill-display");
+
+let regen_input = document.getElementById("regen-input");
+let num_input = document.getElementById("num-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }

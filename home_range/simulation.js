@@ -24,6 +24,7 @@ let trigger_seek, outreach_limit;
 // counters
 let kill_deaths, hunger_deaths, frame;
 let total_fitness, mean_h, mean_e;
+let mean_h_string, mean_e_string;
 
 function update() {
     if (Math.random() < regen_rate) {
@@ -178,6 +179,8 @@ function initParams() {
     predator_radius = 10;
     
     frame = 0;
+    mean_h_string = "";
+    mean_e_string = "";
 
     makeScene();
 }
@@ -235,6 +238,9 @@ function calcTotalFitness() {
     mean_e /= num_animals;
     mean_h /= num_animals;
     updateParams("instinct");
+
+    mean_h_string += `${mean_h.toFixed(4)} `;
+    mean_e_string += `${mean_e.toFixed(4)} `;
 }
 
 function addFood() {

@@ -137,7 +137,7 @@ class Animal {
         }
     }
     getExploration() {
-        return 1;
+        return Math.pow(1 + this.dna[1], 2);
     }
     getHomesickness() {
         let d = getMagn(this.x, this.y);

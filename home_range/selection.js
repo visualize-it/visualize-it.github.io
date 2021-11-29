@@ -24,7 +24,7 @@ function recombine(dna1, dna2) {
     return new Gene(new_dna);
 }
 
-// user defined, based on how genes are structed
+// user defined, based on how genes are structured
 function mutate(gene) {
     let dna = gene.dna;
     let new_dna = [];
@@ -40,7 +40,7 @@ function mutate(gene) {
     return new Gene(new_dna)
 }
 
-// abstract
+// abstract, independent of scenario
 function naturalSelection(num = 1) {
     pool = [];
     for (let animal of animals) {
@@ -59,7 +59,7 @@ function naturalSelection(num = 1) {
     }
 }
 
-// abstract
+// abstract, independent of scenario
 function mate(parent1, parent2) {
     let recombined_gene = recombine(parent1.dna, parent2.dna);
     let mutated_gene = mutate(recombined_gene);

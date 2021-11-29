@@ -5,8 +5,8 @@ let mutation_rate = 0.2;
 let mutation_amplitude = 0.3;
 
 // user defined, based on scenario
-function calculateFitness(animal) {
-    return animal.lifespan / 100;
+function calculateFitness(entity) {
+    return entity.lifespan / 100;
 }
 
 // user defined, based on how genes are structured
@@ -41,21 +41,21 @@ function mutate(gene) {
 }
 
 // abstract, independent of scenario
-function naturalSelection(num = 1) {
+function naturalSelection(entities, num = 1) {
     pool = [];
-    for (let animal of animals) {
-        let fitness = Math.ceil(calculateFitness(animal));
+    for (let entity of entities) {
+        let fitness = Math.ceil(calculateFitness(entity));
 
         for (let i = 0; i < fitness; i++) {
-            pool.push(animal);
+            pool.push(entity);
         }
     }
 
     for (let i = 0; i < num; i++) {
         let parent1 = pool[Math.ceil(Math.random() * pool.length) - 1];
         let parent2 = pool[Math.ceil(Math.random() * pool.length) - 1];
-        let new_animal = mate(parent1, parent2);
-        animals.push(new_animal);
+        let new_entity = mate(parent1, parent2);
+        entities.push(new_entity);
     }
 }
 

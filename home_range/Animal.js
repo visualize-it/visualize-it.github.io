@@ -101,7 +101,7 @@ class Animal {
         this.hunger--;
         if (this.hunger <= 0) {
             animals = removeElement(animals, this);
-            naturalSelection(1);
+            naturalSelection(animals, 1);
             updateParams("hunger");
         }
 

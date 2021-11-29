@@ -50,7 +50,7 @@ function update() {
 
             if (!animal.targeting && animal_location.join(",") === predator_location.join(",")) {
                 animal.kill();
-                naturalSelection(1);
+                naturalSelection(animals, 1);
                 updateParams("kill");
                 murder_locations.push(new Murder(animal.x + canvas_width / 2, animal.y + canvas_height / 2));
                 break;

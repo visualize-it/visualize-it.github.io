@@ -6,6 +6,7 @@ K-means clustering
 Monte Carlo simulation for approximating pi
 Wave equation
 Perlin noise
+Photoelectric effect
 2D heat equation
 Bifurcations
 Doppler effect
@@ -25,6 +26,10 @@ Ideal gas
 Particle diffusion
 Kinetic theory of gases
 Orbital mechanics
+Kernals in Image processing
+SIR Model
+Phase portraits of differential equations
+Cryptography
 
 --- Already Implemented ---
 

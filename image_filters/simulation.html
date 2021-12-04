@@ -49,6 +49,12 @@
 
 <div class="text">
   <h2>Image Filters</h2>
+  <p>
+    Image filters work by applying a square matrix (known as a kernel) on the RGB values of an image. This interactive
+    tool allows you to apply a variety of kernels on a small collection of diverse images. You may also specify the
+    kernel
+    elements yourselves.
+  </p>
   <div class="container">
     <div class="row">
       <center>
@@ -61,6 +67,7 @@
             <option value="afghan">Afghan Girl</option>
             <option value="vangogh">Van Gogh's Starry Night</option>
             <option value="mysorepalace">Mysore Palace</option>
+            <option value="fjord">Fjord</option>
           </select>
         </div>
       </center>
@@ -179,9 +186,22 @@
       <div class="col s6 l4">
         <img class="responsive-img" id="mysorepalace" src="mysorepalace.jpg">
       </div>
+      <div class="col s6 l4">
+        <img class="responsive-img" id="fjord" src="fjord.jpg">
+      </div>
     </div>
   </div>
 
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>It takes some time to switch between images and filters</li>
+    <li>May lag on lower end devices</li>
+  </ol>
 
   <br />
   <hr />

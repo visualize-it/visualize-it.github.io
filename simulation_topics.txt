@@ -26,7 +26,6 @@ Ideal gas
 Particle diffusion
 Kinetic theory of gases
 Orbital mechanics
-Kernals in Image processing
 SIR Model
 Phase portraits of differential equations
 Cryptography
@@ -65,3 +64,4 @@ Polynomial Regression
 Soring algorithms 
 Natural selection
 Nuclear fusion
+Image filters

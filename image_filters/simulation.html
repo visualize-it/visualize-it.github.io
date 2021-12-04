@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Image Kernels | Visualize It</title>
+  <title>Image Filters | Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,16 +48,34 @@
 </body>
 
 <div class="text">
-  <h2>Image Kernels</h2>
-
+  <h2>Image Filters</h2>
+  <div class="container">
+    <div class="row">
+      <center>
+        <div class="input-field col s12 l6 push-l3">
+          <b>Choose an Image</b>
+          <select class="browser-default" id="image-select" onchange="updateParams('image-option')"
+            oninput="updateParams('image-option')">
+            <option value="building">Skyscrapers</option>
+            <option value="einstein">Albert Einstein</option>
+            <option value="afghan">Afghan Girl</option>
+            <option value="vangogh">Van Gogh's Starry Night</option>
+            <option value="mysorepalace">Mysore Palace</option>
+          </select>
+        </div>
+      </center>
+    </div>
+  </div>
   <br>
   <center>
     <div class="container">
       <div class="row">
         <div class="col s12 l6">
+          <b>Original Image</b>
           <canvas id="left-canvas"></canvas>
         </div>
         <div class="col s12 l6">
+          <b>Filtered Image</b>
           <canvas id="right-canvas"></canvas>
         </div>
       </div>
@@ -71,13 +89,20 @@
           <b>Choose a Kernel</b>
           <select class="browser-default" id="kernel-select" onchange="updateParams('kernel-option')"
             oninput="updateParams('kernel-option')">
-            <option value="identity">Identity</option>
+            <option value="boxblur">Box blur</option>
+            <option value="gaussianblur">Gaussian blur</option>
+            <option value="sharpen1">Sharpen 1</option>
+            <option value="sharpen2">Sharpen 2</option>
+            <option value="emboss">Emboss</option>
+            <option value="topsobel">Top Sobel</option>
+            <option value="bottomsobel">Bottom Sobel</option>
+            <option value="leftsobel">Left Sobel</option>
+            <option value="rightsobel">Right Sobel</option>
             <option value="edge1">Edge detection 1</option>
             <option value="edge2">Edge detection 2</option>
             <option value="edge3">Edge detection 3</option>
-            <option value="boxblur">Box blur</option>
-            <option value="gaussianblur">Gaussian blur</option>
-            <option value="sharpen">Sharpen</option>
+            <option value="horizontallines">Horizontal</option>
+            <option value="verticallines">Vertical</option>
           </select>
         </div>
       </center>
@@ -85,6 +110,7 @@
   </div>
   <br>
   <center>
+    <b>Or specify the kernel here:</b>
     <div class="container">
       <div class="row">
         <div class="col s4">
@@ -131,15 +157,31 @@
     </div>
   </center>
 
-  <center>
-    <div class="container">
-      <div class="row">
-        <div class="col s6 l4">
-          <img class="responsive-img" id="einstein" src="building.jpg">
-        </div>
+  <br>
+  <hr>
+  <br>
+
+  <h3>Images</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col s6 l4">
+        <img class="responsive-img" id="building" src="building.jpg">
+      </div>
+      <div class="col s6 l4">
+        <img class="responsive-img" id="einstein" src="einstein.jpg">
+      </div>
+      <div class="col s6 l4">
+        <img class="responsive-img" id="afghan" src="afghan.jpg">
+      </div>
+      <div class="col s6 l4">
+        <img class="responsive-img" id="vangogh" src="vangogh.jpg">
+      </div>
+      <div class="col s6 l4">
+        <img class="responsive-img" id="mysorepalace" src="mysorepalace.jpg">
       </div>
     </div>
-  </center>
+  </div>
+
 
   <br />
   <hr />

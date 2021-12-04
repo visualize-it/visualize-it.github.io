@@ -15,13 +15,15 @@ let left_context = left_canvas.getContext("2d");
 let right_canvas = document.getElementById("right-canvas");
 let right_context = right_canvas.getContext("2d");
 
+let building_image = document.getElementById("building");
 let einstein_image = document.getElementById("einstein");
 
 let kernel_inputs = document.getElementsByClassName("kernel-inputs");
 let kernel_select = document.getElementById("kernel-select");
+let image_select = document.getElementById("image-select");
 
 if (mobile) {
-    canvas_width = 0.9 * screen_width;
+    canvas_width = Math.floor(0.9 * screen_width);
 }
 else {
     canvas_width = Math.floor(0.3 * screen_width);

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Image Kernels | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="../helper.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="simulation.js" defer></script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h1 id="main-heading">Visualize It</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h2>Image Kernels</h2>
+
+  <br>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l6">
+          <canvas id="left-canvas"></canvas>
+        </div>
+        <div class="col s12 l6">
+          <canvas id="right-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </center>
+  <br>
+  <div class="container">
+    <div class="row">
+      <center>
+        <div class="input-field col s12 l6 push-l3">
+          <b>Choose a Kernel</b>
+          <select class="browser-default" id="kernel-select" onchange="updateParams('kernel-option')"
+            oninput="updateParams('kernel-option')">
+            <option value="identity">Identity</option>
+            <option value="edge1">Edge detection 1</option>
+            <option value="edge2">Edge detection 2</option>
+            <option value="edge3">Edge detection 3</option>
+            <option value="boxblur">Box blur</option>
+            <option value="gaussianblur">Gaussian blur</option>
+            <option value="sharpen">Sharpen</option>
+          </select>
+        </div>
+      </center>
+    </div>
+  </div>
+  <br>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+        <div class="col s4">
+          <input class="kernel-inputs" type="number" step="0.2" oninput="updateParams('kernel')"
+            onchange="updateParams('kernel')">
+        </div>
+      </div>
+    </div>
+  </center>
+
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col s6 l4">
+          <img class="responsive-img" id="einstein" src="building.jpg">
+        </div>
+      </div>
+    </div>
+  </center>
+
+  <br />
+  <hr />
+  <br />
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

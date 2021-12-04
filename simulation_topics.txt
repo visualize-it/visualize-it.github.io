@@ -30,6 +30,8 @@ Kernals in Image processing
 SIR Model
 Phase portraits of differential equations
 Cryptography
+Audio spectrograms
+SPectroanalysis
 
 --- Already Implemented ---
 

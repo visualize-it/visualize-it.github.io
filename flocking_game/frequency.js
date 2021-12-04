@@ -37,12 +37,12 @@ function drawFrequencies() {
 
     for(let i = 0; i < 10; i++) {
         for(let j = 0; j < 10; j++) {
-            freq_context.fillStyle = getGrayScale(frequencies[j][i] * unit_scale);
+            freq_context.fillStyle = getValue(frequencies[j][i] * unit_scale);
             freq_context.fillRect(i * unit_width, freq_canvas.height - j * unit_width, unit_width, unit_width);
         }
     }
 }
 
-function getGrayScale(num) {
+function getValue(num) {
     return `#${num.toString(16)}${num.toString(16)}${num.toString(16)}`;
 }

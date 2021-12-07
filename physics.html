@@ -2,14 +2,19 @@
 <html lang="en-US">
 
 <head>
-  <title>Physics | Visualize It</title>
+  <title>Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="View Scientific Concepts at work. Anytime. Anywhere">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Animate on Scroll -->
+  <link href="aos.css" rel="stylesheet">
+  <script src="aos.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -37,184 +42,218 @@
     </div>
   </nav>
 
-  <div class="text">
+  <br>
 
-    <h4>Topic: Physics</h4>
+  <div class="container">
+    <div class="row">
 
-    <br />
-    <hr />
-    <br />
+      <h2>Category: Physics</h2>
 
-    <h5 class="left-align">Effects of Special Relativity</h5>
-    <ol>
-      <li>Interactive simulation of effects of special relativity. All parameters can be altered</li>
-      <li>Time dilation, length contraction and relativistic doppler effect can be observed</li>
-      <li>Brief explanation of the above effects and inclusion of basic formulae</li>
-    </ol>
-    <center>
-      <a href="special_relativity/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-    <br>
-    <hr>
-    <br>
+      <br>
+      <hr>
+      <br>
 
-    <h5 class="left-align">Working of Quantum Logic Gates</h5>
-    <ol>
-      <li>Interactive simulation of a single quantum wire with any number of single-qubit, purely real logic gates</li>
-      <li>Gates available: Hadamard, Pauli-X and Pauli-Z</li>
-      <li>Amplitudes are adjustable. Standard inputs are also defined</li>
-      <li>Brief description of logic gates and measurement</li>
-    </ol>
-    <center>
-      <a href="quantum_logic/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Spring Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="spring motion" src="gifs/spring_motion.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Springs: the simplest non-linear physical system whose working is intuituvely obvious. Vary all parameters,
+          from spring constant to dispersion! View damped oscillations in action!
+        </p>
+        <center>
+          <a href="spring_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Projectile Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="projectile motion" src="images/projectile_motion.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          An everyday example of 2D motion. Explore projectile motion through the lens of a game. Try to hit the blue
+          target with the correct initial velocity and angle!
+        </p>
+        <center>
+          <a href="projectile_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Planetary Motion</h5>
-    <ol>
-      <li>Interactive simulation of gravitational interactions between any number of objects. All parameters can be
-        altered</li>
-      <li>Introduction to Universal Law of Gravitation and some of its concepts</li>
-      <li>Brief explanation of gravitational fields and potentials, along with their formulae</li>
-      <li>Discussion of Kepler's laws and of Stellar systems</li>
-      <li>Includes pre-defined initial simulation parameters of some planetary and stellar phenomena</li>
-    </ol>
-    <center>
-      <a href="planetary_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Planetary Motion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="planetary motion" src="gifs/planetary_motion.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          The Law of Universal Gravitation is aptly named. Put forth by Isaac Newton in 1687, it describes the motion of
+          every massive particle in the universe. Play around this framework with as many bodies as you like!
+        </p>
+        <center>
+          <a href="planetary_motion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Linear Momentum</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="linear momentum" src="gifs/linear_momentum.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          The conservation of linear momentum is a central topic in all avenues of Physics. Observe the computer AI
+          crush you repeatedly at Pong by using this concept!
+        </p>
+        <center>
+          <a href="linear_momentum/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Simulation of Spring Motion</h5>
-    <ol>
-      <li>Interactive simulation of spring motion. All parameters can be altered, including damping</li>
-      <li>Brief introduction to Simple Harmonic Motion</li>
-      <li>Practical demonstration of dependence of frequency of spring oscillations on spring constant and mass</li>
-      <li>Relationship of SHM with sines and cosines</li>
-      <li>Differences between ideal and actual conditions for spring motion</li>
-    </ol>
-    <center>
-      <a href="spring_motion\simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Heat Equation (1D)</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="heat diffusion equation" src="gifs/heat_equation_1d.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Observe how temperature changes across an unevenly heated bar! This also serves as a simulation for the
+          Diffusion equation, with heat being the diffused entity.
+        </p>
+        <center>
+          <a href="heat_equation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Nuclear Fusion</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="special relativity" src="gifs/nuclear_fusion.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          This simulation attempts to recreate the conditions under which Nuclear fusion takes place. Efficient and
+          sustainable nuclear fusion will be revolutionary to our energy sector and change the future of our species!
+        </p>
+        <center>
+          <a href="nuclear_fusion/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Operation of Heat Equation in One Dimension</h5>
-    <ol>
-      <li>Interactive simulation of operation of heat equation along a single dimension</li>
-      <li>Number of points and the conduction constant can be altered</li>
-      <li>Brief intuition about what the equation conveys</li>
-    </ol>
-    <center>
-      <a href="heat_equation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Special Relativity</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="special relativity" src="gifs/special_relativity.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Find out what Einstein's 1905 brain-child is about. Make your vehicle move as fast as you want (but within
+          physical limits) and view Time dilation, Length contraction and Relativistic Doppler Effect in action.
+        </p>
+        <center>
+          <a href="special_relativity/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Projectile Motion</h5>
-    <ol>
-      <li>Interactive simulation of projectile motion. All parameters can be altered</li>
-      <li>Brief introduction to Projectile Motion</li>
-      <li>Derivation of general equation of projectile motion, time of flight, maximum height and range</li>
-      <li>Demonstrating the conditions when maximum range and maximum possible heights are attained for a given initial
-        velocity</li>
-      <li>Also includes a target practice game!</li>
-    </ol>
-    <center>
-      <a href="projectile_motion\simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Conservation of Linear Momentum</h5>
-    <ol>
-      <li>Presented from the viewpoint of a Pong game</li>
-      <li>Brief explanation of conservation of linear momentum and reflection on a rigid and immovable object</li>
-      <li>Insight into working of the game. Calculated trajectory of the game is shown</li>
-    </ol>
-    <center>
-      <a href="linear_momentum/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Photoelectric Effect</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="#"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Graham's Law of Diffusion</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="#"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Simulation of Rutherford Scattering</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="#"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Behaviour of an Ideal Gas</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="#"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Quantum Logic Gates</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="special relativity" src="images/quantum.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Quantum Computers are expected to beat classical computers at solving certain classes of problems. They can
+          easily simulate quantum systems too. In this simulation, play with the building blocks of Quantum Circuits!
+        </p>
+        <center>
+          <a href="quantum_logic/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+    </div>
 
     <br>
     <hr>
     <br>
 
-    <h5 class="left-align">Simulation of Black Body Radiation</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="#"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+    <h2>Under Development</h2>
+
+    <div class="row">
+      <div class="col s12 l6">
+        <h3>Wave Equation</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Heat Equation in 2D</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Photoelectric Effect</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Doppler Effect</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Double Pendulum</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Fluids</h3>
+      </div>
+  
+      <div class="col s12 l6">
+        <h3>Ideal Gas</h3>
+      </div> 
+  
+      <div class="col s12 l6">
+        <h3>Boltzmann Distribution</h3>
+      </div> 
+  
+      <div class="col s12 l6">
+        <h3>Orbital Mechanics</h3>
+      </div> 
+  
+      <div class="col s12 l6">
+        <h3></h3>
+      </div> 
+    </div>
 
     <br>
     <hr>
-    <br>
 
-    <center>
-      <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-    </center>
+    <div class="text">
+      <center>
+        <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+      </center>
+    </div>
   </div>
+
 </body>
+
+<script>
+  AOS.init({
+    startEvent: 'load',
+  });
+</script>
 
 </html>

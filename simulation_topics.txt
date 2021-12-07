@@ -31,6 +31,8 @@ Phase portraits of differential equations
 Cryptography
 Audio spectrograms
 SPectroanalysis
+Boltzmann distribution in a lattice
+Gradient Descent
 
 --- Already Implemented ---
 

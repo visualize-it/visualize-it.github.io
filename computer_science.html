@@ -2,14 +2,19 @@
 <html lang="en-US">
 
 <head>
-  <title>Computer Science | Visualize It</title>
+  <title>Computer Science</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive simulations and visualizations of concepts related to Computer Science">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Animate on Scroll -->
+  <link href="aos.css" rel="stylesheet">
+  <script src="aos.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -18,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -37,73 +42,223 @@
     </div>
   </nav>
 
-  <div class="text">
+  <br>
 
-    <h4>Topic: Computer Science</h4>
+  <div class="container">
+    <div class="row">
 
-    <br />
-    <hr />
-    <br />
+      <h2>Category: Computer Science</h2>
 
-    <h5 class="left-align">Working of Maze Generation Algorithms</h5>
-    <ol>
-      <li>Real time operation of three maze generation algorithms</li>
-      <li>Brief description of maze generation algorithms and pseudocode of the ones showcased here</li>
-      <li>The showcased algorithms have also been analysed</li>
-    </ol>
-    <center>
-      <a href="maze_generation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <br>
+      <hr>
+      <br>
 
-    <br />
-    <hr />
-    <br />
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Sorting Algorithms</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="sorting algorithms" src="gifs/sorting_algorithms.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          View the working of 7 sorting algorithms, step by step, alongside some juicy info! This simulation also shows
+          you operational parameters like number of array accesses and comparisons.
+        </p>
+        <center>
+          <a href="sorting_algos/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Solution of Travelling Salesman problem using Brute Force</h5>
-    <ol>
-      <li>Simulation of brute force solution of the travelling salesman problem</li>
-      <li>Points can be randomly placed, or inserted at specific positions</li>
-      <li>All possible permutations are shown, along with the shortest path discovered until that instant</li>
-      <li>Brief introduction about the problem and its importance</li>
-    </ol>
-    <center>
-      <a href="travelling_salesman/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Bezier Curves</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img width="100%" class="responsive-img" alt="bezier curves" src="images/bezier_curves.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Computers use Bezier curve to render all text based elements. Further, they are widely used in designing and
+          computer graphics. Design your own curves using this simulation! Use as many control points as you wish!
+        </p>
+        <center>
+          <a href="bezier_curves/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br />
-    <hr />
-    <br />
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Maze Generation</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="maze generation" src="gifs/maze_generation.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Ever wondered how maze generation algorithms work? This simulation encompasses three maze generation
+          algorithms
+          (as of now). Also found brief description of the step-by-step working of these algorithm, along with their
+          pros and cons.
+        </p>
+        <center>
+          <a href="maze_generation/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Lexical Analysis in Action</h5>
-    <ol>
-      <li>A simple, working version of a lexical analyser</li>
-      <li>Brief introduction and insight into its working</li>
-      <li>Overview of a compiler</li>
-    </ol>
-    <center>
-      <a href="lexical_analysis/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Polynomial Regression</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="polynomial regression" src="images/polynomial_regression.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Polynomial Regression is the process of fitting a bunch of points to a polynomial of a given order. It
+          forms the basis for several Machine Learning algorithms. This simulation allows you to define your own points
+          and find the best fit using the polynomial of the given degree.
+        </p>
+        <center>
+          <a href="polynomial_regression/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br />
-    <hr />
-    <br />
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Travelling Salesman</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <center>
+          <img class="responsive-img" alt="travelling salesman" src="gifs/travelling_salesman.gif">
+        </center>
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          A salesman wants to cover all places of interest through the shortest path possible and without visiting the
+          same place twice. What path should he follow? This deceptively simple looking problem becomes extremely
+          diffucult to solve as the number of places increases!
+        </p>
+        <center>
+          <a href="travelling_salesman/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <h5 class="left-align">Visualization of Sorting Algorithms</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="sorting_algos/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Image Filters</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="polynomial regression" src="images/image_filters.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Simple matrix operations on RGB values of an image can transform various aspects of the image or yield useful
+          information. this interactive visualization allows you to apply your own kernels to a collection of
+          image. Also find some popularly used kernels.
+        </p>
+        <center>
+          <a href="image_filters/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <br />
-    <hr />
-    <br />
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Evolutionary Algorithm</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="natural selection" src="gifs/natural_selection.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          View the process behind the diversity of lifeforms we see today! This simulation utilizes an Evolutionary
+          Algorithm to select the boid with the best genes. Change the positions of the source, target and the obstacles
+          to build your own custom worlds!
+        </p>
+        <center>
+          <a href="natural_selection/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
 
-    <center>
-      <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-    </center>
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Lexical Analysis</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="polynomial regression" src="images/lexical.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Lexical Analysers convert user-written programs into tokens, before being passed on to the compiler. Explore
+          the working of a simple lexical analyser!
+        </p>
+        <center>
+          <a href="lexical_analysis/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <h2>Under Development</h2>
+
+    <div class="row">
+      <div class="col s12 l6">
+        <h3>Marching Squares</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Clustering</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Monte Carlo Simulation</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Perlin Noise</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Maze Solving</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Random Boolean Networks</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Compiler</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Cryptography</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Gradient Descent</h3>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="text">
+      <center>
+        <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+      </center>
+    </div>
   </div>
+
 </body>
+
+<script>
+  AOS.init({
+    startEvent: 'load',
+  });
+</script>
 
 </html>

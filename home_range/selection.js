@@ -41,7 +41,7 @@ function mutate(gene) {
 }
 
 // abstract, independent of scenario
-function naturalSelection(entities, num = 1) {
+function naturalSelection(entities, num_offspring) {
     pool = [];
     for (let entity of entities) {
         let fitness = Math.ceil(calculateFitness(entity));
@@ -51,7 +51,7 @@ function naturalSelection(entities, num = 1) {
         }
     }
 
-    for (let i = 0; i < num; i++) {
+    for (let i = 0; i < num_offspring; i++) {
         let parent1 = pool[Math.ceil(Math.random() * pool.length) - 1];
         let parent2 = pool[Math.ceil(Math.random() * pool.length) - 1];
         let new_entity = mate(parent1, parent2);
@@ -64,6 +64,7 @@ function mate(parent1, parent2) {
     let recombined_gene = recombine(parent1.dna, parent2.dna);
     let mutated_gene = mutate(recombined_gene);
 
+    // make sure new entity is within home range
     let distance = 2 * canvas_width;
     while (distance > d0) {
         x = Math.random() * canvas_width;

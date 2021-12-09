@@ -2,15 +2,19 @@
 <html lang="en-US">
 
 <head>
-  <title>Math | Visualize It</title>
+  <title>Mathematics | Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="description" content="View Scientific concepts at work. Anywhere. Anytime">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="View Scientific Concepts at work. Anytime. Anywhere">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!-- Animate on Scroll -->
+  <link href="aos.css" rel="stylesheet">
+  <script src="aos.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
@@ -38,165 +42,195 @@
     </div>
   </nav>
 
-  <div class="text">
+  <br>
 
-    <h4>Topic: Mathematics</h4>
+  <div class="container">
+    <div class="row">
 
-    <br />
-    <hr />
-    <br />
+      <h2>Category: Mathematics</h2>
 
-    <h5 class="left-align">Simulation of Mandelbrot Fractal</h5>
-    <ol>
-      <li>Interactive simulation of the Mandelbrot Fractal</li>
-      <li>Coloring scheme can be altered, viewing frame can be moved and rescaled</li>
-      <li>Brief description about the math and the computation involved</li>
-      <li>Predefined interesting regions within the Mandelbrot Set</li>
-      <li>Highly optimized, but sacrifices detail</li>
-    </ol>
-    <center>
-      <a href="mandelbrot_fractal/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+      <br>
+      <hr>
+      <br>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Trigonometric Functions</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="trigonometric functions" src="gifs/trig_functions.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Does trigonometry still bring in the sweats? Or do you want to intuitively understand them? Whatever be the
+          case, this interactive simulation provides a highly intuitive and visual understanding of all six
+          Trigonometric functions, their properties and identities.
+        </p>
+        <center>
+          <a href="trig_functions/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Collatz Conjecture</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="collatz conjecture" src="images/collatz_conjecture.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          The statement of the Collatz Conjecture is simple enough to be universally understood. Yet its proof eludes
+          the best of modern-day Mathematicians.
+        </p>
+        <center>
+          <a href="collatz_conjecture/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Mandelbrot Fractal</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="mandelbrot fractal" src="gifs/mandelbrot_fractal.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          The Mandelbrot Fractal ought to erase any doubts about the beauty of Math. View a plethora of gorgeous,
+          self-repeating patterns obtained from iterating a simple operation! Zoom in and explore the beauutiful sights.
+          Learn how it comes about.
+        </p>
+        <center>
+          <a href="mandelbrot_fractal/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Hilbert Curve</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="hilbert curve" src="gifs/hilbert_curve.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Is it possible to traverse through entire space with a line that doesn't cross itself? Hilbert curve
+          is a 2D space filling curve that does the job. Increase the order to see the curve progressively fill up the
+          entire space.
+        </p>
+        <center>
+          <a href="hilbert_curve/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Lorenz System</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="lorenz system" src="gifs/lorenz_system.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Ever come across the term "Butterfly Effect" in the context of chaos? It is generated by the Lorenz system of
+          equations. Vary the parameters a little and see the trajectory change a lot! Come across the set of equations
+          that generate these patterns.
+        </p>
+        <center>
+          <a href="lorenz_system/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Linear Transformations</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="linear transformations" src="gifs/linear_transformations.gif">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          Play around with the operation that is central to linear algebra. The coordinate system is your playground.
+          Scale, rotate and skew! Encounter rotation matrices and inverses. See what a matrix with zero determinant does
+          to the linear space.
+        </p>
+        <center>
+          <a href="linear_transformations/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Distribution of Primes</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="conic sections" src="images/prime_distribution.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          The distribution of prime numbers across intervals is a central problem in Number Theory, due to it's
+          applications in Cryptography. Infact, the proof of Riemann's Hypothesis is important due to the light it can
+          shed on prime distribution!
+        </p>
+        <center>
+          <a href="prime_counting/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+
+      <div class="col s12">
+        <h3 data-aos="zoom-in">Conic Sections</h3>
+        <br>
+      </div>
+      <div class="col s12 l6" data-aos="fade-right">
+        <img class="responsive-img" alt="conic sections" src="images/conic_sections.png">
+      </div>
+      <div class="col s12 l6" data-aos="fade-left">
+        <p class="flow-text">
+          A group of curves obtained by intersection a plane with a nappe/double cone <br> (Requires improvement)
+        </p>
+        <center>
+          <a href="conic_sections/simulation.html"><button class="btn purple darken-4">Visit</button></a>
+        </center>
+      </div>
+    </div>
 
     <br>
     <hr>
     <br>
 
-    <h5 class="left-align">Simulation of Solution of Lorenz System</h5>
-    <ol>
-      <li>Plots solution of the Lorenz system with respect to the given parameters</li>
-      <li>Parameters can be altered</li>
-      <li>Brief description about the Lorenz system and its importance</li>
-    </ol>
-    <center>
-      <a href="lorenz_system/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
+    <h2>Under Development</h2>
+
+    <div class="row">
+      <div class="col s12 l6">
+        <h3>Bifurcations</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Fourier Transforms</h3>
+      </div>
+
+      <div class="col s12 l6">
+        <h3>Factorisation</h3>
+      </div>
+    </div>
 
     <br>
     <hr>
-    <br>
 
-    <h5 class="left-align">Visualization of Conic Sections</h5>
-    <ol>
-      <li>Interactive simulation of conic sections in polar coordinate system. All parameters can be altered</li>
-      <li>Circles, ellipses, parabolae and hyperbolae can be drawn</li>
-      <li>Brief discussion on how they are obtained and their eccentricities</li>
-    </ol>
-    <center>
-      <a href="conic_sections\simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Rendering Hilbert Curves</h5>
-    <ol>
-      <li>Fast and Optimised renderer of pseudo Hilbert curves</li>
-      <li>Order can be changed</li>
-      <li>Iterative implementation and cascade rendering implies that higher order curves can be drawn</li>
-      <li>Brief description of the Hilbert curve and it's uses</li>
-    </ol>
-    <center>
-      <a href="hilbert_curve/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    
-
-    <h5 class="left-align">Visualization of Trigonometric Functions</h5>
-    <ol>
-      <li>Interactive presentation of all six trigonometric functions in a unit circle</li>
-      <li>Existence of trigonometric functions outside of triangles and for angles more than 90 degrees.</li>
-      <li>Intuition for values of trigonometric functions for multiples of 90 degrees</li>
-      <li>Showcasing the odd nature of Sine and even nature of Cosine</li>
-      <li>Visual proof of the three fundamental trigonometric identities</li>
-    </ol>
-    <center>
-      <a href="trig_functions\simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Visualization of Linear Transformations</h5>
-    <ol>
-      <li>Interactive simulation of a linear transformation in two dimensions</li>
-      <li>The matrix representing the linear transformation can be altered. Rotation matrices are automatically entered
-      </li>
-      <li>Brief description of linear transformations, determinant and inverse of a matrix</li>
-      <li>The effects of a linear transformation to a particular vector can be observed</li>
-    </ol>
-    <center>
-      <a href="linear_transformations/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Collatz Conjecture in Operation</h5>
-    <ol>
-      <li>View the path taken by iterating over natural numbers as they allegedly obey the Collatz conjecture</li>
-      <li>Starting number can be input. Stopping time and maximum value attained are displayed at the end</li>
-      <li>Brief description about its notoriety</li>
-    </ol>
-    <center>
-      <a href="collatz_conjecture/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Graphing the Prime Counting Function</h5>
-    <ol>
-      <li>Graphs the prime counting function until the given limit</li>
-      <li>Brief descripton about the infinitude of prime numbers</li>
-    </ol>
-    <center>
-      <a href="prime_counting/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Bifurcation Diagram of Logistic Map</h5>
-    <ol>
-      <li>Plots the bifurcation diagram of Logistic Map</li>
-      <li>Brief description of bifurcation diagrams</li>
-      <li>Insight into the working of the simulation</li>
-      <li>Made using Processing and written in 05.js</li>
-    </ol>
-    <center>
-      <a href="bifurcation_diagram/simulation.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <h5 class="left-align">Visualization of Algebraic Identities</h5>
-    <ol>
-      <li>Under development</li>
-    </ol>
-    <center>
-      <a href="algebraic_identities.html"><button class="btn purple darken-4">Visit</button></a>
-    </center>
-
-    <br>
-    <hr>
-    <br>
-
-    <center>
-      <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-    </center>
+    <div class="text">
+      <center>
+        <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+      </center>
+    </div>
   </div>
+
 </body>
+
+<script>
+  AOS.init({
+    startEvent: 'load',
+  });
+</script>
 
 </html>

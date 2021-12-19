@@ -15,6 +15,9 @@ let context = canvas.getContext("2d");
 let func_input = document.getElementById("func-input");
 let constant_input = document.getElementById("const-input");
 
+let res_input = document.getElementById("res-input");
+let scale_input = document.getElementById("scale-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }

@@ -34,6 +34,12 @@ function render() {
                 context.fillRect(j * res, i * res, res, res);
 
                 context.fillStyle = "#fff01f";
+
+                // basic
+                // if (scenario == 15) {
+                //     // context.fillRect(j * res, i * res, res, res);
+                // }
+
                 if (scenario == 0) {
 
                 }
@@ -64,15 +70,34 @@ function render() {
                     context.lineTo((j + 1) * res, (i + 1) * res);
                     context.fill();
                 }
+                else if (scenario == 5) {
+                    // from 1
+                    context.beginPath();
+                    context.moveTo(j * res, i * res);
+                    context.lineTo((j + 0.5) * res, i * res);
+                    context.lineTo(j * res, (i + 0.5) * res);
+                    context.lineTo(j * res, i * res);
+                    context.fill();
+
+                    // from 4
+                    context.beginPath();
+                    context.moveTo((j + 1) * res, (i + 1) * res);
+                    context.lineTo((j + 0.5) * res, (i + 1) * res);
+                    context.lineTo((j + 1) * res, (i + 0.5) * res);
+                    context.lineTo((j + 1) * res, (i + 1) * res);
+                    context.fill();
+                }
                 else if(scenario == 6) {
                     context.fillRect((j + 0.5) * res, i * res, res / 2, res);
                 }
                 else if(scenario == 7) {
                     context.beginPath();
-                    context.moveTo(j * res, (i + 1) * res);
-                    context.lineTo(j * res, (i + 0.5) * res);
+                    context.moveTo(j * res, i * res);
+                    context.lineTo((j + 1) * res, i * res);
+                    context.lineTo((j + 1) * res, (i + 1) * res);
                     context.lineTo((j + 0.5) * res, (i + 1) * res);
-                    context.lineTo(j * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 0.5) * res);
+                    context.moveTo(j * res, i * res);
                     context.fill();
                 }
                 else if(scenario == 8) {
@@ -86,11 +111,55 @@ function render() {
                 else if(scenario == 9) {
                     context.fillRect(j * res, i * res, res / 2, res);
                 }
-                else if(scenario == 11) {
+                else if (scenario == 10) {
+                    // from 8
+                    context.beginPath();
+                    context.moveTo(j * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 0.5) * res);
+                    context.lineTo((j + 0.5) * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 1) * res);
+                    context.fill();
 
+                    // from 2
+                    context.beginPath();
+                    context.moveTo((j + 1) * res, i * res);
+                    context.lineTo((j + 1) * res, (i + 0.5) * res);
+                    context.lineTo((j + 0.5) * res, i * res);
+                    context.lineTo((j + 1) * res, i * res);
+                    context.fill();
+                }
+                else if(scenario == 11) {
+                    context.beginPath();
+                    context.moveTo(j * res, i * res);
+                    context.lineTo((j + 1) * res, i * res);
+                    context.lineTo((j + 1) * res, (i + 0.5) * res);
+                    context.lineTo((j + 0.5) * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 1) * res);
+                    context.lineTo(j * res, i * res);
+                    context.fill();
                 }
                 else if(scenario == 12) {
                     context.fillRect(j * res, (i + 0.5) * res, res, res / 2);
+                }
+                else if (scenario == 13) {
+                    context.beginPath();
+                    context.moveTo(j * res, i * res);
+                    context.lineTo((j + 0.5) * res, i * res);
+                    context.lineTo((j + 1) * res, (i + 0.5) * res);
+                    context.lineTo((j + 1) * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 1) * res);
+                    context.lineTo(j * res, i * res);
+                    context.fill();
+                }
+                else if (scenario == 14) {
+                    context.beginPath();
+                    context.moveTo((j + 0.5) * res, i * res);
+                    context.lineTo((j + 1) * res, i * res);
+                    context.lineTo((j + 1) * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 1) * res);
+                    context.lineTo(j * res, (i + 0.5) * res);
+                    context.lineTo((j + 0.5) * res, i * res);
+                    context.fill();
                 }
                 else if (scenario == 15) {
                     context.fillRect(j * res, i * res, res, res);
@@ -120,16 +189,23 @@ function renderFunc() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "res") {
+        res = Number.parseInt(res_input.value);
+        makeGrid();
+        renderFunc();
+        render();
+    }
+    if (variable == "scale") {
+        scale = Number.parseFloat(scale_input.value);
+        if (mobile) {
+            scale = scale * 5;
+        }
+        renderFunc();
+        render();
+    }
 }
 
-function initParams() {
-    func = undefined;
-
-    res = 5;
-
-    scale = 0.01;
-
+function makeGrid() {
     grid = [];
     for (let j = 0; j * res <= canvas_height; j++) {
         new_row = [];
@@ -138,9 +214,30 @@ function initParams() {
         }
         grid.push(new_row);
     }
+}
+
+function initParams() {
+    func = undefined;
+
+    res_input.value = 4;
+    res = 4;
+
+    scale_input.value = 0.005;
+    scale = 0.005;
+    if (mobile) {
+        scale = scale * 5;
+    }
+
+    makeGrid();
 
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
+
+    func_input.value = "pow(pow(x, 2) + pow(y, 2) - 1, 3) + pow(x, 2) * pow(y, 3)"
+    constant_input.value = 0;
+
+    renderFunc();
+    render();
 }
 
 function getScenario(i, j) {
@@ -217,4 +314,4 @@ function drawAxes() {
 }
 
 // heart curve
-// pow(pow(x, 2) + pow(y, 2) - 1), 3) + pow(x, 2) * pow(y, 3)
+// pow(pow(x, 2) + pow(y, 2) - 1, 3) + pow(x, 2) * pow(y, 3)

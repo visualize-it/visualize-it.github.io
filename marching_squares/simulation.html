@@ -58,6 +58,16 @@
   <center>
     <div class="container">
       <div class="row">
+        <div class="col s12 l6">
+          Pixel Size:
+          <input id="res-input" type="range" min="1" max="10" step="1" oninput="updateParams('res')" onchange="updateParams('res')">
+        </div>
+        <div class="col s12 l6">
+          Zoom out:
+          <input id="scale-input" type="range" min="0.001" max="0.01" step="0.001" oninput="updateParams('scale')" onchange="updateParams('scale')">
+        </div>
+      </div>
+      <div class="row">
         <div class="col s9">
           <input id="func-input" type="text">
         </div>

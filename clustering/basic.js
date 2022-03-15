@@ -12,6 +12,10 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let num_display = document.getElementById("num-display");
+let num_input = document.getElementById("num-input");
+let cost_display = document.getElementById("cost-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }

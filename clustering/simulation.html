@@ -10,7 +10,7 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
@@ -27,7 +27,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -49,21 +49,80 @@
 
 <div class="text">
   <h2>Clustering</h2>
+  <p>Given a set of 'n' points in space, the k-means clustering algorithm attempts to classify 'n' points into 'k'
+    clusters such that the sum of distances of each point from the mean of it's respective cluster is minimized.
+    Although this simulation showcases k-means clustering in 2D space, it is can be easily extended to further
+    dimensions. Circles represent the points. Squares represent the (tentative) centroids of clusters.</p>
 
   <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button class="btn purple darken-4" onclick="initialise()">Init</button>
-    <button class="btn purple darken-4" onclick="clusterStep()">Step</button>
-    <button class="btn purple darken-4" onclick="clearPoints()">Clear</button>
-  </center>
-  
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l4">
+        <center>
+          <canvas id="canvas"></canvas>
+        </center>
+      </div>
+      <div class="col s12 l4 push-l4">
+        <center>
+          <p id="num-display"></p>
+          <input type="range" id="num-input" min="2" max="6" step="1" oninput="updateParams('num')"
+            onchange="updateParams('num')">
+          <button class="btn purple darken-4" onclick="clusterStep()">Iterate</button>
+          <button class="btn purple darken-4" onclick="resetCentroids()">Reset</button>
+          <button class="btn purple darken-4" onclick="clearPoints()">Clear</button>
+          <br>
+          <p id="cost-display"></p>
+          <br>
+          <hr>
+          <br>
+          <p>
+            Click on the screen to insert a point. Click on a point to remove it. Press 'Iterate' to progress the
+            clustering process. Press 'Reset' to restart the clustering process anew. Press 'Clear' to remove all
+            existing points
+          </p>
+        </center>
+      </div>
+    </div>
+  </div>
+
   <br />
   <hr />
   <br />
+
+  <h3>The Algorithm</h3>
+
+  <p>
+    Psuedocode of k-means clustering algorithm is as follows:
+  <ol>
+    <li>Randomly insert k centroids in the space.</li>
+    <li>Assign each point to the nearest centroid. All points assigned to the same centroid form a cluster. It is
+      imperative to verify that each centroid has atleast one point assigned to it. Otherwise, repeat the previous step.
+    </li>
+    <li>Within each cluster, compute it's centroid, and move the assigned centroid to the computed position</li>
+    <li>Repeat the previous step until the cost (sum of distances of each point from the centroid of it's respective
+      cluster) stops decreasing further.</li>
+  </ol>
+  It is not guaranteed that the algorithm will converge to a global minimum. It might get stuck in a local minimum, in
+  which case, the process must be restarted with a new set of initial centroids.
+  </p>
+
+  <br>
+  <hr>
+  <br>
+
+  <b>Note:</b>
+  <ol>
+    <li>
+      The metric used here is Euclidean distance
+    </li>
+    <li>
+      There is a bug that occurs with 6 clusters. Two of the centroids are of same color.
+    </li>
+  </ol>
+
+  <br>
+  <hr>
+  <br>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

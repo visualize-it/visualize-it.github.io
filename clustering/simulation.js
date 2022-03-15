@@ -5,32 +5,44 @@ let num_clusters;
 
 let point_radius, exclusion_radius;
 
+let initialized;
+
 function clusterStep() {
-    let new_centroids = [];
-
-    let centroid_x, centroid_y, num_points;
-    for (let i = 0; i < num_clusters; i++) {
-        centroid_x = 0;
-        centroid_y = 0;
-        num_points = 0;
-
-        for (let point of points) {
-            if (point.group == i) {
-                centroid_x += point.x;
-                centroid_y += point.y;
-                num_points++;
-            }
+    if (points.length > 0) {
+        if (!initialized) {
+            initialize();
+            initialized = true;
         }
-        centroid_x /= num_points;
-        centroid_y /= num_points;
+        else {
+            let new_centroids = [];
 
-        new_centroids.push({
-            x: centroid_x,
-            y: centroid_y
-        })
+            let centroid_x, centroid_y, num_points;
+            for (let i = 0; i < num_clusters; i++) {
+                centroid_x = 0;
+                centroid_y = 0;
+                num_points = 0;
+
+                for (let point of points) {
+                    if (point.group == i) {
+                        centroid_x += point.x;
+                        centroid_y += point.y;
+                        num_points++;
+                    }
+                }
+                centroid_x /= num_points;
+                centroid_y /= num_points;
+
+                new_centroids.push({
+                    x: centroid_x,
+                    y: centroid_y
+                })
+            }
+            centroids = new_centroids;
+            assignCentroids();
+            
+        }
     }
-    centroids = new_centroids;
-    assignCentroids();
+    calcCost();
 }
 
 function assignCentroids() {
@@ -48,45 +60,55 @@ function assignCentroids() {
         }
         point.group = nearest_centroid_index;
     }
-    assignColors();
-    console.log(points);
-    console.log(centroids);
-}
 
-function initProper() {
-    let group_counts = [];
-
+    let unassigned_centroids = [];
     for (let i = 0; i < num_clusters; i++) {
-        group_counts.push(0);
+        unassigned_centroids.push(true);
     }
 
     for (let point of points) {
-        group_counts[point.group]++;
+        unassigned_centroids[point.group] = false;
     }
 
-    for (let group_count of group_counts) {
-        if (group_count == 0) {
-            return false
+    for (let i = 0; i < num_clusters; i++) {
+        if(unassigned_centroids[i] == true) {
+            return false;
         }
     }
+
+    assignColors();
+    console.log(points);
+    console.log(centroids);
+
     return true;
 }
 
-function initialise() {
-    centroids = [];
+function calcCost() {
+    let cost = 0;
+    for (let point of points) {
+        cost += distanceBetweenPoints(point, centroids[point.group]);
+    }
+    cost_display.innerHTML = `Current cost: ${cost.toFixed(2)}`
+}
+
+function initialize() {
     let x, y;
-    for (let i = 0; i < num_clusters; i++) {
-        x = Math.random() * canvas_width;
-        y = Math.random() * canvas_height;
-        centroids.push({
-            x: x,
-            y: y
-        })
+
+    while (true) {
+        centroids = [];
+        for (let i = 0; i < num_clusters; i++) {
+            x = Math.random() * canvas_width;
+            y = Math.random() * canvas_height;
+            centroids.push({
+                x: x,
+                y: y
+            })
+        }
+        if (assignCentroids()) {
+            break;
+        }
     }
-    assignCentroids();
-    if (!initProper()) {
-        initialise();
-    }
+    
 }
 
 function update() {
@@ -131,10 +153,16 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "num") {
+        num_clusters = num_input.value;
+        num_display.innerHTML = `Number of Clusters: ${num_clusters}`;
+        resetCentroids();
+    }
 }
 
 function initParams() {
+    initialized = false;
+
     if (mobile) {
         point_radius = 5;
     }
@@ -143,11 +171,12 @@ function initParams() {
     }
     exclusion_radius = point_radius;
 
-    num_clusters = 2;
+    num_input.value = 2;
+    updateParams('num')
 }
 
 function assignColors() {
-    for (let i = 0; i < centroids.length; i++) {
+    for (let i = 0; i < num_clusters; i++) {
         centroids[i].color = getColor(i);
     }
 
@@ -164,6 +193,12 @@ function getColor(group) {
             return "#00ff00";
         case 2:
             return "#0000ff";
+        case 3:
+            return "#ffa500";
+        case 4:
+            return "#aaaaaa";
+        case 5:
+            return "#ffcocb"
     }
 }
 
@@ -185,11 +220,26 @@ function addPoint() {
             color: "#ffffff"
         });
     }
+    initialized = false;
 }
 
 function clearPoints() {
     points = [];
     centroids = [];
+    initialized = false;
+
+    calcCost();
+}
+
+function resetCentroids() {
+    centroids = [];
+    for (let point of points) {
+        point.group = -1;
+        point.color = "#ffffff";
+    }
+    initialized = false;
+
+    calcCost();
 }
 
 function distanceBetweenPoints(point1, point2) {

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Monte Carlo Simulation | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="../helper.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="simulation.js" defer></script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h1 id="main-heading">Visualize It</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h2>Monte Carlo Simulation</h2>
+  <p>A Monte Carlo simulation relies on repeated random sampling of objects from a distribution, and subsequent
+    operation of then, to generate numerical results. In this simulation, we utilize random sampling of 2D points from
+    an uniform distribution to estimate the value of pi. The circle has a unit radius, whereas the square has a length
+    of 2 distance units. If the points are appreciably random, and if we have generated enough number of points, then:</p>
+  \[ \frac{number \ of \ points \ inside \ unit \ circle}{total \ number \ of \ points} \approx \frac{Area \ of \ unit \
+  circle}{Total \ area} = \frac{\pi}{4} \]
+  \[ \implies \pi \approx 4 * \left(\frac{number \ of \ points \ inside \ unit \ circle}{total \ number \ of \ points}\right) \]
+
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l4">
+        <center>
+          <canvas id="canvas"></canvas>
+        </center>
+      </div>
+      <div class="col s12 l4 push-l4">
+        <center>
+          <p id="num-points"></p>
+          <p id="num-inside"></p>
+          <p id="pi-estimate"></p>
+          <br>
+          <hr>
+          <br>
+          <button class="btn purple darken-4" onclick="pauseToggle()" id="pause-toggle">Pause</button>
+          <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+        </center>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <br />
+  <hr />
+  <br />
+
+  <b>Note:</b>
+  <ol>
+    <li>After a 1000 points have been sampled, the estimated value of pi usually ranges between 3.12 and 3.16</li>
+  </ol>
+
+  <br>
+  <hr>
+  <br>
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

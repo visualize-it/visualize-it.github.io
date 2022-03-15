@@ -2,8 +2,6 @@
 
 Marching squares
 Collision detection algorithms
-K-means clustering
-Monte Carlo simulation for approximating pi
 Wave equation
 Perlin noise
 Photoelectric effect
@@ -67,3 +65,5 @@ Soring algorithms
 Natural selection
 Nuclear fusion
 Image filters
+K-means clustering
+Monte Carlo simulation for approximating pi

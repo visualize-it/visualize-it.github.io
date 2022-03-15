@@ -40,10 +40,8 @@ function render() {
                 //     // context.fillRect(j * res, i * res, res, res);
                 // }
 
-                if (scenario == 0) {
-
-                }
-                else if (scenario == 1) {
+                // advanced
+                if (scenario == 1 || scenario == 5) {
                     context.beginPath();
                     context.moveTo(j * res, i * res);
                     context.lineTo((j + 0.5) * res, i * res);
@@ -51,7 +49,7 @@ function render() {
                     context.lineTo(j * res, i * res);
                     context.fill();
                 }
-                else if (scenario == 2) {
+                if (scenario == 2 || scenario == 10) {
                     context.beginPath();
                     context.moveTo((j + 1) * res, i * res);
                     context.lineTo((j + 1) * res, (i + 0.5) * res);
@@ -59,10 +57,10 @@ function render() {
                     context.lineTo((j + 1) * res, i * res);
                     context.fill();
                 }
-                else if (scenario == 3) {
+                if (scenario == 3) {
                     context.fillRect(j * res, i * res, res, res / 2);
                 }
-                else if(scenario == 4) {
+                if(scenario == 4 || scenario == 5) {
                     context.beginPath();
                     context.moveTo((j + 1) * res, (i + 1) * res);
                     context.lineTo((j + 0.5) * res, (i + 1) * res);
@@ -70,27 +68,10 @@ function render() {
                     context.lineTo((j + 1) * res, (i + 1) * res);
                     context.fill();
                 }
-                else if (scenario == 5) {
-                    // from 1
-                    context.beginPath();
-                    context.moveTo(j * res, i * res);
-                    context.lineTo((j + 0.5) * res, i * res);
-                    context.lineTo(j * res, (i + 0.5) * res);
-                    context.lineTo(j * res, i * res);
-                    context.fill();
-
-                    // from 4
-                    context.beginPath();
-                    context.moveTo((j + 1) * res, (i + 1) * res);
-                    context.lineTo((j + 0.5) * res, (i + 1) * res);
-                    context.lineTo((j + 1) * res, (i + 0.5) * res);
-                    context.lineTo((j + 1) * res, (i + 1) * res);
-                    context.fill();
-                }
-                else if(scenario == 6) {
+                if(scenario == 6) {
                     context.fillRect((j + 0.5) * res, i * res, res / 2, res);
                 }
-                else if(scenario == 7) {
+                if(scenario == 7) {
                     context.beginPath();
                     context.moveTo(j * res, i * res);
                     context.lineTo((j + 1) * res, i * res);
@@ -100,7 +81,7 @@ function render() {
                     context.moveTo(j * res, i * res);
                     context.fill();
                 }
-                else if(scenario == 8) {
+                if(scenario == 8 || scenario == 10) {
                     context.beginPath();
                     context.moveTo(j * res, (i + 1) * res);
                     context.lineTo(j * res, (i + 0.5) * res);
@@ -108,27 +89,10 @@ function render() {
                     context.lineTo(j * res, (i + 1) * res);
                     context.fill();
                 }
-                else if(scenario == 9) {
+                if(scenario == 9) {
                     context.fillRect(j * res, i * res, res / 2, res);
                 }
-                else if (scenario == 10) {
-                    // from 8
-                    context.beginPath();
-                    context.moveTo(j * res, (i + 1) * res);
-                    context.lineTo(j * res, (i + 0.5) * res);
-                    context.lineTo((j + 0.5) * res, (i + 1) * res);
-                    context.lineTo(j * res, (i + 1) * res);
-                    context.fill();
-
-                    // from 2
-                    context.beginPath();
-                    context.moveTo((j + 1) * res, i * res);
-                    context.lineTo((j + 1) * res, (i + 0.5) * res);
-                    context.lineTo((j + 0.5) * res, i * res);
-                    context.lineTo((j + 1) * res, i * res);
-                    context.fill();
-                }
-                else if(scenario == 11) {
+                if(scenario == 11) {
                     context.beginPath();
                     context.moveTo(j * res, i * res);
                     context.lineTo((j + 1) * res, i * res);
@@ -138,10 +102,10 @@ function render() {
                     context.lineTo(j * res, i * res);
                     context.fill();
                 }
-                else if(scenario == 12) {
+                if(scenario == 12) {
                     context.fillRect(j * res, (i + 0.5) * res, res, res / 2);
                 }
-                else if (scenario == 13) {
+                if (scenario == 13) {
                     context.beginPath();
                     context.moveTo(j * res, i * res);
                     context.lineTo((j + 0.5) * res, i * res);
@@ -151,7 +115,7 @@ function render() {
                     context.lineTo(j * res, i * res);
                     context.fill();
                 }
-                else if (scenario == 14) {
+                if (scenario == 14) {
                     context.beginPath();
                     context.moveTo((j + 0.5) * res, i * res);
                     context.lineTo((j + 1) * res, i * res);
@@ -161,7 +125,7 @@ function render() {
                     context.lineTo((j + 0.5) * res, i * res);
                     context.fill();
                 }
-                else if (scenario == 15) {
+                if (scenario == 15) {
                     context.fillRect(j * res, i * res, res, res);
                 }
             }

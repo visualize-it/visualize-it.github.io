@@ -34,7 +34,7 @@ class Boid {
         this.velocity = Vector.getVelocityVector(this.theta);
     }
     update() {
-        this.position.add(Vector.scale(this.velocity, speed));
+        this.position.add(Vector.scale(this.velocity, move_speed));
 
         if (this.position.x < 0) {
             this.position.x = canvas_width;

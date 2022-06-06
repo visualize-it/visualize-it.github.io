@@ -1,8 +1,17 @@
 // constants
-let num_boids = 100;
-let repulsion_radius = 20;
-let speed = 1;
-let turning_speed = toRadian(10);
+let num_boids = 50;
+
+let move_speed = 1;
+let turning_speed = toRadian(5);
+
+let repulsion_radius = 30;
+let interaction_radius = 50;
+
+let orientation_weight = 0;
+let attraction_weight = 0;
+
+// conditions
+let boundary_interactions = true;
 
 // objects
 let boids = [];
@@ -13,25 +22,42 @@ let spoke_length = 5;
 let spoke_angle = toRadian(150);
 
 function update() {
-    replicateLandscape();   
+    replicateLandscape();
 
     for (let current_boid of boids) {
         let repelling_boids = getRepellingBoids(current_boid);
 
         if (repelling_boids.length > 0) {
-            console.log("Repulsion!");
             // repulsive interaction
-            let vector_sum = new Vector(0, 0);
+            let repulsion_sum = new Vector(0, 0);
 
             for (let repelling_boid of repelling_boids) {
-                let repelling_vector = Vector.subtract(repelling_boid.position, current_boid.position);
-                let magn = repelling_vector.getMagnitude();
-                vector_sum.add(Vector.scale(repelling_vector, 1 / magn));
+                let repelling_vector = Vector.normalise(Vector.subtract(repelling_boid.position, current_boid.position));
+                repulsion_sum.add(repelling_vector);
             }
-            vector_sum.negate();
-            current_boid.setVelocity(vector_sum);
+            required_velocity = new Vector(-repulsion_sum.x, -repulsion_sum.y);
+            current_boid.setVelocity(required_velocity);
         }
         else {
+            let interacting_boids = getInteractingBoids(current_boid);
+
+            if (interacting_boids.length > 0) {
+                let orientation_sum = new Vector(0, 0);
+                let attraction_sum = new Vector(0, 0);
+
+                for (let interacting_boid of interacting_boids) {
+                    orientation_sum.add(interacting_boid.velocity);
+
+                    let attracting_vector = Vector.normalise(Vector.subtract(interacting_boid.position, current_boid.position));
+                    attraction_sum.add(attracting_vector);
+                }
+
+                let required_direction = new Vector(0, 0);
+                required_direction.add(Vector.scale(orientation_sum, orientation_weight));
+                required_direction.add(Vector.scale(attraction_sum, attraction_weight));
+                required_direction.add(Vector.scale(current_boid.velocity, (1 - orientation_weight - attraction_weight)));
+                current_boid.setVelocity(required_direction);
+            }
         }
     }
 
@@ -72,18 +98,36 @@ function getRepellingBoids(boid) {
     return repelling_boids;
 }
 
-function replicateLandscape() {
-    translated_boids = [];
+function getInteractingBoids(boid) {
+    let interacting_boids = [];
 
-    translateLandscape(-canvas_width, -canvas_height);
-    translateLandscape(-canvas_width, 0);
-    translateLandscape(-canvas_width, canvas_height);
-    translateLandscape(0, -canvas_height);
-    translateLandscape(0, 0);
-    translateLandscape(0, canvas_height);
-    translateLandscape(canvas_width, -canvas_height);
-    translateLandscape(canvas_width, 0);
-    translateLandscape(canvas_width, canvas_height);
+    for (let other_boid of translated_boids) {
+        if (other_boid.position.x != boid.position.x || other_boid.position.y != boid.position.y) {
+            if (Vector.distanceBetween(boid.position, other_boid.position) < interaction_radius) {
+                interacting_boids.push(other_boid);
+            }
+        }
+    }
+    return interacting_boids;
+}
+
+function replicateLandscape() {
+    if (boundary_interactions) {
+        translated_boids = [];
+
+        translateLandscape(-canvas_width, -canvas_height);
+        translateLandscape(-canvas_width, 0);
+        translateLandscape(-canvas_width, canvas_height);
+        translateLandscape(0, -canvas_height);
+        translateLandscape(0, 0);
+        translateLandscape(0, canvas_height);
+        translateLandscape(canvas_width, -canvas_height);
+        translateLandscape(canvas_width, 0);
+        translateLandscape(canvas_width, canvas_height);
+    }
+    else {
+        translated_boids = boids;
+    }
 }
 
 function translateLandscape(x, y) {

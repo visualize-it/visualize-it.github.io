@@ -28,42 +28,46 @@ SIR Model
 Phase portraits of differential equations
 Cryptography
 Audio spectrograms
-SPectroanalysis
+Spectroanalysis
 Boltzmann distribution in a lattice
 Gradient Descent
+Ising Model
+Diffusion Limited Aggregation
+Lotka Volterra Equations
 
 --- Already Implemented ---
 
-Special relativity
-Maze generation algorithms
-Flocking Behaviour
-Trigonometric functions
-Mandelbrot fractal
-Lorenz system
-Spring motion
-Bezier curves
-Reaction diffusion system
-Conway's game of life
-Planetary motion
-Hilbert curves
-Travelling salesman
-Projectile motion
-Bell curve and Random walks
-Conservation of linear momentum
-1D heat equation
-Linear transforms
-Stroboscopic effect
-Collatz conjecture
-Conic sections
-Quantum logic gates
-Lexical analysis
-Verhulst model
-Distribution of Primes
-Contact Process
+Spring Motion
+Projectile Motion
+Planetary Motion
+Linear Momentum
+Heat Equation
+Nuclear Fusion
+Special Relativity
+Quantum Logic Gates
+
+Sorting Algorithms
+Bezier Curves
+Maze Generation
 Polynomial Regression
-Soring algorithms 
-Natural selection
-Nuclear fusion
-Image filters
-K-means clustering
-Monte Carlo simulation for approximating pi
+K-means Clustering
+Travelling Salesman
+Image Filters
+Evolutionary Algorithm
+Monte Carlo Simulation for approximating pi
+Lexical Analysis
+
+Trigonometric Functions
+Collatz Conjecture
+Mandelbrot Fractal
+Hilbert Curve
+Lorenz System
+Linear Transformations
+Distribution of Primes
+Conic Sections
+
+Flocking Behaviour
+Reaction Diffusion System
+Conway's Game of Life
+Bell Curve and Random Walks
+Contact Process

@@ -3,8 +3,6 @@ let canvas_width, canvas_height;
 let fps = 30, paused = false;
 let mobile;
 
-let dt = 1 / fps;
-
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
 } else {

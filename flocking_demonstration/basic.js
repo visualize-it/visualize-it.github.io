@@ -17,8 +17,13 @@ let num_display = document.getElementById("num-display");
 
 let speed_display = document.getElementById("speed-display");
 let speed_input = document.getElementById("speed-input");
+
+let radius_display = document.getElementById("radius-display");
+let radius_input = document.getElementById("radius-input");
+
 let orientation_display = document.getElementById("orientation-display");
 let orientation_input = document.getElementById("orientation-input");
+
 let attraction_display = document.getElementById("attraction-display");
 let attraction_input = document.getElementById("attraction-input");
 
@@ -59,6 +64,9 @@ function defaults() {
 
     speed_input.value = 1;
     updateParams("speed");
+
+    radius_input.value = 30;
+    updateParams("radius");
 
     orientation_input.value = 0.4;
     updateParams("orientation");

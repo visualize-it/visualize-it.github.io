@@ -7,7 +7,6 @@ class Boid {
     setVelocity(required_velocity) {
         // finite rotation speed
         let required_theta = required_velocity.getTheta();
-        console.log(toDegree(required_theta));
 
         if (Math.abs(required_theta - this.theta) < turning_speed) {
             this.theta = required_theta;

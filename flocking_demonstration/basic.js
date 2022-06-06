@@ -12,6 +12,16 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+let num_display = document.getElementById("num-display");
+
+let speed_display = document.getElementById("speed-display");
+let speed_input = document.getElementById("speed-input");
+let orientation_display = document.getElementById("orientation-display");
+let orientation_input = document.getElementById("orientation-input");
+let attraction_display = document.getElementById("attraction-display");
+let attraction_input = document.getElementById("attraction-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -38,9 +48,23 @@ function step() {
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaults();
     initParams();
     animate(step);
+}
+
+function defaults() {
+    updateParams("num");
+
+    speed_input.value = 1;
+    updateParams("speed");
+
+    orientation_input.value = 0.4;
+    updateParams("orientation");
+
+    attraction_input.value = 0.4;
+    updateParams("attraction");
 }
 
 let click_x, click_y, pressed;
@@ -118,4 +142,15 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function pauseToggle() {
+    if (paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
 }

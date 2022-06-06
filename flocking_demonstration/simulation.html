@@ -43,11 +43,29 @@
 
     <div class="container" style="width: 90%">
       <div class="row">
-        <div class="col s12 l9">
-          <canvas id="canvas"></canvas>
+        <div class="col s12 l8">
+          <center>
+            <canvas id="canvas"></canvas>
+          </center>
         </div>
-        <div class="col s12 l3">
-
+        <div class="col s12 l4">
+          <center>
+            <p>Simulation controls</p>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <hr>
+            <p id="num-display">Number of boids:</p>
+            <button class="btn purple darken-4" onclick="addBoid()">Add</button>
+            <button class="btn purple darken-4" onclick="removeBoid()">Remove</button>
+            <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
+            <hr>
+            <p id="speed-display">Speed of boids:</p>
+            <input id="speed-input" type="range" min="0.5" max="3" step="0.1" oninput="updateParams('speed')" onchange="updateParams('speed')">
+            <p id="orientation-display">Orientation weight:</p>
+            <input id="orientation-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('orientation')" onchange="updateParams('orientation')">
+            <p id="attraction-display">Attraction weight:</p>
+            <input id="attraction-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('attraction')" onchange="updateParams('attraction')">
+          </center>
         </div>
       </div>
     </div>

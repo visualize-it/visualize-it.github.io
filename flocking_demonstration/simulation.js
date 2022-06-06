@@ -10,7 +10,7 @@ let interaction_radius = 30;
 let orientation_weight = 0.4;
 let attraction_weight = 0.4;
 
-let noise_amp = toRadian(5);
+let noise_amp = toRadian(3);
 
 // conditions
 let boundary_interactions = true;
@@ -78,7 +78,26 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "num") {
+        num_display.innerHTML = `Number of boids: ${num_boids}`;
+    }
+    else if (variable == "speed") {
+        move_speed = parseFloat(speed_input.value);
+        speed_display.innerHTML = `Speed of boids: ${move_speed}`;
+    }
+    else if (variable == "orientation") {
+        orientation_weight = parseFloat(orientation_input.value);
+        orientation_display.innerHTML = `Orientation weight: ${orientation_weight}`;
+    }
+    if (variable == "attraction") {
+        attraction_weight = parseFloat(attraction_input.value);
+        attraction_display.innerHTML = `Attraction weight: ${attraction_weight}`;
+    }
+    if (orientation_weight + attraction_weight > 1) {
+        sum_weights = orientation_weight + attraction_weight;
+        orientation_weight /= sum_weights;
+        attraction_weight /= sum_weights;
+    }
 }
 
 function initParams() {
@@ -86,6 +105,32 @@ function initParams() {
 
     normalTest();
     // repulsionTest();
+}
+
+function addBoid() {
+    let random_x = Math.random() * canvas_width;
+    let random_y = Math.random() * canvas_height;
+    let random_theta = Math.random() * 2 * Math.PI - Math.PI;
+    boids.push(new Boid(random_x, random_y, random_theta));
+    num_boids += 1;
+
+    updateParams("num");
+}
+
+function removeBoid() {
+    if (boids.length > 0) {
+        boids.pop();
+        num_boids -= 1;
+    }
+
+    updateParams("num");
+}
+
+function clearBoids() {
+    boids = [];
+    translated_boids = [];
+    num_boids = 0;
+    updateParams("num");
 }
 
 function getRepellingBoids(boid) {

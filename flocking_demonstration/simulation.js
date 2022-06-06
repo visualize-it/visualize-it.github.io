@@ -4,11 +4,11 @@ let num_boids = 50;
 let move_speed = 1;
 let turning_speed = toRadian(10);
 
-let repulsion_radius = 16;
-let interaction_radius = 40;
+let repulsion_radius = 10;
+let interaction_radius = 30;
 
-let orientation_weight = 0;
-let attraction_weight = 0;
+let orientation_weight = 0.4;
+let attraction_weight = 0.4;
 
 let noise_amp = toRadian(5);
 
@@ -138,6 +138,10 @@ function translateLandscape(x, y) {
         let translated_boid = new Boid(boid.position.x + x, boid.position.y + y, boid.theta);
         translated_boids.push(translated_boid);
     }
+}
+
+function toDegree(radian) {
+    return radian * 180 / Math.PI;
 }
 
 function toRadian(degree) {

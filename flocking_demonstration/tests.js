@@ -2,7 +2,7 @@ function normalTest() {
     for (let i = 0; i < num_boids; i++) {
         let x = Math.random() * canvas_width;
         let y = Math.random() * canvas_height;
-        let theta = 2 * Math.PI * Math.random()
+        let theta = 2 * Math.PI * Math.random() - Math.PI;
         boids.push(new Boid(x, y, theta));
     }
 }

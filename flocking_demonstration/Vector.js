@@ -33,7 +33,7 @@ class Vector {
     }
     static scale(vector, scalar) {
         return new Vector(vector.x * scalar, vector.y * scalar);
-    }
+    } 
     static getVelocityVector(theta) {
         return new Vector(Math.cos(theta), Math.sin(theta));
     }

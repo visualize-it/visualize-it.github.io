@@ -2,16 +2,19 @@
 let num_boids = 50;
 
 let move_speed = 1;
-let turning_speed = toRadian(5);
+let turning_speed = toRadian(10);
 
-let repulsion_radius = 30;
-let interaction_radius = 50;
+let repulsion_radius = 16;
+let interaction_radius = 40;
 
 let orientation_weight = 0;
 let attraction_weight = 0;
 
+let noise_amp = toRadian(5);
+
 // conditions
 let boundary_interactions = true;
+let noise = true;
 
 // objects
 let boids = [];
@@ -28,7 +31,6 @@ function update() {
         let repelling_boids = getRepellingBoids(current_boid);
 
         if (repelling_boids.length > 0) {
-            // repulsive interaction
             let repulsion_sum = new Vector(0, 0);
 
             for (let repelling_boid of repelling_boids) {
@@ -41,7 +43,7 @@ function update() {
         else {
             let interacting_boids = getInteractingBoids(current_boid);
 
-            if (interacting_boids.length > 0) {
+            if (interacting_boids.length > 0 && (orientation_weight > 0 || attraction_weight > 0)) {
                 let orientation_sum = new Vector(0, 0);
                 let attraction_sum = new Vector(0, 0);
 
@@ -52,11 +54,11 @@ function update() {
                     attraction_sum.add(attracting_vector);
                 }
 
-                let required_direction = new Vector(0, 0);
-                required_direction.add(Vector.scale(orientation_sum, orientation_weight));
-                required_direction.add(Vector.scale(attraction_sum, attraction_weight));
-                required_direction.add(Vector.scale(current_boid.velocity, (1 - orientation_weight - attraction_weight)));
-                current_boid.setVelocity(required_direction);
+                let required_velocity = new Vector(0, 0);
+                required_velocity.add(Vector.scale(orientation_sum, orientation_weight));
+                required_velocity.add(Vector.scale(attraction_sum, attraction_weight));
+                required_velocity.add(Vector.scale(current_boid.velocity, (1 - orientation_weight - attraction_weight)));
+                current_boid.setVelocity(required_velocity);
             }
         }
     }
@@ -83,6 +85,7 @@ function initParams() {
     boids = [];
 
     normalTest();
+    // repulsionTest();
 }
 
 function getRepellingBoids(boid) {

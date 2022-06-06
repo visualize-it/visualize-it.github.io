@@ -4,8 +4,8 @@ class Boid {
         this.theta = theta;
         this.velocity = new Vector(Math.cos(theta), Math.sin(theta));
     }
-    setVelocity(velocity) {
-        let required_theta = velocity.getTheta();
+    setVelocity(required_velocity) {
+        let required_theta = required_velocity.getTheta();
         if (Math.abs(required_theta - this.theta) < turning_speed) {
             this.theta = required_theta;
         }
@@ -31,10 +31,14 @@ class Boid {
                 }
             }
         }
-        this.velocity = Vector.getVelocityVector(this.theta);
+        this.velocity = new Vector(Math.cos(this.theta), Math.sin(this.theta));
     }
     update() {
-        this.position.add(Vector.scale(this.velocity, move_speed));
+        if (noise) {
+            this.theta += noise_amp * Math.random() - noise_amp / 2;
+            this.velocity = new Vector(Math.cos(this.theta), Math.sin(this.theta));
+        }
+        this.position = Vector.add(this.position, Vector.scale(this.velocity, move_speed));
 
         if (this.position.x < 0) {
             this.position.x = canvas_width;

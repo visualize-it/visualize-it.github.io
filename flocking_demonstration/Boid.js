@@ -4,9 +4,12 @@ class Boid {
         this.theta = theta;
         this.velocity = new Vector(Math.cos(theta), Math.sin(theta));
     }
+    setVelocity(velocity) {
+        this.velocity = Vector.normalise(velocity);
+        this.theta = this.velocity.getTheta();
+    }
     update() {
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
+        this.position.add(Vector.scale(this.velocity, speed * dt));
 
         if (this.position.x < 0) {
             this.position.x = canvas_width;

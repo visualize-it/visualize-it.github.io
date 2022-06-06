@@ -1,7 +1,9 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
 let canvas_width, canvas_height;
-let fps = 24, paused = false;
+let fps = 30, paused = false;
 let mobile;
+
+let dt = 1 / fps;
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     mobile = true;
@@ -28,7 +30,7 @@ let animate = window.requestAnimationFrame
     || window.mozRequestAnimationFrame
     || function (callback) {
         window.setTimeout(callback, 1000 / fps);
-    };
+};
 
 function step() {
     if (!paused) {

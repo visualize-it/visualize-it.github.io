@@ -29,7 +29,7 @@ function getRepellingBoids(boid) {
 
     for (let other_boid of translated_boids) {
         if (other_boid.position.x != boid.position.x || other_boid.position.y != boid.position.y) {
-            if (Vector.distanceBetween(boid.position, other_boid.position) < repulsion_radius) {
+            if (Vector.distanceBetween(boid.position, other_boid.position) < repulsion_radius * boid_length) {
                 repelling_boids.push(other_boid);
             }
         }
@@ -42,7 +42,7 @@ function getInteractingBoids(boid) {
 
     for (let other_boid of translated_boids) {
         if (other_boid.position.x != boid.position.x || other_boid.position.y != boid.position.y) {
-            if (Vector.distanceBetween(boid.position, other_boid.position) < interaction_radius) {
+            if (Vector.distanceBetween(boid.position, other_boid.position) < interaction_radius * boid_length) {
                 interacting_boids.push(other_boid);
             }
         }

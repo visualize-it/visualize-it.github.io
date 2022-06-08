@@ -33,24 +33,12 @@ class Boid {
                     this.theta += turning_speed;
                 }
             }
-
-            // considers only direct approaches
-            // if (required_theta > this.theta) {
-            //     this.theta += turning_speed;
-            // }
-            // else {
-            //     this.theta -= turning_speed;
-            // }
         }
         this.velocity = new Vector(Math.cos(this.theta), Math.sin(this.theta));
-
-        // instant rotation
-        // this.theta = required_velocity.getTheta();
-        // this.velocity = Vector.normalise(required_velocity);
     }
     update() {
         if (noise) {
-            this.theta += noise_amp * Math.random() - noise_amp / 2;
+            this.theta += -noise_amp + (2 * noise_amp * Math.random());
 
             while (this.theta > Math.PI) {
                 this.theta -= 2 * Math.PI;

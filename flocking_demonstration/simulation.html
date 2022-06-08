@@ -56,16 +56,20 @@
             <button class="btn purple darken-4" onclick="removeBoid()">Remove</button>
             <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
             <hr>
-            <p id="speed-display">Speed of boids:</p>
+            <br>
+            <p style="margin:0px" id="speed-display">Speed of boids:</p>
             <input id="speed-input" type="range" min="0.5" max="3" step="0.1" oninput="updateParams('speed')"
               onchange="updateParams('speed')">
-            <p id="radius-display">Radius of interaction:</p>
-            <input id="radius-input" type="range" min="0" max="50" step="1" oninput="updateParams('radius')"
+            <p style="margin:0px" id="radius-display">Radius of interaction:</p>
+            <input id="radius-input" type="range" min="1" max="10" step="0.1" oninput="updateParams('radius')"
               onchange="updateParams('radius')">
-            <p id="orientation-display">Orientation weight:</p>
+            <p style="margin:0px" id="noise-display">Noise amplitude:</p>
+            <input id="noise-input" type="range" min="0" max="15" step="0.1" oninput="updateParams('noise')"
+              onchange="updateParams('noise')">
+            <p style="margin:0px" id="orientation-display">Orientation weight:</p>
             <input id="orientation-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('orientation')"
               onchange="updateParams('orientation')">
-            <p id="attraction-display">Attraction weight:</p>
+            <p style="margin:0px" id="attraction-display">Attraction weight:</p>
             <input id="attraction-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('attraction')"
               onchange="updateParams('attraction')">
           </center>

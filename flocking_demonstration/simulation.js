@@ -4,13 +4,13 @@ let num_boids = 50;
 let move_speed = 1;
 let turning_speed = toRadian(10);
 
-let repulsion_radius = 10;
-let interaction_radius = 30;
+let repulsion_radius = 1;
+let interaction_radius = 3;
 
 let orientation_weight = 0.4;
 let attraction_weight = 0.4;
 
-let noise_amp = toRadian(3);
+let noise_amp = toRadian(1.5);
 
 // conditions
 let boundary_interactions = true;
@@ -23,6 +23,7 @@ let translated_boids = [];
 // cosmetic
 let spoke_length = 5;
 let spoke_angle = toRadian(150);
+let boid_length = 2 * spoke_length;
 
 function update() {
     replicateLandscape();
@@ -72,6 +73,19 @@ function render() {
     context.fillStyle = "#000000";
     context.fillRect(0, 0, canvas_width, canvas_height);
 
+    if (boids.length > 0) {
+        context.fillStyle = "#666666";
+        context.beginPath();
+        context.arc(boids[0].position.x, boids[0].position.y, interaction_radius * boid_length, 0, 2 * Math.PI);
+        context.fill();
+
+        context.strokeStyle = "#ff0000";
+        context.lineWidth = 2;
+        context.beginPath();
+        context.arc(boids[0].position.x, boids[0].position.y, repulsion_radius * boid_length, 0, 2 * Math.PI);
+        context.stroke();
+    }
+
     for (let boid of boids) {
         boid.render();
     }
@@ -89,18 +103,29 @@ function updateParams(variable) {
         interaction_radius = parseFloat(radius_input.value);
         radius_display.innerHTML = `Radius of interaction: ${interaction_radius}`;
     }
+    if (variable == "noise") {
+        noise_amp = toRadian(parseFloat(noise_input.value));
+        noise_display.innerHTML = `Noise amplitude: ${noise_input.value}`;
+    }
     if (variable == "orientation") {
         orientation_weight = parseFloat(orientation_input.value);
         orientation_display.innerHTML = `Orientation weight: ${orientation_weight}`;
+
+        if (orientation_weight + attraction_weight > 1) {
+            attraction_weight = 1 - orientation_weight;
+            attraction_input.value = attraction_weight;
+            attraction_display.innerHTML = `Attraction weight: ${attraction_weight.toFixed(1)}`;
+        }
     }
     if (variable == "attraction") {
         attraction_weight = parseFloat(attraction_input.value);
         attraction_display.innerHTML = `Attraction weight: ${attraction_weight}`;
-    }
-    if (orientation_weight + attraction_weight > 1) {
-        sum_weights = orientation_weight + attraction_weight;
-        orientation_weight /= sum_weights;
-        attraction_weight /= sum_weights;
+
+        if (orientation_weight + attraction_weight > 1) {
+            orientation_weight = 1 - attraction_weight
+            orientation_input.value = orientation_weight;
+            orientation_display.innerHTML = `Orientation weight: ${orientation_weight.toFixed(1)}`;
+        }
     }
 }
 

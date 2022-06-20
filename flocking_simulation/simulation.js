@@ -74,10 +74,10 @@ function render() {
     context.fillRect(0, 0, canvas_width, canvas_height);
 
     if (boids.length > 0) {
-        context.fillStyle = "#666666";
+        context.strokeStyle = "#0000ff";
         context.beginPath();
         context.arc(boids[0].position.x, boids[0].position.y, interaction_radius * boid_length, 0, 2 * Math.PI);
-        context.fill();
+        context.stroke();
 
         context.strokeStyle = "#ff0000";
         context.lineWidth = 2;

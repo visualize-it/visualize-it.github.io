@@ -76,16 +76,20 @@
             <button class="btn purple darken-4" onclick="removeBoid()">Remove</button>
             <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
             <hr>
+            <b style="font-size:larger">Kinetic parameters</b>
             <br>
             <p style="margin:0px" id="speed-display">Speed of boids:</p>
             <input id="speed-input" type="range" min="0.5" max="3" step="0.1" oninput="updateParams('speed')"
               onchange="updateParams('speed')">
-            <p style="margin:0px" id="radius-display">Radius of interaction:</p>
-            <input id="radius-input" type="range" min="1" max="10" step="0.1" oninput="updateParams('radius')"
-              onchange="updateParams('radius')">
             <p style="margin:0px" id="noise-display">Noise amplitude:</p>
             <input id="noise-input" type="range" min="0" max="15" step="0.1" oninput="updateParams('noise')"
               onchange="updateParams('noise')">
+            <hr>
+            <b style="font-size:larger">Social interactions</b>
+            <br>
+            <p style="margin:0px" id="radius-display">Radius of interaction:</p>
+            <input id="radius-input" type="range" min="1" max="10" step="0.1" oninput="updateParams('radius')"
+              onchange="updateParams('radius')">
             <p style="margin:0px" id="orientation-display">Orientation weight:</p>
             <input id="orientation-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('orientation')"
               onchange="updateParams('orientation')">
@@ -110,16 +114,16 @@
     </p>
     <ol>
       <li>
-        <b>Repulsion:</b> If boid(s) are present within radii \(R_r\) of a boid, then the boid moves in a direction
-        away from the average direction of approach of other boid(s).
+        <b>Repulsion:</b> If boid(s) are present within radii \(R_r\) of a boid (indicated by red colored circle), then
+        the boid moves in a direction away from the average direction of approach of other boid(s).
       </li>
       <li>
         <b>Orientation:</b> Every boid tries to orient itself along the average direction of motion of the boids present
-        in it's circular neighbourhood \(R_i\).
+        in it's circular neighbourhood \(R_i\) (indicated by blue colored circle).
       </li>
       <li>
         <b>Attraction:</b> Every boid tries to move towards the centre of mass of the group of boids present in the same
-        circular neighbourhood as above (\(R_i\)).
+        circular neighbourhood as above (\(R_i\)) (indicated by blue colored circle).
       </li>
     </ol>
     <p>
@@ -132,7 +136,7 @@
       The speed of the boids, the radius of interaction \(R_i\), the noise amplitude, the orientation weight
       \(\omega_o\) and the attraction weight \(\omega_a\) can be modified in real-time. For demonstration purposes. The
       radius of repulsion \(R_r\) (depicted by a red circle) and the circular neighbourhood of interaction (depicted by
-      a gray circle) are shown for a single boid.
+      a blue circle) are shown for a single boid.
     </p>
 
     <br>

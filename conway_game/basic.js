@@ -1,5 +1,5 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let frame_time = 100;
+let fps = 10;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
@@ -11,8 +11,8 @@ let grid_button = document.getElementById("grid-button");
 let cell_slider = document.getElementById("cell-slider");
 let cell_display = document.getElementById("cell-display");
 
-let time_slider = document.getElementById("time-slider");
-let time_display = document.getElementById("time-display");
+let fps_slider = document.getElementById("fps-slider");
+let fps_display = document.getElementById("fps-display");
 
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -46,7 +46,7 @@ canvas.width = canvas_width;
 canvas.height = canvas_height;
 
 let animate = function (callback) {
-  window.setTimeout(callback, frame_time);
+  window.setTimeout(callback, 1000 / fps);
 };
 
 window.onload = function () {

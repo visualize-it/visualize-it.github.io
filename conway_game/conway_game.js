@@ -84,12 +84,12 @@ function updateParams(variable) {
 
     initCanvas();
   }
-  if (variable == "time") {
-    frame_time = time_slider.value;
-    time_display.innerHTML = `Time between frames: ${frame_time} ms`;
+  if (variable == "fps") {
+    fps = fps_slider.value;
+    fps_display.innerHTML = `Frames per second: ${fps}`;
 
     animate = function (callback) {
-      window.setTimeout(callback, frame_time);
+      window.setTimeout(callback, 1000 / fps);
     };
   }
 }
@@ -102,8 +102,8 @@ function initParams() {
 
   cell_slider.value = num_cells;
 
-  time_slider.value = frame_time;
-  updateParams("time");
+  fps_slider.value = fps;
+  updateParams("fps");
 
   initCanvas();
 
@@ -123,12 +123,6 @@ function toggle(i, j) {
   }
 }
 
-function resetCells() {
-  cells = new2dArray(num_cells);
-  neighbours = new2dArray(num_cells);
-  next_state = new2dArray(num_cells);
-}
-
 function initCanvas() {
   cell_length = canvas_width / num_cells;
   grid = [];
@@ -140,35 +134,4 @@ function initCanvas() {
 
   cell_display.innerHTML = `Number of cells per row/column: ${num_cells}`;
   resetCells();
-}
-
-function new2dArray(num) {
-  array = new Array(num);
-
-  for (let i = 0; i < num; i++) {
-    array[i] = new Array(num);
-  }
-
-  for (let i = 0; i < num; i++) {
-    for (let j = 0; j < num; j++) {
-      array[i][j] = 0;
-    }
-  }
-  return array;
-}
-
-function prepareNextState() {
-  for (let i = 0; i < num_cells; i++) {
-    for (let j = 0; j < num_cells; j++) {
-      next_state[i][j] = 0;
-    }
-  }
-}
-
-function copyNextState() {
-  for (let i = 0; i < num_cells; i++) {
-    for (let j = 0; j < num_cells; j++) {
-      cells[i][j] = next_state[i][j];
-    }
-  }
 }

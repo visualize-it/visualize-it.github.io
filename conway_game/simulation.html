@@ -14,6 +14,7 @@
   <script src="conway_game.js" defer></script>
   <script src="engine.js" defer></script>
   <script src="predef.js" defer></script>
+  <script src="utils.js" defer></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -76,9 +77,9 @@
           <input id="cell-slider" type="range" min="4" max="40" value="10" oninput="updateParams('cells')"
             onchange="updateParams('cells')" style="width: 80%">
           <br> <br>
-          <p id="time-display">Time between frames:</p>
-          <input id="time-slider" type="range" min="10" max="1000" step="10" oninput="updateParams('time')"
-            onchange="updateParams('time')" style="width: 80%">
+          <p id="fps-display">Frames per second:</p>
+          <input id="fps-slider" type="range" min="1" max="60" step="1" oninput="updateParams('fps')"
+            onchange="updateParams('fps')" style="width: 80%">
         </center>
       </div>
     </div>
@@ -91,7 +92,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col s12 l6">
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Steady States:</b> No change takes place. Every living cell has 2 or 3 neighbours and continues to co-exist
           forever
@@ -99,7 +100,8 @@
           <button class="btn purple darken-4" onclick="beehiveState()">Beehive</button>
           <button class="btn purple darken-4" onclick="loafState()">Loaf</button>
       </div>
-      <div class="col s12 l6">
+
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Oscillators:</b> Interchange between the same states periodically
           <br /><br />
@@ -108,9 +110,8 @@
         </center>
       </div>
     </div>
-    <br>
     <div class="row">
-      <div class="col s12 l6">
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Spaceships:</b> Move across the screen and periodically regain their original configuration
           <br /><br />
@@ -119,7 +120,7 @@
           <button class="btn purple darken-4" onclick="hwssState()">Big ship</button>
         </center>
       </div>
-      <div class="col s12 l6">
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Methulselahs:</b> Evolve for a long time before stabilizing
           <br> <br>
@@ -129,9 +130,8 @@
         </center>
       </div>
     </div>
-    <br>
     <div class="row">
-      <div class="col s12 l6">
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Glider Guns:</b> Periodically generate an infinite amount of gliders
           <br> <br>
@@ -139,7 +139,7 @@
           <button class="btn purple darken-4" onclick="simkinState()">Simkin</button>
         </center>
       </div>
-      <div class="col s12 l6">
+      <div class="col s12 l6" style="padding:15px;">
         <center>
           <b>Block layers:</b> Lay down 2x2 blocks as they propagate
           <br> <br>
@@ -153,6 +153,7 @@
   <hr />
 
   <h3>Rules of the Game</h3>
+  <br>
   <ol>
     <li>An alive cell dies of loneliness if it has none or only 1 living neighbour</li>
     <li>An alive cell dies of starvation if it has more than 3 living neighbours</li>
@@ -163,6 +164,7 @@
   <hr />
 
   <h3>Interesting Facts</h3>
+  <br>
   <ol>
     <li>It is possible to construct all elements of electronics in Conway's game of life: logic gates, counters, memory
       cells, etc. In fact, Turing-complete computers have been constructed within this world.</li>

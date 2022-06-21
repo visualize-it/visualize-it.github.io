@@ -1,5 +1,5 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
-let fps = 10;
+let frame_time = 100;
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
@@ -7,32 +7,38 @@ let context = canvas.getContext("2d");
 let pause_button = document.getElementById("pause-button");
 let border_toggle = document.getElementById("border-toggle");
 let grid_button = document.getElementById("grid-button");
+
 let cell_slider = document.getElementById("cell-slider");
+let cell_display = document.getElementById("cell-display");
+
+let time_slider = document.getElementById("time-slider");
+let time_display = document.getElementById("time-display");
+
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    mobile = true;
-    canvas.addEventListener("touchstart", function (e) {
-        getTouchPosition(canvas, e);
-  let touch = e.touches[0];
-  let mouseEvent = new MouseEvent("mousedown", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
-}, false);
+  mobile = true;
+  canvas.addEventListener("touchstart", function (e) {
+    getTouchPosition(canvas, e);
+    let touch = e.touches[0];
+    let mouseEvent = new MouseEvent("mousedown", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
 
 } else {
-    mobile = false;
-    canvas.addEventListener("mousedown", function(e) {
-      getMousePosition(canvas, e);
-    });
+  mobile = false;
+  canvas.addEventListener("mousedown", function (e) {
+    getMousePosition(canvas, e);
+  });
 }
 
 if (mobile) {
-    canvas_width = 0.95 * screen_width;
+  canvas_width = 0.95 * screen_width;
 }
 else {
-    canvas_width = 0.35 * screen_width;
+  canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width
 
@@ -40,20 +46,20 @@ canvas.width = canvas_width;
 canvas.height = canvas_height;
 
 let animate = function (callback) {
-        window.setTimeout(callback, 150);
+  window.setTimeout(callback, frame_time);
 };
 
-window.onload = function() {
-    initParams();
-    animate(step);
+window.onload = function () {
+  initParams();
+  animate(step);
 }
 
 function step() {
-    if(!isPaused) {
-      update();
-    }
-    render();
-    animate(step);
+  if (!isPaused) {
+    update();
+  }
+  render();
+  animate(step);
 }
 
 function getMousePosition(canvas, event) {
@@ -66,20 +72,26 @@ function getMousePosition(canvas, event) {
 function getTouchPosition(canvas, event) {
   var rect = canvas.getBoundingClientRect();
   click_x = event.touches[0].clientX - rect.left,
-  click_y = event.touches[0].clientY - rect.top
+    click_y = event.touches[0].clientY - rect.top
   manageClick();
 }
 
 function manageClick() {
   toggle(Math.floor(click_x / cell_length), Math.floor(click_y / cell_length));
-  if(!isPaused) {
+  if (!isPaused) {
     togglePause();
   }
 }
 
 function toggleGrid() {
-  grid_button.innerHTML = showGrid ? "Show Grid" : "Hide Grid";
-  showGrid = showGrid ? false : true;
+  if (showGrid) {
+    showGrid = false;
+    grid_button.innerHTML = "Show grid";
+  }
+  else {
+    showGrid = true;
+    grid_button.innerHTML = "Hide grid";
+  }
 }
 
 function togglePause() {
@@ -94,25 +106,25 @@ function toggleBorder() {
 
 function delaySet(delay) {
   animate = function (callback) {
-          window.setTimeout(callback, delay);
+    window.setTimeout(callback, delay);
   };
   animate(step);
 }
 
 function alwaysResume() {
-  if(isPaused) {
+  if (isPaused) {
     togglePause();
   }
 }
 
 function disableBorder() {
-  if(borderInteract) {
+  if (borderInteract) {
     toggleBorder();
   }
 }
 
 function enableBorder() {
-  if(!borderInteract) {
+  if (!borderInteract) {
     toggleBorder();
   }
 }
@@ -122,5 +134,5 @@ function configSlider() {
 }
 
 function scrollUp() {
-  window.scrollTo(0,250);
+  window.scrollTo(0, 250);
 }

@@ -22,7 +22,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -43,89 +43,116 @@
 </body>
 
 <div class="text">
-  <h4>Conway's Game of Life</h4>
-  <p>The most famous cellular automaton, Conway's game of life was was decvised by British Mathematician John Conway in 1970. It is a zero-player game, wherein the future is entirely decided by the initial state. The survival of each cell is decided by 4 simple rules</p>
+  <h2>Conway's Game of Life</h2>
+  <p>The most famous cellular automaton, Conway's game of life was was decvised by British Mathematician John Conway in
+    1970. It is a zero-player game, wherein the future is entirely decided by the initial state. The survival of each
+    cell is decided by 4 simple rules</p>
   <b>Instructions</b>
   <ol>
     <li>Touch a cell in order to toggle its state (dead/alive)</li>
     <li>Toggling a cell's state will automatically pause the simulation. Click on 'Resume' to continue</li>
     <li><b>On mobile phones, avoid touching the canvas while scrolling down</b></li>
   </ol>
-  <center>
-    <br/>
-    <canvas id="canvas"></canvas>
-    <br/>
-    <br/>
-    <button class="btn purple darken-4" id="pause-button" onclick="togglePause()">Pause</button>
-    <button class="btn purple darken-4" id="reset-button" onclick="resetCells()">Reset</button>
-    <button class="btn purple darken-4" id="grid-button" onclick="toggleGrid()">Hide Grid</button>
-    <br/><br/>
-    <button class="btn purple darken-4" id="border-toggle" onclick="toggleBorder()">Disable border interactions</button>
-    <p>Use the slider to change number of cells per row/column here (min: 4 and max: 40)</p>
-    <input id="cell-slider" type="range" min="4" max="40" value="10" oninput="updateParams('cells')" onchange="updateParams('cells')">
-    <br/>
-  </center>
 
-  <br />
+  <div class="container" style="width:90%">
+    <div class="row">
+      <div class="col s12 l8">
+        <br />
+        <canvas id="canvas"></canvas>
+        <br />
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <br />
+          <button class="btn purple darken-4" id="pause-button" onclick="togglePause()">Pause</button>
+          <button class="btn purple darken-4" id="reset-button" onclick="resetCells()">Reset</button>
+          <br> <br>
+          <button class="btn purple darken-4" id="grid-button" onclick="toggleGrid()">Show Grid</button>
+          <br /><br />
+          <button class="btn purple darken-4" id="border-toggle" onclick="toggleBorder()">Disable border
+            interactions</button>
+          <br> <br>
+          <p id="cell-display">Number of cells per row/column: </p>
+          <input id="cell-slider" type="range" min="4" max="40" value="10" oninput="updateParams('cells')"
+            onchange="updateParams('cells')" style="width: 80%">
+          <br> <br>
+          <p id="time-display">Time between frames:</p>
+          <input id="time-slider" type="range" min="10" max="1000" step="10" oninput="updateParams('time')"
+            onchange="updateParams('time')" style="width: 80%">
+        </center>
+      </div>
+    </div>
+  </div>
+
   <hr />
-  <br />
 
-  <h5>Predefined States</h5>
-  <ol>
-    <li><b>Steady States:</b> No change takes place. Every living cell has 2 or 3 neighbours and continues to co-exist forever:
-      <br/><br/>
-      <center>
-        <button class="btn purple darken-4" onclick="beehiveState()">Beehive</button>
-        <button class="btn purple darken-4" onclick="loafState()">Loaf</button>
-      </center>
-    </li>
-    <br/><br/>
-    <li><b>Oscillators:</b> Interchange between the same states periodically:
-      <br/><br/>
-      <center>
-        <button class="btn purple darken-4" onclick="pentaState()">Penta Decathlon</button>
-        <button class="btn purple darken-4" onclick="pulsarState()">Pulsar</button>
-      </center>
-    </li>
-    <br/><br/>
-    <li><b>Spaceships:</b> Move across the screen and periodically regain their original configuration:
-      <br/><br/>
-      <center>
-        <button class="btn purple darken-4" onclick="gliderState()">Glider</button>
-        <button class="btn purple darken-4" onclick="lwssState()">Small ship</button>
-        <button class="btn purple darken-4" onclick="hwssState()">Big ship</button>
-      </center>
-    </li>
-    <br/><br/>
-    <li><b>Methulselahs:</b> Evolve for a long time before stabilizing:
-      <center>
-        <button class="btn purple darken-4" onclick="acornState()">Acorn</button>
-        <button class="btn purple darken-4" onclick="diehardState()">Diehard</button>
-        <button class="btn purple darken-4" onclick="pentaminoState()">R-pentamino</button>
-      </center>
-    </li>
-    <br/><br/>
-    <li><b>Glider Guns:</b> Periodically generate an infinite amount of gliders:
-      <center>
-        <button class="btn purple darken-4" onclick="gosperState()">Gosper</button>
-        <button class="btn purple darken-4" onclick="simkinState()">Simkin</button>
-      </center>
-    </li>
-    <br/><br/>
-    <li><b>Block layers:</b> Lay down 2x2 blocks as they propagate:
-      <center>
-        <button class="btn purple darken-4" onclick="minimalState()">Minimal</button>
-        <button class="btn purple darken-4" onclick="fivexfiveState()">5x5</button>
-      </center>
-    </li>
-    <br/><br/>
-  </ol>
+  <h3>Predefined States</h3>
+  <br>
 
-  <br/>
-  <hr/>
-  <br/>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l6">
+        <center>
+          <b>Steady States:</b> No change takes place. Every living cell has 2 or 3 neighbours and continues to co-exist
+          forever
+          <br /><br />
+          <button class="btn purple darken-4" onclick="beehiveState()">Beehive</button>
+          <button class="btn purple darken-4" onclick="loafState()">Loaf</button>
+      </div>
+      <div class="col s12 l6">
+        <center>
+          <b>Oscillators:</b> Interchange between the same states periodically
+          <br /><br />
+          <button class="btn purple darken-4" onclick="pentaState()">Penta Decathlon</button>
+          <button class="btn purple darken-4" onclick="pulsarState()">Pulsar</button>
+        </center>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 l6">
+        <center>
+          <b>Spaceships:</b> Move across the screen and periodically regain their original configuration
+          <br /><br />
+          <button class="btn purple darken-4" onclick="gliderState()">Glider</button>
+          <button class="btn purple darken-4" onclick="lwssState()">Small ship</button>
+          <button class="btn purple darken-4" onclick="hwssState()">Big ship</button>
+        </center>
+      </div>
+      <div class="col s12 l6">
+        <center>
+          <b>Methulselahs:</b> Evolve for a long time before stabilizing
+          <br> <br>
+          <button class="btn purple darken-4" onclick="acornState()">Acorn</button>
+          <button class="btn purple darken-4" onclick="diehardState()">Diehard</button>
+          <button class="btn purple darken-4" onclick="pentaminoState()">R-pentamino</button>
+        </center>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col s12 l6">
+        <center>
+          <b>Glider Guns:</b> Periodically generate an infinite amount of gliders
+          <br> <br>
+          <button class="btn purple darken-4" onclick="gosperState()">Gosper</button>
+          <button class="btn purple darken-4" onclick="simkinState()">Simkin</button>
+        </center>
+      </div>
+      <div class="col s12 l6">
+        <center>
+          <b>Block layers:</b> Lay down 2x2 blocks as they propagate
+          <br> <br>
+          <button class="btn purple darken-4" onclick="minimalState()">Minimal</button>
+          <button class="btn purple darken-4" onclick="fivexfiveState()">5x5</button>
+        </center>
+      </div>
+    </div>
+  </div>
 
-  <h5>Rules of the Game</h5>
+  <hr />
+
+  <h3>Rules of the Game</h3>
   <ol>
     <li>An alive cell dies of loneliness if it has none or only 1 living neighbour</li>
     <li>An alive cell dies of starvation if it has more than 3 living neighbours</li>
@@ -133,30 +160,31 @@
     <li>A non-living cell becomes alive if it has exactly 3 living neighbours</li>
   </ol>
 
-  <br/>
-  <hr/>
-  <br/>
+  <hr />
 
-  <h5>Interesting Facts</h5>
+  <h3>Interesting Facts</h3>
   <ol>
-    <li>It is possible to construct all elements of electronics in Conway's game of life: logic gates, counters, memory cells, etc. In fact, Turing-complete computers have been constructed within this world.</li>
-    <li>It is possible to construct self-replicative entities within this game. A DNA-like record has also been used to store and propogate information.</li>
+    <li>It is possible to construct all elements of electronics in Conway's game of life: logic gates, counters, memory
+      cells, etc. In fact, Turing-complete computers have been constructed within this world.</li>
+    <li>It is possible to construct self-replicative entities within this game. A DNA-like record has also been used to
+      store and propogate information.</li>
     <li>This game can be simulated on a variety of 2D geometric figures like knots and Mobius strips.</li>
   </ol>
 
-  <br/>
-  <hr/>
-  <br/>
+  <hr />
+  <br />
 
   <b>Note:</b>
   <ol>
-    <li>Border interactions can be toggled using the enable/disable border interactions button. Some simulations: like the Gosper's glider gun, get interrupted when the Glider wraps around and destroys the gun</li>
-    <li>Accidently touching the canvas while scrolling down on a mobile will toggle the state of a cell and may disturb the ongoing simulation</li>
+    <li>Border interactions can be toggled using the enable/disable border interactions button. Some simulations: like
+      the Gosper's glider gun, get interrupted when the Glider wraps around and destroys the gun</li>
+    <li>Accidently touching the canvas while scrolling down on a mobile will toggle the state of a cell and may disturb
+      the ongoing simulation</li>
   </ol>
 
-  <br/>
-  <hr/>
-  <br/>
+  <br />
+  <hr />
+  <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

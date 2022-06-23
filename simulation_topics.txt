@@ -1,5 +1,17 @@
 --- To Be Implemented ---
 
+XY model
+Kuramoto model
+Collective Intelligence
+Percolation
+Ising Model
+Diffusion Limited Aggregation
+Lotka Volterra Equations
+Famous Fractals
+Pattern Formation
+Schelling model
+Swarm synchronization
+Swarming behaviour
 Marching squares
 Collision detection algorithms
 Wave equation
@@ -31,9 +43,6 @@ Audio spectrograms
 Spectroanalysis
 Boltzmann distribution in a lattice
 Gradient Descent
-Ising Model
-Diffusion Limited Aggregation
-Lotka Volterra Equations
 
 --- Already Implemented ---
 

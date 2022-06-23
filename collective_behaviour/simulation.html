@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Swarming Behaviour | Visualize It</title>
+  <title>Collective Behaviour | Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,29 +55,72 @@
   <h2>Collective Behaviour</h2>
 
   <div class="container" style="width: 90%">
+    <div style="background:black; padding: 15px; border: 2px red solid;">
+      <center>
+        <b style="font-size:larger">This real-time simulation is computationally complex and may induce unresponsiveness
+          on lower-end devices</b>
+      </center>
+    </div>
+    <br>
+
     <div class="row">
-      <div class="col s12 l8">
-        <center>
-          <canvas id="canvas"></canvas>
-        </center>
-      </div>
-      <div class="col s12 l4">
+      <div class="col s12 l7">
+        <canvas id="canvas"></canvas>
+        <br>
         <center>
           <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
           <button onclick="initParams()" class="btn purple darken-4">Restart</button>
+        </center>
+      </div>
+      <div class="col s12 l5">
+        <center>
+          <p id="polar-display"></p>
+          <p id="ang-display">Group angular momentum: </p>
           <hr>
-          <span id="speed-display"></span>
-          <input id="speed-input" type="range" min="1" max="5" step="0.1" oninput="updateParams('speed')"
-            onchange="updateParams('speed')">
-          <span id="repulsion-display"></span>
-          <input id="repulsion-input" type="range" min="1" max="5" step="0.2" oninput="updateParams('repulsion')"
-            onchange="updateParams('repulsion')">
-          <span id="orientation-display"></span>
-          <input id="orientation-input" type="range" min="1" max="10" step="0.2" oninput="updateParams('orientation')"
-            onchange="updateParams('orientation')">
-          <span id="attraction-display"></span>
-          <input id="attraction-input" type="range" min="1" max="10" step="0.2" oninput="updateParams('attraction')"
-            onchange="updateParams('attraction')">
+          <p id="num-display"></p>
+          <button class="btn purple darken-4" onclick="addBoids()">Add</button>
+          <button class="btn purple darken-4" onclick="removeBoids()">Remove</button>
+          <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
+          <hr>
+          <div class="col s12 l6">
+            <span id="repulsion-display"></span>
+            <input id="repulsion-input" type="range" min="0.5" max="5" step="0.1" oninput="updateParams('repulsion')"
+              onchange="updateParams('repulsion')">
+
+            <span id="orientation-display"></span>
+            <input id="orientation-input" type="range" min="1" max="15" step="0.2" oninput="updateParams('orientation')"
+              onchange="updateParams('orientation')">
+
+            <span id="attraction-display"></span>
+            <input id="attraction-input" type="range" min="1" max="15" step="0.2" oninput="updateParams('attraction')"
+              onchange="updateParams('attraction')">
+          </div>
+          <div class="col s12 l6">
+            <span id="moving-speed-display"></span>
+            <input id="moving-speed-input" type="range" min="1" max="10" step="0.2"
+              oninput="updateParams('moving-speed')" onchange="updateParams('moving-speed')">
+
+            <span id="turning-speed-display"></span>
+            <input id="turning-speed-input" type="range" min="0" max="20" step="1"
+              oninput="updateParams('turning-speed')" onchange="updateParams('turning-speed')">
+
+            <span id="noise-display"></span>
+            <input id="noise-input" type="range" min="0" max="20" step="1" oninput="updateParams('noise')"
+              onchange="updateParams('noise')">
+          </div>
+
+          <hr>
+
+          <div class="col s12 l6">
+            <span id="blind-display"></span>
+            <input id="blind-input" type="range" min="0" max="270" step="10" oninput="updateParams('blind')"
+              onchange="updateParams('blind')">
+          </div>
+
+          <div class="col s12 l6">
+            <button id="reflect-button" class="btn purple darken-4" onclick="toggleReflection()">Reflection: On</button>
+          </div>
+
         </center>
       </div>
     </div>

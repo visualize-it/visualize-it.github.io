@@ -12,10 +12,9 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
-let pause_button = document.getElementById("pause-button");
+let polar_display = document.getElementById("polar-display");
 
-let speed_display = document.getElementById("speed-display");
-let speed_input = document.getElementById("speed-input");
+let num_display = document.getElementById("num-display")
 
 let repulsion_display = document.getElementById("repulsion-display");
 let repulsion_input = document.getElementById("repulsion-input");
@@ -25,6 +24,18 @@ let orientation_input = document.getElementById("orientation-input");
 
 let attraction_display = document.getElementById("attraction-display");
 let attraction_input = document.getElementById("attraction-input");
+
+let moving_speed_display = document.getElementById("moving-speed-display");
+let moving_speed_input = document.getElementById("moving-speed-input");
+
+let turning_speed_display = document.getElementById("turning-speed-display");
+let turning_speed_input = document.getElementById("turning-speed-input");
+
+let noise_display = document.getElementById("noise-display");
+let noise_input = document.getElementById("noise-input");
+
+let reflect_button = document.getElementById("reflect-button");
+let pause_button = document.getElementById("pause-button");
 
 if (mobile) {
     canvas_width = 0.9 * screen_width;
@@ -59,10 +70,24 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    speed_input.value = 3;
+    if (mobile) {
+        spoke_length = 5;
+        characteristic_length = 8;
+    }
+    else {
+        spoke_length = 8;
+        characteristic_length = 12;
+    }
+
     repulsion_input.value = 1;
     orientation_input.value = 2;
-    attraction_input.value = 7;
+    attraction_input.value = 10;
+
+    moving_speed_input.value = 7;
+    turning_speed_input.value = 8;
+    noise_input.value = 10;
+
+    reflect = true;
 }
 
 let click_x, click_y, pressed;
@@ -150,5 +175,16 @@ function pauseToggle() {
     else {
         paused = true;
         pause_button.innerHTML = "Resume";
+    }
+}
+
+function toggleReflection() {
+    if (reflect) {
+        reflect = false;
+        reflect_button.innerHTML = "Reflect: Off";
+    }
+    else {
+        reflect = true;
+        reflect_button.innerHTML = "Reflect: On";
     }
 }

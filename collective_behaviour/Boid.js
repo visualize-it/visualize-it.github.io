@@ -37,8 +37,11 @@ class Boid {
 
     update() {
         // update position
-        this.position.x += moving_speed * this.velocity.x;
-        this.position.y += moving_speed * this.velocity.y;
+        let perturbation_direction = this.direction + 2 * noise_angle * (Math.random() - 0.5);
+        let perturbed_velocity = Vector.fromHeading(perturbation_direction);
+
+        this.position.x += moving_speed * perturbed_velocity.x;
+        this.position.y += moving_speed * perturbed_velocity.y;
 
         // check bounds
         if (reflect) {

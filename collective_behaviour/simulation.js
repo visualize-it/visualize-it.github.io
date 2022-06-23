@@ -3,22 +3,26 @@ let boids = [];
 let num_boids = 100;
 
 // speeds
-let moving_speed = 1;
-let turning_speed = toRadian(8);
+let moving_speed = 3;
+let turning_speed = 8;
 
 // lengths
-let characteristic_length = 12;
+let characteristic_length;
 let repulsion_radius, orientation_radius, attraction_radius;
 
 // angles
 let blind_angle = toRadian(180);
 let half_visible_angle = Math.PI - blind_angle / 2;
+let noise_angle;
 
 // states
-let reflect = false;
+let reflect;
+
+// misc
+let boid_step = 5;
 
 // cosmetic
-let spoke_length = 8;
+let spoke_length;
 let spoke_angle = toRadian(150);
 
 function update() {
@@ -26,8 +30,6 @@ function update() {
         let repelling_boids = getBoidsWithin(boid, repulsion_radius * characteristic_length);
 
         if (repelling_boids.length > 0) {
-            // console.log("Repelling!");
-
             // repulsion
             let repelling_vector_sum = new Vector(0, 0);
 
@@ -61,16 +63,13 @@ function update() {
             }
             attracting_vector_sum.normalize();
 
-            if (orienting_boids.length == 0) {
-                // console.log("Attracting!");
-                boid.setVelocity(attracting_vector_sum);
-            }
-            else if (attracting_boids.length == 0) {
-                // console.log("Orienting!")
+            if (orienting_boids.length > 0 && attracting_boids.length == 0) {
                 boid.setVelocity(orienting_vector_sum);
             }
+            else if (attracting_boids.length > 0 && orienting_boids.length == 0) {
+                boid.setVelocity(attracting_vector_sum);
+            }
             else if (orienting_boids.length > 0 && attracting_boids.length > 0) {
-                // console.log("Orienting and attracting!");
                 orienting_vector_sum.scale(0.5);
                 attracting_vector_sum.scale(0.5);
                 let required_velocity = Vector.add(orienting_vector_sum, attracting_vector_sum);
@@ -79,6 +78,13 @@ function update() {
             }
         }
     }
+
+    let polarization_sum = new Vector(0, 0);
+    for (let boid of boids) {
+        polarization_sum.add(boid.velocity);
+    }
+    let group_polarization = polarization_sum.magnitude() / num_boids;
+    polar_display.innerHTML = `Group polarization: ${group_polarization.toFixed(2)}`;
 
     for (let boid of boids) {
         boid.update();
@@ -95,9 +101,8 @@ function render() {
 }
 
 function updateParams(variable) {
-    if (variable == "speed") {
-        moving_speed= speed_input.value;
-        speed_display.innerHTML = `Speed: ${moving_speed}`;
+    if (variable == "num-boids") {
+        num_display.innerHTML = `Number of boids: ${num_boids}`;
     }
     if (variable == "repulsion") {
         repulsion_radius = repulsion_input.value;
@@ -111,52 +116,34 @@ function updateParams(variable) {
         attraction_radius = attraction_input.value;
         attraction_display.innerHTML = `Attraction radius: ${attraction_radius}`;
     }
+    if (variable == "moving-speed") {
+        moving_speed= moving_speed_input.value;
+        moving_speed_display.innerHTML = `Moving speed: ${moving_speed}`;
+    }
+    if (variable == "turning-speed") {
+        turning_speed = toRadian(turning_speed_input.value);
+        turning_speed_display.innerHTML = `Turning speed: ${turning_speed_input.value}°`;
+    }
+    if (variable == "noise") {
+        noise_angle = toRadian(noise_input.value);
+        noise_display.innerHTML = `Noise angle: ${noise_input.value}°`;
+    }
 }
 
 function initParams() {
     boids = [];
 
-    updateParams("speed");
+    updateParams("num-boids");
+
     updateParams("repulsion");
     updateParams("orientation");
     updateParams("attraction");
 
+    updateParams("moving-speed");
+    updateParams("turning-speed");
+    updateParams("noise");
+
     createRandomBoids(num_boids);
     // testRepulsion();
     // testBlindSpot();
-}
-
-function inBlindSpot(boid, other_boid) {
-    let approach_angle = Vector.subtract(other_boid.position, boid.position).getHeading()
-    let heading_angle = boid.velocity.getHeading();
-
-    // console.log(toDegree(approach_angle), toDegree(heading_angle));
-
-    if (heading_angle + half_visible_angle < approach_angle && heading_angle + half_visible_angle + blind_angle > approach_angle) {
-        // console.log("In blind spot!");
-        return true;
-    }
-    else if (heading_angle - half_visible_angle > approach_angle && heading_angle - half_visible_angle - blind_angle < approach_angle) {
-        // console.log("In blind spot!");
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function getBoidsWithin(boid, radius) {
-    let boids_within = [];
-    
-    for (let other_boid of boids) {
-        if (other_boid != boid) {
-            if (Vector.distanceBetween(boid.position, other_boid.position) < radius) {
-                if (!inBlindSpot(boid, other_boid)) {
-                    boids_within.push(other_boid);
-                }
-            }
-        }
-    }
-
-    return boids_within;
 }

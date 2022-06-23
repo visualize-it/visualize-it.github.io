@@ -46,6 +46,10 @@ class Vector {
         return vector1.x * vector2.x + vector1.y * vector2.y;
     }
 
+    static cross(vector1, vector2) {
+        return vector1.x * vector2.y - vector1.y * vector2.x;
+    }
+
     static angleBetween(vector1, vector2) {
         return Math.acos(Vector.dot(vector1, vector2) / (vector1.magnitude() * vector2.magnitude()));
     }

@@ -13,6 +13,7 @@ let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
 let polar_display = document.getElementById("polar-display");
+let ang_display = document.getElementById("ang-display");
 
 let num_display = document.getElementById("num-display")
 
@@ -33,6 +34,9 @@ let turning_speed_input = document.getElementById("turning-speed-input");
 
 let noise_display = document.getElementById("noise-display");
 let noise_input = document.getElementById("noise-input");
+
+let blind_display = document.getElementById("blind-display");
+let blind_input = document.getElementById("blind-input");
 
 let reflect_button = document.getElementById("reflect-button");
 let pause_button = document.getElementById("pause-button");
@@ -80,14 +84,22 @@ function defaultParams() {
     }
 
     repulsion_input.value = 1;
-    orientation_input.value = 2;
-    attraction_input.value = 10;
+    orientation_input.value = 3;
+    attraction_input.value = 15;
 
     moving_speed_input.value = 7;
     turning_speed_input.value = 8;
     noise_input.value = 10;
 
-    reflect = true;
+    blind_input.value = 90;
+    reflect = false;
+
+    if (reflect == false) {
+        reflect_button.innerHTML = "Reflect: Off";
+    }
+    else {
+        reflect_button.innerHTML = "Reflect: On";
+    }
 }
 
 let click_x, click_y, pressed;

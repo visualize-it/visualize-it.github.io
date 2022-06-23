@@ -11,7 +11,7 @@ let characteristic_length;
 let repulsion_radius, orientation_radius, attraction_radius;
 
 // angles
-let blind_angle = toRadian(180);
+let blind_angle;
 let half_visible_angle = Math.PI - blind_angle / 2;
 let noise_angle;
 
@@ -86,6 +86,19 @@ function update() {
     let group_polarization = polarization_sum.magnitude() / num_boids;
     polar_display.innerHTML = `Group polarization: ${group_polarization.toFixed(2)}`;
 
+    let position_sum = new Vector(0, 0);
+    for (let boid of boids) {
+        position_sum.add(boid.position);
+    }
+    let center_of_mass = new Vector(position_sum.x / num_boids, position_sum.y / num_boids);
+
+    let cross_product = 0;
+    for (let boid of boids) {
+        cross_product += Vector.cross(Vector.subtract(boid.position, center_of_mass), boid.velocity);
+    }
+    let group_angular_momentum = Math.abs(cross_product) / num_boids;
+    ang_display.innerHTML = `Group angular momentum: ${group_angular_momentum.toFixed(2)}`;
+
     for (let boid of boids) {
         boid.update();
     }
@@ -128,6 +141,11 @@ function updateParams(variable) {
         noise_angle = toRadian(noise_input.value);
         noise_display.innerHTML = `Noise angle: ${noise_input.value}°`;
     }
+    if (variable == "blind") {
+        blind_angle = toRadian(blind_input.value);
+        half_visible_angle = Math.PI - blind_angle / 2;
+        blind_display.innerHTML = `Blind angle: ${blind_input.value}°`;
+    }
 }
 
 function initParams() {
@@ -142,6 +160,8 @@ function initParams() {
     updateParams("moving-speed");
     updateParams("turning-speed");
     updateParams("noise");
+
+    updateParams("blind");
 
     createRandomBoids(num_boids);
     // testRepulsion();

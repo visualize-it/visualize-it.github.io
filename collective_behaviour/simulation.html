@@ -17,6 +17,7 @@
   <script src="Vector.js" defer></script>
   <script src="Boid.js" defer></script>
   <script src="tests.js" defer></script>
+  <script src="predefs.js" defer></script>
   <script src="simulation.js" defer></script>
 
 
@@ -54,10 +55,15 @@
 <div class="text">
   <h2>Collective Behaviour</h2>
 
+  <center>
+    <p>Basic interactions like repulsion, orientation and attraction can operate to different extents adn give rise to a
+      variety of dynamical behaviours.</p>
+  </center>
+
   <div class="container" style="width: 90%">
     <div style="background:black; padding: 15px; border: 2px red solid;">
       <center>
-        <b style="font-size:larger">This real-time simulation is computationally complex and may induce unresponsiveness
+        <b>This real-time simulation is computationally complex and may induce unresponsiveness
           on lower-end devices</b>
       </center>
     </div>
@@ -68,8 +74,7 @@
         <canvas id="canvas"></canvas>
         <br>
         <center>
-          <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
-          <button onclick="initParams()" class="btn purple darken-4">Restart</button>
+
         </center>
       </div>
       <div class="col s12 l5">
@@ -118,17 +123,99 @@
           </div>
 
           <div class="col s12 l6">
-            <button id="reflect-button" class="btn purple darken-4" onclick="toggleReflection()">Reflection: On</button>
+            <button id="reflect-button" class="btn purple darken-4" onclick="toggleReflection()"
+              style="margin-top: 20px;">Reflection: On</button>
           </div>
+
+          <hr>
+
+          <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
+          <button onclick="initParams()" class="btn purple darken-4">Restart</button>
 
         </center>
       </div>
     </div>
   </div>
 
+  <hr>
+
+  <h2>Dynamical Behaviours</h2>
+
+  <p>
+    Depending on how strengths of various interactions, as well as other parameters, the boids can exhibit four
+    different kinds of dynamical behaviour:
+  </p>
+
+  <ol>
+    <li>
+      <b>Swarming:</b> <br>
+      Characterised by low polarization and low angular momentum <br>
+      This behaviour is seen when attraction is the dominant force, and there is negligible orientation. Boids rotate in
+      random directions, repeatedly flying into the center of the group and then emerging out. This sort of
+      behaviour is often seen in insects.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="swarm()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Swirling:</b> <br>
+      Characterised by low polarization and high angular momentum <br>
+      This behaviour is observed when orientation is low whereas attraction is relatively high. Boids
+      revolve around a common point in the same direction. This behaviour is seen in fish.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="swirl()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Dynamic parallel grouping:</b> <br>
+      Characterised by high polarisation and low angular momentum <br>
+      This behaviour is observed when orientation is intermediate whereas attraction can be either intermediate or
+      relatively high. Boids move in groups called 'flocks'. Seen in birds and fish.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="dynamicParallel()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Highly parallel grouping:</b> <br>
+      Characterised by very high polarisation and low angular momentum <br>
+      This behaviour is seen when orientation is high.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="highlyParallel()">Observe</button>
+      </center>
+    </li>
+  </ol>
+
+
   <br />
   <hr />
   <br />
+
+  <b>Note:</b>
+
+  <ol>
+    <li>
+      This model is from the paper "Collective Memory and Spatial Sorting in Animal Groups" by Couzin et al. <a
+        href="https://doi.org/10.1006/jtbi.2002.3065">https://doi.org/10.1006/jtbi.2002.3065</a>
+    </li>
+    <li>Please check out my <a href="../flocking_simulation/simulation.html">flocking behaviour simulation</a> for
+      description about the interactions. Infact, "Dynamic parallel grouping" behaviour here is akin to flocking.</li>
+    <li>
+      Blind angle is the angle behind the boid wherein it cannot detect other boids.
+    </li>
+    <li>
+      If reflect is off, boids just teleport from one edge to another. Implementing a periodic boundary condition was
+      not possible owing to the complex nature of this simulation
+    </li>
+  </ol>
+
+  <hr>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

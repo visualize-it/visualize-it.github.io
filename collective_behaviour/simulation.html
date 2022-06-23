@@ -18,7 +18,7 @@
   <script src="Boid.js" defer></script>
   <script src="tests.js" defer></script>
   <script src="simulation.js" defer></script>
-  
+
 
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -62,7 +62,23 @@
         </center>
       </div>
       <div class="col s12 l4">
-        <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
+        <center>
+          <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
+          <button onclick="initParams()" class="btn purple darken-4">Restart</button>
+          <hr>
+          <span id="speed-display"></span>
+          <input id="speed-input" type="range" min="1" max="5" step="0.1" oninput="updateParams('speed')"
+            onchange="updateParams('speed')">
+          <span id="repulsion-display"></span>
+          <input id="repulsion-input" type="range" min="1" max="5" step="0.2" oninput="updateParams('repulsion')"
+            onchange="updateParams('repulsion')">
+          <span id="orientation-display"></span>
+          <input id="orientation-input" type="range" min="1" max="10" step="0.2" oninput="updateParams('orientation')"
+            onchange="updateParams('orientation')">
+          <span id="attraction-display"></span>
+          <input id="attraction-input" type="range" min="1" max="10" step="0.2" oninput="updateParams('attraction')"
+            onchange="updateParams('attraction')">
+        </center>
       </div>
     </div>
   </div>

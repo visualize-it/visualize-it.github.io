@@ -28,6 +28,15 @@ class Vector {
         this.y += vector.y;
     }
 
+    scale(scale) {
+        this.x *= scale;
+        this.y *= scale;
+    }
+
+    static add(vector1, vector2) {
+        return new Vector(vector1.x + vector2.x, vector1.y + vector2.y);
+    }
+
     static normalize(vector) {
         let magnitude = vector.magnitude();
         return new Vector(vector.x / magnitude, vector.y / magnitude);

@@ -41,25 +41,41 @@ class Boid {
         this.position.y += moving_speed * this.velocity.y;
 
         // check bounds
-        if (this.position.x < 0) {
-            this.position.x = 0;
-            this.velocity.x *= -1;
-            this.direction = this.velocity.getHeading();
+        if (reflect) {
+            if (this.position.x < 0) {
+                this.position.x = 0;
+                this.velocity.x *= -1;
+                this.direction = this.velocity.getHeading();
+            }
+            else if (this.position.x > canvas_width) {
+                this.position.x = canvas_width;
+                this.velocity.x *= -1;
+                this.direction = this.velocity.getHeading();
+            }
+            if (this.position.y < 0) {
+                this.position.y = 0;
+                this.velocity.y *= -1;
+                this.direction = this.velocity.getHeading();
+            }
+            else if (this.position.y > canvas_height) {
+                this.position.y = canvas_height;
+                this.velocity.y *= -1;
+                this.direction = this.velocity.getHeading();
+            }
         }
-        else if (this.position.x > canvas_width) {
-            this.position.x = canvas_width;
-            this.velocity.x *= -1;
-            this.direction = this.velocity.getHeading();
-        }
-        if (this.position.y < 0) {
-            this.position.y = 0;
-            this.velocity.y *= -1;
-            this.direction = this.velocity.getHeading();
-        }
-        else if (this.position.y > canvas_height) {
-            this.position.y = canvas_height;
-            this.velocity.y *= -1;
-            this.direction = this.velocity.getHeading();
+        else {
+            if (this.position.x < 0) {
+                this.position.x = canvas_width;
+            }
+            else if (this.position.x > canvas_width) {
+                this.position.x = 0;
+            }
+            if (this.position.y < 0) {
+                this.position.y = canvas_height;
+            }
+            else if (this.position.y > canvas_height) {
+                this.position.y = 0;
+            }
         }
 
         this.constrain_direction();

@@ -14,11 +14,23 @@ let context = canvas.getContext("2d");
 
 let pause_button = document.getElementById("pause-button");
 
+let speed_display = document.getElementById("speed-display");
+let speed_input = document.getElementById("speed-input");
+
+let repulsion_display = document.getElementById("repulsion-display");
+let repulsion_input = document.getElementById("repulsion-input");
+
+let orientation_display = document.getElementById("orientation-display");
+let orientation_input = document.getElementById("orientation-input");
+
+let attraction_display = document.getElementById("attraction-display");
+let attraction_input = document.getElementById("attraction-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.5 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width;
 
@@ -40,9 +52,17 @@ function step() {
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaultParams();
     initParams();
     animate(step);
+}
+
+function defaultParams() {
+    speed_input.value = 3;
+    repulsion_input.value = 1;
+    orientation_input.value = 2;
+    attraction_input.value = 7;
 }
 
 let click_x, click_y, pressed;

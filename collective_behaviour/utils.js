@@ -56,7 +56,7 @@ function getBoidsWithin(boid, radius) {
     
     for (let other_boid of boids) {
         if (other_boid != boid) {
-            if (Vector.distanceBetween(boid.position, other_boid.position) < radius) {
+            if (distanceBetween(boid.position, other_boid.position) < radius) {
                 if (!inBlindSpot(boid, other_boid)) {
                     boids_within.push(other_boid);
                 }
@@ -65,6 +65,10 @@ function getBoidsWithin(boid, radius) {
     }
 
     return boids_within;
+}
+
+function distanceBetween(vector1, vector2) {
+    return Math.sqrt(Math.pow(vector1.x - vector2.x, 2) + Math.pow(vector1.y - vector2.y, 2));
 }
 
 function toRadian(angle) {

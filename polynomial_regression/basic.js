@@ -21,7 +21,7 @@ if (mobile) {
     canvas_width = 0.8 * screen_width;
 }
 else {
-    canvas_width = 0.3 * screen_width;
+    canvas_width = 0.4 * screen_width;
 }
 canvas_height = canvas_width;
 

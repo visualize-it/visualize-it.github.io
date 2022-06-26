@@ -50,9 +50,65 @@
     salt.
   </p>
 
+  <center>
+    <div class="container" style="width: 100%">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="temp-display"></p>
+        </div>
+        <div class="col s12 l6">
+          <p id="z-display"></p>
+        </div>
+      </div>
+    </div>
+  </center>
+  <center>
+    <canvas id="canvas"></canvas>
+  </center>
+  <br>
+  <center>
+    <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+    <button class="btn purple darken-4" onclick="restart()">Restart</button>
+  </center>
+  <br>
+  <center>
+    <div class="container" style="width: 100%">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="n-display"></p>
+          <button class="btn purple darken-4" onclick="addNucleus(1)">Add</button>
+          <button class="btn purple darken-4" onclick="addNucleus(10)">Add (10)</button>
+          <button class="btn purple darken-4" onclick="removeNucleus(1)">Remove</button>
+          <button class="btn purple darken-4" onclick="clearNuclei()">Clear</button>
+        </div>
+        <div class="col s12 l6">
+          <br>
+          <span>Enter number of nuclei (and click on restart):</span>
+          <input id="n-input" type="number" placeholder="Not more than 1000">
+        </div>
+      </div>
+    </div>
+  </center>
+  <br>
+  <center>
+    <div class="container" style="width: 100%">
+      <div class="row">
+        <div class="col s12 l6">
+          <p id="heat-display"></p>
+          <input id="heat-input" type="range" min="0.01" max="0.2" step="0.01" oninput="updateParams('h')"
+            onchange="updateParams('h')">
+          <button class="btn purple darken-4" onclick="heatContainer()">Heat Container</button>
+        </div>
+        <div class="col s12 l6">
+          <br> <br>
+          <button id="ic-button" onclick="toggleIC()" class="btn purple darken-4">Turn on Intertial Confinement</button>
+        </div>
+      </div>
+    </div>
+  </center>
+
   <br>
   <hr>
-  <br>
 
   <h3>Components</h3>
   <ol>
@@ -116,70 +172,6 @@
 
   <br>
   <hr>
-  <br>
-
-  <h2>Simulation</h2>
-
-  <center>
-    <div class="container" style="width: 100%">
-      <div class="row">
-        <div class="col s12 l6">
-          <p id="temp-display"></p>
-        </div>
-        <div class="col s12 l6">
-          <p id="z-display"></p>
-        </div>
-      </div>
-    </div>
-  </center>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
-    <button class="btn purple darken-4" onclick="restart()">Restart</button>
-  </center>
-  <br>
-  <center>
-    <div class="container" style="width: 100%">
-      <div class="row">
-        <div class="col s12 l6">
-          <p id="n-display"></p>
-          <button class="btn purple darken-4" onclick="addNucleus(1)">Add</button>
-          <button class="btn purple darken-4" onclick="addNucleus(10)">Add (10)</button>
-          <button class="btn purple darken-4" onclick="removeNucleus(1)">Remove</button>
-          <button class="btn purple darken-4" onclick="clearNuclei()">Clear</button>
-        </div>
-        <div class="col s12 l6">
-          <br>
-          <span>Enter number of nuclei (and click on restart):</span>
-          <input id="n-input" type="number" placeholder="Not more than 1000">
-        </div>
-      </div>
-    </div>
-  </center>
-  <br>
-  <center>
-    <div class="container" style="width: 100%">
-      <div class="row">
-        <div class="col s12 l6">
-          <p id="heat-display"></p>
-          <input id="heat-input" type="range" min="0.01" max="0.2" step="0.01" oninput="updateParams('h')"
-            onchange="updateParams('h')">
-          <button class="btn purple darken-4" onclick="heatContainer()">Heat Container</button>
-        </div>
-        <div class="col s12 l6">
-          <br> <br>
-          <button id="ic-button" onclick="toggleIC()" class="btn purple darken-4">Turn on Intertial Confinement</button>
-        </div>
-      </div>
-    </div>
-  </center>
-
-  <br>
-  <hr>
-  <br>
 
   <h2>Analysis</h2>
 
@@ -236,7 +228,6 @@
 
   <br>
   <hr>
-  <br>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

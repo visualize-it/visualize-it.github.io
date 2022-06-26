@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <title>Rendering Hilbert Curves | Visualize It</title>
+    <title>Hilbert Curves | Visualize It</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,11 +22,11 @@
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-M95CKRP8HB');
+    gtag('config', 'G-M95CKRP8HB');
 </script>
 
 <body>
@@ -44,31 +44,33 @@
 </body>
 
 <div class="text">
-    <h4>Rendering Hilbert Curves</h4>
+    <h2>Hilbert Curves</h2>
 
-    <center>
-        <br>
-        <canvas id="canvas"></canvas>
-        <br>
-    </center>
-    <br>
-    <center>
-        <p id="order-display"></p>
-        <br>
-        <button class="btn purple darken-4" onclick="prev()">Previous</button>
-        <button class="btn purple darken-4" onclick="redraw()">Redraw</button>
-        <button class="btn purple darken-4" onclick="next()">Next</button>
-    </center>
+    <div class="container" style="width:90%">
+        <div class="row">
+            <div class="col s12 l8">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="col s12 l4">
+                <center>
+                    <p id="order-display"></p>
+                    <button class="btn purple darken-4" onclick="prev()">Previous</button>
+                    <button class="btn purple darken-4" onclick="redraw()">Redraw</button>
+                    <button class="btn purple darken-4" onclick="next()">Next</button>
+                </center>
+            </div>
+        </div>
+    </div>
 
     <br />
     <hr />
-    <br />
 
-    <h5 class="center">Brief Description</h5>
+    <h3 class="center">Brief Description</h3>
+
     <p>The Hilbert curve is a space-filling curve. The ideal Hilbert curve is achieved as the order tends to infinity.
         All other curves are pseudo Hilbert curves. "Space-filling curve" is one in which covers an entire 2D space.
-        There is also a mapping between the real numbers in [0, 1] and points on the 2D space. <br>
-        It is commonly used in games and rendering software.
+        There is also a mapping between the real numbers in [0, 1] and points on the 2D space. It is commonly used in
+        games and rendering software.
     </p>
 
     <br />
@@ -77,13 +79,13 @@
 
     <b>Note:</b>
     <ol>
-        <li>Although most implementation recursivly draw the curve, the above implementation uses an iterative method.</li>
+        <li>Although most implementation recursivly draw the curve, the above implementation uses an iterative method.
+        </li>
         <li>Hilbert curves of upto 10th order can be comfortably drawn on lower-end devices too.</li>
     </ol>
 
     <br />
     <hr />
-    <br />
 
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

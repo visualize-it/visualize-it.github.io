@@ -58,33 +58,37 @@
 <div class="text">
   <h2>Sorting Algorithms</h2>
 
-  <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button class="btn purple darken-4" onclick="initAlgo()">Restart</button>
-    <p id="params-display"></p>
-  </center>
-  <center>
-    <b>Choose a sorting algorithm algorithm</b>
-    <div class="input-field col s12 black">
-      <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
-        <option value="bubble">Bubble Sort</option>
-        <option value="selection">Selection Sort</option>
-        <option value="insertion">Insertion Sort</option>
-        <option value="cocktail">Cocktail Shaker Sort</option>
-        <option value="heap">Heap Sort</option>
-        <option value="quick">Quick Sort</option>
-        <option value="merge">Merge Sort</option>
-      </select>
+  <div class="container" style="width:90%">
+    <div class="row">
+      <div class="col s12 l8">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <p id="params-display"></p>
+          <br> <br>
+          <b>Choose a sorting algorithm:</b>
+          <div class="input-field col s12 black">
+            <select class="browser-default" id="algo-select" onchange="updateParams('algo')"
+              oninput="updateParams('algo')">
+              <option value="bubble">Bubble Sort</option>
+              <option value="selection">Selection Sort</option>
+              <option value="insertion">Insertion Sort</option>
+              <option value="cocktail">Cocktail Shaker Sort</option>
+              <option value="heap">Heap Sort</option>
+              <option value="quick">Quick Sort</option>
+              <option value="merge">Merge Sort</option>
+            </select>
+          </div>
+          <br>
+          <button class="btn purple darken-4" onclick="initAlgo()">Restart</button>
+        </center>
+      </div>
     </div>
-  </center>
+  </div>
 
   <br />
   <hr />
-  <br />
 
   <h3>Brief Description</h3>
   <ol>
@@ -159,7 +163,6 @@
 
   <br />
   <hr />
-  <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

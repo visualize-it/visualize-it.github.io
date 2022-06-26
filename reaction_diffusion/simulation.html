@@ -48,7 +48,7 @@
 </body>
 
 <div class="text">
-  <h4>Simulation of Reaction Diffusion System</h4>
+  <h2>Reaction Diffusion System</h2>
 
   <p>A reaction diffusion system is used to model the spatial dynamics of two chemical reactants 'A' and 'B'. Wherein A
     + 2B &rightarrow; 3B. The 'plate' is initially filled with 'A'. 'B' is added in a localised manner. Both chemical
@@ -66,68 +66,68 @@
     The mechanics of Reaction - Diffusion are important for chemical and biological morphogenesis. Infact, the texture
     of certain pigments found in nature are similar to the patterns obtained here. Black colour denotes high
     concentrations of 'B' whereas white colour signifies high concentration of 'A'</p>
-  <center>
-    <b>Set the Draw mode to 'ON' for introducing 'B' by clicking or touching the canvas. Pausing is recommended</b>
+
+  <div class="container" style="width:90%">
+    <center>
+      <b>Set the Draw mode to 'ON' for introducing 'B' by clicking or touching the canvas. Pausing is recommended</b>
+      <br>
+      <br>
+      <button id="brush-button" class="btn purple darken-4" onclick="brush()" clear>Toggle Draw mode: Off</button>
+    </center>
     <br>
-    <br>
-    <button class="btn purple darken-4" onclick="clearGrid()">Clear</button>
-    <button id="brush-button" class="btn purple darken-4" onclick="brush()" clear>Toggle Draw mode: Off</button>
-  </center>
-  <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button id="pause-button" class="btn purple darken-4" onclick="pause()">Pause</button>
-    <button class="btn purple darken-4" onclick="restart()">Restart</button>
-    <a download="pattern.png" href="" class="btn purple darken-4" onclick="downloadImage(this)">Download</a>
-  </center>
-  <br>
-  <center>
-    <p id="time-framerate-display"></p>
-  </center>
-  <br>
-  <center>
-    <b>A change to the below parameters gets immediately reflected. Pausing is recommended</b>
-    <div class="container" style="width: 100%">
-      <div class="row">
-        <div class="col s12 l6">
-          <p>Diffusion rate of A:</p>
-          <input id="diffusion-a-input" type="number" placeholder="D_A" oninput="updateValues()"
-            onchange="updateValues()">
-        </div>
-        <div class="col s12 l6">
-          <p>Diffusion rate of B:</p>
-          <input id="diffusion-b-input" type="number" placeholder="D_B" oninput="updateValues()"
-            onchange="updateValues()">
-        </div>
-        <div class="col s12 l6">
-          <p>Regeneration rate of A:</p>
-          <input id="increase-a-input" type="number" placeholder="r" oninput="updateValues()" onchange="updateValues()">
-        </div>
-        <div class="col s12 l6">
-          <p>Elimination rate of B:</p>
-          <input id="decrease-b-input" type="number" placeholder="e" oninput="updateValues()" onchange="updateValues()">
-        </div>
-        <div class="col s12 l6">
-          <p>Precision (value of &Delta;t):</p>
-          <input id="prec-input" type="number" placeholder="Δt" oninput="updateValues()" onchange="updateValues()">
-        </div>
-        <div class="col s12 l6">
-          <p>Iterations per frame:</p>
-          <input id="speed-input" type="number" placeholder="N" oninput="updateValues()" onchange="updateValues()">
-        </div>
+    <div class="row">
+      <div class="col s12 l7">
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="col s12 l5">
+        <center>
+          <p id="time-framerate-display"></p>
+          <button id="pause-button" class="btn purple darken-4" onclick="pause()">Pause</button>
+          <button class="btn purple darken-4" onclick="restart()">Restart</button>
+          <a download="pattern.png" href="" class="btn purple darken-4" onclick="downloadImage(this)">Download</a>
+          <br> <br>
+          <b>A change to the below parameters gets immediately reflected. Pausing is recommended:</b>
+          <br>
+          <div class="col s12 l6">
+            <p>Diffusion rate of A:</p>
+            <input id="diffusion-a-input" type="number" placeholder="D_A" oninput="updateValues()"
+              onchange="updateValues()">
+          </div>
+          <div class="col s12 l6">
+            <p>Diffusion rate of B:</p>
+            <input id="diffusion-b-input" type="number" placeholder="D_B" oninput="updateValues()"
+              onchange="updateValues()">
+          </div>
+          <div class="col s12 l6">
+            <p>Regeneration rate of A:</p>
+            <input id="increase-a-input" type="number" placeholder="r" oninput="updateValues()"
+              onchange="updateValues()">
+          </div>
+          <div class="col s12 l6">
+            <p>Elimination rate of B:</p>
+            <input id="decrease-b-input" type="number" placeholder="e" oninput="updateValues()"
+              onchange="updateValues()">
+          </div>
+          <div class="col s12 l6">
+            <p>Precision (value of &Delta;t):</p>
+            <input id="prec-input" type="number" placeholder="Δt" oninput="updateValues()" onchange="updateValues()">
+          </div>
+          <div class="col s12 l6">
+            <p>Iterations per frame:</p>
+            <input id="speed-input" type="number" placeholder="N" oninput="updateValues()" onchange="updateValues()">
+          </div>
+          <br> <br>
+          <button class="btn purple darken-4" onclick="defaults()">Restore Defaults</button>
+          <button class="btn purple darken-4" onclick="clearGrid()">Clear</button>
+        </center>
       </div>
     </div>
-    <button class="btn purple darken-4" onclick="defaults()">Restore to Defaults</button>
-  </center>
+  </div>
 
   <br />
   <hr />
-  <br />
 
-  <h5>Patterns</h5>
+  <h3>Patterns</h3>
 
   <center>
     <div class="container" style="width: 100%">
@@ -170,15 +170,16 @@
 
   <b>Note:</b>
   <ol>
-    <li>It takes a lot of time to form patterns. The simulation can be speeded up in two ways: 1) increasing &Delta;t or
-      2) Increasing iterations per frame. (1) results in loss of accuracy whereas (2) can cause serious lag in lower end
+    <li>It takes a lot of time to form patterns. The simulation can be speeded up in two ways: 1) increasing &Delta;t
+      or
+      2) Increasing iterations per frame. (1) results in loss of accuracy whereas (2) can cause serious lag in lower
+      end
       machines</li>
     <li>Simulation is still in alpha stage. Certain values of parameters can easily break it. </li>
   </ol>
 
   <br />
   <hr />
-  <br />
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

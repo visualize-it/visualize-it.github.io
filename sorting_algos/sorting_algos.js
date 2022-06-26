@@ -10,8 +10,8 @@ let iterations, comparisons, array_access, swaps;
 
 function update() {
     updateAlgo();
-    params_display.innerHTML = `Iterations: ${iterations}, Comparisons: ${comparisons}, `;
-    params_display.innerHTML += `Array accesses: ${array_access}, Swaps: ${swaps}`;
+    params_display.innerHTML = `Iterations: ${iterations}, Comparisons: ${comparisons}`;
+    params_display.innerHTML += ` <br>Array accesses: ${array_access}, Swaps: ${swaps}`;
 }
 
 function render() {

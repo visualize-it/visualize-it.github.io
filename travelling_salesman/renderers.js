@@ -47,22 +47,3 @@ function renderProgressBar()
         context.fillRect(padding, 0, bar_length * current_permutation / permutation_set.length, 2);
     }
 }
-
-function renderTarget()
-{
-    if(!solving)
-    {
-        context.strokeStyle = "#999999";
-        context.lineWidth = 1;
-
-        context.beginPath();
-        context.moveTo(padding + scale * x_bar.value, 0);
-        context.lineTo(padding + scale * x_bar.value, canvas_height);
-        context.stroke();
-
-        context.beginPath();
-        context.moveTo(0, padding + scale * (100 - y_bar.value));
-        context.lineTo(canvas_width, padding + scale * (100 - y_bar.value));
-        context.stroke();
-    }
-}

@@ -13,8 +13,8 @@
   <script src="basic.js" defer></script>
   <script src="linear_transformations.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -41,95 +41,98 @@
       </ul>
     </div>
   </nav>
-</body>
 
-<div class="text">
-  <h4>Linear Transformations</h4>
-  <p>A linear transformation is an operation that takes a point (x, y) to another point (x', y'). The below simulations
-    applies the given linear transformation to the entire coordinate system within [-5,-5] x [5,5]</p>
-  <br />
-  <center>
-    <canvas id="canvas"></canvas>
-    <br />
-    <br />
-    <button class="btn purple darken-4" onclick="reset()">Reset</button>
-    <button class="btn purple darken-4" onclick="transform()">Transform</button>
-    <br />
-    <br />
-    <div class="container" style="width: 100%">
-      <p>Transformation matrix</p>
+  <div class="text">
+    <h2>Linear Transformations</h2>
+    <p>A linear transformation is an operation that takes a point (x, y) to another point (x', y'). The below
+      simulations
+      applies the given linear transformation to the entire coordinate system within [-5,-5] x [5,5]</p>
+
+    <div class="container">
       <div class="row">
-        <div class="col m6">
-          <input placeholder="a" id="a-input" type="number">
+        <div class="col s12 l8">
+          <canvas id="canvas"></canvas>
         </div>
-        <div class="col m6">
-          <input placeholder="b" id="b-input" type="number">
+        <div class="col s12 l4">
+          <center>
+            <p>Transformation matrix:</p>
+            <div class="col s6">
+              <input placeholder="a" id="a-input" type="number">
+            </div>
+            <div class="col s6">
+              <input placeholder="b" id="b-input" type="number">
+            </div>
+            <div class="col s6">
+              <input placeholder="c" id="c-input" type="number">
+            </div>
+            <div class="col s6">
+              <input placeholder="d" id="d-input" type="number">
+            </div>
+            <br> <br>
+            <button class="btn purple darken-4" onclick="reset()">Reset</button>
+            <button class="btn purple darken-4" onclick="transform()">Transform</button>
+            <br> <br> <br>
+            <span>Rotate by (in degrees):</span>
+            <input style="width: 50%" oninput="checkAngle()" onchange="checkAngle()" placeholder="Angle (in degrees)"
+              id="r-input" text="number">
+            <br>
+            <button class="btn purple darken-4" onclick="clearValues()">Clear values</button>
+          </center>
         </div>
-        <div class="col m6">
-          <input placeholder="c" id="c-input" type="number">
-        </div>
-        <div class="col m6">
-          <input placeholder="d" id="d-input" type="number">
-        </div>
-        <br />
-        <br />
       </div>
     </div>
-    <p>Rotate by</p>
-    <input style="width: 50%" oninput="checkAngle()" onchange="checkAngle()" placeholder="Angle (in degrees)"
-      id="r-input" text="number">
-    <br />
-    <br />
-    <button class="btn purple darken-4" onclick="clearValues()">Clear values</button>
-  </center>
 
-  <br />
-  <hr />
-  <br />
+    <br>
+    <hr>
 
-  <h5>Brief description</h5>
-  <p>A linear transformation L represented by a matrix M [a, b; c, d] maps x to ax + by and y to cx + dy.</p>
-  \[ \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} ax + by \\ cx + dy \end{bmatrix} \]
-  <b>Rotation matrix</b>
-  <p>A matrix that rotates the coordinate system by an angle &theta; is given by:</p>
-  \[ \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} \]
-  <b>Determinant</b>
-  <p>The determinant of a 2x2 matrix is equal to ad - bc. Figuratively, the determinant determines the scaling of areas
-    that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant is negative
-    if the linear transformation flips the lattice points. A determinant of zero indicates that the linear
-    transformation reduces the coordinate system to a point or a line.</p>
-  <center>
-    <button onclick="zero_det()" class="btn purple darken-4">View example</button>
-  </center>
-  <b>Inverse of a matrix</b>
-  <p>The inverse of a matrix M is said to be a matrix M' if MM' = M'M = I. When applied as linear transformation, M'
-    allows us to reverse the effects of M and vice versa. If the determinant of a matrix is zero, then its inverse does
-    not exist and the linear transformation cannot be reversed. For a 2x2 matrix M \( \begin{bmatrix} a & b \\ c & d \end{bmatrix} \), its inverse is given by:</p>
+    <h3>Brief description</h3>
+    <p>A linear transformation L represented by a matrix M [a, b; c, d] maps x to ax + by and y to cx + dy.</p>
+    \[ \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} ax + by \\ cx
+    + dy \end{bmatrix} \]
+    <b>Rotation matrix</b>
+    <p>A matrix that rotates the coordinate system by an angle &theta; is given by:</p>
+    \[ \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} \]
+    <b>Determinant</b>
+    <p>The determinant of a 2x2 matrix is equal to ad - bc. Figuratively, the determinant determines the scaling of
+      areas
+      that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant is
+      negative
+      if the linear transformation flips the lattice points. A determinant of zero indicates that the linear
+      transformation reduces the coordinate system to a point or a line.</p>
+    <center>
+      <button onclick="zero_det()" class="btn purple darken-4">View example</button>
+    </center>
+    <b>Inverse of a matrix</b>
+    <p>The inverse of a matrix M is said to be a matrix M' if MM' = M'M = I. When applied as linear transformation, M'
+      allows us to reverse the effects of M and vice versa. If the determinant of a matrix is zero, then its inverse
+      does
+      not exist and the linear transformation cannot be reversed. For a 2x2 matrix M \( \begin{bmatrix} a & b \\ c & d
+      \end{bmatrix} \), its inverse is given by:</p>
     \[ M^{-1} = \frac{1}{|M|} \begin{bmatrix} d & -c \\ -b & a \end{bmatrix} \]
-  <p>Clicking on the following button will lead to calculation of inverse of the current
-    matrix and its application.</p>
-  <center>
-    <button onclick="invert()" class="btn purple darken-4">Invert</button>
-  </center>
-  <br />
-  <hr />
-  <br />
+    <p>Clicking on the following button will lead to calculation of inverse of the current
+      matrix and its application.</p>
+    <center>
+      <button onclick="invert()" class="btn purple darken-4">Invert</button>
+    </center>
+    <br>
+    <hr>
+    <br>
 
-  <b>Note:</b>
+    <b>Note:</b>
 
-  <ol>
-    <li>The simulation involves heavy computation during transformation and may lag on some devices.</li>
-    <li>Although also seen, the coordinate system actually extends to [-10,-10] x [10,10] in order to account for
-      down-scaling</li>
-    <li>The simulation also depicts the effect of a transformation to the vector [1,0]. Efforts are being made to make
-      this vector modifiable.</li>
-  </ol>
+    <ol>
+      <li>The simulation involves heavy computation during transformation and may lag on some devices.</li>
+      <li>Although also seen, the coordinate system actually extends to [-10,-10] x [10,10] in order to account for
+        down-scaling</li>
+      <li>The simulation also depicts the effect of a transformation to the vector [1,0]. Efforts are being made to make
+        this vector modifiable.</li>
+    </ol>
 
-  <br />
-  <hr />
-  <br />
+    <br>
+    <hr>
 
-  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-</div>
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+  </div>
+</body>
 
 </html>

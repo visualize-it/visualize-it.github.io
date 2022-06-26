@@ -20,7 +20,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -39,50 +39,70 @@
     </div>
   </nav>
   <div class="text">
-    <h4>Working of Quantum Logic Gates</h4>
-    <p>Quantum circuits contain a lot of logic gates. It is these gates which give them their interesting computing properties. In this visualization, we explore the three purely real one-qubit logic gates.</p>
+    <h2>Quantum Logic Gates</h2>
+    <p>Quantum circuits contain a lot of logic gates. It is these gates which give them their interesting computing
+      properties. In this visualization, we explore the three purely real one-qubit logic gates.</p>
     <center>
-      <br/>
+      <br>
       <canvas id="quantum-canvas"></canvas>
       <p id="display-input"></p>
       <p id="display-output"></p>
       <!--<p id="display-measure"></p>-->
-      <button onclick="addGate('H')" class="btn purple darken-4">+H</button>
-      <button onclick="addGate('X')" class="btn purple darken-4">+X</button>
-      <button onclick="addGate('Z')" class="btn purple darken-4">+Z</button>
-      <br/>
-      <br/>
-      <button onclick="remove('first')" class="btn purple darken-4">Remove first</button>
-      <button onclick="remove('last')" class="btn purple darken-4">Remove last</button>
-      <button onclick="remove('all')" class="btn purple darken-4">Clear</button>
-      <br/>
-      <p>Some Standard inputs:</p>
-      <button onclick="setInput('0')" class="btn purple darken-4">0</button>
-      <button onclick="setInput('1')" class="btn purple darken-4">1</button>  
-      <button onclick="setInput('+')" class="btn purple darken-4">+</button> 
-      <button onclick="setInput('-')" class="btn purple darken-4">-</button> 
-      <br/>
-      <p>Amplitudes input: Use the slider</p>
-      <p id="display-top"></p>
-      <input id="input-top" type="range" class="slider" min="0" max="100" oninput="updateParams('top-slider')" onchange="updateParams('top-slider')">
-      <p id="display-bottom"></p>
-      <input id="input-bottom" type="range" class="slider" min="0" max="100" oninput="updateParams('bottom-slider')" onchange="updateParams('bottom-slider')">
-      <p>Or type the amplitudes here</p>
-      <input placeholder="a, b" id="input" style="width: 35%" type="text" onchange="updateParams('text')" oninput="updateParams('text')">
-      <p>Both amplitudes should be between -1 and 1</p>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 l6">
+            <span>Add logic gates:</span> <br>
+            <button onclick="addGate('H')" class="btn purple darken-4">+H</button>
+            <button onclick="addGate('X')" class="btn purple darken-4">+X</button>
+            <button onclick="addGate('Z')" class="btn purple darken-4">+Z</button>
+            <br>
+            <br>
+            <span>Remove logic gates:</span> <br>
+            <button onclick="remove('first')" class="btn purple darken-4">Remove first</button>
+            <button onclick="remove('last')" class="btn purple darken-4">Remove last</button>
+            <button onclick="remove('all')" class="btn purple darken-4">Clear</button>
+            <br>
+            <br>
+            <span>Some Standard inputs:</span> <br>
+            <button onclick="setInput('0')" class="btn purple darken-4">0</button>
+            <button onclick="setInput('1')" class="btn purple darken-4">1</button>
+            <button onclick="setInput('+')" class="btn purple darken-4">+</button>
+            <button onclick="setInput('-')" class="btn purple darken-4">-</button>
+          </div>
+          <div class="col s12 l6">
+            <span>Amplitudes input:</span>
+            <div class="row">
+              <div class="col s6">
+                <p id="display-top"></p>
+                <input id="input-top" type="range" class="slider" min="0" max="100" oninput="updateParams('top-slider')"
+                  onchange="updateParams('top-slider')">
+              </div>
+              <div class="col s6">
+                <p id="display-bottom"></p>
+                <input id="input-bottom" type="range" class="slider" min="0" max="100"
+                  oninput="updateParams('bottom-slider')" onchange="updateParams('bottom-slider')">
+              </div>
+            </div>
+            <span>Or type the amplitudes here:</span>
+            <input placeholder="a, b" id="input" style="width: 35%" type="text" onchange="updateParams('text')"
+              oninput="updateParams('text')">
+            <p>Both amplitudes should be between -1 and 1</p>
+          </div>
+        </div>
+      </div>
     </center>
 
-    <br />
-    <hr />
-    <br />
+    <br>
+    <hr>
 
-    <h5>Description of Logic Gates</h5>
+    <h3>Description</h3>
     <b>Hadamard gate</b>
     <p>This gate is mainly used for spreading and recombination of quantum states. It operates as follows:</p>
     <center>
       [a,b] &longrightarrow; [(a+b)/&Sqrt;2, (a-b)/&Sqrt;2]
     </center>
     <p>Two Hadamard gates are equivalent to an identity gate, hence the Hadamard gate is its own inverse</p>
+    <br>
 
     <b>Pauli-X or NOT gate</b>
     <p>This gate interchanges the amplitudes of the qubit's state:</p>
@@ -90,20 +110,23 @@
       [a,b] &longrightarrow; [b,a]
     </center>
     <p>Two X gates are equivalent to an identity gate, hence the X gate is its own inverse</p>
+    <br>
 
     <b>Pauli-Z or phase-flip gate</b>
     <p>This gate flips the sign of the 2<sup>nd</sup> amplitude</p>
     <center>
-      [a,b] &longrightarrow; [a,-b] 
+      [a,b] &longrightarrow; [a,-b]
     </center>
     <p>Two Z gates are equivalent to an identity gate, hence the Z gate is its own inverse</p>
+    <br>
 
     <b>Measurement</b>
-    <p>If the final output is [a,b], then the probability that 0 is measured is given by a<sup>2</sup> and the probability that 1 is measured is given by b<sup>2</sup></p>
+    <p>If the final output is [a,b], then the probability that 0 is measured is given by a<sup>2</sup> and the
+      probability that 1 is measured is given by b<sup>2</sup></p>
 
-    <br />
-    <hr />
-    <br />
+    <br>
+    <hr>
+    <br>
 
     <b>Note:</b>
 
@@ -111,13 +134,13 @@
       <li>The quantum state of a qubit lies in a complex 2D space. The imaginary parts are not considered here</li>
       <li>Besides H, X and Z, there are other single qubit gates like Pauli-Y (Y), Phase (S,P), &pi; / 8 (T)</li>
       <li>Multi qubit gates also exist: Controlled NOT (CNOT), Controlled Z (CZ), Toffoli (TOFF), SWAP</li>
-      <li>Every quantum logic gate has an associated matrix that has to be unitary in order to preserve normalization</li>
+      <li>Every quantum logic gate has an associated matrix that has to be unitary in order to preserve normalization
+      </li>
       <li>The program does not consider your text-input until it is defined and proper</li>
     </ol>
 
-    <br />
-    <hr />
-    <br />
+    <br>
+    <hr>
 
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>

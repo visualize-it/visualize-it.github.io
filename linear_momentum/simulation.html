@@ -13,8 +13,8 @@
   <script src="basic.js" defer></script>
   <script src="linear_momentum.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -43,52 +43,60 @@
   </nav>
 
 
-<div class="text">
-  <h4>Conservation of Linear Momentum</h4>
-  <p>While playing the game of Pong, have you ever wondered how the Computer figures out the final location of the ball? It uses conservation of Linear Momentum. The "game" below shows you the calculated trajectory of the ball. You can control the paddle on the bottom via the slider</p>
-  <center>
-    <br/>
-    <canvas id="canvas"></canvas>
-    <br/>
-    <input oninput="updateParams('x')" onchange="updateParams('x')" type="range" id="x-input" step="1">
-    <p>Touch the slider with the intended position of your bar</p>
-    <button onclick="pause()" id="pause-button" class="btn purple darken-4">Pause</button>
-    <button onclick="toggleTrails()" id="trail-button" class="btn purple darken-4">Hide Trail</button>
-    <button onclick="restart()" class="btn purple darken-4">Restart</button>
-  </center>
+  <div class="text">
+    <h2>Conservation of Linear Momentum</h2>
+    <p>While playing the game of Pong, have you ever wondered how the Computer figures out the final location of the
+      ball? It uses conservation of Linear Momentum. The "game" below shows you the calculated trajectory of the ball.
+      You can control the paddle on the bottom via the slider</p>
+    <center>
+      <br>
+      <canvas id="canvas"></canvas>
+      <br>
+      <input oninput="updateParams('x')" onchange="updateParams('x')" type="range" id="x-input" step="1">
+      <p>Touch the slider with the intended position of your bar. No need to drag</p>
+      <button onclick="pause()" id="pause-button" class="btn purple darken-4">Pause</button>
+      <button onclick="toggleTrails()" id="trail-button" class="btn purple darken-4">Hide Trail</button>
+      <button onclick="restart()" class="btn purple darken-4">Restart</button>
+    </center>
 
-  <br />
-  <hr />
-  <br />
+    <br>
+    <hr>
 
-  <h5>Brief Description</h5>
-  <p>According to conservation of linear momentum, the vector sum of linear momenta of a system of isolated particles is conserved. Although the direction and momentum of induvidual particles may change during collisions, the sum of components of linear momentum of the colliding particles remains same before and after the collision.</p>
-  \[ \sum m_i \vec{v}_i = constant \]
-  <p>When colliding with a vertically-oriented, ideally rigid and immovable obstacle, the sign of momentum along the horizontal direction changes whereas the momentum along vertical direction remains the same</p>
+    <h3>Description</h3>
+    <p>According to conservation of linear momentum, the vector sum of linear momenta of a system of isolated particles
+      is conserved. Although the direction and momentum of induvidual particles may change during collisions, the sum of
+      components of linear momentum of the colliding particles remains same before and after the collision.</p>
+    \[ \sum m_i \vec{v}_i = constant \]
+    <p>When colliding with a vertically-oriented, ideally rigid and immovable obstacle, the sign of momentum along the
+      horizontal direction changes whereas the momentum along vertical direction remains the same</p>
 
-  <br/>
-  <hr/>
-  <br/>
+    <br>
+    <hr>
 
-  <h5>Working of the game</h5>
-  <p>The game assumes the paddles and the walls to be rigid and immovable objects. The function that controls the paddle has access to the initial coordinates and the initial horizontal and vertical velocity of the ball. It creates a preudo-ball and tracks its motion. Assuming that the player manages to dodge the pseudo-ball, the function negates its vertical velocity. In the meantime, if the ball collides with the wall, the function negates its horizontal velocity. It continues mapping the trajectory of the pseudo-ball until the ball reaches the Y-coordinate of the paddle. The X-coordinate of the ball at this point is set as target for the paddle. All these calculations happen in the blink of an eye and only once per to-and-fro dodge</p>
+    <h3>Working of the game</h3>
+    <p>The game assumes the paddles and the walls to be rigid and immovable objects. The function that controls the
+      paddle has access to the initial coordinates and the initial horizontal and vertical velocity of the ball. It
+      creates a preudo-ball and tracks its motion. Assuming that the player manages to dodge the pseudo-ball, the
+      function negates its vertical velocity. In the meantime, if the ball collides with the wall, the function negates
+      its horizontal velocity. It continues mapping the trajectory of the pseudo-ball until the ball reaches the
+      Y-coordinate of the paddle. The X-coordinate of the ball at this point is set as target for the paddle. All these
+      calculations happen in the blink of an eye and only once per to-and-fro dodge</p>
 
-  <br/>
-  <hr/>
-  <br/>
+    <br>
+    <hr>
 
-  <b>Note:</b>
-  <ol>
-    <li>To prevent the game from becoming boring, the vertical speed of the ball is increased periodically by some percentage. In such cases, the trajectory of the ball is recalculated</li>
-    <li>The simulation may lag on low-end devices</li>
-  </ol>
+    <b>Note:</b>
+    <ol>
+      <li>To prevent the game from becoming boring, the vertical speed of the ball is increased periodically by some
+        percentage. In such cases, the trajectory of the ball is recalculated</li>
+      <li>The simulation may lag on low-end devices</li>
+    </ol>
 
-  <br/>
-  <hr/>
-  <br/>
+    <br>
+    <hr>
 
-  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-</div>
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+  </div>
 </body>
 
 </html>

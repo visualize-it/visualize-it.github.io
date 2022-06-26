@@ -37,7 +37,7 @@ function updateParams(value) {
     if (value == "speed-slide") {
         ship_speed = getAngularSpeed(speed_slider.value);
         gamma = getGamma(speed_slider.value / 1000);
-        speed_display.innerHTML = `Satellite speed: ${(speed_slider.value / 10).toFixed(1)}% of speed of light or ${(speed_slider.value * 299792458 / 1000).toFixed()} m/s.<br/><b>&gamma; = ${gamma.toFixed(4)}</b>`;
+        speed_display.innerHTML = `Satellite speed: ${(speed_slider.value / 10).toFixed(1)}% of speed of light or ${(speed_slider.value * 299792458 / 1000).toFixed()} m/s.<br><b>&gamma; = ${gamma.toFixed(4)}</b>`;
         speed_input.value = `${(speed_slider.value / 10).toFixed(1)}`;
 
         dilated_time_speed = normal_time_speed / gamma;
@@ -63,7 +63,7 @@ function updateParams(value) {
 
         ship_speed = getAngularSpeed(typed_value * 10);
         gamma = getGamma(typed_value / 100);
-        speed_display.innerHTML = `Satellite speed: ${(typed_value)}% of speed of light or ${(typed_value * 299792458 / 1000).toFixed()} m/s.<br/><b>&gamma; = ${gamma.toFixed(4)}</b>`;
+        speed_display.innerHTML = `Satellite speed: ${(typed_value)}% of speed of light or ${(typed_value * 299792458 / 1000).toFixed()} m/s.<br><b>&gamma; = ${gamma.toFixed(4)}</b>`;
 
         dilated_time_speed = normal_time_speed / gamma;
         length_decreased = length / gamma;

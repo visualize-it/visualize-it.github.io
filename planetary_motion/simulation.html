@@ -13,8 +13,8 @@
   <script src="basic.js" defer></script>
   <script src="planetary_motion.js" defer></script>
   <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -23,7 +23,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -44,112 +44,136 @@
 </body>
 
 <div class="text">
-  <h4>Planetary Motion</h4>
+  <h2>Planetary Motion</h2>
   \[ F = \frac{G m_1 m_2}{r^2} \]
   <p>The Universal Law of Gravitation states that every body in this universe attracts the other by virtue of its mass,
     The force of attraction being directly proportional to the product of their masses and inversely proportional to the
     square of the distance of their separation. The equation given above is the
     numerical form of this law. The aforementioned law was first published by Sir Isaac Newton in 1687.</p>
+  <br>
 
-  <center>
-    <br />
-    <canvas id="planet-canvas"></canvas>
-    <br />
-    <br />
-    <p id="scale"></p>
-    <br />
-    <button class="btn purple darken-4" onclick="zoomIn()">Zoom In</button>
-    <button class="btn purple darken-4" onclick="zoomOut()">Zoom out</button>
-    <br />
-    <br />
-    <button id="pause-button" class="btn purple darken-4" style="margin-left: 30px" onclick="pause()">Pause</button>
-    <button class="btn purple darken-4" onclick="startSimulation()">Simulate</button>
-    <button id="restart-button" class="btn purple darken-4" style="margin-right: 30px;" onclick="restart()">Restart</button>
-    <br />
-    <br />
-    <b>'Restart' starts the simulation using the previously-entered parameters.<br>'Simulate' starts the simulation
-      using the currently-entered parameters.</b>
-  </center>
+  <div class="container" style="width:90%;">
+    <div class="row">
+      <div class="col s12 l8">
+        <canvas id="planet-canvas"></canvas>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <p id="scale"></p>
+          <br>
+          <button class="btn purple darken-4" onclick="zoomIn()">Zoom In</button>
+          <button class="btn purple darken-4" onclick="zoomOut()">Zoom out</button>
+          <br>
+          <br>
+          <button id="pause-button" class="btn purple darken-4" style="margin-left: 30px"
+            onclick="pause()">Pause</button>
+          <button class="btn purple darken-4" onclick="startSimulation()">Simulate</button>
+          <button id="restart-button" class="btn purple darken-4" style="margin-right: 30px;"
+            onclick="restart()">Restart</button>
+          <br>
+          <br>
+          <b>'Restart' starts the simulation using the previously-entered parameters.<br>'Simulate' starts the
+            simulation
+            using the currently-entered parameters.</b>
+        </center>
+      </div>
+    </div>
+  </div>
 
   <div class="container" style="width: 100%">
     <div id="car" class="row">
-      <div class="col s6">
+      <div class="col s12 l4">
         <p id="body-1" class="center-align">Star</p>
+        <span>Mass:</span>
         <input id="m-1" placeholder="Mass" type="number" onchange="updateParams()">
+        <span>X coordinate:</span>
         <input id="x-1" placeholder="X-coordinate" type="number" onchange="updateParams()">
+        <span>Y coordinate:</span>
         <input id="y-1" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+        <span>Horizontal velocity:</span>
         <input id="vx-1" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+        <span>Vertical velocity:</span>
         <input id="vy-1" placeholder="Vertical velocity" type="number" onchange="updateParams()">
       </div>
-      <div class="col s6">
+      <div class="col s12 l4">
         <p id="body-2" class="center-align">Planet 1</p>
+        <span>Mass:</span>
         <input id="m-2" placeholder="Mass" type="number" onchange="updateParams()">
+        <span>X coordinate:</span>
         <input id="x-2" placeholder="X-coordinate" type="number" onchange="updateParams()">
+        <span>Y coordinate:</span>
         <input id="y-2" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+        <span>Horizontal velocity:</span>
         <input id="vx-2" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+        <span>Vertical velocity:</span>
         <input id="vy-2" placeholder="Vertical velocity" type="number" onchange="updateParams()">
       </div>
     </div>
   </div>
   <center>
     <button class="btn purple darken-4" onclick="newBody()">New Body</button>
-    <button id="remove-button" style="margin-top: 20px;" class="btn purple darken-4" onclick="removeBody()">Remove Body</button>
+    <button id="remove-button" style="margin-top: 20px;" class="btn purple darken-4" onclick="removeBody()">Remove
+      Body</button>
   </center>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
 
-  <h5 class="center-align">Planetary Phenomena</h5>
+  <h3 class="center-align">Planetary Phenomena</h3>
   <ol>
     <li><b>Unstable orbit:</b> Here, the planet's total energy is actually positive. Hence it is not actually bound to
       the star and instead revolves around an unstable orbit before getting ejected. Moreover, the planet is only
       10 times lighter than the star, causing the star to wobble.
-      <br />
+      <br> <br>
       <center>
-        <button class="center-align btn blue" onclick="phenomena(1)">Simulate</button>
+        <button class="btn purple darken-4" onclick="phenomena(1)">Simulate</button>
       </center>
     </li>
-    <br />
+    <br>
     <li>
       <b>Two planetary orbits:</b> Two planets revolving around a star in remarkably stable orbits.
+      <br> <br>
       <center>
-        <button class="center-align btn blue" onclick="phenomena(2)">Simulate</button>
+        <button class="btn purple darken-4" onclick="phenomena(2)">Simulate</button>
       </center>
     </li>
-    <br />
+    <br>
     <li>
       <b>Binary system:</b> Two equally heavy bodies orbiting their center of mass. This sort of behaviour is usually
       seen among stars. Alpha Centauri A and B are well-known examples, just 4.36 light years away from Earth. However,
       another star named Proxima Centauri actually orbits the binary system!
+      <br> <br>
       <center>
-        <button class="center-align btn blue" onclick="phenomena(3)">Simulate</button>
+        <button class="btn purple darken-4" onclick="phenomena(3)">Simulate</button>
       </center>
     </li>
-    <br />
+    <br>
     <li>
       <b>Intersecting orbits:</b> Two planets revolving around a star in intersecting orbits.
+      <br> <br>
       <center>
-        <button class="center-align btn blue" onclick="phenomena(4)">Simulate</button>
+        <button class="btn purple darken-4" onclick="phenomena(4)">Simulate</button>
       </center>
     </li>
-    <br />
+    <br>
     <li>
       <b>Planetary dance:</b> The two planets initially revolve symmetrically around the star. However, they come quite
       close
       four times and exchange energy during each interaction. The planet that continually loses energy occupies
       a lower orbit and eventually gets ejected whereas the planet that continually gains energy settles in an highly
       elliptical orbit.
+      <br> <br>
       <center>
-        <button class="center-align btn blue" onclick="phenomena(5)">Simulate</button>
+        <button class="btn purple darken-4" onclick="phenomena(5)">Simulate</button>
       </center>
     </li>
-    <br />
+    <br>
   </ol>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
+
+  <h3>Description</h3>
 
   <b>The Force of Gravity:</b>
   <ol>
@@ -186,7 +210,8 @@
 
   <b>Gravitational Potential</b>
   <ol>
-    <li>When two bodies are gravitationally interacting with one another, some energy is required to separate them until the
+    <li>When two bodies are gravitationally interacting with one another, some energy is required to separate them until
+      the
       gravitational force of attraction between them becomes negligible. This energy, but for a unit mass, is defined to
       be the gravitational potential.</li>
     <li>The gravitational potential at a point 'r' units away from a mass 'M' is defined to be -GM/r whereas the
@@ -223,6 +248,10 @@
       all the resulting planets tend to orbit the star in the same plane, with small deviations.</li>
   </ol>
 
+  <br>
+  <hr>
+  <br>
+
   <b>Note:</b>
   <ol>
     <li>The above simulation is not compatible with SI units. The value of G is taken to be 1, in order to avoid working
@@ -233,9 +262,8 @@
       a very common occurence in the simulation although it rarely takes place in reality.</li>
   </ol>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

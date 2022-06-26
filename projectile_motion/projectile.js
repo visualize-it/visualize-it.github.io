@@ -100,11 +100,11 @@ function clearTrajectories() {
 
 function update_params(input) {
     if (input == "angle-slide") {
-        angle_display.innerHTML = `&theta; = ${angle_slider.value} degrees`;
+        angle_display.innerHTML = `Projection angle &theta; = ${angle_slider.value}&deg;`;
         init_angle = angle_slider.value;
     }
     else if (input == "speed-slide") {
-        speed_display.innerHTML = `u = ${speed_slider.value} units`;
+        speed_display.innerHTML = `Speed u = ${speed_slider.value} units`;
         init_speed = speed_slider.value;
     }
 }

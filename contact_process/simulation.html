@@ -55,45 +55,41 @@
     coupled with randomness.
   </p>
   <br>
-  <center>
-    <b>
-      Click on a cell to toggle it's state. Consider pausing the simulation
-      <br>
-      Blue - Birth ; Yellow - Death
-    </b>
-  </center>
-  <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  <center>
-    <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
-    <button class="btn purple darken-4" onclick="clearGrid()">Clear</button>
-  </center>
-  <br>
-  <center>
-    <div class="container" style="width: 100%">
-      <div class="row">
-        <div class="col s12 l6">
-          <p id="prob-display"></p>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l8">
+        <center>
+          
+        </center>
+        <canvas id="canvas"></canvas>
+      </div>
+      <div class="col s12 l4">
+        <center>
+          <b>
+            Click on a cell to toggle it's state. Consider pausing the simulation
+            <br>
+            Blue - Birth ; Yellow - Death
+          </b>
+          <br> <br>
+          <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+          <button class="btn purple darken-4" onclick="clearGrid()">Clear</button>
+          <br> <br>
+          <span id="prob-display"></span>
           <input id="prob-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('prob')"
             onchange="updateParams('prob')">
           <p>Updates to probability get reflected immediately</p>
-        </div>
-        <div class="col s12 l6">
-          <p id="num-display"></p>
+          <br> <br>
+          <span id="num-display"></span>
           <input id="num-input" type="range" min="2" max="20" step="1" oninput="updateParams('num')"
             onchange="updateParams('num')">
           <p>Grid gets cleared when size is updated</p>
-        </div>
+        </center>
       </div>
     </div>
-  </center>
+  </div>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
 
   <h3>Brief Description</h3>
 
@@ -101,11 +97,13 @@
     For the contact process taking place in a two dimensional lattice of cells, the rules are as follows:
   <ol class="browser-default">
     <li>Select a random cell</li>
-    <li>If the selected cell is empty, then repeat the previous step. If the selected cell is occupied, then proceed to next step with the selected cell as the 'current cell'</li>
+    <li>If the selected cell is empty, then repeat the previous step. If the selected cell is occupied, then proceed to
+      next step with the selected cell as the 'current cell'</li>
     <li>The next step is probabilistic, with a probability 'p' of birth and '1-p' of death</li>
     <ol>
       <li>
-        <b>Birth:</b> Randomly select a cell adjacent to the current cell. If it is empty, then spawn an occupant there. If it is already occupied then do nothing
+        <b>Birth:</b> Randomly select a cell adjacent to the current cell. If it is empty, then spawn an occupant there.
+        If it is already occupied then do nothing
       </li>
       <li>
         <b>Death:</b> Kill the occupant of the current cell
@@ -115,19 +113,19 @@
   </ol>
   </p>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
+  <br>
 
   <b>Note:</b>
   <ol>
-    <li>If p < 0.5, then there is a pretty high chance that your population will go extinct within a couple of steps</li>
+    <li>If p < 0.5, then there is a pretty high chance that your population will go extinct within a couple of
+        steps</li>
     <li>If you want to paint a pattern and watch it's evolution, then pause the simulation while doing so</li>
   </ol>
 
-  <br />
-  <hr />
-  <br />
+  <br>
+  <hr>
 
   <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
 </div>

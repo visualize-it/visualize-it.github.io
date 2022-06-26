@@ -57,12 +57,17 @@ function step() {
 function newBody() {
     num_entities += 1;
     car.innerHTML += `
-    <div class="col s6">
+    <div class="col s12 l4">
     <p id="body-${num_entities}" class="center-align">Planet ${num_entities - 1}</p>
+    <span>Mass:</span>
     <input id="m-${num_entities}" placeholder="Mass" type="number" onchange="updateParams()">
+    <span>X coordinate:</span>
     <input id="x-${num_entities}" placeholder="X-coordinate" type="number" onchange="updateParams()">
+    <span>Y coordinate:</span>
     <input id="y-${num_entities}" placeholder="Y-coordinate" type="number" onchange="updateParams()">
+    <span>Horionztal velocity:</span>
     <input id="vx-${num_entities}" placeholder="Horizontal velocity" type="number" onchange="updateParams()">
+    <span>Vertical veloicty</span>
     <input id="vy-${num_entities}" placeholder="Vertical velocity" type="number" onchange="updateParams()">
 </div>
     `;

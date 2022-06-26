@@ -30,7 +30,6 @@ function update() {
 
             add_button.disabled = false;
             remove_button.disabled = false;
-            insert_button.disabled = false;
 
             displaySolution();
         }
@@ -45,8 +44,6 @@ function render() {
     renderShortestPath();
     renderCurrentPath();
     renderProgressBar();
-
-    renderTarget();
 }
 
 function displaySolution()
@@ -55,9 +52,9 @@ function displaySolution()
 
     for(let i = 0; i < coords.length; i++)
     {
-        solution_string += `(${coords[shortest_path[i]].x}, ${100 - coords[shortest_path[i]].y}) &rarr; `;
+        solution_string += `(${(coords[shortest_path[i]].x).toFixed(0)}, ${100 - (coords[shortest_path[i]].y).toFixed(0)}) &rarr; `;
     }
-    solution_string += `(${coords[shortest_path[0]].x}, ${100 - coords[shortest_path[0]].y}) `;
+    solution_string += `(${(coords[shortest_path[0]].x).toFixed(0)}, ${100 - (coords[shortest_path[0]].y).toFixed(0)}) `;
     solution.style.display = "block";
     solution.innerHTML = solution_string + ` with distance ${shortest_path_length.toFixed(2)} units`;
 }
@@ -67,9 +64,6 @@ function updateParams(variable) {
 }
 
 function initParams() {
-    x_bar.value = 50;
-    y_bar.value = 50;
-
     radius = 2 ? mobile : 4;
     padding = 2 * radius;
     scale = (canvas_width - 2 * padding) / 100;
@@ -139,12 +133,7 @@ function addRandom(number) {
 
 function insert()
 {
-    coords.push(
-        {
-            x: x_bar.value,
-            y: 100 - y_bar.value,
-        }
-    )
+    
 }
 
 function solve() {
@@ -170,7 +159,6 @@ function solve() {
 
         add_button.disabled = true;
         remove_button.disabled = true;
-        insert_button.disabled = true;
     }
 }
 

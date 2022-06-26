@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Solution of Travelling Salesman Problem | Visualize It</title>
+  <title>Travelling Salesman | Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,6 +13,7 @@
   <script src="basic.js" defer></script>
   <script src="renderers.js" defer></script>
   <script src="travelling_salesman.js" defer></script>
+  <script src="user_input.js" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -24,7 +25,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -42,72 +43,75 @@
       </ul>
     </div>
   </nav>
-</body>
+  <div class="text">
+    <h2>Travelling Salesman</h2>
+    <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that
+      visits each city exactly once and returns to the origin city?</p>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 l8">
+          <canvas id="canvas"></canvas>
+          <center>
+            <p id="solution"></p>
+          </center>
+        </div>
+        <div class="col s12 l4">
+          <center>
+            <button class="btn purple darken-4" onclick="solve()">Solve</button>
+            <button class="btn purple darken-4" onclick="clearCoords()">Clear</button>
+            <br> <br>
+            <button id="add-button" class="btn purple darken-4" onclick="addRandom(1)">Add Random</button>
+            <button id="remove-button" class="btn purple darken-4" onclick="removeLast(1)">Remove Last</button>
+            <br> <br>
+            <p>
+              Touch the canvas in order to add a point. You cannot add points when solution is being calculated.
+            </p>
+          </center>
+        </div>
+        <center>
+          <center>
 
-<div class="text">
-  <h4>Solution of Travelling Salesman Problem using Brute Force</h4>
-  <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that
-    visits each city exactly once and returns to the origin city?</p>
-  <br>
-  <center>
-    <br>
-    <canvas id="canvas"></canvas>
-    <br>
-    <p id="solution"></p>
-  </center>
-  <br>
-  <center>
-    <button class="btn purple darken-4" onclick="solve()">Solve</button>
-    <button class="btn purple darken-4" onclick="clearCoords()">Clear</button>
-    <br>
-    <br>
-    <button id="add-button" class="btn purple darken-4" onclick="addRandom(1)">Add Random</button>
-    <button id="remove-button" class="btn purple darken-4" onclick="removeLast(1)">Remove Last</button>
-  </center>
+          </center>
+        </center>
+        <div class="col s6">
 
-  <br><br>
-  <center>
-    <center>
-      <button id="insert-button" class="btn purple darken-4" onclick="insert()">Insert</button>
-    </center>
-  </center>
-  <div class="container" style="width: 100%">
-    <div class="row">
-      <div class="col s6">
-        <input id="x-bar" type="range" min="1" , max="100">
+        </div>
+        <div class="col s6">
+
+        </div>
+        <center>
+
+        </center>
       </div>
-      <div class="col s6">
-        <input id="y-bar" type="range" min="1" , max="100">
-      </div>
-      <center>
-        Use the above sliders to adjust the position of the point to be inserted
-      </center>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Trivia</h3>
+    <p>This problem is classified as NP-hard since it's time complexity is \( \mathcal{O} (n!) \) (Along with a space
+      complexity of \( \mathcal{O} (n) \)). The Brute-Force method looks at all possible permutations and determines the
+      one with the least distance. Runtimes go into minutes when there are ~7 points and into hours when there are ~9
+      points. A lot of improvements exist, and computing the solution of this problem is of special interest to
+      theorertical computer scientists and operational researchers.</p>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>When there are 8+ points, then an initial lag is expected before the solving process starts</li>
+      <li>With 10 points, an average time of 49 minutes was required to find the solution to the route</li>
+      <li>Simulation may lag on lower-end computers and phones</li>
+    </ol>
+
+    <br>
+    <hr>
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>
-
-  <br />
-  <hr />
-  <br />
-
-  <h5>Trivia</h5>
-  <p>This problem is classified as NP-hard since it's time complexity is \( \mathcal{O} (n!) \) (Along with a space complexity of \( \mathcal{O} (n) \)). The Brute-Force method looks at all possible permutations and determines the one with the least distance. Runtimes go into minutes when there are ~7 points and into hours when there are ~9 points. A lot of improvements exist, and computing the solution of this problem is of special interest to theorertical computer scientists and operational researchers.</p>
-
-  <br />
-  <hr />
-  <br />
-
-  <b>Note:</b>
-  <ol>
-    <li>When there are 8+ points, then an initial lag is expected before the solving process starts</li>
-    <li>With 10 points, an average time of 49 minutes was required to find the solution to the route</li>
-    <li>Simulation may lag on lower-end computers and phones</li>
-  </ol>
-
-  <br />
-  <hr />
-  <br />
-
-  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-</div>
+</body>
 
 </html>

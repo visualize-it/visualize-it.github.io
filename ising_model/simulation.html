@@ -20,7 +20,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
-  <!-- CSS -->
+  <!--CSS -->
   <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -48,7 +48,12 @@
 
   <div class="text">
     <h2>Ising Model</h2>
-
+    <p>
+      The Ising model is used to model a system of interacting spins in a ferromagnetic material. Spins are distributed
+      in a connected lattice. Each spin is randomly set to +1 or -1. When temperature is low and interaction strength is
+      positive, the system evolves towards the lowest energy configuration.
+    </p>
+    <br>
     <div class="container" style="width:90%;">
       <div class="row">
         <div class="col s12 l8">
@@ -56,7 +61,14 @@
         </div>
         <div class="col s12 l4">
           <center>
-            <span id="size-display"></span>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <hr>
+            <span id="spin-display"></span> <br>
+            <span id="energy-display"></span>
+            <hr>
+            <span id="size-display"></span> <br>
+            <span>(changing grid size automatically restarts the simulation)</span>
             <input id="size-input" type="range" min="2" max="100" step="1" onchange="updateParams('size')"
               oninput="updateParams('size')">
             <span id="rate-display"></span>
@@ -73,7 +85,32 @@
       </div>
     </div>
 
+    <hr>
+
+    <h3>Description</h3>
+
+    <p>
+      The energy of a lattice is calculated using the following formula:
+      \[ E = - J \sum_{\lt ij \gt} s_i s_j \]
+      In every Monte-Carlo step, a random spin is chosen and flipped. The change in energy of the system (\( \Delta E
+      \)) is calculated. If energy has decreased, then the flip is accepted. If energy has increases, then the flip is
+      accepted with a probability of:
+      \[ P = \exp\left(\frac{-\Delta E}{k_B T}\right) \]
+      This set of steps is known as the Metropolis algorithm. Higher temperature encourages unfavourable spins, thereby
+      increasing disorder of the system, whereas a negative interaction strength \( J \) seeks to increase energy.
+    </p>
+
     <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+
+    <ol>
+      <li>The boundary condition is periodic.</li>
+      <li>This simulation may hang on lower-end devices, for large grid sizes and large values of MC steps.</li>
+    </ol>
+
     <hr>
     <br>
 

@@ -40,6 +40,16 @@ function getEnergy(grid) {
     return -j * energy;
 }
 
+function getSpin(grid) {
+    let total_spin = 0;
+
+    for (let i = 0; i < grid_size; i++) {
+        for (let j = 0; j < grid_size; j++) {
+            total_spin += grid[i][j];
+        }
+    }
+    return total_spin;
+}
 
 function update() {
     for (let i = 0; i < mc_steps; i++) {
@@ -65,6 +75,9 @@ function update() {
             }
         }
     }
+
+    spin_display.innerHTML = `Resultant spin: ${getSpin(grid)}`;
+    energy_display.innerHTML = `Total energy: ${getEnergy(grid)}`;
 }
 
 function render() {
@@ -134,6 +147,8 @@ function initParams() {
     temperature = 1;
 
     mc_steps = 0.01 * grid_size * grid_size;
-
-    initGrid();
+    
+    if (paused) {
+        pauseToggle();
+    }
 }

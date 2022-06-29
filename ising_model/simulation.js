@@ -85,25 +85,27 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "size") {
+        grid_size = size_input.value;
+        size_display.innerHTML = `Grid size: ${grid_size} x ${grid_size}`;
+        initGrid();
+    }
+    if (variable == "rate") {
+        mc_steps = ((rate_input.value / 100) * grid_size * grid_size).toFixed(0);
+        rate_display.innerHTML = `MC steps per update: ${mc_steps} (${rate_input.value}%)`;
+    }
+    if (variable == "temp") {
+        temperature = temp_input.value;
+        temp_display.innerHTML = `Temperature: ${temperature}`;
+    }
+    if (variable == "j") {
+        j = j_input.value;
+        j_display.innerHTML = `Interaction strength: ${j}`;
+    }
 }
 
-function initParams() {
-    j = 1;
-    kB = 1;
-    temperature = 1;
-
+function initGrid() {
     grid = [];
-
-    if (mobile) {
-        grid_size = 70;
-    }
-    else {
-        grid_size = 20;
-    }
-
-    mc_steps = 0.2 * grid_size * grid_size;
-    
     cell_length = canvas_width / grid_size;
 
     for (let i = 0; i < grid_size; i++) {
@@ -118,4 +120,20 @@ function initParams() {
         }
         grid.push(row);
     }
+    updateParams("rate");
+}
+
+function initParams() {
+    updateParams("size");
+    updateParams("rate");
+    updateParams("temp");
+    updateParams("j");
+
+    j = 1;
+    kB = 1;
+    temperature = 1;
+
+    mc_steps = 0.01 * grid_size * grid_size;
+
+    initGrid();
 }

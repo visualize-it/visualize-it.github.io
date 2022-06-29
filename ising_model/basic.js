@@ -12,6 +12,18 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let size_input = document.getElementById("size-input");
+let size_display = document.getElementById("size-display");
+
+let rate_input = document.getElementById("rate-input");
+let rate_display = document.getElementById("rate-display");
+
+let temp_input = document.getElementById("temp-input");
+let temp_display = document.getElementById("temp-display");
+
+let j_input = document.getElementById("j-input");
+let j_display = document.getElementById("j-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -38,9 +50,18 @@ function step() {
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaultParams();
     initParams();
     animate(step);
+}
+
+
+function defaultParams() {
+    size_input.value = 100;
+    rate_input.value = 1;
+    temp_input.value = 1;
+    j_input.value = 1;
 }
 
 let click_x, click_y, pressed;

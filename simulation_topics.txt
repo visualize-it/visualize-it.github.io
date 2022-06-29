@@ -4,7 +4,6 @@ XY model
 Kuramoto model
 Collective Intelligence
 Percolation
-Ising Model
 Diffusion Limited Aggregation
 Lotka Volterra Equations
 Famous Fractals

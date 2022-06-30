@@ -1,5 +1,6 @@
 --- To Be Implemented ---
 
+Roots of unity
 XY model
 Kuramoto model
 Collective Intelligence
@@ -21,7 +22,6 @@ Bifurcations
 Doppler effect
 Phase space of a pendulum
 Double pendula
-Firefly synchronization
 Graph algorithms
 Random boolean networks
 Fourier transforms

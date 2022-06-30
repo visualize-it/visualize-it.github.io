@@ -3,18 +3,27 @@ class Firefly {
         this.position = position;
         this.velocity = velocity;
         this.phase = phase;
+        this.phase_nudge = 0;
     }
 
     setVelocity(velocity) {
         this.velocity = velocity;
     }
+
+    nudgePhase(phase_nudge) {
+        this.phase_nudge = phase_nudge;
+        // console.log(this.phase_nudge);
+    }
     
     update() {
-        this.phase += angular_velocity;
+        this.phase += (angular_velocity + this.phase_nudge);
+        this.phase_nudge = 0;
         
         if (this.phase >= 2 * Math.PI) {
             emits.push(new Emit(this));
-            this.phase -= 2 * Math.PI;
+            while(this.phase >= 2 * Math.PI) {
+                this.phase -= 2 * Math.PI;
+            }
         }
 
         let direction = this.velocity.getHeading();

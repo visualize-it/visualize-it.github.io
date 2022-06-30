@@ -2,6 +2,10 @@ function radians(degree) {
     return degree * (Math.PI / 180);
 }
 
+function degree(radian) {
+    return radian * (180 / Math.PI);
+}
+
 function distanceBetween(vector1, vector2) {
     return Math.sqrt(Math.pow(vector1.x - vector2.x, 2) + Math.pow(vector1.y - vector2.y, 2));
 }
@@ -14,11 +18,11 @@ function removeFinishedEmits() {
     emits = emits.filter(emit => !emit.finished);
 }
 
-function getRepellingFireflies(firefly) {
+function getFirefliesWithin(firefly, radius) {
     let repelling_fireflies = [];
     for (let other_firefly of fireflies) {
         if (firefly !== other_firefly) {
-            if (distanceBetween(firefly.position, other_firefly.position) < repulsion_radius) {
+            if (distanceBetween(firefly.position, other_firefly.position) < radius) {
                 repelling_fireflies.push(other_firefly);
             }
         }

@@ -17,6 +17,7 @@ class Firefly {
     
     update() {
         this.phase += (angular_velocity + this.phase_nudge);
+        this.phase += (2 * phase_noise_amplitude * Math.random() - phase_noise_amplitude);
         this.phase_nudge = 0;
         
         if (this.phase >= 2 * Math.PI) {
@@ -27,7 +28,7 @@ class Firefly {
         }
 
         let direction = this.velocity.getHeading();
-        let perturbed_direction = direction + (2 * noise_amplitude * Math.random() - noise_amplitude);
+        let perturbed_direction = direction + (2 * velocity_noise_amplitude * Math.random() - velocity_noise_amplitude);
         this.velocity = Vector.fromAngle(perturbed_direction);
         this.position.add(Vector.scale(this.velocity, move_speed));
 

@@ -61,6 +61,24 @@
         <div class="col s12 l4">
           <center>
             <p id="sd-display"></p>
+            <hr>
+            <span id="strength-display"></span>
+            <input id="strength-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('strength')"
+              onchange="updateParams('strength')">
+            <span id="radius-display"></span>
+            <input id="radius-input" type="range" min="20" max="100" step="1" oninput="updateParams('radius')"
+              onchange="updateParams('radius')">
+            <span id="noise-display"></span>
+            <input id="noise-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('noise')"
+              onchange="updateParams('noise')">
+            <hr>
+            <label>
+              <input id="phase-toggle" type="checkbox" style="position: relative;" />
+              <span>Display phase circle</span>
+            </label>
+            <hr>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
           </center>
         </div>
       </div>
@@ -68,7 +86,6 @@
 
     <br>
     <hr>
-    <br>
 
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>

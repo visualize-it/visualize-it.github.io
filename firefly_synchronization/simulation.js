@@ -7,21 +7,21 @@ let emits = [];
 let emit_speed = 1, emit_limit = 30;
 
 // synchronization
-let sync_strength = 1;
-let sync_radius = 50;
+let sync_strength, sync_radius;
 
-// radii
-let repulsion_radius = 15;
+// repulsion
+let repulsion_radius;
 
 // noise
-let noise_amplitude = radians(15);
+let velocity_noise_amplitude = radians(15);
+let phase_noise_amplitude;
 
 // velocities
 let angular_velocity = radians(1);
 let move_speed = 1;
 
 // cosmetic
-let firefly_radius = 5;
+let firefly_radius;;
 
 // frame cycles
 let frame = 0, frame_cycle = 30;
@@ -101,16 +101,66 @@ function render() {
         emit.render();
     }
 
+    if (phase_toggle.checked) {
+        drawPhaseWheel();
+    }
+
     for (let firefly of fireflies) {
         firefly.render();
     }
 }
 
-function updateParams(variable) {
+function drawPhaseWheel() {
+    context.strokeStyle = "#aaaaaa";
+    context.beginPath();
+    context.arc(canvas_width / 2, canvas_height / 2, canvas_width / 4, 0, 2 * Math.PI);
+    context.stroke();
 
+    context.beginPath();
+    context.moveTo(canvas_width / 2, canvas_height / 2);
+    context.lineTo(canvas_width / 2 + canvas_width / 4, canvas_height / 2);
+    context.stroke();
+
+    context.strokeStyle = "#666666";
+    for (let firefly of fireflies) {
+        context.beginPath();
+        context.moveTo(canvas_width / 2, canvas_height / 2);
+        let x = canvas_width / 2 + (canvas_width / 4) * Math.cos(firefly.phase);
+        let y = canvas_height / 2 - (canvas_width / 4) * Math.sin(firefly.phase);
+        context.lineTo(x, y);
+        context.stroke();
+    }
+}
+
+function updateParams(variable) {
+    if (variable == "strength") {
+        sync_strength = parseFloat(strength_input.value);
+        strength_display.innerHTML = `Sync strength: ${sync_strength.toFixed(2)}`;
+    }
+    if (variable == "radius") {
+        sync_radius = parseFloat(radius_input.value);
+        radius_display.innerHTML = `Sync radius: ${sync_radius.toFixed(0)}`;
+    }
+    if (variable == "noise") {
+        phase_noise_amplitude = radians(parseFloat(noise_input.value));
+        noise_display.innerHTML = `Phase noise amplitude: ${noise_input.value}°`;
+    }
 }
 
 function initParams() {
+    if (mobile) {
+        firefly_radius = 3;
+        repulsion_radius = 9;
+    }
+    else {
+        firefly_radius = 5;
+        repulsion_radius = 15;
+    }
+
+    updateParams("strength");
+    updateParams("radius");
+    updateParams("noise");
+
     frame = 0;
     fireflies = [];
 
@@ -124,5 +174,9 @@ function initParams() {
 
         let new_firefly = new Firefly(new Vector(x, y), new Vector(vx, vy), phase);
         fireflies.push(new_firefly);
+    }
+
+    if (paused) {
+        pauseToggle();
     }
 }

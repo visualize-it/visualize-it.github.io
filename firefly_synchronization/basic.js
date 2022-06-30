@@ -14,6 +14,19 @@ let context = canvas.getContext("2d");
 
 let sd_display = document.getElementById("sd-display");
 
+let strength_display = document.getElementById("strength-display");
+let strength_input = document.getElementById("strength-input");
+
+let radius_display = document.getElementById("radius-display");
+let radius_input = document.getElementById("radius-input");
+
+let noise_display = document.getElementById("noise-display");
+let noise_input = document.getElementById("noise-input");
+
+let phase_toggle = document.getElementById("phase-toggle");
+
+let pause_toggle = document.getElementById("pause-button");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -40,9 +53,24 @@ function step() {
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaultParams();
     initParams();
     animate(step);
+}
+
+function defaultParams() {
+    strength_input.value = 1;
+    
+    if (mobile) {
+        radius_input.value = 40;
+    }
+    else {
+        radius_input.value = 70;
+    }
+
+    noise_input.value = 1;
+    phase_toggle.checked = true;
 }
 
 let click_x, click_y, pressed;
@@ -120,4 +148,15 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function pauseToggle() {
+    if (paused) {
+        paused = false;
+        pause_toggle.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_toggle.innerHTML = "Resume";
+    }
 }

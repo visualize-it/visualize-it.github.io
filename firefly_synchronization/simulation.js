@@ -1,10 +1,10 @@
 // firefly objects
 let fireflies = [];
-let num_fireflies = 100;
+let num_fireflies;
 
 // emit objects
 let emits = [];
-let emit_speed = 1, emit_limit = 30;
+let emit_speed = 0.5, emit_limit = 30;
 
 // synchronization
 let sync_strength, sync_radius;
@@ -17,8 +17,8 @@ let velocity_noise_amplitude = radians(15);
 let phase_noise_amplitude;
 
 // velocities
-let angular_velocity = radians(1);
-let move_speed = 1;
+let angular_velocity = radians(1.5);
+let move_speed = 1.5;
 
 // cosmetic
 let firefly_radius;;
@@ -133,6 +133,9 @@ function drawPhaseWheel() {
 }
 
 function updateParams(variable) {
+    if (variable == "num") {
+        num_display.innerHTML = `Number of fireflies: ${num_fireflies}`;
+    }
     if (variable == "strength") {
         sync_strength = parseFloat(strength_input.value);
         strength_display.innerHTML = `Sync strength: ${sync_strength.toFixed(2)}`;
@@ -157,24 +160,17 @@ function initParams() {
         repulsion_radius = 15;
     }
 
+    frame = 0;
+    fireflies = [];
+    emits = [];
+
+    num_fireflies = 0;
+    addFireflies(100);
+
+    updateParams("num");
     updateParams("strength");
     updateParams("radius");
     updateParams("noise");
-
-    frame = 0;
-    fireflies = [];
-
-    for (let i = 0; i < num_fireflies; i++) {
-        let x = Math.random() * canvas_width;
-        let y = Math.random() * canvas_height;
-        let direction = Math.random() * 2 * Math.PI;
-        let vx = Math.cos(direction);
-        let vy = Math.sin(direction);
-        let phase = Math.random() * 2 * Math.PI;
-
-        let new_firefly = new Firefly(new Vector(x, y), new Vector(vx, vy), phase);
-        fireflies.push(new_firefly);
-    }
 
     if (paused) {
         pauseToggle();

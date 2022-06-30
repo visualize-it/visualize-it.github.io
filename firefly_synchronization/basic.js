@@ -12,6 +12,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let num_display = document.getElementById("num-display");
 let sd_display = document.getElementById("sd-display");
 
 let strength_display = document.getElementById("strength-display");

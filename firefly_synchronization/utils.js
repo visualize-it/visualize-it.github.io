@@ -29,3 +29,37 @@ function getFirefliesWithin(firefly, radius) {
     }
     return repelling_fireflies;
 }
+
+function addFireflies(number) {
+    for (let i = 0; i < number; i++) {
+        let x = Math.random() * canvas_width;
+        let y = Math.random() * canvas_height;
+        let direction = Math.random() * 2 * Math.PI;
+        let vx = Math.cos(direction);
+        let vy = Math.sin(direction);
+        let phase = Math.random() * 2 * Math.PI;
+
+        let new_firefly = new Firefly(new Vector(x, y), new Vector(vx, vy), phase);
+        fireflies.push(new_firefly);
+    }
+    num_fireflies += number;
+    updateParams("num");
+}
+
+function removeFireflies(number) {
+    for (let i = 0; i < number; i++) {
+        if (fireflies.length <= 0) {
+            break;
+        }
+        fireflies.pop();
+        num_fireflies -= 1;
+    }
+    updateParams("num");
+}
+
+function clearFireflies() {
+    emits = [];
+    fireflies = [];
+    num_fireflies = 0;
+    updateParams("num");
+}

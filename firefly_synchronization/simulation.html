@@ -60,6 +60,11 @@
         </div>
         <div class="col s12 l4">
           <center>
+            <p id="num-display"></p>
+            <button class="btn purple darken-4" onclick="addFireflies(5)">Add</button>
+            <button class="btn purple darken-4" onclick="removeFireflies(5)">Remove</button>
+            <button class="btn purple darken-4" onclick="clearFireflies()">Clear</button>
+            <hr>
             <p id="sd-display"></p>
             <hr>
             <span id="strength-display"></span>
@@ -71,7 +76,7 @@
             <span id="noise-display"></span>
             <input id="noise-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('noise')"
               onchange="updateParams('noise')">
-            <hr>
+              <br>
             <label>
               <input id="phase-toggle" type="checkbox" style="position: relative;" />
               <span>Display phase circle</span>

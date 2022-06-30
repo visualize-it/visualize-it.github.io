@@ -52,7 +52,11 @@
 
   <div class="text">
     <h2>Firefly Synchronization</h2>
-
+    <center>
+      <p>Fireflies synchronize their internal flashing clocks by obtaining inputs from nearby fireflies. This simulation
+        tries to mimic this phenomenon.</p>
+    </center>
+    <br>
     <div class="container" style="width:90%">
       <div class="row">
         <div class="col s12 l8">
@@ -76,7 +80,7 @@
             <span id="noise-display"></span>
             <input id="noise-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('noise')"
               onchange="updateParams('noise')">
-              <br>
+            <br>
             <label>
               <input id="phase-toggle" type="checkbox" style="position: relative;" />
               <span>Display phase circle</span>
@@ -88,6 +92,34 @@
         </div>
       </div>
     </div>
+
+    <hr>
+
+    <h3>Description</h3>
+
+    <p>
+      This simulation uses the Kuramoto model of phase oscillators for synchronization. For a firefly \(i\)
+      \[ \theta_i = \omega + \frac{K}{N} \sum_{j \in S} \sin(\theta_j - \theta_i) \]
+      where &theta; is the phase, &omega; is the phase velocity, \(K\) is the synchronization strength and \(S\) is the
+      set of fireflies within the synchronization radius of the given firefly. In addition to the above sync mechanism,
+      there is repulsion between the fireflies. Velocity as well as phase of each firefly is affected by noise.
+      <br> <br>
+      Sync strength \( K \) promotes synchronization. Sync radius \( r \) ensures tha synchronization is present over
+      greater areas. Higher phase noise makes synchronization harder, and represents errors in perception by the
+      fireflies. Higher the global synchronization, lower the standard deviation of phase. The phase circle collectively
+      displays the phases of each firefly.
+    </p>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>Standard deviation of phase has an oscillatory behaviour because of the cyclic nature of phase. Even when all
+        fireflies are synchronized, SD briefly peaks whenever the phases cross the 360 &deg; threshold.</li>
+      <li>This simulation is computationally complex, and may lag on lower-end devices.</li>
+    </ol>
 
     <br>
     <hr>

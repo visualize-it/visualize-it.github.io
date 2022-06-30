@@ -38,9 +38,14 @@ function step() {
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaultParams();
     initParams();
     animate(step);
+}
+
+function defaultParams() {
+    
 }
 
 let click_x, click_y, pressed;

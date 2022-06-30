@@ -65,13 +65,16 @@ function defaultParams() {
     
     if (mobile) {
         radius_input.value = 40;
+        phase_toggle.checked = false;
     }
     else {
         radius_input.value = 70;
+        phase_toggle.checked = true;
     }
 
     noise_input.value = 1;
-    phase_toggle.checked = true;
+
+    
 }
 
 let click_x, click_y, pressed;

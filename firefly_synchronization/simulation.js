@@ -4,7 +4,7 @@ let num_fireflies;
 
 // emit objects
 let emits = [];
-let emit_speed = 0.5, emit_limit = 30;
+let emit_speed, emit_limit;
 
 // synchronization
 let sync_strength, sync_radius;
@@ -98,7 +98,9 @@ function render() {
     context.fillRect(0, 0, canvas_width, canvas_height);
 
     for (let emit of emits) {
-        emit.render();
+        if (!emit.finished) {
+            emit.render();
+        }
     }
 
     if (phase_toggle.checked) {
@@ -154,10 +156,16 @@ function initParams() {
     if (mobile) {
         firefly_radius = 3;
         repulsion_radius = 9;
+
+        emit_speed = 0.75;
+        emit_limit = 15;
     }
     else {
         firefly_radius = 5;
         repulsion_radius = 15;
+
+        emit_speed = 0.5;
+        emit_limit = 30;
     }
 
     frame = 0;
@@ -165,7 +173,13 @@ function initParams() {
     emits = [];
 
     num_fireflies = 0;
-    addFireflies(100);
+
+    if (mobile) {
+        addFireflies(70);
+    }
+    else {
+        addFireflies(100);
+    }
 
     updateParams("num");
     updateParams("strength");

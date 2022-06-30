@@ -19,15 +19,15 @@ function removeFinishedEmits() {
 }
 
 function getFirefliesWithin(firefly, radius) {
-    let repelling_fireflies = [];
+    let fireflies_within = [];
     for (let other_firefly of fireflies) {
-        if (firefly !== other_firefly) {
+        if (firefly != other_firefly) {
             if (distanceBetween(firefly.position, other_firefly.position) < radius) {
-                repelling_fireflies.push(other_firefly);
+                fireflies_within.push(other_firefly);
             }
         }
     }
-    return repelling_fireflies;
+    return fireflies_within;
 }
 
 function addFireflies(number) {

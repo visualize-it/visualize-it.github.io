@@ -93,7 +93,7 @@
       The energy of a lattice is calculated using the following formula:
       \[ E = - J \sum_{\lt ij \gt} s_i s_j \]
       In every Monte-Carlo step, a random spin is chosen and flipped. The change in energy of the system (\( \Delta E
-      \)) is calculated. If energy has decreased, then the flip is accepted. If energy has increases, then the flip is
+      \)) is calculated. If energy has decreased, then the flip is accepted. If energy has increased, then the flip is
       accepted with a probability of:
       \[ P = \exp\left(\frac{-\Delta E}{k_B T}\right) \]
       This set of steps is known as the Metropolis algorithm. Higher temperature encourages unfavourable spins, thereby

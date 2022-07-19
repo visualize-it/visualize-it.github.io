@@ -10,7 +10,7 @@
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+
   <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
@@ -27,7 +27,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){window.dataLayer.push(arguments);}
+  function gtag() { window.dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-M95CKRP8HB');
@@ -45,22 +45,87 @@
       </ul>
     </div>
   </nav>
+
+  <div class="text">
+    <h2>Gradient Descent</h2>
+    <center>
+      <p>
+        Gradient descent is an iterative optimisation algorithm that is commonly used in Machine Learning algorithms to
+        minimize cost functions.
+      </p>
+    </center>
+    <br>
+    <div class="container" style="width:90%;">
+      <div class="row">
+        <div class="col s12 l8">
+          <canvas id="canvas"></canvas>
+        </div>
+        <div class="col s12 l4">
+          <center>
+            <b>
+              Click on the canvas to introduce a point <br> Remove a point by clicking on it <br> The blue line depicts
+              the fit
+            </b>
+            <br> <br>
+            <button class="btn purple darken-4" onclick="clearPoints()">Clear Points</button>
+            <br> <br>
+            <hr>
+            <br>
+            <button class="btn purple darken-4" onclick="update()">Iterate</button>
+            <button class="btn purple darken-4" onclick="resetTheta()">Reset</button>
+            <p id="cost-display"></p>
+            <span id="degree-display"></span>
+            <input id="degree-input" type="range" min="0" max="10" step="1" oninput="updateParams('degree')"
+              onchange="updateParams('degree')">
+            <span id="alpha-display"></span>
+            <input id="alpha-input" type="range" min="-3" max="3" step="0.1" oninput="updateParams('alpha')"
+              onchange="updateParams('alpha')">
+            <br>
+            <p id="coeffs-display"></p>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+
+    <h3>Description</h3>
+    <p>
+      Consider a bunch of \(m\) points of the form \( (x_i, y_i) \), and a polynomial \( h_{\theta} (x) \) of order \( n
+      \):
+      \[ h_{\theta} (x) = \theta_0 + \theta_1 x + \theta_2 x^2 + \dots + \theta_n x^n \]
+      Our task is to assign all the \(\theta\)'s such that the polynomial fits the points. In order to quantify
+      how good the fit is, we define something called the cost function \( J(\theta) \):
+      \[ J(\theta) = \frac{1}{2m} \sum_{i = 1}^{m} (h_{\theta} (x_i) - y_i)^2 \]
+      A lower cost function implies a better fit. Hence, we want to find the \(\theta\)'s for which this function is
+      minimized. This can be achieved via the Gradient Descent algorithm, which dictates that the \(\theta\)'s should be
+      modified in the following way:
+      \[ \theta_j = \theta_j - \frac{\alpha}{m} \sum_{i = 1}^{m} (h_{\theta} (x_i) - y_i) \cdot x_j \]
+      Here, \( \alpha \) is known as the learning rate. It is the rate at which the \(\theta\)'s try to approach their
+      minimum. It must be optimized correctly, depending on the problem. A low learning rate results in a very slow
+      decrease in cost function. A high learning rate causes the cost function to blow up or oscillate.
+    </p>
+
+    <br>
+    <hr>
+
+    <b>Note:</b>
+    <ol>
+      <li>The learning rate must be optimized correctly. Click on reset if the blue line vanishes, and adjust the
+        learning rate accordingly.</li>
+      <li>The concept of gradient descent can be scaled to more variables easily. Infact, even neural networks utilize
+        gradient descent to optimize the weights and biases of neurons in every level.</li>
+      <li><a href="../polynomial_regression/simulation.html">Polynomial regression</a> directly finds the minimum of the
+        cost function, by using calculus to find the minima and linear algebra to solve for it. However, that method
+        doesn't scale well as the number of points are increased.</li>
+    </ol>
+
+    <br>
+    <hr>
+
+    <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+  </div>
 </body>
-
-<div class="text">
-  <h2>Gradient Descent</h2>
-
-  <br>
-  <center>
-    <canvas id="canvas"></canvas>
-  </center>
-  <br>
-  
-  <br>
-  <hr>
-  <br>
-
-  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
-</div>
 
 </html>

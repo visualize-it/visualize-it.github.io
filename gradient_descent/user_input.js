@@ -1,5 +1,5 @@
 function clicked() {
-
+    addPoint();
 }
 
 function moved() {

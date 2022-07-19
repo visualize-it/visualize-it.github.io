@@ -12,13 +12,22 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let cost_display = document.getElementById("cost-display");
+let coeffs_display = document.getElementById("coeffs-display");
+
+let degree_display = document.getElementById("degree-display");
+let degree_input = document.getElementById("degree-input");
+
+let alpha_display = document.getElementById("alpha-display");
+let alpha_input = document.getElementById("alpha-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.6 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
-canvas_height = canvas_width / 1.618;
+canvas_height = canvas_width;
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;
@@ -31,16 +40,19 @@ let animate = window.requestAnimationFrame
     };
 
 function step() {
-    if (!paused) {
-        update();
-    }
     render();
     animate(step);
 }
 
-window.onload = function() {
+window.onload = function () {
+    defaultParams();
     initParams();
     animate(step);
+}
+
+function defaultParams() {
+    degree_input.value = 1;
+    alpha_input.value = 0;
 }
 
 let click_x, click_y, pressed;

@@ -1,6 +1,9 @@
 class Boid {
     constructor(type, i, j) {
         this.type = type;
+        
+        this.i = i;
+        this.j = j
         this.x = (j + 0.5) * cell_length;
         this.y = (i + 0.5) * cell_length;
     }

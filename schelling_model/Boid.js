@@ -1,6 +1,18 @@
 class Boid {
     constructor(type, i, j) {
         this.type = type;
+        if (this.type == 1) {
+            this.color = "#ff0000";
+        }
+        else if (this.type == 2) {
+            this.color = "#0000ff";
+        }
+        else if (this.type == 3) {
+            this.color = "#00ff00";
+        }
+        else if (this.type == 4) {
+            this.color = "#ffffff";
+        }
 
         this.i = i;
         this.j = j;
@@ -17,10 +29,7 @@ class Boid {
         this.target_i = i;
         this.target_j = j;
 
-        // vacate current cell
         grid[this.i][this.j] = 0;
-
-        // reserve target cell
         grid[this.target_i][this.target_j] = -1;
     }
     update() {
@@ -49,13 +58,7 @@ class Boid {
         }
     }
     render() {
-        if (this.type == 1) {
-            context.fillStyle = "#ff0000";
-        }
-        else if (this.type == 2) {
-            context.fillStyle = "#0000ff";
-        }
-
+        context.fillStyle = this.color;
         context.beginPath();
         context.arc(this.x, this.y, boid_radius, 0, 2 * Math.PI);
         context.fill();

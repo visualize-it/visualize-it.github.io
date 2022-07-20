@@ -12,11 +12,20 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+
+let unhappy_display = document.getElementById("unhappy-display");
+let occupancy_display = document.getElementById("occupancy-display");
+let num_display = document.getElementById("num-display");
+
+let tol_display = document.getElementById("tol-display");
+let tol_input = document.getElementById("tol-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.4 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width;
 
@@ -45,7 +54,9 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    setOccupancy(0.5);
+    setNumber(2);
+    tol_input.value = 0.5;
 }
 
 let click_x, click_y, pressed;
@@ -123,4 +134,27 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function pauseToggle() {
+    if (paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
+}
+
+function setOccupancy(frac) {
+    occupancy = frac;
+    occupancy_display.innerHTML = `Occupancy: ${Math.round(occupancy * 100)}%`;
+    initParams();
+}
+
+function setNumber(num) {
+    num_species = num;
+    num_display.innerHTML = `Number of Species: ${num_species}`;
+    initParams();
 }

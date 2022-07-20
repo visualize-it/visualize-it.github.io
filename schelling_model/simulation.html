@@ -14,6 +14,7 @@
   <script src="../helper.js" defer></script>
   <script src="Boid.js" defer></script>
   <script src="basic.js" defer></script>
+  <script src="utils.js" defer></script>
   <script src="user_input.js" defer></script>
   <script src="simulation.js" defer></script>
 
@@ -56,7 +57,33 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <div style="background: black; border: 1px solid red; padding: 5px;">
+              <b>
+                Warning: <br> 
+                Do not introduce too many species with high occupancy and low tolerance. Simulation WILL hang.
+              </b>
+            </div>
+            <hr>
+            <p id="unhappy-display"></p>
+            <button class="btn purple darken-4" id="pause-button" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" id="restart-button" onclick="initParams()">Restart</button>
+            <hr>
+            <p id="occupancy-display"></p>
+            <button class="btn purple darken-4" onclick="setOccupancy(0.25)">25%</button>
+            <button class="btn purple darken-4" onclick="setOccupancy(0.5)">50%</button>
+            <button class="btn purple darken-4" onclick="setOccupancy(0.75)">75%</button>
+            <hr>
+            <p id="tol-display"></p>
+            <input id="tol-input" type="range" min="0.3" max="0.8" step="0.05" oninput="updateParams('tol')"
+              onchange="updateParams('tol')">
+            <span>(Lower tolerance implies greater segregation)</span>
+            <hr>
+            <p id="num-display"></p>
+            <button class="btn purple darken-4" onclick="setNumber(2)">2</button>
+            <button class="btn purple darken-4" onclick="setNumber(3)">3</button>
+            <button class="btn purple darken-4" onclick="setNumber(4)">4</button>
+          </center>
         </div>
       </div>
     </div>

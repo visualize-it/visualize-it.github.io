@@ -1,8 +1,8 @@
 let num_cells, cell_length, boid_radius;
 
-let occupancy = 0.3;
+let occupancy = 0.5;
 
-let tolerance = 0.7;
+let tolerance = 0.33;
 
 let boids;
 let grid;
@@ -16,10 +16,10 @@ function update() {
             let j = Math.floor(Math.random() * num_cells);
 
             if (grid[i][j] > 0) {
-                let fraction = getFraction(i, j);
+                let fraction = getFraction(i, j, grid[i][j]);
 
                 if (fraction > tolerance) {
-                    getHappySpot(i, j);
+                    getHappySpotFor(i, j);
                     break;
                 }
                 else {
@@ -29,9 +29,13 @@ function update() {
         }
     }
 
+    for (let boid of boids) {
+        boid.update();
+    }
+
     let num_boids = getNumBoids();
 
-    console.log(num_boids, num_unhappy_boids);
+    // console.log(num_boids, num_unhappy_boids);
 }
 
 function render() {
@@ -40,27 +44,13 @@ function render() {
 
     drawUnhappySquares();
 
-    for (let i = 0; i < num_cells; i++) {
-        for (let j = 0; j < num_cells; j++) {
-            if (grid[i][j] > 0) {
-                if (grid[i][j] == 1) {
-                    context.fillStyle = "#ff0000";
-                }
-                else if (grid[i][j] == 2) {
-                    context.fillStyle = "#0000ff";
-                }
-
-                context.beginPath();
-                context.arc((j + 0.5) * cell_length, (i + 0.5) * cell_length, boid_radius, 0, 2 * Math.PI);
-                context.fill();
-            }
-        }
+    for (let boid of boids) {
+        boid.render();
     }
 }
 
 function drawUnhappySquares() {
-    context.strokeStyle = "#ffffff";
-    context.lineWidth = 1;
+    context.fillStyle = "#aaaaaa";
 
     for (let i = 0; i < num_cells; i++) {
         for (let j = 0; j < num_cells; j++) {
@@ -68,9 +58,11 @@ function drawUnhappySquares() {
                 let fraction = getFraction(i, j, grid[i][j]);
 
                 if (fraction > tolerance) {
-                    context.beginPath();
-                    context.rect(j * cell_length, i * cell_length, cell_length, cell_length);
-                    context.stroke();
+                    context.fillRect((j + 0.1) * cell_length, (i + 0.1) * cell_length, 0.8 * cell_length, 0.8 * cell_length);
+
+                    // context.beginPath();
+                    // context.rect((j + 0.1) * cell_length, (i + 0.1) * cell_length, 0.8 * cell_length, 0.8 * cell_length);
+                    // context.stroke();
                 }
             }
         }
@@ -104,6 +96,7 @@ function initObjs() {
         while (true) {
             let i = Math.floor(Math.random() * num_cells);
             let j = Math.floor(Math.random() * num_cells);
+
             if (grid[i][j] == 0) {
                 grid[i][j] = type;
                 boids.push(new Boid(type, i, j));
@@ -125,25 +118,34 @@ function initParams() {
     }
 
     cell_length = canvas_width / num_cells;
-    boid_radius = 0.45 * cell_length;
+    boid_radius = 0.4 * cell_length;
 
     initObjs();
 }
 
-function getHappySpot(i, j) {
+function getHappySpotFor(i, j) {
     while (true) {
         let i_new = Math.floor(Math.random() * num_cells);
         let j_new = Math.floor(Math.random() * num_cells);
-
 
         if (grid[i_new][j_new] == 0) {
             let fraction = getFraction(i_new, j_new, grid[i][j]);
 
             if (fraction <= tolerance) {
-                grid[i_new][j_new] = grid[i][j];
-                grid[i][j] = 0;
+                let boid = getBoidAt(i, j);
+                boid.moveTo(i_new, j_new);
+
+                console.log(i, j, "moving to", i_new, j_new);
                 break;
             }
+        }
+    }
+}
+
+function getBoidAt(i, j) {
+    for (let boid of boids) {
+        if (!boid.moving && boid.i == i && boid.j == j) {
+            return boid;
         }
     }
 }
@@ -162,6 +164,7 @@ function getFraction(i, j, type) {
             else if (i_index == num_cells) {
                 i_index = 0;
             }
+
             if (j_index < 0) {
                 j_index = num_cells - 1;
             }
@@ -178,6 +181,7 @@ function getFraction(i, j, type) {
             }
         }
     }
+
     if (num_total == 0) {
         return 1;
     }

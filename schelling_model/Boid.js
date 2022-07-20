@@ -1,11 +1,52 @@
 class Boid {
     constructor(type, i, j) {
         this.type = type;
-        
+
         this.i = i;
-        this.j = j
-        this.x = (j + 0.5) * cell_length;
-        this.y = (i + 0.5) * cell_length;
+        this.j = j;
+        this.calcCoords();
+
+        this.moving = false;
+    }
+    calcCoords() {
+        this.x = (this.j + 0.5) * cell_length;
+        this.y = (this.i + 0.5) * cell_length;
+    }
+    moveTo(i, j) {
+        this.moving = true;
+        this.target_i = i;
+        this.target_j = j;
+
+        // vacate current cell
+        grid[this.i][this.j] = 0;
+
+        // reserve target cell
+        grid[this.target_i][this.target_j] = -1;
+    }
+    update() {
+        if (this.moving) {
+            if (this.i == this.target_i && this.j == this.target_j) {
+                this.moving = false;
+                grid[this.target_i][this.target_j] = this.type;
+            }
+            else {
+                if (this.target_i > this.i) {
+                    this.i++;
+                }
+                else if (this.target_i < this.i) {
+                    this.i--;
+                }
+
+                if (this.target_j > this.j) {
+                    this.j++;
+                }
+                else if (this.target_j < this.j) {
+                    this.j--;
+                }
+
+                this.calcCoords();
+            }
+        }
     }
     render() {
         if (this.type == 1) {

@@ -45,10 +45,33 @@
 
 <div class="text">
   <h2>Conway's Game of Life</h2>
-  <p>The most famous cellular automaton, Conway's game of life was was decvised by British Mathematician John Conway in
-    1970. It is a zero-player game, wherein the future is entirely decided by the initial state. The survival of each
-    cell is decided by 4 simple rules</p>
-  <b>Instructions</b>
+
+  <center>
+    <p>
+      The most famous cellular automaton, Conway's game of life was was devised by British Mathematician John Conway in
+      1970.
+    </p>
+  </center>
+
+  <hr>
+
+  <h3>Simulation</h3>
+
+  <p>
+    The world consists of a 2D lattice of cells. Each cell has a state, either alive (colored) or dead (black). The
+    future of every cell is determined by a simple set of rules:
+  <ol>
+    <li>An alive cell dies of loneliness if it has none or only 1 living neighbour</li>
+    <li>An alive cell dies of starvation if it has more than 3 living neighbours</li>
+    <li>An alive cell is sustained if it has 2 or 3 living neighbours</li>
+    <li>A non-living cell becomes alive if it has exactly 3 living neighbours</li>
+  </ol>
+  These rules are enforced on all cells, and the grid is updated synchronously. Cells that are about to die of
+  loneliness are represented by white. Cells that are going to die due to
+  overcrowding are represented by red. Cells with two neighbours are colored orange whereas cells with three
+  neighbours are colored blue.
+  </p>
+  <b>Instructions: </b>
   <ol>
     <li>Touch a cell in order to toggle its state (dead/alive)</li>
     <li>Toggling a cell's state will automatically pause the simulation. Click on 'Resume' to continue</li>
@@ -87,7 +110,7 @@
 
   <hr>
 
-  <h3>Predefined States</h3>
+  <h3>Interesting States</h3>
   <br>
 
   <div class="container">
@@ -149,16 +172,6 @@
       </div>
     </div>
   </div>
-
-  <hr>
-
-  <h3>Rules of the Game</h3>
-  <ol>
-    <li>An alive cell dies of loneliness if it has none or only 1 living neighbour</li>
-    <li>An alive cell dies of starvation if it has more than 3 living neighbours</li>
-    <li>An alive cell is sustained if it has 2 or 3 living neighbours</li>
-    <li>A non-living cell becomes alive if it has exactly 3 living neighbours</li>
-  </ol>
 
   <hr>
 

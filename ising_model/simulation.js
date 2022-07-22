@@ -105,7 +105,7 @@ function updateParams(variable) {
     }
     if (variable == "rate") {
         mc_steps = ((rate_input.value / 100) * grid_size * grid_size).toFixed(0);
-        rate_display.innerHTML = `MC steps per update: ${mc_steps} (${rate_input.value}%)`;
+        rate_display.innerHTML = `Updates per iteration: ${mc_steps} (${rate_input.value}%)`;
     }
     if (variable == "temp") {
         temperature = temp_input.value;

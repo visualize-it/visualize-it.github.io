@@ -134,5 +134,5 @@ function configSlider() {
 }
 
 function scrollUp() {
-  window.scrollTo(0, 250);
+  window.scrollTo(0, 500);
 }

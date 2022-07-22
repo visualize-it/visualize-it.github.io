@@ -48,10 +48,20 @@
 
   <div class="text">
     <h2>Ising Model</h2>
+    <center>
+      <p>
+        The Ising model is used to model a system of interacting spins in a ferromagnetic material. The model was first
+        conceived by Wilhelm Lenz in 1920. He presented the model to his student, Ernst Ising, for analysis. It is a
+        central model in the domain of statistical mechanics.
+      </p>
+    </center>
+
+    <hr>
+
+    <h3>Simulation</h3>
     <p>
-      The Ising model is used to model a system of interacting spins in a ferromagnetic material. Spins are distributed
-      in a connected lattice. Each spin is randomly set to +1 or -1. When temperature is low and interaction strength is
-      positive, the system evolves towards the lowest energy configuration.
+      The model consists of a 2D lattice of spins. Each spin can be either +1 (yellow) or -1 (blue). Initially, all
+      spins are randomly assigned. The system is evolved using the Metropolis algorithm (described below).
     </p>
     <br>
     <div class="container" style="width:90%;">
@@ -87,18 +97,51 @@
 
     <hr>
 
-    <h3>Description</h3>
+    <h3>Energy of the Lattice</h3>
 
     <p>
       The energy of a lattice is calculated using the following formula:
       \[ E = - J \sum_{\lt ij \gt} s_i s_j \]
-      In every Monte-Carlo step, a random spin is chosen and flipped. The change in energy of the system (\( \Delta E
-      \)) is calculated. If energy has decreased, then the flip is accepted. If energy has increased, then the flip is
-      accepted with a probability of:
-      \[ P = \exp\left(\frac{-\Delta E}{k_B T}\right) \]
-      This set of steps is known as the Metropolis algorithm. Higher temperature encourages unfavourable spins, thereby
-      increasing disorder of the system, whereas a negative interaction strength \( J \) seeks to increase energy.
+      Intuitively speaking, the energy of the lattice is minimum if all the spins are aligned in the same direction.
+      In large lattices, this can be achieved after long wait times, provided the temperature is low enough. More
+      commonly, we see regions of the lattice having the same spin. This is a reasonably low energy state.
     </p>
+
+    <hr>
+
+    <h3>Metropolis Algoithm</h3>
+
+    <p>
+      In every step, a random spin is chosen and flipped. The change in energy of the system (\( \Delta E
+      \)) is calculated. If energy has decreased (which is favourable), then the flip is accepted.
+      If energy has increased (unfavourable), then the flip is accepted with a probability of:
+      \[ P = \exp\left(\frac{-\Delta E}{k_B T}\right) \]
+      The intuition behind this formula is:
+    <ol>
+      <li>As the value of \(\Delta E\) increases, it becomes less likely that the unfavourable flip will be accepted
+      </li>
+      <li>A higher value of temperature \(T\) in the denominator decreases the value of the fraction, thereby increasing
+        the probability of all unfavourable flips. Higher temperature promotes disorder.</li>
+    </ol>
+    Every iteration of the simulation asynchronously updates a percentage of randomly chosen cells.
+    </p>
+
+    <hr>
+
+    <h3>What to try</h3>
+
+    <ol>
+      <li>
+        With low temperature \(T\) and a positive interactive strength \(J\), you will observe the characteristic
+        magnetic lattices of ferromagnets: huge regions of the lattice have the same spin. These regions are known as
+        'domains'. If you increase \(T\), then disorder is promoted and it will take slightly longer for domains to
+        form.
+      </li>
+      <li>
+        If you set the interaction strength \(J\) to be negative, then energy is minimized if neighbouring spins are
+        dislike. In such a case, the system will evolve to be disordered.
+      </li>
+    </ol>
 
     <br>
     <hr>
@@ -108,7 +151,7 @@
 
     <ol>
       <li>The boundary condition is periodic.</li>
-      <li>This simulation may hang on lower-end devices, for large grid sizes and large values of MC steps.</li>
+      <li>This simulation may hang on lower-end devices, for large grid sizes and large values of steps per second.</li>
     </ol>
 
     <hr>

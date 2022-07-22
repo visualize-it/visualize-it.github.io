@@ -56,6 +56,19 @@
       <p>Fireflies synchronize their internal flashing clocks by obtaining inputs from nearby fireflies. This simulation
         tries to mimic this phenomenon.</p>
     </center>
+
+    <hr>
+
+    <h3>Simulation</h3>
+
+    <p>
+      The circles represent the fireflies. Each firefly has an internal phase \(\theta \in [0, 2\pi)\) that advances by
+      phase velocity \(\omega\) in every update. If \(\theta\) increases beyond \(2\pi\) then it resets to zero, and
+      the firefly emits light. The color of the firefly is an indicator of it's phase. The phase circle at the centre
+      depicts the current phase of all the fireflies. The motion of the fireflies is essentially random walks +
+      repulsion. Initially, all fireflies have a random phase between 0 and \(2\pi\).
+    </p>
+
     <br>
     <div class="container" style="width:90%">
       <div class="row">
@@ -98,16 +111,18 @@
     <h3>Description</h3>
 
     <p>
-      This simulation uses the Kuramoto model of phase oscillators for synchronization. For a firefly \(i\)
-      \[ \theta_i = \omega + \frac{K}{N} \sum_{j \in S} \sin(\theta_j - \theta_i) \]
+      This simulation uses the Kuramoto model of phase oscillators for synchronization. For a given firefly \(i\):
+      \[ \theta_i = \omega + \frac{K}{N} \sum_{j \in S} \sin(\theta_j - \theta_i) + \eta \]
       where &theta; is the phase, &omega; is the phase velocity, \(K\) is the synchronization strength and \(S\) is the
-      set of fireflies within the synchronization radius of the given firefly. In addition to the above sync mechanism,
-      there is repulsion between the fireflies. Velocity as well as phase of each firefly is affected by noise.
+      set of fireflies within the synchronization radius of the given firefly. The first term depicts the advancing of
+      phase, whereas the second term depicts the 'nudge' that each firefly gets from the nearby fireflies, and leads to
+      their eventual synchronization. The value of this 'nudge' becomes zero only when the phase of the firefly is
+      aligned with all other fireflies in it's vicinity. Additionally, phase is also affected by a random noise term
+      \(\eta\). This represents errors in judgement made by the firefly.
       <br> <br>
-      Sync strength \( K \) promotes synchronization. Sync radius \( r \) ensures tha synchronization is present over
-      greater areas. Higher phase noise makes synchronization harder, and represents errors in perception by the
-      fireflies. Higher the global synchronization, lower the standard deviation of phase. The phase circle collectively
-      displays the phases of each firefly.
+      A higher sync strength \( K \) leads to faster synchronization of nearby. A higher sync radius \( r \) ensures tha
+      synchronization is present over greater areas. Higher phase noise makes synchronization harder. Higher the global
+      synchronization, lower the standard deviation of phase.
     </p>
 
     <br>

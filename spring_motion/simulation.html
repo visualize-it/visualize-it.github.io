@@ -46,13 +46,14 @@
 <div class="text">
   <h2>Spring Motion</h2>
   <p>Spring motion belongs to a subset of periodic motion known as Simple Harmonic Motion (SHM), where the restoring
-    force is directly proportional to the objects displacement magnitude and acts towards the objects equilibrium
+    force is directly proportional to the object's displacement magnitude and acts towards the object's equilibrium
     position. The proportionality factor between restoring force and displacement plays a key role in determining the
-    time period of motion. It is commonly denoted by &omega;^2.
+    time period of motion. It is commonly denoted by \(\omega^2\)
   </p>
   <p>
-    For a spring, &omega;^2 is given by k/m. Where 'k' is known as spring constant. It is the
-    magnitude ofrestoring force developed for unit displacement of the edge of the spring from its equilibrium position.
+    For a spring, \(\omega^2\) is given by \(\frac{k}{m}\). Where 'k' is known as spring constant. It is the
+    magnitude of restoring force developed for unit displacement of the edge of the spring from its equilibrium
+    position.
     In essence, it quantifies the 'stiffness' of the spring. 'm' is mass of the spring.
   </p>
   <p>
@@ -88,7 +89,7 @@
           <p>Precision:
             <input placeholder="Ideal value: 2" id="precision" type="number" min="1" max="10" style="width: 30%">
           </p>
-          
+
         </div>
       </div>
       <div class="row">
@@ -115,37 +116,22 @@
   <hr>
 
   <h3>Description</h3>
-  <b>Relationship of SHM with sines and cosine:</b><br>
+
   <p>
-    Any periodic function can be expressed as a superposition of sines and cosine. Fourier transformation deals with
-    determining this superposition for a given periodic function. However, in the case of SHM (under non-dissipative
-    conditions), this relationship is hard to miss. Perform the above simulation with a damping constant of 0 and
-    observe the cosine wave being generated.
+    The equation of spring motion is as follows:
+    \[ m a = - kx - bv \]
+    where \( k \) is the spring constant, \( b \) is the damping constant and \( x \) and \( v \) are the position and
+    velocity of the oscillating tip. \(m\) is the mass of the spring. We plug in these quantities to obtain the
+    acceleration \(a\). The simulation is done using the Euler's method, which dictates:
+    \[ \Delta v = a \Delta t \implies v_{new} = v_{old} + \Delta v \]
+    \[ \Delta x = v \Delta t \implies x_{new} = x_{old} + \Delta x \]
+    The value of \(\Delta t\) determines the accuracy of the simulation. A precision of 2 (which implies \(\Delta t =
+    10^{-2}\)) is usually the correct balance between accuracy and speed, in this case.
   </p>
-  <b>Types of vibrations:</b>
-  <p>
-    Setting damping constant as 0 gives us natural vibrations whereas an non-zero damping constant gives us damped
-    vibrations.
-  </p>
-  <b>Idealisations:</b>
-  <p>
-    In the real world, resistive forces are always present. Hence, vibrations are always damped. Moreover, since Hooke's
-    law is not valid outside elastic limits, the relationship between restoring force 'F' and displacement from mean
-    position
-    'x' becomes non-linear.
-  </p>
-  <b>Notes:</b>
-  <ol>
-    <li>Fully compatible with SI units</li>
-    <li>By convention, measurements to the right of the central line is taken positive whereas measurements to the left
-      of the central line are regarded to be negative. Hence, a positive position and negative velocity implies that the
-      edge of spring is towards the right of the central line but moving towards the left</li>
-    <li>Precision of 2 is ideal. Precision of 1 is associated with less accuracy and greater frequencies. If precision
-      is greater 2, the simulation becomes slower because more computation is involved per cycle</li>
-    <li>Simulation may lag on lower-end desktops and mobile phones</li>
-  </ol>
+
   <br>
   <hr>
+
   <center>
     <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a> </p>
   </center>

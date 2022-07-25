@@ -54,12 +54,24 @@
 <div class="text">
   <h2>Genetic Algorithm</h2>
 
-  <p>This simulation uses survival of the fittest to determine the gene pool of the next generation of boids. All boids
-    emerge from the blue circle (source). Fitness is calculated based on how close a boid gets towards the red circle
-    (target). The boids also need to avoid colliding with the wall or the borders. The higher the fitness of a boid, the
-    more chances that it's genes are present in the next generation of boids. The genes of a boid determine it's motion
-    during it's entire lifespan.
+  <center>
+    <p>
+      This simulation uses survival of the fittest gene to improve the performance of boids across generations.
+    </p>
+  </center>
+
+  <hr>
+
+  <h3>Simulation</h3>
+
+  <p>
+    Each yellow-shaped triangular entity is known as a boid. The maximum lifespan of a boid is 500 frames. Each boid has
+    it's own, unique gene, with 500 nucleotides. Each nucleotide is a number such that the \( i^{th} \) nucleotide
+    determines the angle that the boid turns in the \(\ i^{th} \) frame. Initially, all boids have random genes. At the
+    beginning of each generation, the boids start from the source (blue circle). They need to reach the target (red
+    circle) while avoiding collisions with the obstacles (white rectangles) and the boundary walls.
   </p>
+
   <div class="container" style="width: 100%">
     <div class="row">
       <div class="col s12 l8">
@@ -127,6 +139,23 @@
     </div>
   </div>
 
+  <hr>
+
+  <h3>Description</h3>
+
+  <p>
+    At the end of each generation, the fitness \( f \) of each boid is measured. It is given by the following formula:
+    \[ f = f_0 + \frac{1}{d} \]
+    where \( f_0 \) is the baseline fitness and \( d \) is the distance between the boid and the target in the final
+    frame. There are negative feedbacks for crashing into obstacles and walls, and positive feedbacks for reaching the
+    target faster. The greater the fitness of a boid, the more likely that its genes (or segments of it) will be present
+    in the next generation of boids. For generating each boid of the next generation, two parents are randomly chosen
+    (based on their fitness), and random halves of their genes are incalculated into the offspring. Finally, randomly
+    selected nucleotides are slightly nudged. The former process is called recombination whereas the latter is called
+    mutation. As generations pass, the total fitness as well as the average fitness of the population increases.
+    Eventually, the boids are able to traverse complex layouts and make it to the target in large numbers.
+  </p>
+
   <br>
   <hr>
   <br>
@@ -138,8 +167,6 @@
       evolution, then please consider restarting the evolution by clicking the last button</li>
     <li>Changing the location of the source, target or the obstacles during the course of evolution will redirect it's
       course. Boids will eventually adapt to the new conditions</li>
-    <li>Each boid has a lifespan of 500 frames. A boid that collides with the obstacle or the walls of the space is
-      considered as dead</li>
   </ol>
 
   <br>

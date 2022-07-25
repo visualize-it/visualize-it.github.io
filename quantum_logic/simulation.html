@@ -12,6 +12,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="basic.js" defer></script>
   <script src="quantum_logic.js" defer></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <script>
+    window.MathJax = {
+      loader: { load: ['[tex]/braket'] },
+      tex: { packages: { '[+]': ['braket'] } }
+    };
+  </script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
@@ -40,8 +50,14 @@
   </nav>
   <div class="text">
     <h2>Quantum Logic Gates</h2>
-    <p>Quantum circuits contain a lot of logic gates. It is these gates which give them their interesting computing
-      properties. In this visualization, we explore the three purely real one-qubit logic gates.</p>
+    <center>
+      <p>
+        Quantum circuits are primarily composed of logic gates. It is these logic gates that create and utilize
+        phenomenon like superposition and entanglement of qubits, which are responsible for the interesting properties
+        of quantum computing. This visualization allows you to apply single-qubit logic gates.
+      </p>
+    </center>
+
     <center>
       <br>
       <canvas id="quantum-canvas"></canvas>
@@ -96,33 +112,47 @@
     <hr>
 
     <h3>Description</h3>
-    <b>Hadamard gate</b>
-    <p>This gate is mainly used for spreading and recombination of quantum states. It operates as follows:</p>
-    <center>
-      [a,b] &longrightarrow; [(a+b)/&Sqrt;2, (a-b)/&Sqrt;2]
-    </center>
-    <p>Two Hadamard gates are equivalent to an identity gate, hence the Hadamard gate is its own inverse</p>
-    <br>
 
-    <b>Pauli-X or NOT gate</b>
-    <p>This gate interchanges the amplitudes of the qubit's state:</p>
-    <center>
-      [a,b] &longrightarrow; [b,a]
-    </center>
-    <p>Two X gates are equivalent to an identity gate, hence the X gate is its own inverse</p>
-    <br>
+    <p>
+      Every qubit \( | \psi \gt \) resides on a point on a Block sphere. It can be represented by two
+      numbers \( (a, b)\) such that:
+      \[ | \psi \gt = a | 0 \gt + b | 1 \gt \]
+      Here, \( | 0 \gt \) and \( b | 1 \gt \) are known as the basis states. The probability that a qubit is measured in
+      the \( | 0 \gt \) state is given by \( a^2 \). The probability that a qubit is measured in the \( | 1 \gt \) state
+      is given by \( b^2 \). Following the postulates of probability, we require that:
+      \[ a^2 + b^2 = 1 \]
+      Logic gates essentially manipulate these amplitudes whilst preserving the normalisation. Every logic gate's action
+      can be represented by a matrix. A logic gate with matrix representation \( M \), acts on a qubit \( | \psi \gt \)
+      to produce \( M | \psi \gt \) via matrix multiplication. The single-qubit logic gates are:
+    </p>
 
-    <b>Pauli-Z or phase-flip gate</b>
-    <p>This gate flips the sign of the 2<sup>nd</sup> amplitude</p>
-    <center>
-      [a,b] &longrightarrow; [a,-b]
-    </center>
-    <p>Two Z gates are equivalent to an identity gate, hence the Z gate is its own inverse</p>
-    <br>
+    <ol>
+      <li>
+        <b>Hadamard gate:</b> <br>
+        This gate is mainly used for spreading and recombination of quantum states. It operates as follows:
+        \[ (a, b) \rightarrow \left( \frac{a + b}{\sqrt{2}}, \frac{a - b}{\sqrt{2}} \right) \]
+        Its matrix representation is:
+        \[ H = \frac{1}{\sqrt{2}} \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} \]
+      </li>
+      <li>
+        <b>Pauli-X or NOT gate:</b>
+        This gate interchanges the amplitudes of the qubit's state:
+        \[ (a, b) \rightarrow (b, a) \]
+        Its matrix representation is:
+        \[ X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \]
+      </li>
+      <li>
+        <b>Pauli-Z or phase-flip gate:</b>
+        This gate flips the sign of the 2<sup>nd</sup> amplitude
+        \[ (a, b) \rightarrow (a, -b) \]
+        Its matrix representation is:
+        \[ Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} \]
+      </li>
+    </ol>
 
-    <b>Measurement</b>
-    <p>If the final output is [a,b], then the probability that 0 is measured is given by a<sup>2</sup> and the
-      probability that 1 is measured is given by b<sup>2</sup></p>
+    <p>
+      All the above logic gates function as their own inverse. You can verify that \( HH = XX = ZZ = I \)
+    </p>
 
     <br>
     <hr>
@@ -131,10 +161,11 @@
     <b>Note:</b>
 
     <ol>
-      <li>The quantum state of a qubit lies in a complex 2D space. The imaginary parts are not considered here</li>
-      <li>Besides H, X and Z, there are other single qubit gates like Pauli-Y (Y), Phase (S,P), &pi; / 8 (T)</li>
-      <li>Multi qubit gates also exist: Controlled NOT (CNOT), Controlled Z (CZ), Toffoli (TOFF), SWAP</li>
-      <li>Every quantum logic gate has an associated matrix that has to be unitary in order to preserve normalization
+      <li>Besides H, X and Z, there are other single qubit gates like Pauli-Y (Y), Phase (P), \( \frac{\pi}{8} \) (T),
+        etc</li>
+      <li>Multi qubit gates also exist: Controlled NOT (CNOT), Controlled Z (CZ), Toffoli (TOFF), SWAP, etc</li>
+      <li>In order to preserve normalization, the matrix associated with every logic gate must be unitary \( M
+        M^{\dagger} = M^{\dagger} M = I \).
       </li>
       <li>The program does not consider your text-input until it is defined and proper</li>
     </ol>

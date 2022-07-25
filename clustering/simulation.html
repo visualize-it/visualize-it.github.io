@@ -52,7 +52,8 @@
   <p>Given a set of 'n' points in space, the k-means clustering algorithm attempts to classify 'n' points into 'k'
     clusters such that the sum of distances of each point from the mean of it's respective cluster is minimized.
     Although this simulation showcases k-means clustering in 2D space, it is can be easily extended to further
-    dimensions. Circles represent the points. Squares represent the (tentative) centroids of clusters.</p>
+    dimensions. Circles represent the points. Squares represent the (tentative) centroids of clusters. All points
+    belonging to the same cluster share the same color.</p>
 
   <br>
   <div class="container">
@@ -88,7 +89,7 @@
   <br>
   <hr>
 
-  <h3>The Algorithm</h3>
+  <h3>Algorithm</h3>
 
   <p>
     Psuedocode of k-means clustering algorithm is as follows:
@@ -98,11 +99,12 @@
       imperative to verify that each centroid has atleast one point assigned to it. Otherwise, repeat the previous step.
     </li>
     <li>Within each cluster, compute it's centroid, and move the assigned centroid to the computed position</li>
-    <li>Repeat the previous step until the cost (sum of distances of each point from the centroid of it's respective
-      cluster) stops decreasing further.</li>
+    <li>Repeat the previous step until the cost function (sum of distances of each point from the centroid of it's
+      respective cluster) stops decreasing further.</li>
   </ol>
   It is not guaranteed that the algorithm will converge to a global minimum. It might get stuck in a local minimum, in
-  which case, the process must be restarted with a new set of initial centroids.
+  which case, the process must be restarted with a new set of initial centroids. The cost function quantifies how good
+  the clustering is. A lower cost function signifies better clustering.
   </p>
 
   <br>

@@ -50,10 +50,10 @@
 
 <div class="text">
   <h2>Polynomial Regression</h2>
-  <p>
-    Polynomial regression is used to find the coefficients of an m-degree polynomial that best fits the given set of
-    points. It involves elementary multivariable calculus and linear algebra.
-  </p>
+  <center>
+    <p>Polynomial regression is used to find the coefficients of an m-degree polynomial that best fits the given set of
+      points.</p>
+  </center>
   <br>
   <div class="container" style="width: 90%">
     <div class="row">
@@ -83,20 +83,27 @@
   <br>
   <hr>
 
-  <h3>Brief Description</h3>
+  <h3>Description</h3>
   <p>
-    The cost function expresses the discrepancy between the polynmial under consideration, and the given set of points.
-    If m is the order of the polynomial being considered for a fit, then the cost function takes m+1 inputs,
-    corresponding to the m+1 polynomial coefficients. Our aim is to find the coefficients for which the cost function is
-    minimum or zero. Using the fact that the derivative is zero at a minima, we obtain m+1 equations by partially
-    differentiating the cost function with respect to m+1 polynomial coefficients (the unknowns). By expressing the set
-    of m+1 equations in terms of matrices, one can easily find the unknown coefficients using linear algebra (either
-    Gaussian elimination + back-substitution, or inversion).
-    <br>
-    <br>
+    Consider a polynomial of degree m:
+    \[ p_m (x) = \theta_0 + \theta_1 x + \theta_2 x^2 + \dots + \theta_m x^m \]
+    Polynomial regression allows us to find the coefficients of this polynomial that best fit the given set of \(n\)
+    points. The cost function \( J(\theta) \) expresses the error between the polynomial and the given set of points.
+    It is given by:
+    \[ J(\theta) = \sum_{i = 1}^{n} (y_i - p_m (x_i))^2 \]
+    where \( (x_i, y_i) \) are the given points. A lower value of this function indicates a better fit. Hence, we need
+    to find the minimum of this function. Calculus dictates that at the minimum of this function:
+    \[ \frac{d(J(\theta))}{d\theta} = 0 \]
+    The above equation is split into \( m+1 \) equations in \(\theta\), where each equation corresponds to a particular
+    power of \( x \) in the polynomial. This system of equations can be better expressed (using linear algebra) in the
+    form \( A \vec{\theta} = B \). Solving this system of equations (using Gaussain elimination or inversion of \(A\))
+    gives us the value of \(\theta\)'s for which the cost function is minimized. The corresponding polynomial is the
+    best fit to the given set of points.
+  </p>
+
+  <p>
     Please refer to <a target="_blank" href="http://polynomialregression.drque.net/math.html">this website</a> for
-    viewing the exact
-    mathematics involved in polynomial regression.
+    viewing the exact mathematics involved in polynomial regression.
   </p>
 
   <br>
@@ -110,7 +117,8 @@
     <li>A polynomial of degree m requires atleast m+1 points for a proper fit. If this condition is not satisfied, then
       the extra coefficients will be extremely low or zero, which badly skewes the curve.</li>
     <li><a href="../gradient_descent/simulation.html">Gradient Descent</a> can be used for polynomial regression too,
-      and adopts an iterative approach to find the best fit.</li>
+      and adopts an iterative approach to find the best fit. It turns out that this method does not scale well, as the
+      number of points and the degree of polynomial increases.</li>
   </ol>
 
   <br>

@@ -73,9 +73,6 @@
       <div class="col s12 l7">
         <canvas id="canvas"></canvas>
         <br>
-        <center>
-
-        </center>
       </div>
       <div class="col s12 l5">
         <center>
@@ -139,7 +136,72 @@
 
   <hr>
 
-  <h2>Dynamical Behaviours</h2>
+  <h3>Interactions</h3>
+
+  <p>All boids (a generic term used to indicate agents in collective behaviour) interact with each other via three
+    interactions:</p>
+
+  <ol>
+    <li>
+      <b>Repulsion:</b> <br>
+      When boids come too close, they move away from each other. Suppose there are \(n_r\) boids within the repulsion
+      radius of a particular boid \(i\). If \(\vec{d}\) represents their direction, and
+      \(\vec{c}\) represents their position, then repulsion dictates:
+      \[ \vec{d}_{i, r} (t + \tau) = - \sum_{j \not = i}^{n_r} \frac{\vec{c}_j (t) - \vec{c}_i (t)}{|\vec{c}_j (t) -
+      \vec{c}_i (t)|} \]
+    </li>
+    <li>
+      <b>Orientation:</b> <br>
+      Boids tend to orient themselves along the direction of their neighbours. Suppose there are \(n_o\) boids within
+      the orientation radius of a particular boid \(i\). If \(\vec{v}\) represents their velocity, then orientation
+      dictates:
+      \[ \vec{d}_{i, o} (t + \tau) = \sum_{j = 1}^{n_o} \frac{\vec{v_j} (t)}{|\vec{v_j} (t) |}\]
+    </li>
+    <li>
+      <b>Attraction:</b> <br>
+      Boids tend to move towards the centre of mass of their neighbours. Suppose there are \(n_a\) boids within the
+      attraction radius of a particular boid \(i\). then attraction operates exactly opposite to orientation:
+      \[ \vec{d}_{i, a} (t + \tau) = \sum_{j = 1}^{n_r} \frac{\vec{c}_j (t) - \vec{c}_i (t)}{|\vec{c}_j (t) -
+      \vec{c}_i (t)|} \]
+    </li>
+  </ol>
+
+  <p>
+    If there are any boids in the repulsion zone of a boid, then the boid only follows the repulsion rule. If there are
+    boids that lie in the attraction as well as the orientation zone, then the boid averages the result of both
+    interactions. The boids can turn only at a limited angle \( \theta \) in every time step. Further, there is a blind
+    angle \( \alpha \) behind each boid where it cannot perceive other boids. Every boid moves with the same velocity
+    \(v\) along its current direction. The intended direction of every boid is perturbed by random noise. This
+    represents errors in judgement made by the boids.
+  </p>
+
+  <hr>
+
+  <h3>Metrics</h3>
+
+  <p>
+    The following quantities can be used to quantify the collective motion of boids:
+  </p>
+
+  <ol>
+    <li>
+      <b>Group polarization:</b> <br>
+      This quantifies the degree of overall alignment of the boids. If every boid is moving along the same direction,
+      then group polarization is 1. If all boids are moving along random directions, then group polarization is 0.
+      \[ p (t) = \frac{1}{N} \left| \sum_{i}^{N} \vec{v}_i (t) \right| \]
+    </li>
+    <li>
+      <b>Group angular momentum:</b> <br>
+      Measures the degree of rotation of the group along their center:
+      \[ m (t) = \frac{1}{N} \left| \sum_{i}^{N} \vec{r}_{ic} (t) \times \vec{v}_i (t) \right| \]
+      Here, \( \vec{r}_{ic} = \vec{c}_i - \vec{c}_{group} \) is the displacement vector of the \(i^{th}\) boid from the center of mass of the group, which is given by:
+      \[ \vec{c}_{group} (t) = \sum_{i = 1}^{N} \vec{c}_{i} (t) \]
+    </li>
+  </ol>
+
+  <hr>
+
+  <h3>Dynamical Behaviours</h3>
 
   <p>
     Depending on the strengths of various interactions, as well as other parameters, the boids can exhibit four
@@ -205,11 +267,6 @@
     <li>
       This model is from the paper "Collective Memory and Spatial Sorting in Animal Groups" by Couzin et al. <a
         href="https://doi.org/10.1006/jtbi.2002.3065">https://doi.org/10.1006/jtbi.2002.3065</a>
-    </li>
-    <li>Please check out my <a href="../flocking_simulation/simulation.html">flocking behaviour simulation</a> for
-      description about the interactions. Infact, "Dynamic parallel grouping" behaviour here is akin to flocking.</li>
-    <li>
-      Blind angle is the angle behind the boid wherein it cannot detect other boids.
     </li>
     <li>
       If reflect is off, boids just teleport from one edge to another. Implementing a periodic boundary condition was

@@ -63,7 +63,7 @@ function update() {
         }
         c_display.innerHTML = "Polynomial coefficients: <br>";
         for(let i = 0; i <= polynomial_degree; i++) {
-            c_display.innerHTML += `c<sub>${i}</sub>: ${coeffs[i].toFixed(6)} <br>`;
+            c_display.innerHTML += `&theta;<sub>${i}</sub>: ${coeffs[i].toFixed(6)} <br>`;
         }
     }
 

@@ -46,14 +46,15 @@
     <div class="text">
         <h2>Projectile Motion</h2>
 
-        <p>
-            Projectile motion possesses many interesting properties. One of them is the fact that two projectiles, when
-            thrown with the same speed but at angles &theta; and 90 - &theta; respectively, land at the same position!
-            You
-            can verify this fact by using the interactive simulation of projectile motion given below. Also, try to hit
-            that
-            blue target!
-        </p>
+        <center>
+            <p>
+                Projectile motion possesses many interesting properties. One of them is the fact that two projectiles,
+                when thrown with the same speed but at angles \(\theta\) and \(90-\theta\) respectively, land at the
+                same
+                position! You can verify this fact by using the interactive simulation of projectile motion given below.
+                Also, try to hit that blue target!
+            </p>
+        </center>
 
         <div class="container" style="width:90%">
             <div class="row">
@@ -84,65 +85,50 @@
         <h3>Description</h3>
 
         <b>Basic concepts:</b>
-        \[ x = u \cos \theta \]
+        \[ x = u t \cos \theta \]
         \[ y = ut \sin \theta - \frac{1}{2} g t^2 \]
         <ol>
             <li>In projectile motion, acceleration due to gravity acts in the vertical direction. Hence,
                 only the y-component of velocity is affected by acceleration due to gravity. The x-component of velocity
-                remains
-                constant. Observe that the value of v<sub>x</sub> remains constant in the above simulation</li>
-            <li>Let the coordinates of the projectile be denoted by (x,y). Let the initial speed be u =
-                &Sqrt;(u<sub>x</sub><sup>2</sup> + u<sub>y</sub><sup>2</sup>). Let &theta; be the angle that the vector
-                u
-                makes with the X-axis.</li>
-            <li>We can determine the (x,y) position of the projectile in a parametric fashion: x = ut*cos &theta;, where
-                't'
-                is the time since the projectile has been launched and thereafter remained in air. y = ut*sin &theta; -
-                0.5
-                gt<sup>2</sup>. By
-                eliminating 't', we can obtain an equation in terms of x, y, u and &theta; only. The form of this
-                equation
-                resembles that of a parabola. Hence, a projectile follows a parabolic trajectory</li>
-            <li>During ascent, v<sub>y</sub> is positive. During descent v<sub>y</sub> is negative. At the highest
-                point,
-                v<sub>y</sub> is zero!</li>
+                remains constant. Observe that the value of \(v_x\) remains constant in the above simulation</li>
+            <li>Let the coordinates of the projectile be denoted by \((x, y)\). Let the initial speed be \( u =
+                \sqrt{u_x^2 + u_y^2} \). Let \( \theta \) be the angle that the vector \(\vec{u}\) makes with the
+                X-axis. The above two equations allow us to determine the position of the projectile at any time t.
+            <li>During ascent, \(v_y\) is positive. During descent \(v_y\) is negative. At the highest
+                point, \(v_y\) is zero!</li>
         </ol>
 
         <b>Time of ascent, descent and flight:</b>
         \[ t_f = \frac{2u}{g} \]
         \[ t_a = t_d = \frac{u}{g} \]
         <ol>
-            <li>Using the fact that v<sub>y</sub> is zero at the highest point, and using v = u - gt in the y-direction,
-                we
-                obtain the fact that
-                time of ascent = time of descent = u*sin &theta; / g and time of flight = 2u*sin &theta; / g</li>
-            <li>Time of ascent = time of descent provided that air resistance is absent/being ignored. All calculations
-                here
-                make the same assumption</li>
+            <li>Using the fact that \(v_y\) is zero at the highest point, and using \(v = u - gt\) in the y-direction,
+                we obtain time of ascent \(= \frac{u \sin \theta}{g} \).</li>
+            <li>If air resistance is ignored, then time of ascent = time of descent. Hence, time of flight = time of
+                ascent + time of descent \( = \frac{2 u \sin \theta}{g} \)</li>
         </ol>
 
         <b>Maximum height:</b>
         \[ H_{max} = \frac{u^2 \sin \theta}{2g} \]
         <ol>
-            <li>Using the fact that v<sub>y</sub> is zero at the highest point, and using v<sup>2</sup>= u<sup>2</sup> -
-                2gy in the y-direction, we get maximum height H = (u*sin &theta;)<sup>2</sup>/ 2g </li>
-            <li>For a given initial velocity u, maximum possible height is achieved when angle of projection is 90
-                degrees,
-                as is evident from the above formula</li>
+            <li>Using the fact that \(v_y\) is zero at the highest point, and using \( v^2 = u^2 - 2gy \) in the
+                y-direction, we get maximum height \( H = \frac{u^2 sin^2 \theta}{2g} \) </li>
+            <li>For a given initial velocity \(u\), maximum possible height is achieved when angle of projection is 90
+                degrees, as is evident from the above formula</li>
         </ol>
 
-        <b>Range:</b>
+        <b>Horizontal range:</b>
         \[ R = \frac{u^2 \sin 2\theta}{g} \]
         <ol>
-            <li>We know that x = ut*cos &theta;. If we subtitute 't' as the time of flight, we obtain the horizontal
-                displacement of the projectile, denoted by R: 2u<sup>2</sup>sin &theta; cos &theta; / g =
-                u<sup>2</sup>sin
-                2&theta; / g </li>
-            <li>As can be deciphered from the above formula, range is maximum when &theta; = 45 degrees</li>
-            <li>You can verify it <a href="trig_functions.html">here</a> that sin (180 - A) = sin A;, hence the
-                range is same for angles of projection of &theta; and 90 - &theta;, provided the initial velocity
-                remains
-                constant </li>
+            <li>
+                We know that \(x = u t \cos \theta\). If we substitute \( t = \frac{2 u \sin \theta}{g} \) (time of
+                flight) and we use \( 2 \sin \theta \cos \theta = \sin 2 \theta \), then we get \( R = \frac{u^2 \sin 2
+                \theta}{g} \)
+            </li>
+            <li>As can be deciphered from the above formula, range is maximum when \( \theta = 45^{\circ} \)</li>
+            <li>You can verify <a href="../trig_functions/simulation.html">here</a> that \( \sin(180 - A) = \sin
+                \theta \). Hence, the range is same for angles of projection of \(\theta\) and \(90 - \theta\), for the
+                same initial velocity \(u\), since \( \sin (180 - 2\theta) = \sin 2 \theta \).</li>
         </ol>
 
         <br>

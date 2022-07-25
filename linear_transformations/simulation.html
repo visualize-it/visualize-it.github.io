@@ -44,9 +44,10 @@
 
   <div class="text">
     <h2>Linear Transformations</h2>
-    <p>A linear transformation is an operation that takes a point (x, y) to another point (x', y'). The below
-      simulations
-      applies the given linear transformation to the entire coordinate system within [-5,-5] x [5,5]</p>
+    <center>
+      <p>A linear transformation is an operation that takes a point (x, y) to another point (x', y'). The below
+        simulations applies the given linear transformation to the entire coordinate system within [-5,-5] x [5,5]</p>
+    </center>
 
     <div class="container">
       <div class="row">
@@ -86,27 +87,28 @@
     <hr>
 
     <h3>Brief description</h3>
-    <p>A linear transformation L represented by a matrix M [a, b; c, d] maps x to ax + by and y to cx + dy.</p>
+    <p>A linear transformation L represented by a matrix \( M = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \) maps x
+      to \( ax + by \) and y to \( cx + dy \).</p>
     \[ \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} ax + by \\ cx
     + dy \end{bmatrix} \]
     <b>Rotation matrix</b>
     <p>A matrix that rotates the coordinate system by an angle &theta; is given by:</p>
     \[ \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} \]
     <b>Determinant</b>
-    <p>The determinant of a 2x2 matrix is equal to ad - bc. Figuratively, the determinant determines the scaling of
-      areas
-      that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant is
-      negative
-      if the linear transformation flips the lattice points. A determinant of zero indicates that the linear
+    <p>The determinant of a 2x2 matrix is equal to \( ad - bc \). Figuratively, the determinant determines the scaling
+      of areas that occurs as a result of a linear transformation represented by a matrix. The sign of the determinant
+      is negative if the linear transformation flips the lattice points. A determinant of zero indicates that the linear
       transformation reduces the coordinate system to a point or a line.</p>
     <center>
       <button onclick="zero_det()" class="btn purple darken-4">View example</button>
     </center>
     <b>Inverse of a matrix</b>
-    <p>The inverse of a matrix M is said to be a matrix M' if MM' = M'M = I. When applied as linear transformation, M'
-      allows us to reverse the effects of M and vice versa. If the determinant of a matrix is zero, then its inverse
-      does
-      not exist and the linear transformation cannot be reversed. For a 2x2 matrix M \( \begin{bmatrix} a & b \\ c & d
+    <p>The inverse \( M^{-1} \) of a matrix \( M \) is said to be a matrix \( M' \) if \( MM' = M'M = I \). When applied
+      as
+      linear transformation, \( M^{-1} \) allows us to reverse the effects of M and vice versa. If the determinant of a
+      matrix is zero, then its inverse does not exist and the linear transformation cannot be reversed. For a 2x2
+      matrix,
+      \(M = \begin{bmatrix} a & b \\ c & d
       \end{bmatrix} \), its inverse is given by:</p>
     \[ M^{-1} = \frac{1}{|M|} \begin{bmatrix} d & -c \\ -b & a \end{bmatrix} \]
     <p>Clicking on the following button will lead to calculation of inverse of the current
@@ -122,10 +124,10 @@
 
     <ol>
       <li>The simulation involves heavy computation during transformation and may lag on some devices.</li>
-      <li>Although also seen, the coordinate system actually extends to [-10,-10] x [10,10] in order to account for
-        down-scaling</li>
-      <li>The simulation also depicts the effect of a transformation to the vector [1,0]. Efforts are being made to make
-        this vector modifiable.</li>
+      <li>Although not always visible, the coordinate system actually extends to [-10,-10] x [10,10] in order to account
+        for down-scaling</li>
+      <li>The simulation also depicts the effect of a transformation to the vector [1,0] (drawn in yellow). Efforts are
+        being made to make this vector modifiable.</li>
     </ol>
 
     <br>

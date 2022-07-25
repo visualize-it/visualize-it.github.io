@@ -115,7 +115,7 @@ function render() {
     }
 
     if(killed) {
-        context.fillStyle = "#ffff00";
+        context.fillStyle = "#ff0000";
         context.fillRect(kill_location.col * square_length, kill_location.row * square_length, square_length, square_length);
     }
 }

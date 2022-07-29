@@ -60,7 +60,15 @@
 
 <div class="text">
   <h2>Maze Generation Algorithms</h2>
-
+  <center>
+    <p>
+      Maze algorithms are used to generate mazes. They are given a grid of cell separated by walls, and they output a
+      maze by systematically breaking down a set of walls. Due to the method of generation, it is assured that there is
+      only one path between two points on the maze. There are several maze generation algorithms, each with their own
+      pros and cons in terms of length of passages, frequency and length of dead ends, and computational resources
+      demanded.
+    </p>
+  </center>
   <br>
   <div class="container" style="width: 100%">
     <div class="row">
@@ -73,7 +81,8 @@
         <center>
           <b>Choose a maze generation algorithm</b>
           <div class="input-field col s12">
-            <select class="browser-default" id="algo-select" onchange="updateParams('algo')" oninput="updateParams('algo')">
+            <select class="browser-default" id="algo-select" onchange="updateParams('algo')"
+              oninput="updateParams('algo')">
               <option value="dfs">Iterative Depth First Search</option>
               <option value="kruskal">Randomized Kruskal</option>
               <option value="prim">Randomized Prim</option>
@@ -85,19 +94,12 @@
         </center>
       </div>
     </div>
-  </div>  
+  </div>
 
   <br>
   <hr>
 
   <h3 class="center">Description</h3>
-
-  <p>Maze algorithms are used to generate mazes. They are given a grid of cell separated by walls, and they output a
-    maze by systematically breaking down a set of walls. Due to the method of generation, it is assured that there is
-    only one path between two points on the maze. There are several maze generation algorithms, each with their own pros
-    and cons in terms of length of passages, frequency and length of dead ends, and computational resources demanded.
-  </p>
-  <br>
 
   <b>1) Iterated Depth First Search: </b> Maintains a stack of cells whose neighbours haven't been explored yet
   <p>
@@ -110,34 +112,38 @@
         stack. An unvisited neighbour is chosen at random, marked as visited and designated as the chosen cell. The wall
         between the current cell and the chosen cell is removed. The chosen cell is pushed to the stack</li>
       <li>If it does not have any neighbouring unvisited cell, then it's exploraton potential has been fully utilised
-        </li>
+      </li>
     </ol>
   </ol>
   </p>
   <p>
-    The current cell is painted yellow. Cells that are suspected of having unexplored neighbours are red while those that surely don't have any unexplored neighbours are blue.
+    The current cell is painted yellow. Cells that are suspected of having unexplored neighbours are red while those
+    that surely don't have any unexplored neighbours are blue.
   </p>
   <br>
 
-  <b>2) Randomized Kruskal: Requires a randomized list of all walls and a list of sets, each containing only one cell at the beginning</b>
+  <b>2) Randomized Kruskal:</b> Requires a randomized list of all walls and a list of sets, each containing only one cell at
+    the beginning
   <p>
-    For each wall in the list of walls, if the cells divided by the wall lie in disjoint sets, then the wall is removed and the sets are merged.
-  </p> 
+    For each wall in the list of walls, if the cells divided by the wall lie in disjoint sets, then the wall is removed
+    and the sets are merged.
+  </p>
   <p>
     Cells whose parent sets have been merged atleast once are colored blue. The current wall is stroked yellow.
   </p>
   <br>
 
-  <b>3) Randomized Prim: Requires a stack of walls which surround the currently visited cells.  </b>
+  <b>3) Randomized Prim:</b> Requires a stack of walls which surround the currently visited cells. 
   <p>
+  <ol>
+    <li>A random cell is chosen, marked as visited. It's surrounding walls are pushed to the stack</li>
+    <li>While the wall stack is not empty, the following steps are repeated:</li>
     <ol>
-      <li>A random cell is chosen, marked as visited. It's surrounding walls are pushed to the stack</li>
-      <li>While the wall stack is not empty, the following steps are repeated:</li>
-        <ol>
-          <li>A random wall is selected from the stack. If either cell separated by the wall is unvisited, then the unvisited cell is marked as visited, and it's surrounding walls are added to the stack</li>
-          <li>The aforementioned wall is removed from the stack as well as the maze.</li>
-        </ol>
+      <li>A random wall is selected from the stack. If either cell separated by the wall is unvisited, then the
+        unvisited cell is marked as visited, and it's surrounding walls are added to the stack</li>
+      <li>The aforementioned wall is removed from the stack as well as the maze.</li>
     </ol>
+  </ol>
   </p>
   <p>
     Visited cells are marked with blue and the wall under consideration is stroked with yellow.
@@ -149,11 +155,14 @@
   <h3 class="center">Analysis of Algorithms</h3>
 
   <ol class="browser-default">
-    <li>Iterated Depth First Search: Has a bias for generating long corridors, due to its very method of operation. Considerably difficult for humans to solve. Moderate space and time complexity</li>
-    <li>Randomized Kruskal: Generates lot of small dead-ends. Simple for humans to solve. High space complexity and moderate time complexity</li>
-    <li>Randomized Prim: Generates more dead-ends than Kruskal. Extremely simple for humans to solve. Moderate space and time complexity. Considerable resources wasted on redundant tasks</li>
+    <li>Iterated Depth First Search: Has a bias for generating long corridors, due to its very method of operation.
+      Considerably difficult for humans to solve. Moderate space and time complexity</li>
+    <li>Randomized Kruskal: Generates lot of small dead-ends. Simple for humans to solve. High space complexity and
+      moderate time complexity</li>
+    <li>Randomized Prim: Generates more dead-ends than Kruskal. Extremely simple for humans to solve. Moderate space and
+      time complexity. Considerable resources wasted on redundant tasks</li>
   </ol>
-  
+
   <br>
   <hr>
 

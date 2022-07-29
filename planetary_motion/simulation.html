@@ -45,11 +45,15 @@
 
 <div class="text">
   <h2>Planetary Motion</h2>
-  \[ F = \frac{G m_1 m_2}{r^2} \]
-  <p>The Universal Law of Gravitation states that every body in this universe attracts the other by virtue of its mass,
-    The force of attraction being directly proportional to the product of their masses and inversely proportional to the
-    square of the distance of their separation. The equation given above is the
-    numerical form of this law. The aforementioned law was first published by Sir Isaac Newton in 1687.</p>
+  <center>
+    <p>
+    <p>The Universal Law of Gravitation states that every body in this universe attracts the other by virtue of its
+      mass, The force of attraction being directly proportional to the product of their masses and inversely
+      proportional to the square of the distance of their separation. This law was first published by Sir
+      Isaac Newton in 1687.
+    </p>
+    </p>
+  </center>
   <br>
 
   <div class="container" style="width:90%;">
@@ -176,6 +180,7 @@
   <h3>Description</h3>
 
   <b>The Force of Gravity:</b>
+  \[ F_g = \frac{G m_1 m_2}{r^2} \]
   <ol>
     <li>As a result of Newton's 3rd law of motion, the gravitational force of attraction of body
       A on body B is equal to that of body B on body A.</li>
@@ -197,10 +202,13 @@
   </ol>
 
   <b>The Gravitational Field:</b>
+  \[ E (j) = \sum_i \frac{G m_i}{r_{ij}^2} \]
+  \[ F_g = m E(j) \]
   <ol>
     <li>Physicists often use the concept of a gravitational field being generated around a mass. The strength of the
       gravitational field at a point in the vicinity of a mass is proportional to the mass 'M' of the object and falls
-      as the square of distance of separation 'r'. It is numerically denoted by GM/r<sup>2</sup></li>
+      as the square of distance of separation 'r'. The above formula generalises the gravitational field at point \(j\)
+      due to \(i\) bodies. \(r_{ij}\) is the distance between them.</li>
     <li>Any body of mass 'm', when kept in this field, interacts with it. The strength of interaction being proportional
       to 'm' and to the strength of the gravitational field.</li>
     <li>The postulation of a field is not merely theoretical. Infact, it is known that the bounds of this field explands
@@ -209,14 +217,19 @@
   </ol>
 
   <b>Gravitational Potential</b>
+  \[ V (j) = -\sum_i \frac{G m_i}{r_{ij}} \]
+  \[ U = \sum_{i \not = j} \frac{G m_i m_j}{r_{ij}} \]
   <ol>
     <li>When two bodies are gravitationally interacting with one another, some energy is required to separate them until
       the
       gravitational force of attraction between them becomes negligible. This energy, but for a unit mass, is defined to
       be the gravitational potential.</li>
-    <li>The gravitational potential at a point 'r' units away from a mass 'M' is defined to be -GM/r whereas the
+    <li>The gravitational potential \(V\) at a point 'r' units away from a mass 'M' is defined to be -GM/r whereas the
       potential energy of a mass 'm' placed at this point is defined to be -GMm/r</li>
     <li>The negative sign denotes that 1) energy is required to separate them or 2) the bodies are bound to each other
+    </li>
+    <li>
+      The above formula generalises gravitational potential and potential energy for multiple bodies
     </li>
     <li>The total mechanical energy as a result of gravitational interaction between two objects is equal to the sum of
       their kinetic energy and gravitational potential energy.</li>
@@ -260,6 +273,8 @@
       star when the revolving planets are not many orders lighter than the star.</li>
     <li>The above simulation doesn't check and allow collissions between bodies. Because of this, ejection of planets is
       a very common occurence in the simulation although it rarely takes place in reality.</li>
+    <li>Additionally, the simulation uses Euler method to solve for the trajectory of the planet. This is just a first
+      order method, and is prone to errors.</li>
   </ol>
 
   <br>

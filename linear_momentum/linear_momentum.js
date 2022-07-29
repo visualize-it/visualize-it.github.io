@@ -1,7 +1,7 @@
 // transitive params
 let ball_x, ball_y;
 let player_bar_x, ai_bar_x;
-let vx, vy;
+let ball_vx, ball_vy;
 let player_points, ai_points, bounces;
 let trails;
 
@@ -51,7 +51,7 @@ function moveBar() {
     }
   }
 
-  if(!player_target_reached) {
+  if(player_bar_target !== undefined && !player_target_reached) {
     if(Math.abs(player_bar_x - player_bar_target) >= bar_speed) {
       if(player_bar_x < player_bar_target) {
         player_bar_x += bar_speed;
@@ -240,10 +240,7 @@ function drawNormal(bar) {
 }
 
 function updateParams(variable) {
-  if(variable == "x") {
-    player_bar_target = x_input.value;
-    player_target_reached = false;
-  }
+
 }
 
 function initParams() {
@@ -259,11 +256,6 @@ function initParams() {
   player_bar_y = canvas_height - padding - bar_thickness;
   ai_bar_y = padding;
   player_bar_x = ai_bar_x = canvas_width / 2;
-
-  x_input.style.width = `${canvas_width - half_bar_length}px`;
-  x_input.min = Math.ceil(half_bar_length);
-  x_input.max = Math.ceil(canvas_width - half_bar_length);
-  x_input.value = Math.ceil(canvas_width / 2);
 
   bar_speed = canvas_width / 40;
   ai_bar_target = player_bar_target = canvas_width / 2;

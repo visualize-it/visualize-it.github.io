@@ -50,12 +50,14 @@
 
 <div class="text">
   <h2>Bezier Curves</h2>
-  <p>
-    A Bezier curve is a parametric curve used widely in designing and computer graphics. It was first used by French
-    engineer Pierre Bezier in the 1960s. A bezier curve is generated through the process of recursive linear
-    interpolation of control points. All text on computers are rendered as Bezier curves, since it is more efficient to
-    store a bunch of coordinates than to store pixel data.
-  </p>
+  <center>
+    <p>
+      A Bezier curve is a parametric curve used widely in designing and computer graphics. It was first used by French
+      engineer Pierre Bezier in the 1960s. A bezier curve is generated through the process of recursive linear
+      interpolation of control points. All text on computers are rendered as Bezier curves, since it is more efficient
+      to store a bunch of coordinates than to store the coordinates of all pixels involved.
+    </p>
+  </center>
   <br>
   <center>
     <div class="container" style="width: 100%">
@@ -79,16 +81,37 @@
   <br>
   <hr>
 
-  <h3>Brief Description</h3>
+  <h3>Description</h3>
 
   <p>
-    Suppose there are N ordered control points. Then we have N-1 lines connecting them. Let 't' a fraction moved along a
-    line ('t' is between 0 and 1). We get N-1 points by moving along 't' portion of all N-1 lines. This process is
-    continued again, this time with N-1 ordered points and N-2 lines joining them, until we end up with just one point
-    that constitutes the Bezier curve. The set of points obtained by varying 't' from 0 to 1 is the complete Bezier
-    curve.
+    Linear interpolation between two points \((x_1, y_1)\) and \((x_2, y_2)\) is a process of uniformly tracing the
+    space between them. To be more mathematical, it involves varying a parameter, say \(t\), from 0 to 1, in the
+    following equations:
+    \[ x = x_1 + t (x_2 - x_1) \]
+    \[ y = y_1 + t (y_2 - y_1) \]
+    The line traced by the point \((x, y)\) as \(t\) varies from 0 to 1 is called a linear interpolation. At \(t = 0\),
+    the line begins from \((x_1, y_1)\). At \(t = 1\), the line ends at \((x_2, y_2)\).
   </p>
-
+  <p>
+    Let us consider the case of just two points. Then linear interpolation between them will just generate a straight
+    line connecting the two points. The red dot is the initial point whereas the blue dot is the final point.
+  </p>
+  <p>
+    Now, add another point. This point fits in between the initial and final point. We consider (but won't draw) a line
+    between the 1st and 2nd point, and a line between the 2nd and 3rd point. Interpolating between these two lines and
+    joining the interpolated points will give us a moving line. When interpolation takes place between the two lines, we
+    also interpolate the resulting line, and trace the interpolated point. This gives us a quadratic bezier curve.
+  </p>
+  <p>
+    In general, with \(n\) points, we get \(n-1\) lines by interpolation. We interpolate between these lines to get
+    \(n-2\) lines and so on. Until we arrive at only one interpolated line. Tracing it's interpolation gives us the
+    corresponding Bezier curve.
+  </p>
+  <p>
+    It might be hard to understand the working of a Bezier curve using just textual description. In this case, fret not.
+    A lot of videos are available online (I would recommend <a href="https://www.youtube.com/watch?v=aVwxzDHniEw"
+      target="_blank">this one</a>). This website just allows you to play with Bezier curves.
+  </p>
   <br>
   <hr>
 

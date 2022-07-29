@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
   <script src="linear_momentum.js" defer></script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -44,16 +45,17 @@
 
 
   <div class="text">
-    <h2>Conservation of Linear Momentum</h2>
-    <p>While playing the game of Pong, have you ever wondered how the Computer figures out the final location of the
-      ball? It uses conservation of Linear Momentum. The "game" below shows you the calculated trajectory of the ball.
-      You can control the paddle on the bottom via the slider</p>
+    <h2>Linear Momentum</h2>
+    <center>
+      <p>
+        While playing the game of Pong, have you ever wondered how the Computer figures out the final location of the
+        ball? It uses conservation of Linear Momentum. The "game" below shows you the calculated trajectory of the ball.
+      </p>
+    </center>
     <center>
       <br>
       <canvas id="canvas"></canvas>
-      <br>
-      <input oninput="updateParams('x')" onchange="updateParams('x')" type="range" id="x-input" step="1">
-      <p>Touch the slider with the intended position of your bar. No need to drag</p>
+      <p>Touch the canvas with the intended position of your paddle</p>
       <button onclick="pause()" id="pause-button" class="btn purple darken-4">Pause</button>
       <button onclick="toggleTrails()" id="trail-button" class="btn purple darken-4">Hide Trail</button>
       <button onclick="restart()" class="btn purple darken-4">Restart</button>
@@ -76,12 +78,11 @@
     <h3>Working of the game</h3>
     <p>The game assumes the paddles and the walls to be rigid and immovable objects. The function that controls the
       paddle has access to the initial coordinates and the initial horizontal and vertical velocity of the ball. It
-      creates a preudo-ball and tracks its motion. Assuming that the player manages to dodge the pseudo-ball, the
+      creates a pseudo-ball and tracks its motion. Assuming that the player manages to dodge the pseudo-ball, the
       function negates its vertical velocity. In the meantime, if the ball collides with the wall, the function negates
       its horizontal velocity. It continues mapping the trajectory of the pseudo-ball until the ball reaches the
       Y-coordinate of the paddle. The X-coordinate of the ball at this point is set as target for the paddle. All these
-      calculations happen in the blink of an eye and only once per to-and-fro dodge</p>
-
+      calculations happen in the blink of an eye and only once for every oscillation of the ball.</p>
     <br>
     <hr>
 

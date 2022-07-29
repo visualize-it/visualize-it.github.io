@@ -45,8 +45,12 @@
   </nav>
   <div class="text">
     <h2>Travelling Salesman</h2>
-    <p>Given a list of cities and the distances between each pair of cities, what is the shortest possible route that
-      visits each city exactly once and returns to the origin city?</p>
+    <center>
+      <p>
+        Given a list of cities and the distances between each pair of cities, what is the shortest possible route that
+        visits each city exactly once and returns to the origin city?
+      </p>
+    </center>
     <br>
     <div class="container">
       <div class="row">
@@ -91,17 +95,55 @@
 
     <h3>Trivia</h3>
     <p>This problem is classified as NP-hard since it's time complexity is \( \mathcal{O} (n!) \) (Along with a space
-      complexity of \( \mathcal{O} (n) \)). The Brute-Force method looks at all possible permutations and determines the
-      one with the least distance. Runtimes go into minutes when there are ~7 points and into hours when there are ~9
-      points. A lot of improvements exist, and computing the solution of this problem is of special interest to
-      theorertical computer scientists and operational researchers.</p>
+      complexity of \( \mathcal{O} (n) \)). The only assured way of obtaining the shortest path is via brute-force
+      search, which involves looking at all possible paths and keeping track of the shortest ones encountered. However,
+      the number of possible paths grows factorially with number of nodes (which is asymptotically faster than even
+      exponential growth). Hence, there are several ways through which we can get 'shorter' but not the 'shortest' path:
 
-    <br>
+    <ol>
+      <li>
+        <b>Nearest Neighbour:</b> <br>
+        Start at a particular node. Travel to the nearest node. Repeat. This algorithm is very simple to implement.
+      </li>
+      <li>
+        <b>Greedy Heuristic:</b> <br>
+        Form the initial path with shorter edges, and connect them.
+      </li>
+      <li>
+        <b>Simulated Annealing:</b> <br>
+        Inspired by the way crystals cool, this method tries to converge to a local minima while implementing a cooling
+        schedule. In every step, two nodes from the path are switched, and the resulting path is accepted or rejected
+        using Metropolis algorithm (please find intricate details <a href="../ising_model/simulation.html">here</a>).
+      </li>
+      <li>
+        <b>Genetic Algorithm:</b> <br>
+        A poplation of entities whose genes comprise of paths, and whose fitness is based on how short the paths are.
+        Fitter entities have greater chance of their genes making it into the offspring. Also uses mutation (to explore
+        prospectively better avenues) and recombination (to combine the best of two genes).
+      </li>
+      <li>
+        <b>Ant Colony Optimization:</b> <br>
+        Initially, a population of ants randomly traverse the graph. By gauging the shortness of each edge, they leave
+        more pheromones along that edge. In the next iteration, at every node, the ants choose the edge on a
+        probabilistic manner, weighted by pheromone strength. Both, genetic algorithm and ant colony optimization are
+        called metaheuristic methods because they solve the problem at hand by working at a higher level, instead of
+        directly tackling the problem.
+      </li>
+      <li>
+        <b>Christofides' Algorithm</b> <br>
+        Considered the gold standard of solving the Travelling Salesman Problem, this algorithm utilizes insights from
+        an easily solvable problem in graph theory (constructing a minimal spanning tree from a given graph) and
+        manipulates it to arrive at (on average) comparatively shorter paths.
+      </li>
+    </ol>
+    </p>
+
     <hr>
     <br>
 
     <b>Note:</b>
     <ol>
+      <li>I will try to make simulations of the optimized algorithms above, if time permits.</li>
       <li>When there are 8+ points, then an initial lag is expected before the solving process starts</li>
       <li>With 10 points, an average time of 49 minutes was required to find the solution to the route</li>
       <li>Simulation may lag on lower-end computers and phones</li>

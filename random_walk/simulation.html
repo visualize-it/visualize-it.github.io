@@ -45,12 +45,14 @@
   </nav>
   <div class="text">
     <h2>Random Walks</h2>
-    <p>
-      This simulation aims to show the connection between unbiased random walks and normal distribution. It also
-      showcases
-      the relationship between Standard deviation, Mean squared displacement and number of steps. An animal which has
-      equal probability of moving towards the left or towards the right, is said to execute an unbiased random walk.
-    </p>
+    <center>
+      <p>
+        This simulation aims to show the connection between unbiased random walks and normal distribution. It also
+        showcases the relationship between Standard deviation, Mean squared displacement and number of steps. An animal
+        which has equal probability of moving towards the left or towards the right, is said to execute an unbiased
+        random walk.
+      </p>
+    </center>
     <br>
     <center>
       <canvas id="canvas"></canvas>
@@ -80,7 +82,7 @@
     <div class="container" style="width: 100%">
       <div class="row">
         <div class="col s12 l6">
-          <label>Number of animals:</label>
+          <label>Number of entities:</label>
           <input id="animals-input" type="number" placeholder="Enter number of animals">
         </div>
         <div class="col s12 l6">
@@ -96,24 +98,24 @@
     <br>
     <hr>
 
-    <h3>Resemblance with Normal distribution</h3>
-
+    <h3>Relationship with Normal distribution</h3>
     <p>
-      The probability of an animal reaching a particular point can be modelled as a binomial distribution. Due to the
+      The probability of an entity reaching a particular point can be modelled as a binomial distribution. Due to the
       Central Limit Theorem - as the sample size increases, the distribution becomes more similar to a normal
-      distribution. Another way to look at it is via Pascal's triangle. The N-th row of Pascal's triangle (where N is
-      the
-      number of steps) has N elements. The values are the middle are greater than the values at the ends. To put it in
-      more concrete terms - the entry at a particular point on Pascal's triangle shows the number of steps one can take
-      to
-      reach it. Hence more animals end up at the middle than at the extremes.
+      distribution.
+    </p>
+    <p>
+      Another way to look at it is via Pascal's triangle. The N-th row of Pascal's triangle (where N is
+      the number of steps) has N elements. The entry at a particular point on Pascal's triangle shows the number of
+      steps one can take to reach it (from the top of the triangle). Hence more animals end up at the middle than at the
+      extremes. As we descend Pascal's triangle, The relative magnitudes of the elements bear more resemblance to a
+      normal distribution.
     </p>
     <p>
       This simulation is a codified form of Galton board, check it out <a target="blank"
         href="https://galtonboard.com/">here</a>.
     </p>
 
-    <br>
     <hr>
 
     <h3>Parameters and their Formulae</h3>
@@ -132,10 +134,10 @@
       The more animals we consider, the greater agreement we find between our measured and expected parameters.
     </p>
 
-    <br>
     <hr>
 
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>
 </body>
+
 </html>

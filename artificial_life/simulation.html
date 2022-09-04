@@ -54,12 +54,108 @@
       <div class="row">
         <div class="col s12 l8">
           <canvas id="canvas"></canvas>
+          <br>
+          <center>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <br> <br>
+            <label style="margin-right:20px">
+              <input type="checkbox" id="red-status" onchange="updateStatus('red')" checked/>
+              <span>Red</span>
+            </label>
+            <label style="margin-right:20px">
+              <input type="checkbox" id="blue-status" onchange="updateStatus('blue')" checked/>
+              <span>Blue</span>
+            </label>
+            <label style="margin-right:20px">
+              <input type="checkbox" id="orange-status" onchange="updateStatus('orange')" checked/>
+              <span>Orange</span>
+            </label>
+            <label style="margin-right:20px">
+              <input type="checkbox" id="white-status" onchange="updateStatus('white')" checked/>
+              <span>White</span>
+            </label>
+            <br>
+            <div class="col s6 l6">
+              <span id="damping-display"></span>
+              <input id="damping-input" type="range" min="0" max="0.9" step="0.1" oninput="updateParams('damping')" onchange="updateParams('damping')">
+            </div>
+            <div class="col s6 l6">
+              <span id="cutoff-display"></span>
+              <input id="cutoff-input" type="range" min="10" max="100" step="1" oninput="updateParams('cutoff')" onchange="updateParams('cutoff')">
+            </div>
+          </center>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <b>Interaction Strengths:</b>
+          </center>
+          <div class="col s6 l6">
+            <span id="red-red-display">Red with Red:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="red-red" oninput="updateInteraction('red', 'red')"
+              onchange="updateInteraction('red', 'red')" />
+            <span id="red-blue-display">Red with Blue:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="red-blue" oninput="updateInteraction('red', 'blue')"
+              onchange="updateInteraction('red', 'blue')" />
+            <span id="red-orange-display">Red with Orange:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="red-orange"
+              oninput="updateInteraction('red', 'orange')" onchange="updateInteraction('red', 'orange')" />
+            <span id="red-white-display">Red with White:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="red-white" oninput="updateInteraction('red', 'white')"
+              onchange="updateInteraction('red', 'white')" />
+
+            <br> <br>
+
+            <span id="orange-red-display">Orange with Red:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="orange-red"
+              oninput="updateInteraction('orange', 'red')" onchange="updateInteraction('orange', 'red')" />
+            <span id="orange-blue-display">Orange with Blue:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="orange-blue"
+              oninput="updateInteraction('orange', 'blue')" onchange="updateInteraction('orange', 'blue')" />
+            <span id="orange-orange-display">Orange with Orange:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="orange-orange"
+              oninput="updateInteraction('orange', 'orange')" onchange="updateInteraction('orange', 'orange')" />
+            <span id="orange-white-display">Orange with White:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="orange-white"
+              oninput="updateInteraction('orange', 'white')" onchange="updateInteraction('orange', 'white')" />
+          </div>
+          <div class="col s6 l6">
+            <span id="blue-red-display">Blue with Red:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="blue-red" oninput="updateInteraction('blue', 'red')"
+              onchange="updateInteraction('blue', 'red')" />
+            <span id="blue-blue-display">Blue with Blue:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="blue-blue" oninput="updateInteraction('blue', 'blue')"
+              onchange="updateInteraction('blue', 'blue')" />
+            <span id="blue-orange-display">Blue with Orange:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="blue-orange"
+              oninput="updateInteraction('blue', 'orange')" onchange="updateInteraction('blue', 'orange')" />
+            <span id="blue-white-display">Blue with White:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="blue-white"
+              oninput="updateInteraction('blue', 'white')" onchange="updateInteraction('blue', 'white')" />
+
+            <br> <br>
+
+            <span id="white-red-display">White with Red:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="white-red" oninput="updateInteraction('white', 'red')"
+              onchange="updateInteraction('white', 'red')" />
+            <span id="white-blue-display">White with Blue:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="white-blue"
+              oninput="updateInteraction('white', 'blue')" onchange="updateInteraction('white', 'blue')" />
+            <span id="white-orange-display">White with Orange:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="white-orange"
+              oninput="updateInteraction('white', 'orange')" onchange="updateInteraction('white', 'orange')" />
+            <span id="white-white-display">White with White:</span>
+            <input type="range" min="-1" max="1" step="0.01" id="white-white"
+              oninput="updateInteraction('white', 'white')" onchange="updateInteraction('white', 'white')" />
+          </div>
         </div>
       </div>
     </div>
+
+    <center>
+      <button class="btn purple darken-4" onclick="presets('cell')">Cell</button>
+      <button class="btn purple darken-4" onclick="presets('propulsion')">Propulsion</button>
+    </center>
+
 
     <br>
     <hr>

@@ -9,8 +9,8 @@ class Particle {
     }
 
     applyForce(fx, fy) {
-        this.vx = (this.vx + fx) * damping;
-        this.vy = (this.vy + fy) * damping;
+        this.vx = (this.vx + fx) * (1 - damping);
+        this.vy = (this.vy + fy) * (1 - damping);
     }
 
     update() {

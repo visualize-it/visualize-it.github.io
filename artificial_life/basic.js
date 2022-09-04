@@ -12,6 +12,73 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let interaction_elements = {
+    "red": {
+        "red": document.getElementById('red-red'),
+        "blue": document.getElementById('red-blue'),
+        "orange": document.getElementById('red-orange'),
+        "white": document.getElementById('red-white'),
+    },
+    "blue": {
+        "red": document.getElementById('blue-red'),
+        "blue": document.getElementById('blue-blue'),
+        "orange": document.getElementById('blue-orange'),
+        "white": document.getElementById('blue-white'),
+    },
+    "orange": {
+        "red": document.getElementById('orange-red'),
+        "blue": document.getElementById('orange-blue'),
+        "orange": document.getElementById('orange-orange'),
+        "white": document.getElementById('orange-white'),
+    },
+    "white": {
+        "red": document.getElementById('white-red'),
+        "blue": document.getElementById('white-blue'),
+        "orange": document.getElementById('white-orange'),
+        "white": document.getElementById('white-white'),
+    },
+}
+
+let interaction_displays = {
+    "red": {
+        "red": document.getElementById('red-red-display'),
+        "blue": document.getElementById('red-blue-display'),
+        "orange": document.getElementById('red-orange-display'),
+        "white": document.getElementById('red-white-display'),
+    },
+    "blue": {
+        "red": document.getElementById('blue-red-display'),
+        "blue": document.getElementById('blue-blue-display'),
+        "orange": document.getElementById('blue-orange-display'),
+        "white": document.getElementById('blue-white-display'),
+    },
+    "orange": {
+        "red": document.getElementById('orange-red-display'),
+        "blue": document.getElementById('orange-blue-display'),
+        "orange": document.getElementById('orange-orange-display'),
+        "white": document.getElementById('orange-white-display'),
+    },
+    "white": {
+        "red": document.getElementById('white-red-display'),
+        "blue": document.getElementById('white-blue-display'),
+        "orange": document.getElementById('white-orange-display'),
+        "white": document.getElementById('white-white-display'),
+    }
+}
+
+let status_elements = {
+    "red": document.getElementById('red-status'),
+    "blue": document.getElementById('blue-status'),
+    "orange": document.getElementById('orange-status'),
+    "white": document.getElementById('white-status'),
+}
+
+let damping_input = document.getElementById('damping-input');
+let damping_display = document.getElementById('damping-display');
+
+let cutoff_input = document.getElementById('cutoff-input');
+let cutoff_display = document.getElementById('cutoff-display');
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -45,7 +112,18 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    num_red = 200;
+    num_blue = 200;
+    num_green = 200;
+    num_white = 200;
+
+    damping_input.value = 0.2;
+
+    cutoff_input.min = Number.parseInt(canvas_width / 10);
+    cutoff_input.max = Number.parseInt(canvas_width / 2);
+    cutoff_input.value = Number.parseInt(canvas_width / 6);
+
+    console.log(cutoff_input);
 }
 
 let click_x, click_y, pressed;

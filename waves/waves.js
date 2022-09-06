@@ -99,7 +99,7 @@ function initParams() {
     }
 
     disturbance_position = 0;
-    velocity = 100;
+    velocity = 50;
     dt = 0.01;
     drawing = false;
 

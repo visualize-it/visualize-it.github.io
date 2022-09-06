@@ -160,14 +160,14 @@ function presets(name) {
     if (name == "cell") {
         interactions = {
             "red": {
-                "red": -0.1,
-                "blue": -0.01,
+                "red": -0.3,
+                "blue": 0.2,
                 "orange": 0,
                 "white": 0,
             },
             "blue": {
-                "red": 0.01,
-                "blue": 0,
+                "red": 0.3,
+                "blue": 0.01,
                 "orange": 0,
                 "white": 0,
             },
@@ -183,15 +183,17 @@ function presets(name) {
                 "orange": 0,
                 "white": 0,
             }
-        }
+        };
+
         statuses = {
             "red": true,
             "blue": true,
             "orange": false,
             "white": false,
-        }
+        };
+
         num_red = 200;
-        num_blue = 400;
+        num_blue = 500;
 
         damping_input.value = 0.2;
         cutoff_input.value = canvas_width / 10;
@@ -224,20 +226,64 @@ function presets(name) {
                 "orange": 0,
                 "white": 0,
             }
-        }
+        };
         statuses = {
             "red": true,
             "blue": true,
             "orange": true,
             "white": false,
-        }
+        };
+
+        num_red = 100;
+        num_blue = 100;
+        num_orange = 500;
+
+        damping_input.value = 0.5;
+        cutoff_input.value = canvas_width / 5;
+
+        initParams();
+    }
+    else if (name == "swimmers") {
+        interactions = {
+            "red": {
+                "red": -0.3,
+                "blue": 0.2,
+                "orange": 0.2,
+                "white": 0,
+            },
+            "blue": {
+                "red": 0.3,
+                "blue": 0.01,
+                "orange": -0.01,
+                "white": 0,
+            },
+            "orange": {
+                "red": -0.05,
+                "blue": 0.01,
+                "orange": 0.01,
+                "white": 0,
+            },
+            "white": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            }
+        };
+
+        statuses = {
+            "red": true,
+            "blue": true,
+            "orange": true,
+            "white": false,
+        };
 
         num_red = 200;
-        num_blue = 200;
-        num_orange = 200;
+        num_orange = 350;
+        num_blue = 500;
 
-        damping_inputt.value = 0.2;
-        cutoff_input.value = canvas_width / 2;
+        damping_input.value = 0.3;
+        cutoff_input.value = canvas_width / 10;
 
         initParams();
     }

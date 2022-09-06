@@ -112,7 +112,7 @@
 
     <p>
       This simulation uses the Kuramoto model of phase oscillators for synchronization. For a given firefly \(i\):
-      \[ \theta_i = \omega + \frac{K}{N} \sum_{j \in S} \sin(\theta_j - \theta_i) + \eta \]
+      \[ \dot{\theta_i} = \omega + \frac{K}{N} \sum_{j \in S} \sin(\theta_j - \theta_i) + \eta \]
       where &theta; is the phase, &omega; is the phase velocity, \(K\) is the synchronization strength and \(S\) is the
       set of fireflies within the synchronization radius of the given firefly. The first term depicts the advancing of
       phase, whereas the second term depicts the 'nudge' that each firefly gets from the nearby fireflies, and leads to

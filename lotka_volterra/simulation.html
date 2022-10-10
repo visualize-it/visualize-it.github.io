@@ -103,6 +103,53 @@
     <br>
     <hr>
 
+    <h3>Model Description</h3>
+
+    <p>
+      Let \(x\) denote population of the prey and \(y\) denote population of the predator. Then, according to Lotka
+      Volterra Model:
+    </p>
+    \[ \frac{dx}{dt} = \alpha x - \beta x y \]
+    \[ \frac{dy}{dt} = \delta x y - \gamma y \]
+    <p>
+      \(\alpha, \beta, \gamma, \delta\) are real, positive numbers that descibe the growth, mortality and interaction
+      between the two species. Numerical simulations of this model (with certain values of model parameters) showcase
+      oscillatory behaviour in the populations of prey and predator. This sort of behaviour is actually observed in
+      real-world populations, for example - snowshow hare (prey) and canada lynx (predator).
+    </p>
+
+    <br>
+    <hr>
+
+    <h3>Spatial Simulation</h3>
+
+    <p>
+      The above model is a mean-field model. We attempt to replicate the results of this model using a bare-bones
+      probabilistic automaton with basic interactions. Each prey reproduces at some rate, in which case it
+      populates an empty cell next to it. Prey die with some mortality rate. Predators also die with some mortality
+      rate. However, predators require prey in order to reproduce. If a prey is surrounded by atleast \(n\) predators,
+      then the prey is killed and a predator is born in the same cell. Using Gillespie algorithm, these rates are
+      converted into probabilities. The entire grid is synchronously updates in every time step.
+      <br>
+      All the probabilites, as well as the number of predators required to kill a prey, can be adjusted in the above
+      simulation.
+    </p>
+
+    <br>
+    <hr>
+
+    <b>Note:</b>
+
+    <ol>
+      <li>This simulation is computationally complex and may lag on lower-end devices</li>
+      <li>For the default values of probabilites, we indeed see some sort of oscillatory behaviour. However, there is a
+        small chance that this is not the case.</li>
+      <li>Prey search through Von-Neumann neighbours, whereas Predators consider all 8 neighbourhood cells</li>
+    </ol>
+
+    <br>
+    <hr>
+
     <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
   </div>
 </body>

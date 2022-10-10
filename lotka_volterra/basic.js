@@ -12,6 +12,16 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let prey_rep_input = document.getElementById("prey-rep-input");
+let prey_death_input = document.getElementById("prey-ded-input");
+let predator_death_input = document.getElementById("pred-ded-input");
+let predator_rep_input = document.getElementById("pred-rep-input");
+
+let prey_rep_display = document.getElementById("prey-rep-display");
+let prey_death_display = document.getElementById("prey-ded-display");
+let predator_death_display = document.getElementById("pred-ded-display");
+let predator_rep_display = document.getElementById("pred-rep-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -45,7 +55,10 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    prey_rep_input.value = 0.4;
+    prey_death_input.value = 0.2;
+    predator_rep_input.value = 0.8;
+    predator_death_input.value = 0.1;
 }
 
 let click_x, click_y, pressed;

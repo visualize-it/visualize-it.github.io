@@ -54,6 +54,7 @@
         of a predator and prey. It can be extended to include more interacting species. This simulation replicates the
         Lotka-Volterra Model in the spatial domain, using a method called Gillespie algorithm.
       </p>
+      <br>
     </center>
 
     <div class="container" style="width:90%">
@@ -62,7 +63,21 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
+          <p id="prey-rep-display"></p>
+          <input id="prey-rep-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('prey-rep')"
+            onchange="updateParams('prey-rep')" />
 
+          <p id="prey-ded-display"></p>
+          <input id="prey-ded-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('prey-ded')"
+            onchange="updateParams('prey-ded')" />
+
+          <p id="pred-rep-display"></p>
+          <input id="pred-rep-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('pred-rep')"
+            onchange="updateParams('pred-rep')" />
+
+          <p id="pred-ded-display"></p>
+          <input id="pred-ded-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('pred-ded')"
+            onchange="updateParams('pred-ded')" />
         </div>
       </div>
     </div>

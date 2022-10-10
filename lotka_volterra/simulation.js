@@ -2,9 +2,10 @@ let grid = [];
 
 let pixel_size, length;
 
-let initial_occupancy, update_fraction;
+let initial_occupancy;
 
 let prey_reproduction, predator_reproduction, prey_death, predator_death;
+let pred_requirement;
 
 function update() {
     let new_grid = newGrid();
@@ -14,11 +15,12 @@ function update() {
         for (let j = 0; j < length; j++) {
             if (grid[i][j] == 1) {
                 let num_predators = getNumPredators(i, j);
-                if (num_predators > 1 && Math.random() < predator_reproduction) {
+                if (num_predators >= pred_requirement && Math.random() < predator_reproduction) {
                     // reproduction
                     grid[i][j] = 0;
                     new_grid[i][j] = 2;
-                    console.log("New Predator")
+                }
+                else {
                 }
             }
 
@@ -59,7 +61,25 @@ function update() {
         }
     }
 
+    // update grid
     grid = new_grid;
+
+    // count
+    let num_pred = 0, num_prey = 0;
+
+    for (let i = 0; i < length; i++) {
+        for (let j = 0; j < length; j++) {
+            if (grid[i][j] == 1) {
+                num_prey++;
+            }
+            else if (grid[i][j] == 2) {
+                num_pred++;
+            }
+        }
+    }
+
+    prey_num_display.innerHTML = `Prey population: ${num_prey}`;
+    pred_num_display.innerHTML = `Predator population: ${num_pred}`;
 }
 
 function getNumPredators(i, j) {
@@ -117,7 +137,26 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "prey-rep") {
+        prey_reproduction = parseFloat(prey_rep_input.value);
+        prey_rep_display.innerHTML = `Prey reproduction rate: ${prey_reproduction}`;
+    }
+    if (variable == "prey-ded") {
+        prey_death = parseFloat(prey_ded_input.value);
+        prey_ded_display.innerHTML = `Prey death rate: ${prey_death}`;
+    }
+    if (variable == "pred-rep") {
+        predator_reproduction = parseFloat(pred_rep_input.value);
+        pred_rep_display.innerHTML = `Predator reproduction rate: ${predator_reproduction}`;
+    }
+    if (variable == "pred-ded") {
+        predator_death = parseFloat(pred_ded_input.value);
+        pred_ded_display.innerHTML = `Predator death rate: ${predator_death}`;
+    }
+    if (variable == "pred-req") {
+        pred_requirement = parseFloat(pred_req_input.value);
+        pred_req_display.innerHTML = `Predation: ${pred_requirement} predator(s) consume 1 prey`;
+    }
 }
 
 function renderGrid() {
@@ -144,7 +183,7 @@ function populateGrid() {
             if (random_num < initial_occupancy / 2) {
                 grid[i][j] = 1;
             }
-            else if (random_num > 1 - initial_occupancy / 2) {
+            else if (random_num > 1 - initial_occupancy) {
                 grid[i][j] = 2;
             }
         }
@@ -166,16 +205,26 @@ function newGrid() {
 }
 
 function initParams() {
-    pixel_size = 5;
+    if (mobile) {
+        pixel_size = 3;
+    }
+    else {
+        pixel_size = 5;
+    }
+    
     length = Math.floor(canvas_width / pixel_size);
     initial_occupancy = 0.05;
-    update_fraction = 0.1;
 
-    prey_reproduction = 0.4;
-    prey_death = 0.2;
-    predator_reproduction = 0.8;
-    predator_death = 0.1;
+    updateParams("prey-rep");
+    updateParams("prey-ded");
+    updateParams("pred-rep");
+    updateParams("pred-ded");
+    updateParams("pred-req");
 
     grid = newGrid();
     populateGrid();
+
+    if (paused) {
+        pauseToggle();
+    }
 }

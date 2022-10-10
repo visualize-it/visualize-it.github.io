@@ -52,7 +52,8 @@
       <p>
         The Lotka-Volterra Model is a set of two non-linear differential equations that describe the population dynamics
         of a predator and prey. It can be extended to include more interacting species. This simulation replicates the
-        Lotka-Volterra Model in the spatial domain, using a method called Gillespie algorithm.
+        Lotka-Volterra Model in the spatial domain, using a method called Gillespie algorithm. Blue squares represent
+        the prey whereas red squares represent the predator.
       </p>
       <br>
     </center>
@@ -63,21 +64,38 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          <p id="prey-rep-display"></p>
-          <input id="prey-rep-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('prey-rep')"
+          <center>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <br> <br>
+            <span id="prey-num"></span>
+            <br>
+            <span id="pred-num"></span>
+            <br> <br>
+            <b>Restart the simulation if either predator or prey go extinct</b>
+          </center>
+          <hr>
+          <br>
+
+          <span id="prey-rep-display"></span>
+          <input id="prey-rep-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('prey-rep')"
             onchange="updateParams('prey-rep')" />
 
-          <p id="prey-ded-display"></p>
-          <input id="prey-ded-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('prey-ded')"
+          <span id="prey-ded-display"></span>
+          <input id="prey-ded-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('prey-ded')"
             onchange="updateParams('prey-ded')" />
 
-          <p id="pred-rep-display"></p>
-          <input id="pred-rep-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('pred-rep')"
+          <span id="pred-rep-display"></span>
+          <input id="pred-rep-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('pred-rep')"
             onchange="updateParams('pred-rep')" />
 
-          <p id="pred-ded-display"></p>
-          <input id="pred-ded-input" type="range" min="0" max="1" step="0.02" oninput="updateParams('pred-ded')"
+          <span id="pred-ded-display"></span>
+          <input id="pred-ded-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('pred-ded')"
             onchange="updateParams('pred-ded')" />
+
+          <span id="pred-req-display"></span>
+          <input id="pred-req-input" type="range" min="1" max="4" step="1" oninput="updateParams('pred-req')"
+            onchange="updateParams('pred-req')" />
         </div>
       </div>
     </div>

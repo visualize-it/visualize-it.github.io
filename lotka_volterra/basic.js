@@ -12,15 +12,22 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+
+let pred_num_display = document.getElementById("pred-num");
+let prey_num_display = document.getElementById("prey-num");
+
 let prey_rep_input = document.getElementById("prey-rep-input");
-let prey_death_input = document.getElementById("prey-ded-input");
-let predator_death_input = document.getElementById("pred-ded-input");
-let predator_rep_input = document.getElementById("pred-rep-input");
+let prey_ded_input = document.getElementById("prey-ded-input");
+let pred_rep_input = document.getElementById("pred-rep-input");
+let pred_ded_input = document.getElementById("pred-ded-input");
+let pred_req_input = document.getElementById("pred-req-input");
 
 let prey_rep_display = document.getElementById("prey-rep-display");
-let prey_death_display = document.getElementById("prey-ded-display");
-let predator_death_display = document.getElementById("pred-ded-display");
-let predator_rep_display = document.getElementById("pred-rep-display");
+let prey_ded_display = document.getElementById("prey-ded-display");
+let pred_rep_display = document.getElementById("pred-rep-display");
+let pred_ded_display = document.getElementById("pred-ded-display");
+let pred_req_display = document.getElementById("pred-req-display");
 
 if (mobile) {
     canvas_width = 0.9 * screen_width;
@@ -56,9 +63,10 @@ window.onload = function () {
 
 function defaultParams() {
     prey_rep_input.value = 0.4;
-    prey_death_input.value = 0.2;
-    predator_rep_input.value = 0.8;
-    predator_death_input.value = 0.1;
+    prey_ded_input.value = 0.2;
+    pred_rep_input.value = 0.8;
+    pred_ded_input.value = 0.1;
+    pred_req_input.value = 2;
 }
 
 let click_x, click_y, pressed;
@@ -136,4 +144,15 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function pauseToggle() {
+    if (paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
 }

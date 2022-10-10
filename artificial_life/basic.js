@@ -122,8 +122,6 @@ function defaultParams() {
     cutoff_input.min = Number.parseInt(canvas_width / 10);
     cutoff_input.max = Number.parseInt(canvas_width / 2);
     cutoff_input.value = Number.parseInt(canvas_width / 6);
-
-    console.log(cutoff_input);
 }
 
 let click_x, click_y, pressed;

@@ -120,8 +120,6 @@ function updateParams(variable) {
     if (variable == "cutoff") {
         cutoff_length = cutoff_input.value;
         cutoff_display.innerHTML = `Cutoff: ${cutoff_length}`;
-
-        console.log(cutoff_input);
     }
 }
 
@@ -284,6 +282,94 @@ function presets(name) {
 
         damping_input.value = 0.3;
         cutoff_input.value = canvas_width / 10;
+
+        initParams();
+    }
+    else if (name == 'reset') {
+        interactions = {
+            "red": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            },
+            "blue": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            },
+            "orange": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            },
+            "white": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            }
+        };
+
+        statuses = {
+            "red": true,
+            "blue": true,
+            "orange": true,
+            "white": true,
+        };
+
+        num_blue = 200;
+        num_red = 200;
+        num_orange = 200;
+        num_white = 200;
+
+        damping_input.value = 0.2;
+        cutoff_input.value = canvas_width / 6;
+
+        initParams();
+    }
+    else if (name == 'membrane') {
+        interactions = {
+            "red": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            },
+            "blue": {
+                "red": 0,
+                "blue": 0,
+                "orange": 0,
+                "white": 0,
+            },
+            "orange": {
+                "red": 0,
+                "blue": 0,
+                "orange": -0.2,
+                "white": -0.2,
+            },
+            "white": {
+                "red": 0,
+                "blue": 0,
+                "orange": -0.5,
+                "white": -1,
+            }
+        };
+
+        statuses = {
+            "red": false,
+            "blue": false,
+            "orange": true,
+            "white": true,
+        };
+
+        num_orange = 200;
+        num_white = 500;
+
+        damping_input.value = 0.7;
+        cutoff_input.value = canvas_width / 2;;
 
         initParams();
     }

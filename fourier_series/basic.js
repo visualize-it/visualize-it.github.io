@@ -12,6 +12,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let freq_display = document.getElementById("freq-display");
+let freq_input = document.getElementById("freq-input");
+
+let wave_type = document.getElementById("wave-type");
+let waves_display = document.getElementById("waves-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -34,7 +40,10 @@ function step() {
     if (!paused) {
         update();
     }
-    render();
+    if (updated) {
+        render();
+        updated = false;
+    }
     animate(step);
 }
 
@@ -45,7 +54,7 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    freq_input.value = 1;
 }
 
 let click_x, click_y, pressed;

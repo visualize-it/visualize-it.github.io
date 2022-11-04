@@ -55,7 +55,20 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <span id="freq-display">Frequency: 1</span>
+            <input id="freq-input" type="range" min="0.5" max="10" step="0.5" value="1" oninput="updateParams('freq')"
+              onchange="updateParams('freq')">
+            <select id="wave-type" class="browser-default">
+              <option value="sin">Sine</option>
+              <option value="cos">Cosine</option>
+            </select> <br>
+            <button class="btn purple darken-4" onclick="addWave()">Add Wave</button>
+            <button class="btn purple darken-4" onclick="clearWaves()">Clear Waves</button>
+            <hr>
+
+            <p id="waves-display"></p>
+          </center>
         </div>
       </div>
     </div>

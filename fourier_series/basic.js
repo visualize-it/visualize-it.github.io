@@ -15,8 +15,12 @@ let context = canvas.getContext("2d");
 let freq_display = document.getElementById("freq-display");
 let freq_input = document.getElementById("freq-input");
 
+let sampling_freq_display = document.getElementById("sampling-freq-display");
+let sampling_freq_input = document.getElementById("sampling-freq-input");
+
 let wave_type = document.getElementById("wave-type");
 let waves_display = document.getElementById("waves-display");
+let fourier_display = document.getElementById("fourier-display");
 
 if (mobile) {
     canvas_width = 0.9 * screen_width;
@@ -55,6 +59,8 @@ window.onload = function () {
 
 function defaultParams() {
     freq_input.value = 1;
+    sampling_freq_input.value = 1;
+    wave_type.value = "sin";
 }
 
 let click_x, click_y, pressed;

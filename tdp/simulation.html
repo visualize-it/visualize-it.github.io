@@ -49,16 +49,79 @@
   <div class="text">
     <h2>Tricritical Directed Percolation</h2>
 
+    <center>
+      <p>Tricritical Directed Percolation (TDP) is a DP-class model that can be used to study
+        vegetation dynamics, not only because the processes in this model have analogies in the
+        context of ecology, but also because it possesses both continuous and abrupt transitions.</p>
+    </center>
+    <br>
+
     <div class="container" style="width:90%">
       <div class="row">
         <div class="col s12 l8">
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <hr>
+          <center>
+            <p>
+              <b>Green:</b> Vegetation (Occupied)
+              <br>
+              <b>Black:</b> Desert (Unoccupied)
+            </p>
+            <p id="occupancy-display"></p>
+            <hr>
+            <b>Simulation controls:</b>
+            <br> <br>
+            <span id="p-display"></span>
+            <input id="p-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('p')"
+              onchange="updateParams('p')">
+
+            <span id="q-display"></span>
+            <input id="q-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('q')"
+              onchange="updateParams('q')">
+
+            <span id="speed-display"></span>
+            <input id="speed-input" type="range" min="1" max="10" step="1" oninput="updateParams('speed')"
+              onchange="updateParams('speed')">
+            <br> <br>
+
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <br> <br>
+            <b>If the landscape has gone completely barren or become completely filled, then press 'Restart' to
+              repopulate</b>
+            <hr>
+          </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Working</h3>
+
+    The system consists of an N x N array of cells wherein each cell can be either 0 (unoccupied) or 1 (occupied). The
+    transitions are dictated as follows:
+
+    <ol>
+      <li>Step 1: Select a random cell. Call this the 'focal cell'</li>
+      <li>Step 2: If the focal cell is unoccupied, return to step (1). Otherwise, proceed to step (3)</li>
+      <li>Step 3: Randomly select one of its four Von-Neumann neighbours. If the selected neighbour is unoccupied, then
+        proceed to step (d). Otherwise, proceed to step (e)</li>
+      <li>Step 4: With probability p, update the unoccupied neighbour cell from 0 to 1. This process is
+        reproduction. Otherwise (with probability 1 - p), update the focal cell from 1 to 0.
+        This is stochastic death.</li>
+      <li>Step 5: The focal cell and neighbour cell collectively have 6 Von-Neumann neighbours. Select
+        one at random. With probability q, update the selected cell to 1 (irrespective of its initial
+        state). This is positive-feedback birth. Otherwise (with probability 1- q), update the
+        focal cell from 1 to 0. This is density death.</li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
 
     <br>
     <hr>

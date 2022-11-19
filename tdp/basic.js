@@ -12,11 +12,21 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+
+let p_display = document.getElementById("p-display");
+let p_input = document.getElementById("p-input");
+let q_display = document.getElementById("q-display");
+let q_input = document.getElementById("q-input");
+let speed_display = document.getElementById("speed-display");
+let speed_input = document.getElementById("speed-input");
+let occupancy_display = document.getElementById("occupancy-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.4 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width;
 
@@ -45,7 +55,19 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    p_input.value = 0.7;
+    q_input.value = 0;
+    speed_input.value = 1;
+}
+
+function pauseToggle() {
+    paused = !paused;
+    if (paused) {
+        pause_button.innerHTML = "Resume";
+    }
+    else {
+        pause_button.innerHTML = "Pause";
+    }
 }
 
 let click_x, click_y, pressed;

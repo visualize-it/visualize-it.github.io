@@ -6,6 +6,7 @@ let simulation_speed, num_updates, safety_iter;
 
 function update() {
     let num_occupied = getNumOccupied();
+    occupancy_display.innerHTML = `<b>Occupancy:</b> ${(num_occupied / (n * n)).toFixed(6)}`;
 
     let focal_i, focal_j;
     let neighs, neigh_i, neigh_j;
@@ -64,8 +65,6 @@ function update() {
             }
         }
     }
-
-    occupancy_display.innerHTML = `<b>Occupancy:</b> ${(num_occupied / (n * n)).toFixed(6)}`;
 }
 
 function getRandomNeighbour(i, j) {
@@ -196,6 +195,7 @@ function updateParams(variable) {
         simulation_speed = parseFloat(speed_input.value);
         speed_display.innerHTML = `Simulation speed: ${simulation_speed}x`;
         num_updates = Math.floor(n * n * simulation_speed / 100);
+        safety_iter = 10 * num_updates;
     }
 }
 
@@ -207,7 +207,6 @@ function initParams() {
         n = 50;
     }
     cell_length = canvas_width / n;
-    safety_iter = n * n;
 
     newGrid();
     randomGrid();

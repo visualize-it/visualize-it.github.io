@@ -82,7 +82,7 @@
               onchange="updateParams('q')">
 
             <span id="speed-display"></span>
-            <input id="speed-input" type="range" min="1" max="10" step="1" oninput="updateParams('speed')"
+            <input id="speed-input" type="range" min="1" max="100" step="1" oninput="updateParams('speed')"
               onchange="updateParams('speed')">
             <br> <br>
 
@@ -121,7 +121,32 @@
 
     <br>
     <hr>
+
+    <h3>Transitions</h3>
+
+    <p>Before checking out either of these transitions, please make sure that the landscape is significantly populated.
+      If you want the system to equilibriate faster, then increase the simulation speed.</p>
+
+    <ol>
+      <li>
+        <b>Continuous Transition:</b> <br>
+        Set q = 0. Start from p = 0.7, and slowly decrease till p = 0.6. The occupancy should slowly decrease and finally reach zero around p = 0.62
+      </li>
+      <br>
+      <li>
+        <b>Abrupt Transition:</b> <br>
+        Set q = 0.92. Start from p = 0.3, and slowly decrease till p = 0.26. The occupancy should suddenly collapse around p = 0.28
+      </li>
+    </ol>
+
     <br>
+    <hr>
+
+    <b>Note:</b>
+    <ol>
+      <li>A simultion speed of 100x corresponds to N^2 Monte Carlo updates every frame</li>
+      <li>This simulation may lag on lower-end devices</li>
+    </ol>
 
     <br>
     <hr>

@@ -2,6 +2,8 @@ body {
   background-color: #06040ae1;
   color: white;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 p {
@@ -57,6 +59,16 @@ nav div ul li {
   margin-top: 0mm;
   padding: 5mm;
   text-align: center;
+}
+
+.filter-type {
+  color: white;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.visit-button {
+  margin-bottom: 20px;
 }
 
 .slidecontainer {

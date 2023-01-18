@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
+    <!-- Field toggle Script -->
+    <script src="index.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -46,20 +49,45 @@
             <center>
                 <b class="flow-text">View scientific concepts at work. Anytime. Anywhere.</b>
                 <br>
-                <b>Tags:</b>
-                <span>#mathematics, #physics, #computer-science, #complex-systems, #visualization, #simulation,
-                    #automaton, #machine-learning, #game, #illusion</span>
-                <br>
-                <br>
                 <em>For comments, feedback and topic suggestions, please send a mail to <a
                         href="mailto:chanrt.visualize@gmail.com">chanrt.visualize@gmail.com</a> or tweet me <a
                         href="https://twitter.com/_chanrt_">@_chanrt_</a></em>
+
+                <br> <br>
+                <b>Filter by Subject:</b>
+                <br>
+                <div class="row">
+                    <div class="col s12 l3">
+                        <label>
+                            <input id="physics-check" type="checkbox" class="filled-in" checked="checked" onchange="toggle('physics')"/>
+                            <span class="filter-type">Physics</span>
+                        </label>
+                    </div>
+                    <div class="col s12 l3">
+                        <label>
+                            <input id="math-check" type="checkbox" class="filled-in" checked="checked" onchange="toggle('math')"/>
+                            <span class="filter-type">Mathematics</span>
+                        </label>
+                    </div>
+                    <div class="col s12 l3">
+                        <label>
+                            <input id="computer-check" type="checkbox" class="filled-in" checked="checked" onchange="toggle('computer')"/>
+                            <span class="filter-type">Computer Science</span>
+                        </label>
+                    </div>
+                    <div class="col s12 l3">
+                        <label>
+                            <input id="complex-check" type="checkbox" class="filled-in" checked="checked" onchange="toggle('complex')"/>
+                            <span class="filter-type">Complex Systems</span>
+                        </label>
+                    </div>
+                </div>
             </center>
 
             <hr>
             <br>
 
-            <div class="row">
+            <div class="row physics">
                 <div class="row">
                     <div class="col s12 l5">
                         <img class="responsive-img" src="images_webp/ising_model.webp" alt="ising model">
@@ -75,18 +103,18 @@
                         </p>
                         <center>
                             <a href="ising_model/simulation.html">
-                                <button class="btn purple darken-4">Visit</button>
+                                <button class="btn purple darken-4 visit-button">Visit</button>
                             </a>
                         </center>
                     </div>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
 
-            <div class="row">
+            <div class="row math">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/trig_functions.webp" alt="trigonometric functions">
                 </div>
@@ -102,17 +130,16 @@
                     </p>
                     <center>
                         <a href="trig_functions/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/firefly_sync.webp" alt="firefly synchronization">
                 </div>
@@ -128,17 +155,16 @@
                     </p>
                     <center>
                         <a href="firefly_synchronization/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/special_relativity.webp" alt="special relativity">
                 </div>
@@ -154,17 +180,16 @@
                     </p>
                     <center>
                         <a href="special_relativity/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/sorting_algos.webp" alt="sorting algorithms">
                 </div>
@@ -179,17 +204,16 @@
                     </p>
                     <center>
                         <a href="sorting_algos/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/conways_game.webp" alt="conway's game of life">
                 </div>
@@ -205,17 +229,16 @@
                     </p>
                     <center>
                         <a href="conway_game/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/schelling_model.webp" alt="schelling's model">
                 </div>
@@ -231,17 +254,16 @@
                     </p>
                     <center>
                         <a href="schelling_model/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/gradient_descent.webp" alt="gradient descent">
                 </div>
@@ -257,17 +279,16 @@
                     </p>
                     <center>
                         <a href="gradient_descent/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row math">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/mandelbrot_fractal.webp" alt="mandelbrot fractal">
                 </div>
@@ -283,17 +304,16 @@
                     </p>
                     <center>
                         <a href="mandelbrot_fractal/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/lotka_volterra.webp" alt="Lotka Volterra">
                 </div>
@@ -309,17 +329,16 @@
                     </p>
                     <center>
                         <a href="lotka_volterra/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/spring_motion.webp" alt="spring motion">
                 </div>
@@ -334,17 +353,16 @@
                     </p>
                     <center>
                         <a href="spring_motion/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/image_filters.webp" alt="image filters">
                 </div>
@@ -360,17 +378,16 @@
                     </p>
                     <center>
                         <a href="image_filters/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/collective_behaviour.webp" alt="collective behaviour">
                 </div>
@@ -385,17 +402,16 @@
                     </p>
                     <center>
                         <a href="collective_behaviour/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/lorenz_system.webp" alt="lorenz system">
                 </div>
@@ -411,17 +427,16 @@
                     </p>
                     <center>
                         <a href="lorenz_system/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/nuclear_fusion.webp" alt="nuclear fusion">
                 </div>
@@ -431,25 +446,22 @@
                         <span>#physics #simulation</span>
                     </center>
                     <p class="flow-text">
-
-
                         This simulation attempts to recreate the conditions under which Nuclear fusion takes place.
                         Efficient and sustainable nuclear fusion will be revolutionary to our energy sector and change
                         the future of our species!
                     </p>
                     <center>
                         <a href="nuclear_fusion/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/polynomial_regression.webp"
                         alt="polynomial regression">
@@ -466,17 +478,16 @@
                     </p>
                     <center>
                         <a href="polynomial_regression/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/reaction_diffusion.webp" alt="reaction diffusion">
                 </div>
@@ -492,17 +503,16 @@
                     </p>
                     <center>
                         <a href="reaction_diffusion/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row math">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/hilbert_curve.webp" alt="hilbert curve">
                 </div>
@@ -518,17 +528,16 @@
                     </p>
                     <center>
                         <a href="hilbert_curve/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/quantum_computing.webp" alt="quantum computing">
                 </div>
@@ -544,17 +553,16 @@
                     </p>
                     <center>
                         <a href="quantum_logic/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/clustering.webp" alt="k-means clustering">
                 </div>
@@ -569,17 +577,16 @@
                     </p>
                     <center>
                         <a href="clustering/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row complex">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/contact_process.webp" alt="contact process">
                 </div>
@@ -594,17 +601,16 @@
                     </p>
                     <center>
                         <a href="contact_process/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/genetic_algo.webp" alt="genetic algorithm">
                 </div>
@@ -620,17 +626,16 @@
                     </p>
                     <center>
                         <a href="natural_selection/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row math">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/linear_transformations.webp"
                         alt="linear transformations">
@@ -647,17 +652,16 @@
                     </p>
                     <center>
                         <a href="linear_transformations/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/projectile_motion.webp" alt="projectile motion">
                 </div>
@@ -672,17 +676,16 @@
                     </p>
                     <center>
                         <a href="projectile_motion/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/maze_generation.webp" alt="maze generation">
                 </div>
@@ -698,17 +701,16 @@
                     </p>
                     <center>
                         <a href="maze_generation/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/stroboscopic_effect.webp" alt="stroboscopic effect">
                 </div>
@@ -724,17 +726,16 @@
                     </p>
                     <center>
                         <a href="stroboscopic_effect/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/monte_carlo.webp" alt="monte carlo simulation">
                 </div>
@@ -750,17 +751,16 @@
                     </p>
                     <center>
                         <a href="monte_carlo/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/linear_momentum.webp" alt="linear momentum">
                 </div>
@@ -775,17 +775,16 @@
                     </p>
                     <center>
                         <a href="linear_momentum/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/bezier_curves.webp" alt="bezier curves">
                 </div>
@@ -801,17 +800,16 @@
                     </p>
                     <center>
                         <a href="bezier_curves/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row math">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/random_walks.webp" alt="random walks">
                 </div>
@@ -827,17 +825,16 @@
                     </p>
                     <center>
                         <a href="random_walk/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row physics">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/planetary_motion.webp" alt="planetary motion">
                 </div>
@@ -853,19 +850,16 @@
                     </p>
                     <center>
                         <a href="planetary_motion/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/lexical_analysis.webp" alt="lexical analysis">
                 </div>
@@ -880,17 +874,16 @@
                     </p>
                     <center>
                         <a href="lexical_analysis/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
-            <br>
-            <hr>
-            <br>
-
-            <div class="row">
+            <div class="row computer">
                 <div class="col s12 l5">
                     <img class="responsive-img" src="images_webp/travelling_salesman.webp" alt="travelling salesman">
                 </div>
@@ -906,10 +899,13 @@
                     </p>
                     <center>
                         <a href="travelling_salesman/simulation.html">
-                            <button class="btn purple darken-4">Visit</button>
+                            <button class="btn purple darken-4 visit-button">Visit</button>
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div>
 
             <!-- template -->
@@ -931,11 +927,12 @@
                         </a>
                     </center>
                 </div>
+                <br>
+                <hr>
+                <br>
             </div> -->
 
-            <hr>
-
-            <a rel="me" href="https://ecoevo.social/@chandan" style="display:none">Mastodon</a> 
+            <a rel="me" href="https://ecoevo.social/@chandan" style="display:none">Mastodon</a>
 
             <center>
                 <p>Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>

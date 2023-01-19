@@ -142,6 +142,15 @@ function drawGraph() {
     else {
         waves_display.innerHTML = "f(x) = 0";
     }
+
+    let wavelength = canvas_width / sampling_freq;
+
+    for (let i = 0; i * wavelength < canvas_width; i++) {
+        context.beginPath();
+        context.moveTo(i * wavelength, 0);
+        context.lineTo(i * wavelength, 2 * graph_y);
+        context.stroke();
+    }
 }
 
 function updateParams(variable) {

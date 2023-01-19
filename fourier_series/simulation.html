@@ -49,6 +49,18 @@
   <div class="text">
     <h2>Fourier Series</h2>
 
+    <center>
+      <p>
+        Fourier Series encaptulates the idea that any periodic function can be expressed as a sum of sine and cosine
+        waves. This simulation has been programmed to contain the visual framework that is featured in <a
+          href="https://www.youtube.com/watch?v=spUNpyF58BY&t=9s" target="_blank">3Blue1Brown's video on Fourier
+          Transforms</a>.
+      </p>
+    </center>
+
+    <hr>
+    <br>
+
     <div class="container" style="width:90%">
       <div class="row">
         <div class="col s12 l8">
@@ -56,7 +68,7 @@
         </div>
         <div class="col s12 l4">
           <center>
-            <b>Add Waves here:</b> 
+            <b>Add Waves here:</b>
             <br> <br>
             <span id="freq-display">Frequency: </span>
             <input id="freq-input" type="range" min="0.5" max="10" step="0.1" value="1" oninput="updateParams('freq')"
@@ -71,7 +83,7 @@
 
             <b>Analyze Fourier Spectrum:</b>
             <br> <br>
-            <span>Equation of wave:</span>
+            <span>Equation of current wave:</span>
             <p id="waves-display"></p>
 
             <span>Fourier Transform</span>
@@ -85,6 +97,37 @@
       </div>
     </div>
 
+    <br>
+    <hr>
+
+    <h3>Intuition</h3>
+
+    \[ F(\omega) = \int_{-\infty}^{\infty} f(x) \ e^{-i 2 \pi \omega x} dx = a + i b \]
+
+    <p>
+      \(f(x)\) is the function that we want to analyze. It consists of a bunch of sine (\( \sin 2 \pi f x \)) and cosine
+      waves (\( \cos 2 \pi f x \)) of different frequencies added together. The above formula gives us the relative
+      amplitude of the sines and cosines corresponding to the frequency \( \omega \). The real part \(a\) is the
+      amplitude of the cosine wave and the imaginary part \(b\) is the amplitude of the sine wave. Both \(a\) and \(b\)
+      are evaluated in the above visualization. The \( e^{-i 2 \pi \omega x} \) term depicts winding of the function
+      around the origin, and \( \omega \) is the rate at which the function is sampled.
+    </p>
+    <p>
+      Please watch <a href="https://www.youtube.com/watch?v=spUNpyF58BY&t=9s" target="_blank">3Blue1Brown's video</a>
+      for a better explanation. Here are some instructions about using this visualization:
+    </p>
+    <ol>
+      <li>
+        In the default configuration, sine waves of frequencies 3 and 7 are present. When the sampling frequencies are
+        equal to these frequencies, a peak in the magnitude is observed. Moreover, the magnitude entirely comes from the
+        imaginary part of the Fourier transform.
+      </li>
+      <li>
+        Now, remove the waves and add cosine waves of the two distinct frequencies. When the sampling frequencies are
+        equal to these frequencies, a peak in the magnitude is observed. This time, the magnitude comes from the real
+        part of the Fourier transform.
+      </li>
+    </ol>
     <br>
     <hr>
 

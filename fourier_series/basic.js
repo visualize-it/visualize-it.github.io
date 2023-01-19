@@ -59,7 +59,7 @@ window.onload = function () {
 
 function defaultParams() {
     freq_input.value = 1;
-    sampling_freq_input.value = 1;
+    sampling_freq_input.value = 3;
     wave_type.value = "sin";
 }
 

@@ -56,6 +56,8 @@
         </div>
         <div class="col s12 l4">
           <center>
+            <b>Add Waves here:</b> 
+            <br> <br>
             <span id="freq-display">Frequency: </span>
             <input id="freq-input" type="range" min="0.5" max="10" step="0.1" value="1" oninput="updateParams('freq')"
               onchange="updateParams('freq')">
@@ -67,7 +69,12 @@
             <button class="btn purple darken-4" onclick="clearWaves()">Clear Waves</button>
             <hr>
 
+            <b>Analyze Fourier Spectrum:</b>
+            <br> <br>
+            <span>Equation of wave:</span>
             <p id="waves-display"></p>
+
+            <span>Fourier Transform</span>
             <p id="fourier-display"></p>
 
             <span id="sampling-freq-display">Sampling Frequency: </span>

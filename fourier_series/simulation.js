@@ -37,8 +37,11 @@ function drawCircle() {
         let x_values = [];
         let y_values = [];
         let r, theta;
+        let hue = 0;
 
-        context.beginPath();
+        let prev_x = canvas_width / 2, prev_y = circle_y;
+        context.lineWidth = 2;
+        
         for (let i = 0; i < graph_xrange; i += 0.001) {
             r = 0;
             for (let wave of waves) {
@@ -54,9 +57,20 @@ function drawCircle() {
             y_values.push(r * Math.sin(theta));
             r = 0.9 * circle_radius * r / waves.length;
 
+            context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+            hue += 1;
+            if (hue > 360) {
+                hue = 0;
+            }
+
+            context.beginPath();
+            context.moveTo(prev_x, prev_y);
             context.lineTo(canvas_width / 2 + r * Math.cos(theta), circle_y - r * Math.sin(theta));
+            context.stroke();
+
+            prev_x = canvas_width / 2 + r * Math.cos(theta);
+            prev_y = circle_y - r * Math.sin(theta);
         }
-        context.stroke();
 
         let com_x = 0, com_y = 0;
         for (let i = 0; i < x_values.length; i++) {
@@ -76,7 +90,9 @@ function drawCircle() {
 }
 
 function drawGraph() {
+    context.lineWidth = 1;
     context.strokeStyle = "#ffffff";
+
     context.beginPath();
     context.moveTo(0, graph_y);
     context.lineTo(canvas_width, graph_y);
@@ -166,8 +182,12 @@ function initParams() {
 
     waves.push({
         "type": "sin",
-        "freq": 1
+        "freq": 3
     });
+    waves.push({
+        "type": "sin",
+        "freq": 7,
+    })
 
     updated = true;
 

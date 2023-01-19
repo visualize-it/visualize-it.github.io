@@ -179,7 +179,7 @@ function render() {
     context.fillRect(0, 0, canvas_width, canvas_height);
 
     drawCells();
-    drawGrid();
+    // drawGrid();
 }
 
 function updateParams(variable) {

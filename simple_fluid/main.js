@@ -1,8 +1,8 @@
-let cell_length, num_cells;
-let dt;
+let cell_length, num_cells, dt;
 
 let density, vel_x, vel_y;
 let source, force_x, force_y;
+let pressure;
 
 let focal_i, focal_j;
 
@@ -10,15 +10,39 @@ let diffusion, viscosity;
 let density_relaxation, velocity_relaxation;
 let evaporation_rate;
 
+let show_vel, show_density, source_on;
+
 function update() {
-    checkUserInput();
+    if (source_on) {
+        source[Math.floor(num_cells / 2)][Math.floor(num_cells / 2)] = 100 + 100 * Math.random();
+    }
+    else {
+        source[Math.floor(num_cells / 2)][Math.floor(num_cells / 2)] = 0;
+    }
+
     velocityUpdate();
     densityUpdate();
-    evaporationUpdate();
 }
 
 function updateParams(variable) {
-
+    if (variable == "fx") {
+        let value = fx_input.value;
+        fx_display.innerHTML = `F<sub>x</sub>: ${value}`;
+        for (let i = 0; i < num_cells; i++) {
+            for (let j = 0; j < num_cells; j++) {
+                force_x[i][j] = value;
+            }
+        }
+    }
+    if (variable == "fy") {
+        let value = fy_input.value;
+        fy_display.innerHTML = `F<sub>y</sub>: ${value}`;
+        for (let i = 0; i < num_cells; i++) {
+            for (let j = 0; j < num_cells; j++) {
+                force_y[i][j] = value;
+            }
+        }
+    }
 }
 
 function initParams() {
@@ -31,15 +55,24 @@ function initParams() {
     vel_y = make2DArray(num_cells + 2, num_cells + 2, 0);
 
     source = make2DArray(num_cells, num_cells, 0);
-    force_x = make2DArray(num_cells, num_cells, 1);
-    force_y = make2DArray(num_cells, num_cells, 0);
 
-    diffusion = 0.01;
-    density_relaxation = 20;
-    viscosity = 0.0001;
+    force_x = make2DArray(num_cells, num_cells, 0);
+    updateParams("fx");
+
+    force_y = make2DArray(num_cells, num_cells, 0);
+    updateParams("fy");
+
+    diffusion = 0.001;
+    viscosity = 0.1;
+    evaporation_rate = 0;
+
+    density_relaxation = 10;
     velocity_relaxation = 10;
     pressure_relaxation = 10;
-    evaporation_rate = 0.01;
+
+    show_vel = true;
+    show_density = true;
+    source_on = true;
 }
 
 function copyArray(source, destination) {
@@ -50,8 +83,14 @@ function copyArray(source, destination) {
     }
 }
 
+function clearScreen() {
+    density = make2DArray(num_cells + 2, num_cells + 2, 0);
+    vel_x = make2DArray(num_cells + 2, num_cells + 2, 0);
+    vel_y = make2DArray(num_cells + 2, num_cells + 2, 0);
+}
+
 function make2DArray(rows, cols, value) {
-    let arr = []
+    let arr = [];
     for (let i = 0; i < rows; i++) {
         let new_row = [];
         for (let j = 0; j < cols; j++) {
@@ -60,4 +99,28 @@ function make2DArray(rows, cols, value) {
         arr.push(new_row);
     }
     return arr;
+}
+
+function getMax(arr) {
+    let max = -Infinity;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] > max) {
+                max = arr[i][j];
+            }
+        }
+    }
+    return max;
+}
+
+function getMin(arr) {
+    let min = Infinity;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] < min) {
+                min = arr[i][j];
+            }
+        }
+    }
+    return min;
 }

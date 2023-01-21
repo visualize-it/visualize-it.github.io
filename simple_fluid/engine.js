@@ -9,7 +9,6 @@ function velocityUpdate() {
 }
 
 function densityUpdate() {
-    addDensity();
     diffuse(0);
     advect(0);
 }
@@ -142,7 +141,7 @@ function conserveMass() {
     enforceBoundary(divergence, 0);
 
     // calculate pressure
-    let pressure = make2DArray(num_cells + 2, num_cells + 2, 0);
+    pressure = make2DArray(num_cells + 2, num_cells + 2, 0);
     for (let relaxation_step = 0; relaxation_step < pressure_relaxation; relaxation_step++) {
         for (let i = 1; i <= num_cells; i++) {
             for (let j = 1; j <= num_cells; j++) {
@@ -161,6 +160,12 @@ function conserveMass() {
     }
     enforceBoundary(vel_x, 1);
     enforceBoundary(vel_y, 2);
+
+    for (let i = 1; i <= num_cells; i++) {
+        for (let j = 1; j <= num_cells; j++) {
+            pressure[i][j] += 0.001 * density[i][j];
+        }
+    }
 }
 
 function enforceBoundary(grid, mode) {

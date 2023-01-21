@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="fluid, fluid simulation, navier, stokes, interactive, simulation">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -50,18 +51,93 @@
 
   <div class="text">
     <h2>Simple Fluid</h2>
-    <p>Under development</p>
+    <p>
+      This simulation attempts to simulate a fluid in a computationally inexpensive way (in comparison to more accurate
+      methods). The aim here is to recreate a fluid's behaviour for aesthetic and educational purposes. This is a
+      recreation of <a href="https://www.dgp.toronto.edu/people/stam/reality/Research/pdf/GDC03.pdf" target="_blank">Jos
+        Stam's</a> method of fluid simulation for games.
+    </p>
+    <br>
 
     <div class="container" style="width:90%">
       <div class="row">
-        <div class="col s12 s8">
+        <div class="col s12 l8">
           <canvas id="canvas"></canvas>
         </div>
-        <div class="col s12 s4">
-
+        <div class="col s12 l4">
+          <center>
+            <hr>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" onclick="clearScreen()">Clear</button>
+            <br> <br>
+            <b>In order to introduce fluid at a particular location, just touch the canvas</b>
+            <br> <br>
+            <hr>
+            <b>Display Controls</b>
+            <br> <br>
+            <button id="vel-button" class="btn purple darken-4" onclick="velToggle()">Hide velocities</button>
+            <button id="view-button" class="btn purple darken-4" onclick="viewToggle()">Show Pressure</button>
+            <hr>
+            <br>
+            <b>Turning this 'on' will introduce fluid at a constant rate, in the center of the container</b>
+            <br> <br>
+            <button id="source-button" class="btn purple darken-4" onclick="sourceToggle()">Turn off Source</button>
+            <hr>
+            <b>Force Field Controls</b>
+            <br>
+            <div class="col s12 l6">
+              <span id="fx-display"></span>
+              <input id="fx-input" type="range" min="-1" max="1" step="0.1" oninput="updateParams('fx')"
+                onchange="updateParams('fx')">
+            </div>
+            <div class="col s12 l6">
+              <span id="fy-display"></span>
+              <input id="fy-input" type="range" min="-1" max="1" step="0.1" oninput="updateParams('fy')"
+                onchange="updateParams('fy')">
+            </div>
+            <hr>
+          </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Explanation</h3>
+    <p>
+      We're essentially trying to solve the Navier-Stokes equations in a simpler way:
+    </p>
+    \[ \frac{\partial \rho}{\partial t} = -(\vec{u} \cdot \nabla) \rho + \kappa \nabla^2 \rho + S \]
+    \[ \frac{\partial \vec{u}}{\partial t} = -(\vec{u} \cdot \nabla) \vec{u} + \nu \nabla^2 \vec{u} + \vec{F} \]
+    <p>
+      The first equation tells us how fluid density \(\rho\) behaves. The first term on the RHS says that density
+      'flows' according to the velocity field \( \vec{u} \) (this process is called advection). The second term
+      represents diffusion of fluid whereas the third term accounts for sources and sinks.
+    </p>
+    <p>
+      The second equation lays down the behaviour of the velocity field \( \vec{u} \). The first term on the RHS says
+      that the velocity field advects on the basis of itself (this can be intrepreted as flow of momentum). The second
+      term represents the diffusion of momentum (due to viscosity). The third term represents external forces acting on
+      the fluid.
+    </p>
+    <p>
+      In addition to these two equations, we also need to make sure that the velocity field is mass conserving. This
+      correction is achieved by using the result of Hodge decomposition, which states that every velocity field is the
+      sum of a mass conserving field and a gradient field. Hence, if we subtract the gradient from our velocity field,
+      we will get a mass conserving velocity field.
+    </p>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>The boundary condition is closed. It has not been implemented properly (yet). If fluid is introduced in the
+        corner from which a velocity field originates, then the densities blow up. Clear the simulation if this happens.
+      </li>
+    </ol>
 
     <br>
     <hr>

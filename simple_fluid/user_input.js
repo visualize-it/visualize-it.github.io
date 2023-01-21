@@ -1,9 +1,10 @@
 function checkUserInput() {
     if (pressed) {
         if (focal_i !== undefined && focal_j !== undefined && source[focal_i][focal_j] !== undefined) {
-            source[focal_i][focal_j] = 0.1;
+            source[focal_i][focal_j] = 100 + 100 * Math.random()
         }
     }
+    addDensity();
 }
 
 function clicked() {

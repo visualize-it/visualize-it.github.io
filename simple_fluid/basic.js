@@ -12,6 +12,16 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+let vel_button = document.getElementById("vel-button");
+let view_button = document.getElementById("view-button");
+let source_button = document.getElementById("source-button");
+
+let fx_input = document.getElementById("fx-input");
+let fy_input = document.getElementById("fy-input");
+let fx_display = document.getElementById("fx-display");
+let fy_display = document.getElementById("fy-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -31,6 +41,7 @@ let animate = window.requestAnimationFrame
     };
 
 function step() {
+    checkUserInput();
     if (!paused) {
         update();
     }
@@ -45,7 +56,8 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    fx_input.value = 1;
+    fy_input.value = 1;
 }
 
 let click_x, click_y, pressed;
@@ -123,4 +135,48 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function pauseToggle() {
+    if (paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
+}
+
+function velToggle() {
+    if (show_vel) {
+        show_vel = false;
+        vel_button.innerHTML = "Show Velocity";
+    }
+    else {
+        show_vel = true;
+        vel_button.innerHTML = "Hide Velocity";
+    }
+}
+
+function viewToggle() {
+    if (show_density) {
+        show_density = false;
+        view_button.innerHTML = "Show Density";
+    }
+    else {
+        show_density = true;
+        view_button.innerHTML = "Show Pressure";
+    }
+}
+
+function sourceToggle() {
+    if (source_on) {
+        source_on = false;
+        source_button.innerHTML = "Turn on Source";
+    }
+    else {
+        source_on = true;
+        source_button.innerHTML = "Turn off Source";
+    }
 }

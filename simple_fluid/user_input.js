@@ -1,7 +1,7 @@
 function checkUserInput() {
     if (pressed) {
         if (focal_i !== undefined && focal_j !== undefined && source[focal_i][focal_j] !== undefined) {
-            source[focal_i][focal_j] = 100 + 100 * Math.random()
+            source[focal_i][focal_j] = 500 + 100 * Math.random()
         }
     }
     addDensity();
@@ -24,6 +24,14 @@ function moved() {
 function released() {
     if (focal_i !== undefined && focal_j !== undefined && source[focal_i][focal_j] !== undefined) {
         source[focal_i][focal_j] = 0;
+    }
+
+    if (mobile) {
+        for (let i = 0; i < num_cells; i++) {
+            for (let j = 0; j < num_cells; j++) {
+                source[i][j] = 0;
+            }
+        }
     }
 }
 

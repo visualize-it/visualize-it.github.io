@@ -47,7 +47,14 @@ function updateParams(variable) {
 
 function initParams() {
     dt = 0.01;
-    cell_length = 10;
+
+    if (!mobile) {
+        cell_length = 10;
+    }
+    else {
+        cell_length = 8;
+    }
+
     num_cells = Math.ceil(canvas_height / cell_length);
 
     density = make2DArray(num_cells + 2, num_cells + 2, 0);
@@ -87,6 +94,7 @@ function clearScreen() {
     density = make2DArray(num_cells + 2, num_cells + 2, 0);
     vel_x = make2DArray(num_cells + 2, num_cells + 2, 0);
     vel_y = make2DArray(num_cells + 2, num_cells + 2, 0);
+    source = make2DArray(num_cells, num_cells, 0);
 }
 
 function make2DArray(rows, cols, value) {

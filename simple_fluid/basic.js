@@ -60,7 +60,7 @@ function defaultParams() {
     fy_input.value = 1;
 }
 
-let click_x, click_y, pressed;
+let click_x, click_y, pressed = false;
 
 if(mobile) {
     canvas.addEventListener("touchstart", function (e) {
@@ -87,6 +87,8 @@ if(mobile) {
     }, false);
 
     canvas.addEventListener("touchend", function (e) {
+        pressed = false;
+        released();
         getTouchPosition(canvas, e);
         let touch = e.touches[0];
         let mouseEvent = new MouseEvent("mouseup", {
@@ -94,8 +96,7 @@ if(mobile) {
             clientY: touch.clientY
         });
         canvas.dispatchEvent(mouseEvent);
-        pressed = false;
-        released();
+        
     }, false);
 }
 else {

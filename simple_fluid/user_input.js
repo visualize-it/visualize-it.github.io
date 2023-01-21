@@ -30,6 +30,8 @@ function released() {
         for (let i = 0; i < num_cells; i++) {
             for (let j = 0; j < num_cells; j++) {
                 source[i][j] = 0;
+                focal_i = undefined;
+                focal_j = undefined;
             }
         }
     }

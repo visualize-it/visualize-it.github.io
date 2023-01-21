@@ -1,9 +1,30 @@
 body {
   background-color: #06040ae1;
   color: white;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-family: montserrat;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+@font-face {
+  font-family: roboto;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: sofia-sans;
+  src: url(../fonts/SofiaSans-Medium.ttf);
+}
+
+@font-face {
+  font-family: montserrat;
+  src: url(../fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: merriweather;
+  src: url(../fonts/Merriweather-Regular.ttf);
 }
 
 p {

@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-  <title>Template | Visualize It</title>
+  <title>Simple Fluid | Visualize It</title>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +14,9 @@
   <script src="../helper.js" defer></script>
   <script src="basic.js" defer></script>
   <script src="user_input.js" defer></script>
-  <script src="simulation.js" defer></script>
+  <script src="main.js" defer></script>
+  <script src="engine.js" defer></script>
+  <script src="render.js" defer></script>
 
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -52,9 +54,12 @@
 
     <div class="container" style="width:90%">
       <div class="row">
-        <center>
+        <div class="col s12 s8">
           <canvas id="canvas"></canvas>
-        </center>
+        </div>
+        <div class="col s12 s4">
+
+        </div>
       </div>
     </div>
 

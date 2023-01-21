@@ -96,8 +96,8 @@ function update_animation() {
     }
     angle_1.innerHTML = `&theta; = ${slider_1.value}<sup>o</sup>`;
 
-    sin.innerHTML = `Sin(&theta;) = length of red line = ${Math.sin(radian(slider_1.value)).toFixed(4)}`;
-    cos.innerHTML = `Cos(&theta;) = length of blue line = ${Math.cos(radian(slider_1.value)).toFixed(4)}`;
+    sin.innerHTML = `Sin(&theta;) = <span style="color:red">length of red line</span> = ${Math.sin(radian(slider_1.value)).toFixed(4)}`;
+    cos.innerHTML = `Cos(&theta;) = <span style="color:blue">length of blue line</span> = ${Math.cos(radian(slider_1.value)).toFixed(4)}`;
 }
 
 function update_1(changed) {

@@ -76,6 +76,6 @@ function update_2(changed) {
             angle_2.innerHTML = `&theta; = ${type_2.value}`;
         }
     }
-    tan.innerHTML = `Tan(&theta;) = length of blue line = ${Math.tan(radian(slider_2.value)).toFixed(4)}`;
-    cot.innerHTML = `Cot(&theta;) = length of red line = ${(1/Math.tan(radian(slider_2.value))).toFixed(4)}`;
+    tan.innerHTML = `Tan(&theta;) = <span style="color:blue">length of blue line</span> = ${Math.tan(radian(slider_2.value)).toFixed(4)}`;
+    cot.innerHTML = `Cot(&theta;) = <span style="color:red">length of red line</span> = ${(1/Math.tan(radian(slider_2.value))).toFixed(4)}`;
 }

@@ -93,6 +93,6 @@ function update_3(changed) {
             angle_3.innerHTML = `&theta; = ${type_3.value}`;
         }
     }
-    sec.innerHTML = `Sec(&theta;) = length of blue line = ${(1/Math.cos(radian(slider_3.value))).toFixed(4)}`;
-    cosec.innerHTML = `Cosec(&theta;) = length of red line = ${(1/Math.sin(radian(slider_3.value))).toFixed(4)}`;
+    sec.innerHTML = `Sec(&theta;) = <span style="color:blue">length of blue line</span> = ${(1/Math.cos(radian(slider_3.value))).toFixed(4)}`;
+    cosec.innerHTML = `Cosec(&theta;) = <span style="color:red">length of red line</span> = ${(1/Math.sin(radian(slider_3.value))).toFixed(4)}`;
 }

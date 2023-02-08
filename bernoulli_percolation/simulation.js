@@ -4,8 +4,7 @@ let num_cells, cell_length;
 let percolation_probability;
 
 function update() {
-    percolation_probability += 0.001;
-    openGates();
+    
 }
 
 function render() {
@@ -17,7 +16,11 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "prob") {
+        percolation_probability = parseFloat(prob_input.value);
+        prob_display.innerHTML = `Percolation Probability = ${percolation_probability.toFixed(2)}`;
+        openGates();
+    }
 }
 
 function initParams() {
@@ -31,7 +34,7 @@ function initParams() {
     cell_length = canvas_width / num_cells;
     makeCells();
 
-    percolation_probability = 0;
+    updateParams('prob');
     openGates();
 }
 

@@ -12,6 +12,9 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let prob_input = document.getElementById("prob-input");
+let prob_display = document.getElementById("prob-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -45,7 +48,7 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    prob_input.value = 0.4;
 }
 
 let click_x, click_y, pressed;

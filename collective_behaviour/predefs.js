@@ -30,7 +30,12 @@ function swirl() {
     orientation_input.value = 3;
     attraction_input.value = 15;
 
-    moving_speed_input.value = 7;
+    if (mobile) {
+        moving_speed_input.value = 5;
+    }
+    else {
+        moving_speed_input.value = 7;
+    }
     turning_speed_input.value = 8;
     noise_input.value = 10;
 

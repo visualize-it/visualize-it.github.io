@@ -1,10 +1,8 @@
 let num_cells, cell_length;
 let grid = [];
-
 let next_cells = [];
 
-let porosity = 0.59;
-
+let porosity;
 
 function update() {
     let current_cells = [];
@@ -29,7 +27,13 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == 'prob') {
+        porosity = prob_input.value;
+        prob_display.innerHTML = `Porosity: ${porosity}`;
+        makeGrid();
+        populateGrid();
+        initFill();
+    }
 }
 
 function initParams() {
@@ -42,9 +46,7 @@ function initParams() {
 
     cell_length = Math.ceil(canvas_width / num_cells);
 
-    makeGrid();
-    populateGrid();
-    initFill();
+    updateParams('prob');
 }
 
 function getNeighCells(current_cells) {
@@ -67,6 +69,17 @@ function getNeighCells(current_cells) {
         }
     }
     return neigh_cells;
+}
+
+function refill() {
+    for (let i = 0; i < num_cells; i++) {
+        for (let j = 0; j < num_cells; j++) {
+            if (grid[i][j] == 2) {
+                grid[i][j] = 0;
+            }
+        }
+    }
+    initFill();
 }
 
 function initFill() {
@@ -106,14 +119,12 @@ function drawGrid() {
     for (let i = 0; i < num_cells; i++) {
         for (let j = 0; j < num_cells; j++) {
             if (grid[i][j] == 1) {
-                // context.fillStyle = "#9b7653";
                 context.fillStyle = "#964b00";
                 context.fillRect(i * cell_length, j * cell_length, cell_length, cell_length);
             }
             else if (grid[i][j] == 2) {
                 context.fillStyle = "#2989da";
                 context.fillRect(i * cell_length, j * cell_length, cell_length - 2, cell_length - 2);
-                // context.fillRect(i * cell_length, j * cell_length, cell_length, cell_length);
             }
         }
     }

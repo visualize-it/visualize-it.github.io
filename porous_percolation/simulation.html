@@ -50,6 +50,14 @@
 
   <div class="text">
     <h2>Porous Percolation</h2>
+    <center>
+      <p>
+        Percolation is the study of flow of fluid through porous media. This model simulates the flow of a fluid through
+        a two-dimensional grid. Brown cells represent the medium. Blue cells represent fluid / water whereas black
+        cells represent empty space. Fluid from a cell can flow to its four adjacent neighbours.
+      </p>
+    </center>
+    <br>
 
     <div class="container" style="width:90%">
       <div class="row">
@@ -57,10 +65,36 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <p id="prob-display"></p>
+            <input id="prob-input" type="range" min="0" max="1" step="0.01" oninput="updateParams('prob')"
+              onchange="updateParams('prob')">
+            <button class="btn purple darken-4" onclick="initParams()">Reset Grid</button>
+            <button class="btn purple darken-4" onclick="refill()">Refill</button>
+            <hr>
+            <p>
+              Porosity is the fraction of the grid that is empty. When porosity is above 0.59, then the fluid is most
+              likely to flow from the top to the bottom (or 'percolate')
+            </p>
+          </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>When porosity is above 0.59, the medium is likely to have a contiguous space that spans the entirety
+        of the grid. This is called a 'percolating cluster' or a 'spanning cluster'</li>
+      </li>
+      <li>
+        There will be cases when the fluid does not percolate even when porosity is above 0.59 (and vice versa). This is
+        due to defects of the random number generator, and the finiteness of the grid.
+      </li>
+    </ol>
 
     <br>
     <hr>

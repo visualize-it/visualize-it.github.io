@@ -50,6 +50,15 @@
 
   <div class="text">
     <h2>Vicsek Model</h2>
+    <center>
+      <p>
+        Vicsek Model is a simple agent-based model of self-propelled particles. Its working is simple: every boid aligns
+        itself along the average direction of all the boids in its interaction radius. Additionally, there is a small
+        noise added to the direction of the boid. The polarization of the system (a value between 0 and 1) is dependent
+        on the density of boids, the interaction radius, and the amplitude of noise.
+      </p>
+      <br>
+    </center>
 
     <div class="container" style="width:90%">
       <div class="row">
@@ -69,11 +78,14 @@
             <b>Parameter Controls</b>
             <br> <br>
             <span id="i-display"></span>
-            <input id="i-input" type="range" min="0" max="100" step="1" oninput="updateParams('i')" onchange="updateParams('i')">
+            <input id="i-input" type="range" min="0" max="100" step="1" oninput="updateParams('i')"
+              onchange="updateParams('i')">
             <span id="n-display"></span>
-            <input id="n-input" type="range" min="0" max="50" step="1" oninput="updateParams('n')" onchange="updateParams('n')">
+            <input id="n-input" type="range" min="0" max="50" step="1" oninput="updateParams('n')"
+              onchange="updateParams('n')">
             <span id="s-display"></span>
-            <input id="s-input" type="range" min="1" max="10" step="1" oninput="updateParams('s')" onchange="updateParams('s')">
+            <input id="s-input" type="range" min="1" max="10" step="1" oninput="updateParams('s')"
+              onchange="updateParams('s')">
             <hr>
             <br>
             <b>Simulation Controls</b>
@@ -84,6 +96,23 @@
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>
+        This model shows a transition from disordered motion to large-scale ordered motion. When density is low or noise
+        is high, particles behave like a disordered gas. When noise is low and density is high, particles 'flow' like a
+        liquid. Their behaviour is conveyed by the value of polarization.
+      </li>
+      <li>
+        <a href="../collective_behaviour/simulation.html">Collective Behaviour</a> is an extension of this model,
+        featuring repulsion, attraction and noise.
+      </li>
+    </ol>
 
     <br>
     <hr>

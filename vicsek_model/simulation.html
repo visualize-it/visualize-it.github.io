@@ -57,7 +57,30 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <p id="p-display"></p>
+            <hr>
+            <p id="num-display"></p>
+            <button class="btn purple darken-4" onclick="makeBoids(10)">Add</button>
+            <button class="btn purple darken-4" onclick="removeBoids(10)">Remove</button>
+            <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
+            <br> <br>
+            <hr>
+            <b>Parameter Controls</b>
+            <br> <br>
+            <span id="i-display"></span>
+            <input id="i-input" type="range" min="0" max="100" step="1" oninput="updateParams('i')" onchange="updateParams('i')">
+            <span id="n-display"></span>
+            <input id="n-input" type="range" min="0" max="50" step="1" oninput="updateParams('n')" onchange="updateParams('n')">
+            <span id="s-display"></span>
+            <input id="s-input" type="range" min="1" max="10" step="1" oninput="updateParams('s')" onchange="updateParams('s')">
+            <hr>
+            <br>
+            <b>Simulation Controls</b>
+            <br> <br>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Pause</button>
+            <button id="reset-button" class="btn purple darken-4" onclick="initParams()">Restart</button>
+          </center>
         </div>
       </div>
     </div>

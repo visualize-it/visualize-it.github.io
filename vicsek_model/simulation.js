@@ -20,11 +20,23 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == 'i') {
+        interaction_radius = i_input.value;
+        i_display.innerHTML = `Interaction radius: ${interaction_radius}`;
+    }
+    if (variable == 'n') {
+        noise_amplitude = n_input.value * Math.PI / 180;
+        n_display.innerHTML = `Noise amplitude: ${n_input.value}`;
+    }
+    if (variable == 's') {
+        speed = s_input.value;
+        s_display.innerHTML = `Speed: ${speed}`;
+    }
 }
 
 function initParams() {
-    initBoids();
+    boids = [];
+    makeBoids(num_boids);
 
     speed = 5;
     interaction_radius = 20;
@@ -32,6 +44,14 @@ function initParams() {
 
     boid_length = 5;
     spoke_angle = 150 * Math.PI / 180;
+
+    updateParams('i');
+    updateParams('n');
+    updateParams('s');
+
+    if (paused) {
+        pauseToggle();
+    }
 }
 
 function interactBoids() {
@@ -52,7 +72,7 @@ function interactBoids() {
 }
 
 function moveBoids() {
-    for (let i = 0; i < num_boids; i++) {
+    for (let i = 0; i < boids.length; i++) {
         boids[i].direction += noise_amplitude * (Math.random() - 0.5);
 
         boids[i].x += speed * Math.cos(boids[i].direction);
@@ -83,12 +103,12 @@ function measurePolarization() {
     y /= boids.length;
     polarization = Math.sqrt(x * x + y * y);
 
-    console.log(polarization);
+    p_display.innerHTML = `Polarization: ${polarization.toFixed(2)}`;
 }
 
-function initBoids() {
+function makeBoids(num) {
     let new_boid;
-    for (let i = 0; i < num_boids; i++) {
+    for (let i = 0; i < num; i++) {
         new_boid = {
             x: Math.random() * canvas_width,
             y: Math.random() * canvas_height,
@@ -96,6 +116,19 @@ function initBoids() {
         }
         boids.push(new_boid);
     }
+    num_display.innerHTML = `Number of boids: ${boids.length}`;
+}
+
+function removeBoids(num) {
+    for (let i = 0; i < num; i++) {
+        boids.shift();
+    }
+    num_display.innerHTML = `Number of boids: ${boids.length}`;
+}
+
+function clearBoids() {
+    boids = [];
+    num_display.innerHTML = `Number of boids: ${boids.length}`;
 }
 
 function renderBoids() {

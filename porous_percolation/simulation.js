@@ -94,10 +94,35 @@ function initFill() {
 }
 
 function populateGrid() {
+    let num_populated = 0;
     for (let i = 0; i < num_cells; i++) {
         for (let j = 0; j < num_cells; j++) {
             if (Math.random() > porosity) {
                 grid[i][j] = 1;
+                num_populated++;
+            }
+        }
+    }
+    let num_required = Math.floor(num_cells * num_cells * (1 - porosity));
+    if (num_populated < num_required) {
+        let i, j;
+        while (num_populated < num_required) {
+            i = Math.floor(Math.random() * num_cells);
+            j = Math.floor(Math.random() * num_cells);
+            if (grid[i][j] == 0) {
+                grid[i][j] = 1;
+                num_populated++;
+            }
+        }
+    }
+    else if (num_populated > num_required) {
+        let i, j;
+        while (num_populated > num_required) {
+            i = Math.floor(Math.random() * num_cells);
+            j = Math.floor(Math.random() * num_cells);
+            if (grid[i][j] == 1) {
+                grid[i][j] = 0;
+                num_populated--;
             }
         }
     }

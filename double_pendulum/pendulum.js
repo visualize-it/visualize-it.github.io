@@ -37,7 +37,7 @@ class Pendulum {
     }
     render() {
         context.strokeStyle = this.color;
-        context.lineWidth = 2;
+        context.lineWidth = 3;
         context.beginPath();
         context.moveTo(canvas_width / 2, canvas_height / 2);
         context.lineTo(canvas_width / 2 + length * Math.sin(this.t1), canvas_height / 2 + length * Math.cos(this.t1));
@@ -52,9 +52,9 @@ class Pendulum {
         context.arc(canvas_width / 2 + length * Math.sin(this.t1) + length * Math.sin(this.t2), canvas_height / 2 + length * Math.cos(this.t1) + length * Math.cos(this.t2), radius, 0, 2 * Math.PI);
         context.fill();
 
+        context.lineWidth = 1;
         for (let i = 1; i < this.trails.length; i++) {
             context.strokeStyle = `hsl(${this.trails[i].cycle}, 100%, 50%)`;
-            context.lineWidth = 1;
             context.beginPath();
             context.moveTo(this.trails[i - 1].x, this.trails[i - 1].y);
             context.lineTo(this.trails[i].x, this.trails[i].y);

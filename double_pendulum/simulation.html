@@ -58,7 +58,34 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <button id="pause-button" class="btn purple darken-4" onclick="pauseToggle()">Resume</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <br>
+            <p>
+              Pressing 'Restart' button will reset the simulation to the initial state
+            </p>
+            <hr>
+            
+            <b>Blue Pendulum:</b> <br>
+            <span id="t1-1-display"></span>
+            <input id="t1-1-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t1_1')"
+              onchange="updateParams('t1_1')" />
+            <span id="t2-1-display"></span>
+            <input id="t2-1-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t2_1')"
+              onchange="updateParams('t2_1')" />
+            <br> <hr>
+            <b>Red Pendulum:</b> <br>
+            <span id="t1-2-display"></span>
+            <input id="t1-2-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t1_2')"
+              onchange="updateParams('t1_2')" />
+            <span id="t2-2-display"></span>
+            <input id="t2-2-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t2_2')"
+              onchange="updateParams('t2_2')" />
+              <p>
+                Modifying any parameters above will automatically pause the simulation
+              </p>
+          </center>
         </div>
       </div>
     </div>

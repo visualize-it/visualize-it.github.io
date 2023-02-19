@@ -26,6 +26,11 @@ let t1_2_input = document.getElementById("t1-2-input");
 let t2_2_display = document.getElementById("t2-2-display");
 let t2_2_input = document.getElementById("t2-2-input");
 
+let t1_1_text = document.getElementById("t1-1-text");
+let t2_1_text = document.getElementById("t2-1-text");
+let t1_2_text = document.getElementById("t1-2-text");
+let t2_2_text = document.getElementById("t2-2-text");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -45,13 +50,10 @@ let animate = window.requestAnimationFrame
     };
 
 function step() {
-    let start = performance.now();
     if (!paused) {
         update();
     }
     render();
-    let end = performance.now();
-    console.log("Time: " + (end - start) + " ms");
     animate(step);
 }
 
@@ -67,6 +69,11 @@ function defaultParams() {
 
     t1_2_input.value = 61;
     t2_2_input.value = 60;
+
+    updateParams("t1_1");
+    updateParams("t2_1");
+    updateParams("t1_2");
+    updateParams("t2_2");
 }
 
 let click_x, click_y, pressed;

@@ -93,8 +93,26 @@
             <input id="t2-2-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t2_2')"
               onchange="updateParams('t2_2')" />
             <p>
-              Modifying any parameters above will automatically pause the simulation
+              Modifying any parameters above will automatically pause the simulation. Click on 'Resume' button to simulate
             </p>
+          </center>
+        </div>
+      </div>
+
+      <div class="row">
+        <h5>Set custom values here:</h5>
+        <div class="col s12 l6">
+          <center>
+            <b>Blue pendulum</b>
+            <p>&theta;<sub>1</sub> (in degrees)<input id="t1-1-text" type="text" value="0" oninput="updateParams('t1_1_text')" onchange="updateParams('t1_1_text')" /></p>
+            <p>&theta;<sub>2</sub> (in degrees)<input id="t2-1-text" type="text" value="0" oninput="updateParams('t2_1_text')" onchange="updateParams('t2_1_text')" /></p>
+          </center>
+        </div>
+        <div class="col s12 l6">
+          <center>
+            <b>Red pendulum</b>
+            <p>&theta;<sub>1</sub> (in degrees)<input id="t1-2-text" type="text" value="0" oninput="updateParams('t1_2_text')" onchange="updateParams('t1_2_text')" /></p>
+            <p>&theta;<sub>2</sub> (in degrees)<input id="t2-2-text" type="text" value="0" oninput="updateParams('t2_2_text')" onchange="updateParams('t2_2_text')" /></p>
           </center>
         </div>
       </div>

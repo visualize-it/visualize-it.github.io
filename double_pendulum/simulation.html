@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="double pendulum, chaos, interactive, butterfly effect, simulation">
-  <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/">
+  <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/double_pendulum.webp">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -51,6 +51,15 @@
 
   <div class="text">
     <h2>Double Pendulum</h2>
+    <center>
+      <p>A double pendulum is composed of one pendulum suspended from another pendulum. Although its behaviour is
+        completely deterministic, a small change in the initial conditions will drasticallly affect the behaviour of the
+        system later on. This phenomenon is known as chaos. Due to this, making long-term predictions for a chaotic
+        system's behaviour is meaningless. In the below simulation, we have two double pendulums such that their initial
+        conditions differ by a small value. Observe how this small difference leads to a drastic change in the
+        pendulum's trajectory.</p>
+    </center>
+    <br>
 
     <div class="container" style="width:90%">
       <div class="row">
@@ -66,7 +75,7 @@
               Pressing 'Restart' button will reset the simulation to the initial state
             </p>
             <hr>
-            
+
             <b>Blue Pendulum:</b> <br>
             <span id="t1-1-display"></span>
             <input id="t1-1-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t1_1')"
@@ -74,7 +83,8 @@
             <span id="t2-1-display"></span>
             <input id="t2-1-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t2_1')"
               onchange="updateParams('t2_1')" />
-            <br> <hr>
+            <br>
+            <hr>
             <b>Red Pendulum:</b> <br>
             <span id="t1-2-display"></span>
             <input id="t1-2-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t1_2')"
@@ -82,13 +92,25 @@
             <span id="t2-2-display"></span>
             <input id="t2-2-input" type="range" min="0" max="360" value="0" step="1" oninput="updateParams('t2_2')"
               onchange="updateParams('t2_2')" />
-              <p>
-                Modifying any parameters above will automatically pause the simulation
-              </p>
+            <p>
+              Modifying any parameters above will automatically pause the simulation
+            </p>
           </center>
         </div>
       </div>
     </div>
+
+    <hr>
+    <b>Note:</b>
+    <ol>
+      <li>You can choose any values of &theta;<sub>1</sub> and &theta;<sub>2</sub> for the two double pendulums.
+        However, for observing the phenomenon of chaos, they need to differ from each other by a small value.</li>
+      <li>Under the above circumstances, it may take a couple of oscillations of the double pendulum for their
+        behaviours to diverge.</li>
+      <li>Dynamics of the two bobs of the each double pendulum can be obtained from <a
+          href="https://en.wikipedia.org/wiki/Double_pendulum" target="_blank">here</a>. This simulation uses the
+        equations of motion derived using Lagrangian mechanics.</li>
+    </ol>
 
     <br>
     <hr>

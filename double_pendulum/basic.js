@@ -31,10 +31,13 @@ let animate = window.requestAnimationFrame
     };
 
 function step() {
+    let start = performance.now();
     if (!paused) {
         update();
     }
     render();
+    let end = performance.now();
+    console.log("Time: " + (end - start) + " ms");
     animate(step);
 }
 

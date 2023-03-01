@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Predator Escape | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keyword"
+    content="collective behaviour, flocking behaviour, interactive, boids, boids simulation, couzin model">
+  <meta name="og:image"
+    content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/collective_behaviour.webp">
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="utils.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="Vector.js" defer></script>
+  <script src="Boid.js" defer></script>
+  <script src="tests.js" defer></script>
+  <script src="predefs.js" defer></script>
+  <script src="simulation.js" defer></script>
+
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h1 id="main-heading">Visualize It</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html">Home</a></li>
+        <li class="tab"><a href="../about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h2>Predator Escape</h2>
+
+  <div class="container" style="width: 90%">
+    <div style="background:black; padding: 15px; border: 2px red solid;">
+      <center>
+        <b>This real-time simulation is computationally complex and may induce unresponsiveness
+          on lower-end devices</b>
+      </center>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col s12 l12">
+        <center>
+          <canvas id="canvas"></canvas>
+        </center>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 l4">
+        <center>
+          <span id="num-display"></span> <br>
+          <button class="btn purple darken-4" onclick="addBoids()">Add</button>
+          <button class="btn purple darken-4" onclick="removeBoids()">Remove</button>
+          <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
+        </center>
+      </div>
+
+      <div class="col s12 l4">
+        <center>
+          <button id="reflect-button" class="btn purple darken-4" onclick="toggleReflection()">Reflection: Off</button>
+        </center>
+      </div>
+
+      <div class="col s12 l4">
+        <center>
+          <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
+          <button onclick="initParams()" class="btn purple darken-4">Restart</button>
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

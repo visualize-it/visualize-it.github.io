@@ -58,6 +58,9 @@
 
 <div class="text">
   <h2>Predator Escape</h2>
+  <center>
+    <p>A simple model that depicts how boids perceive and escape predators</p>
+  </center>
 
   <div class="container" style="width: 90%">
     <div style="background:black; padding: 15px; border: 2px red solid;">
@@ -68,6 +71,11 @@
     </div>
     <br>
 
+    <center>
+      <span>
+        (If the simulation hasn't started then please hover your pointer over the canvas)
+      </span>
+    </center>
     <div class="row">
       <div class="col s12 l12">
         <center>
@@ -100,6 +108,65 @@
       </div>
     </div>
   </div>
+
+  <hr>
+
+  <h3>Details</h3>
+
+  <p>
+    Meaning of boid colors:
+  <ol>
+    <li>
+      <b>Light Blue:</b> The boid hasn't detected any predator. The predator may lie in its blind spot, or it may be far
+      away.
+    </li>
+    <li>
+      <b>Green:</b> The boid has detected the predator, but the predator is not that close
+    </li>
+    <li>
+      <b>Red:</b> The boid has detected the predator, and the predator is close enough to be a threat
+    </li>
+  </ol>
+  Now, we have two instincts at work here: (a) Collective Behaviour and (b) Predator Avoidance. In order to understand
+  the dynamics of Collective Behaviour, please visit <a href="../collective_behaviour/simulation.html">this page</a>.
+  The dynamics of predator avoidance is simple: go in the opposite direction of predator approach. The main question is,
+  how do we make these two behaviours operate together? We define a lower radii \(r_1\) and an upper radii
+  \(r_2\). Let the distance of the predator from the boid be \(d\), and assume that the predator <b>does not lie</b>
+  in the blind spot of the boid, then:
+  <ol>
+    <li>
+      <b>d &lt; r<sub>1</sub>:</b> Predator avoidance will dominate the boid's behaviour
+    </li>
+    <li>
+      <b>d &gt; r<sub>2</sub>:</b> The boid will continue to follow the rules of collective behaviour
+    </li>
+    <li>
+      <b>r<sub>1</sub> &lt; d &lt; r<sub>2</sub>:</b> The boid will follow a weighted average of predator escape and
+      collective behaviour. The weight of predator escape 'w' is given by:
+      \[ w_p = \frac{d - r_2}{r_1 - r_2} \]
+      The weight of collective behaviour is therefore \(w_c = 1 - w_p\). The boid will seek to move in the direction
+      given by the weightage average of these two instincts.
+  </ol>
+  If the predator lies in the blind spot of the boid, then irrespective of the value of \(d\), the boid will continue
+  following the rules of collective behaviour since it has not detected the predator.
+  </p>
+
+  <hr>
+
+  <b>Note:</b>
+  <ol>
+    <li>
+      This simulation is preferably viewed on a desktop/laptop.
+    </li>
+    <li>
+      The method of combining both behaviours is inspired by an analogous method in molecular dynamics: in order to
+      reduce the time complexity of molecular simulations from \(O(N^2)\) to \( \approx O(N) \), one can cutoff the
+      operating potential at some distance \( r_c \). However, this causes the force to be discontinuous at \( r_c \).
+      This problem presents itself in the form of anomalous acceleration of individual molecules. In order to remedy
+      this, one defines two radii \( r_1 \) and \( r_2 \), and brings the potential down to zero between these two radii
+      in a smooth manner using switching functions of various degrees.
+    </li>
+  </ol>
 
   <hr>
 

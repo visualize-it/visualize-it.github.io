@@ -94,7 +94,22 @@ class Boid {
     }
 
     render() {
-        context.fillStyle = "#ffffff";
+        let distance_from_predator = distanceBetween(this.position, predator_vector);
+        let in_blind_angle = predatorInBlindSpot(this);
+
+        if (distance_from_predator > predator_upper || in_blind_angle) {
+            context.fillStyle = "#add8e6";
+        }
+        else if (!in_blind_angle) {
+            if (distance_from_predator < predator_lower) {
+                context.fillStyle = "#ff0000";
+            }
+            else {
+                let hue = 120 * (distance_from_predator - predator_lower) / (predator_upper - predator_lower);
+                context.fillStyle = "hsl(" + hue + ", 100%, 50%)";
+            }
+        }
+        
         context.beginPath();
         context.moveTo(this.position.x + spoke_length * Math.cos(this.direction), this.position.y + spoke_length * Math.sin(this.direction));
         context.lineTo(this.position.x + spoke_length * Math.cos(this.direction + spoke_angle), this.position.y + spoke_length * Math.sin(this.direction + spoke_angle));

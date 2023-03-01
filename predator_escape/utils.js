@@ -51,6 +51,21 @@ function inBlindSpot(boid, other_boid) {
     }
 }
 
+function predatorInBlindSpot(boid) {
+    let approach_angle = Vector.subtract(predator_vector, boid.position).getHeading()
+    let heading_angle = boid.direction;
+
+    if (heading_angle + half_visible_angle < approach_angle && heading_angle + half_visible_angle + blind_angle > approach_angle) {
+        return true;
+    }
+    else if (heading_angle - half_visible_angle > approach_angle && heading_angle - half_visible_angle - blind_angle < approach_angle) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 function getBoidsWithin(boid, radius) {
     let boids_within = [];
     

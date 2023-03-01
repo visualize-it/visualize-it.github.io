@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keyword"
-    content="collective behaviour, flocking behaviour, interactive, boids, boids simulation, couzin model">
+    content="collective behaviour, flocking behaviour, interactive, boids, boids simulation, couzin model, predator escape">
   <meta name="og:image"
     content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/collective_behaviour.webp">
 
@@ -135,13 +135,13 @@
   in the blind spot of the boid, then:
   <ol>
     <li>
-      <b>d &lt; r<sub>1</sub>:</b> Predator avoidance will dominate the boid's behaviour
+      <b>\( d < r_1 \):</b> Predator avoidance will dominate the boid's behaviour
     </li>
     <li>
-      <b>d &gt; r<sub>2</sub>:</b> The boid will continue to follow the rules of collective behaviour
+      <b>\( d > r_2 \):</b> The boid will continue to follow the rules of collective behaviour
     </li>
     <li>
-      <b>r<sub>1</sub> &lt; d &lt; r<sub>2</sub>:</b> The boid will follow a weighted average of predator escape and
+      <b>\( r_1 < d < r_2 \):</b> The boid will follow a weighted average of predator escape and
       collective behaviour. The weight of predator escape 'w' is given by:
       \[ w_p = \frac{d - r_2}{r_1 - r_2} \]
       The weight of collective behaviour is therefore \(w_c = 1 - w_p\). The boid will seek to move in the direction
@@ -159,7 +159,7 @@
       This simulation is preferably viewed on a desktop/laptop.
     </li>
     <li>
-      The method of combining both behaviours is inspired by an analogous method in molecular dynamics: in order to
+      The method of combining both behaviours is inspired by a similar method in molecular dynamics: in order to
       reduce the time complexity of molecular simulations from \(O(N^2)\) to \( \approx O(N) \), one can cutoff the
       operating potential at some distance \( r_c \). However, this causes the force to be discontinuous at \( r_c \).
       This problem presents itself in the form of anomalous acceleration of individual molecules. In order to remedy

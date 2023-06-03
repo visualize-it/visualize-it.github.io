@@ -82,6 +82,11 @@ nav div ul li {
   text-align: center;
 }
 
+.jittery {
+  font-family: monospace;
+  font-size: larger;
+}
+
 .filter-type {
   color: white;
   font-size: larger;

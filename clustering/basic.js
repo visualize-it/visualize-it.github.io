@@ -44,7 +44,49 @@ function step() {
 
 window.onload = function() {
     initParams();
+    defaultSetup();
     animate(step);
+}
+
+function defaultSetup() {
+    let x1 = canvas_width / 4;
+    let y1 = canvas_height / 4;
+    let x2 = 3 * canvas_width / 4;
+    let y2 = 3 * canvas_height / 4;
+    let variance = canvas_width / 3;
+
+    let num_points_each = 8;
+
+    for (let i = 0; i < num_points_each; i++) {
+        let x = x1 + Math.random() * variance - variance / 2;
+        let y = y1 + Math.random() * variance - variance / 2;
+        points.push({
+            x: x,
+            y: y,
+            group: -1,
+            color: "#ffffff",
+        });
+    }
+
+    for (let i = 0; i < num_points_each; i++) {
+        let x = x2 + Math.random() * variance - variance / 2;
+        let y = y2 + Math.random() * variance - variance / 2;
+        points.push({
+            x: x,
+            y: y,
+            group: -1,
+            color: "#ffffff",
+        });
+    }
+
+    num_clusters = 2;
+    num_input.value = num_clusters;
+    num_display.innerHTML = `Number of Clusters: ${num_clusters}`;
+    
+    let num_steps = 10;
+    for (let i = 0; i < num_steps; i++) {
+        clusterStep();
+    }
 }
 
 let click_x, click_y, pressed;

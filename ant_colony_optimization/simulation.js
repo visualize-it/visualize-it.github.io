@@ -5,10 +5,12 @@ let num_ants;
 let pheromone_matrix, apriori_matrix;
 let ant_paths;
 
-let eva_factor, pheromone_influcene, apriori_influence, rate;
+let eva_factor, pheromone_influence, apriori_influence, rate;
 
 let running, iteration;
 let num_iterations;
+
+let optimum_solution;
 
 function update() {
     if (running) {
@@ -36,7 +38,7 @@ function update() {
                 // calculate probabilities
                 probabilities = [];
                 for (let possible_node of possible_nodes) {
-                    probability = pheromone_matrix[current_node][possible_node] * apriori_matrix[current_node][possible_node];
+                    probability = Math.pow(pheromone_matrix[current_node][possible_node], pheromone_influence) * Math.pow(apriori_matrix[current_node][possible_node], apriori_influence);
                     probabilities.push(probability);
                 }
 
@@ -64,7 +66,7 @@ function update() {
 
         // calculate path distance for each ant
         let ant_distances = [];
-        let distance, current_node, next_node
+        let distance, current_node, next_node;
         for (let ant = 0; ant < num_ants; ant++) {
             distance = 0;
             for (let i = 0; i < ant_paths[ant].length - 1; i++) {
@@ -80,6 +82,20 @@ function update() {
             
             ant_distances.push(distance);
         }
+
+        let min_distance = Math.min(...ant_distances);
+        let min_ant = -1;
+        for (let ant = 0; ant < num_ants; ant++) {
+            if (ant_distances[ant] == min_distance) {
+                min_ant = ant;
+                break;
+            }
+        }
+
+        console.log(ant_distances);
+
+        // update optimum solution
+        optimum_solution = ant_paths[min_ant];
 
         // update pheromone matrix
         let pheromone_trails;
@@ -100,30 +116,29 @@ function update() {
 
         // update iteration
         iteration += 1
-        console.log(iteration);
-        console.log(pheromone_matrix);
         if (iteration >= num_iterations) {
             running = false;
         }
     }
 }
 
-function render() {
-    context.fillStyle = "#000000";
-    context.fillRect(0, 0, canvas_width, canvas_height);
-
-    renderPoints();
-    if (running) {
-        renderTrails();
-
-        // draw progress bar on top
-        context.fillStyle = "#ffffff";
-        context.fillRect(0, 0, canvas_width * iteration / num_iterations, 5);
-    }
-}
-
 function updateParams(variable) {
-
+    if (variable == "num") {
+        num_ants = num_input.value;
+        num_display.innerHTML = `Number of ants: ${num_ants}`;
+    }
+    if (variable == "eva") {
+        eva_factor = eva_input.value;
+        eva_display.innerHTML = `Evaporation factor (&rho;): ${eva_factor}`;
+    }
+    if (variable == "phe") {
+        pheromone_influence = phe_input.value;
+        phe_display.innerHTML = `Pheromone influence (&alpha;): ${pheromone_influence}`;
+    }
+    if (variable == "apr") {
+        apriori_influence = apr_input.value;
+        apr_display.innerHTML = `Apriori influence (&beta;): ${apriori_influence}`;
+    }
 }
 
 function initSimulation() {
@@ -152,16 +167,20 @@ function initSimulation() {
             ant_paths.push([]);
         }
 
+        optimum_solution = [];
+
         iteration = 0;
         running = true;
     }
 }
 
 function placeAnts() {
+    ant_paths = []
+
     let node;
     for (let i = 0; i < num_ants; i++) {
         node = randInt(0, points.length);
-        ant_paths[i].push(node);
+        ant_paths.push([node]);
     }
 }
 
@@ -182,52 +201,22 @@ function hasAntTakenEdge(path, node1, node2) {
 
 function initParams() {
     points = [];
-    near_cutoff = 7;
-    num_ants = 5;
-    running = false;
-    num_iterations = 100;
+    optimum_solution = [];
 
-    eva_factor = 0.9;
-    pheromone_influcene = 1;
-    apriori_influence = 1;
-    rate = 1;
+    near_cutoff = 7;
+    running = false;
+    num_iterations = 200;
+    rate = canvas_width;
+
+    updateParams("num");
+    updateParams("eva");
+    updateParams("phe");
+    updateParams("apr");
 
     for (let i = 0; i < 20; i++) {
         randomPoint();
     }
     initSimulation();
-}
-
-function renderPoints() {
-    for (let point of points) {
-        context.beginPath();
-        context.arc(point.x, point.y, near_cutoff, 0, 2 * Math.PI, false);
-        context.fillStyle = "#ffffff";
-        context.fill();
-    }
-}
-
-function renderTrails() {
-    let total_strength, relative_strength;
-    for (let i = 0; i < pheromone_matrix.length; i++) {
-        total_strength = 0;
-        for (let j = 0; j < pheromone_matrix[i].length; j++) {
-            if (i != j) {
-                total_strength += pheromone_matrix[i][j] * apriori_matrix[i][j];
-            }
-        }
-
-        for (let j = 0; j < pheromone_matrix[i].length; j++) {
-            if (i != j) {
-                relative_strength = (pheromone_matrix[i][j] * apriori_matrix[i][j] / total_strength) ** 0.9;
-                context.beginPath();
-                context.moveTo(points[i].x, points[i].y);
-                context.lineTo(points[j].x, points[j].y);
-                context.strokeStyle = "rgba(255, 255, 255, " + relative_strength + ")";
-                context.stroke();
-            }
-        }
-    }
 }
 
 function clickedAt(x, y) {
@@ -244,7 +233,8 @@ function clickedAt(x, y) {
         }
 
         if (!point_nearby) {
-            points.push({ x: Math.round(x), y: Math.round(y)});
+            points.push({ x: Math.round(x), y: Math.round(y) });
+            optimum_solution = [];
         }
     }
 }
@@ -254,6 +244,7 @@ function randomPoint() {
         let x = randInt(0, canvas_width);
         let y = randInt(0, canvas_height);
         points.push({ x: x, y: y });
+        optimum_solution = [];
     }
 }
 
@@ -269,5 +260,6 @@ function pathContainsNode(path, node) {
 function clearPoints() {
     if (!running) {
         points = [];
+        optimum_solution = [];
     }
 }

@@ -23,6 +23,18 @@ canvas_height = canvas_width;
 canvas.width = canvas_width;
 canvas.height = canvas_height;
 
+num_input = document.getElementById("num-input");
+num_display = document.getElementById("num-display");
+
+eva_input = document.getElementById("eva-input");
+eva_display = document.getElementById("eva-display");
+
+phe_input = document.getElementById("phe-input");
+phe_display = document.getElementById("phe-display");
+
+apr_input = document.getElementById("apr-input");
+apr_display = document.getElementById("apr-display");
+
 let animate = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
     || window.mozRequestAnimationFrame
@@ -45,7 +57,10 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    num_input.value = 10;
+    eva_input.value = 0.1;
+    phe_input.value = 1;
+    apr_input.value = 0.5;
 }
 
 let click_x, click_y, pressed;

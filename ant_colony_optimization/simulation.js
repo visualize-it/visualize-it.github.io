@@ -125,7 +125,11 @@ function update() {
 function updateParams(variable) {
     if (variable == "num") {
         num_ants = num_input.value;
-        num_display.innerHTML = `Number of ants: ${num_ants}`;
+        num_display.innerHTML = `Number of ants: ${num_ants}<br>(if changed, simulation will restart)`;
+
+        if (running) {
+            initSimulation();
+        }
     }
     if (variable == "eva") {
         eva_factor = eva_input.value;

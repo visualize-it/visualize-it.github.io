@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="Ant Colony Optimization, ACO, Travelling Salesman Problem, TSP, Simulation">
-  <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/">
+  <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/ant_colony.webp">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -52,10 +52,12 @@
   <div class="text">
     <h2>Ant Colony Optimization</h2>
     <center>
-      <p>Ant Colony Optimization is an interesting way to obtain near-optimum solutions to the Travelling Salesman
-        Problem (TSP). It involves utilizing multi-agent ants to explore all possible solutions and converge upon a
-        short path with a combination of a priori knowledge and pheromone trails deposited by other ants</p>
+      <p>Ant Colony Optimization is an interesting way to obtain near-optimum solutions to the <a
+          href="../travelling_salesman/simulation.html">Travelling Salesman
+          Problem (TSP)</a>. It involves utilizing multi-agent ants to explore all possible solutions and converge upon
+        a short path with a combination of a priori knowledge and pheromone trails deposited by other ants</p>
     </center>
+    <br>
 
     <div class="container" style="width:90%">
       <div class="row">
@@ -64,25 +66,108 @@
         </div>
         <div class="col s12 l4">
           <center>
-            <b>Click on the canvas in order to introduce/remove a node</b> 
+            <b>Click on the canvas in order to introduce/remove a node</b>
             <br> <br>
             <button class="btn purple darken-4" onclick="randomPoint()">Random point</button>
             <button class="btn purple darken-4" onclick="clearPoints()">Clear points</button>
-            <hr>            
+            <hr>
             <b>Optimization Parameters:</b> <br>
-            <span id="num-display"></span> 
-            <input id="num-input" type="range" min="1" max="100" step="1" oninput="updateParams('num')" onchange="updateParams('num')">
-            <span id="eva-display"></span> 
-            <input id="eva-input" type="range" min="0" max="0.9" step="0.01" oninput="updateParams('eva')" onchange="updateParams('eva')">
-            <span id="phe-display"></span> 
-            <input id="phe-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('phe')" onchange="updateParams('phe')">
-            <span id="apr-display"></span> 
-            <input id="apr-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('apr')" onchange="updateParams('apr')">
+            <span id="num-display"></span>
+            <input id="num-input" type="range" min="1" max="100" step="1" oninput="updateParams('num')"
+              onchange="updateParams('num')">
+            <span id="eva-display"></span>
+            <input id="eva-input" type="range" min="0" max="0.9" step="0.01" oninput="updateParams('eva')"
+              onchange="updateParams('eva')">
+            <span id="phe-display"></span>
+            <input id="phe-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('phe')"
+              onchange="updateParams('phe')">
+            <span id="apr-display"></span>
+            <input id="apr-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('apr')"
+              onchange="updateParams('apr')">
             <button class="btn purple darken-4" onclick="initSimulation()">Start simulation</button>
           </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Mechanism</h3>
+    <p>
+      Given a bunch of points, the travelling salesman problem involves finding the shortest path that visits all the
+      points exactly once. Finding/verifying a solution absolutely requires a brute force search, whose time complexity
+      scales as factorial. Ant Colony Optimization (ACO) is one way to go about finding near-optimal solutions for the
+      travelling salesman problem.
+    </p>
+    <p>
+      ACO involves keeping two matrices: the pheromone matrix \(P\) such that \(P_{ij}\) represents the amount of
+      pheromone between nodes \(i\) and \(j\), and the <em>a priori</em> knowledge matrix \(A\) such that \(A_{ij}\)
+      represents the <em>a priori</em> knowledge of the distance between nodes \(i\) and \(j\). In this case, we set
+      \(A_{ij} = 1/d_{ij}\) where \(d_{ij}\) is the distance between nodes \(i\) and \(j\). The pheromone matrix is
+      initialized to 1 in the beginning.
+    </p>
+    <p>
+      When the \(n^{th}\) ant is at the \(i^{th}\) node, it can travel to any node which it hasn't visited yet. The
+      probability that it will travel to the \(j^{th}\) node is given by
+      \[
+      p_{ij}^{(n)} = \frac{P_{ij}^\alpha A_{ij}^\beta}{\sum_{k \in U_a} P_{ik}^\alpha A_{ik}^\beta}
+      \]
+    </p>
+    <p>
+      Here, \(U_a\) is the set of nodes that the \(n^{th}\) ant has not visited yet, \(\alpha\) is the influence of the
+      pheromones in the decision making process, and \(\beta\) is the influence of the <em>a priori</em> knowledge in
+      the decision making process. During the simulation, the intensity of the line joining two edges is proportional to
+      above probability
+    </p>
+    <p>
+      When a population of ants have visited all nodes exactly once, the pheromone matrices are updated as
+      follows:
+      \[
+      P_{ij} = (1 - \rho) P_{ij} + \sum_{n=1}^N \Delta P_{ij}^{(n)}
+      \]
+      \[
+      P_{ij}^{(n)} =
+      \begin{cases}
+      Q / L_k & \text{if the \(n^{th}\) ant travelled from \(i\) to \(j\) while moving}\\
+      0 & \text{otherwise}
+      \end{cases}
+      \]
+    </p>
+    <p>
+      Here, \(\rho\) is the evaporation rate, or the fraction of the pheromone trail that would have evaporated by the
+      next iteration. \(Q\) is a constant that determines the amount of pheromone deposited by each ant, and \(L_k\) is
+      the length of the path taken by the \(k^{th}\) ant. After 200 iterations, the simulation will stop, and the path
+      taken by the shortest any will be displayed.
+    </p>
+
+    <hr>
+
+    <h3>Tweaking</h3>
+    <ol>
+      <li>
+        A lower population of ants will cause the approximated optimal solution to change rapidly between iterations.
+      </li>
+      <li>
+        A high value of evaporation rate allows the population to explore more paths, but it may not necessarily
+        return an optimal path at the end</li>
+      <li>
+        \( (\alpha, \beta) = (0, 1) \) is equivalent to using only the <em>a priori</em> knowledge. The solution given
+        will be the nearest neighbor heuristic, which is the most straightforward way to optimize the travelling
+        salesman problem. Basically, from each node, travel to the nearest unvisited node.
+      </li>
+      <li>
+        \( \alpha = 0 \) and \( \beta > 1 \) makes the system collapse to a local minimum. But the solution will
+        probably be far from optimum.
+      </li>
+      <li>
+        \( \alpha > 0.5 \) will lock the ants into heavily favouring shorter edges. The simulation will then try to find
+        the a way to connected these shorter edges in an optimal manner.
+      </li>
+      <li>
+        When points are chosen randomly, \( (\alpha, \beta) = (1, 1) \) seem to give the best results.
+      </li>
+    </ol>
 
     <br>
     <hr>

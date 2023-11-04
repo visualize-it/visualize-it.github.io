@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="keywords" content="Ant Colony Optimization, ACO, Travelling Salesman Problem, TSP, Simulation">
-  <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/ant_colony.webp">
+  <meta name="og:image"
+    content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/ant_colony.webp">
 
   <!-- Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
@@ -50,9 +51,9 @@
   </nav>
 
   <div class="text">
-    <h2>Ant Colony Optimization</h2>
+    <h2>Ant Colony</h2>
     <center>
-      <p>Ant Colony Optimization is an interesting way to obtain near-optimum solutions to the <a
+      <p>Ant Colony Optimization (ACO) is an interesting way to obtain near-optimum solutions to the <a
           href="../travelling_salesman/simulation.html">Travelling Salesman
           Problem (TSP)</a>. It involves utilizing multi-agent ants to explore all possible solutions and converge upon
         a short path with a combination of a priori knowledge and pheromone trails deposited by other ants</p>
@@ -167,6 +168,17 @@
       <li>
         When points are chosen randomly, \( (\alpha, \beta) = (1, 1) \) seem to give the best results.
       </li>
+    </ol>
+
+    <br>
+    <hr>
+
+    <ol>
+      <li>This simulation is computationally complex and will lag on lower-end devices</li>
+      <li>You can change the evaporation factor, pheromone influence and <em>a priori</em> influence during the
+        simulation to see how it affects the solution space.</li>
+      <li>On the other hand, changing the number of ants during the simulation will cause it to restart</li>
+      <li>Related: <a href="../travelling_salesman/simulation.html">Solving TSP by brute force</a></li>
     </ol>
 
     <br>

@@ -141,7 +141,7 @@ function updateParams(variable) {
     }
     if (variable == "apr") {
         apriori_influence = apr_input.value;
-        apr_display.innerHTML = `Apriori influence (&beta;): ${apriori_influence}`;
+        apr_display.innerHTML = `<em>A priori</em> influence (&beta;): ${apriori_influence}`;
     }
 }
 

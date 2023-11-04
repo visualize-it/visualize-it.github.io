@@ -207,7 +207,13 @@ function initParams() {
     points = [];
     optimum_solution = [];
 
-    near_cutoff = 7;
+    if (mobile) {
+        near_cutoff = 5;
+    }
+    else {
+        near_cutoff = 7;
+    }
+    
     running = false;
     num_iterations = 200;
     rate = canvas_width;

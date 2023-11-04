@@ -72,7 +72,9 @@
             <button class="btn purple darken-4" onclick="randomPoint()">Random point</button>
             <button class="btn purple darken-4" onclick="clearPoints()">Clear points</button>
             <hr>
-            <b>Optimization Parameters:</b> <br>
+            <button class="btn purple darken-4" onclick="initSimulation()">Start simulation</button> <br> <br>
+            <b>Optimization Parameters:</b>
+            <br>
             <span id="num-display"></span>
             <input id="num-input" type="range" min="1" max="100" step="1" oninput="updateParams('num')"
               onchange="updateParams('num')">
@@ -85,7 +87,6 @@
             <span id="apr-display"></span>
             <input id="apr-input" type="range" min="0" max="1" step="0.1" oninput="updateParams('apr')"
               onchange="updateParams('apr')">
-            <button class="btn purple darken-4" onclick="initSimulation()">Start simulation</button>
           </center>
         </div>
       </div>

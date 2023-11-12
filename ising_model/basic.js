@@ -51,7 +51,6 @@ function step() {
     if (!paused) {
         update();
     }
-    render();
     animate(step);
 }
 

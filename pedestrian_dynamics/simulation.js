@@ -1,8 +1,10 @@
 let boids = [];
-let num_boids, boid_move_speed, boid_turn_speed, rightward_bias;
+let num_boids, boid_turn_speed, rightward_bias;
 let spoke_angle, spoke_length;
-let repulsion_radius;
+let repulsion_radius, border_padding;
+let boid_mean_speed, boid_speed_variance;
 
+let blue_flow, red_flow;
 
 function update() {
     let boid, other_boid, distance_between;
@@ -57,9 +59,29 @@ function update() {
         }
     }
 
+    num_blue = 0;
+    num_red = 0;
+    blue_flow = 0;
+    red_flow = 0;
+
     for (let boid of boids) {
         boid.update();
+
+        if (boid.right_probability > rightward_bias) {
+            blue_flow += boid.distance;
+            num_blue += 1;
+        }
+        else {
+            red_flow += boid.distance;
+            num_red += 1;
+        }
     }
+
+    blue_flow /= num_blue;
+    red_flow /= num_red;
+
+    blue_display.innerHTML = `Blue flow: ${blue_flow.toFixed(2)}`;
+    red_display.innerHTML = `Red flow: ${red_flow.toFixed(2)}`;
 }
 
 function render() {
@@ -68,19 +90,47 @@ function render() {
 
     for (let boid of boids) {
         boid.render();
+
+        if (boid.right_probability > rightward_bias) {
+            blue_flow += boid.distance;
+            num_blue += 1;
+        }
+        else {
+            red_flow += boid.distance;
+            num_red += 1;
+        }
     }
 }
 
 function updateParams(variable) {
+    if (variable == "bias") {
+        rightward_bias = bias_input.value;
+        bias_display.innerHTML = `Rightward bias: ${rightward_bias}`;
 
+        for (let boid of boids) {
+            boid.setPrefDirection();
+        }
+    }
+    if (variable == "variance") {
+        boid_speed_variance = variance_input.value;
+        variance_display.innerHTML = `Speed variance: ${boid_speed_variance}`;
+
+        for (let boid of boids) {
+            let speed = boid_mean_speed + boid_speed_variance * (Math.random() - 0.5);
+            boid.setMaxSpeed(speed);
+        }
+    }
 }
 
 function initParams() {
+    updateParams("bias");
+    updateParams("variance");
+
     num_boids = 100;
-    boid_move_speed = 1.5;
+    boid_mean_speed = 1.5;
     boid_turn_speed = 2 * Math.PI / 180;
-    rightward_bias = 0.5;
     spoke_angle = 150 * Math.PI / 180;
+    border_padding = 5;
 
     if (mobile) {
         spoke_length = 5;
@@ -91,18 +141,40 @@ function initParams() {
 
     repulsion_radius = spoke_length * 4;
 
-    for (let new_boid = 0; new_boid < num_boids; new_boid++) {
+    makeBoids();
+}
+
+function addBoids(num) {
+    num_boids += num;
+    for (let new_boid = 0; new_boid < num; new_boid++) {
         let x = Math.random() * canvas_width;
-        let y = 1 + Math.random() * (canvas_height - 2);
+        let y = border_padding + Math.random() * (canvas_height - 2 * border_padding);
         let position_vector = new Vector(x, y);
         let right_probability = Math.random();
+        let speed = boid_mean_speed + boid_speed_variance * (Math.random() - 0.5);
 
-        let new_boid = new Boid(position_vector, right_probability);
+        let new_boid = new Boid(position_vector, right_probability, speed);
         boids.push(new_boid);
     }
+}
 
-    // let position_vector = new Vector(canvas_width / 2, 1);
-    // let right_probability = Math.random();
-    // let new_boid = new Boid(position_vector, right_probability);
-    // boids.push(new_boid);
+function removeBoids(num) {
+    if (num > num_boids) {
+        return;
+    }
+    
+    num_boids -= num;
+    for (let remove_boid = 0; remove_boid < num; remove_boid++) {
+        boids.pop();
+    }
+}
+
+function makeBoids() {
+    clearBoids();
+    addBoids(100);
+}
+
+function clearBoids() {
+    num_boids = 0;
+    boids = [];
 }

@@ -1,8 +1,19 @@
 class Boid {
-    constructor(position, right_probability) {
+    constructor(position, right_probability, max_speed) {
         this.position = position;
         this.right_probability = right_probability;
+        this.max_speed = max_speed;
+        this.walking_speed = max_speed;
+        this.setPrefDirection();
+        this.distance = 0;
+    }
 
+    setMaxSpeed(speed) {
+        this.max_speed = speed;
+        this.walking_speed = speed;
+    }
+
+    setPrefDirection() {
         if (this.right_probability < rightward_bias) {
             this.pref_velocity = new Vector(1, 0);
         }
@@ -11,13 +22,12 @@ class Boid {
         }
 
         this.velocity = this.pref_velocity;
-        this.walking_speed = boid_move_speed;
     }
 
     setVelocity(req_velocity, num_repel) {
         if (num_repel == 0) {
             this.velocity = this.pref_velocity;
-            this.walking_speed = (1.05 * this.walking_speed) % boid_move_speed;
+            this.walking_speed = (1.05 * this.walking_speed) % this.max_speed;
         }
 
         let current_heading = this.velocity.getHeading();
@@ -41,8 +51,8 @@ class Boid {
         this.velocity = Vector.fromHeading(current_heading);
         this.walking_speed -= 0.01 * this.walking_speed;
         
-        if (this.walking_speed < boid_move_speed / 2) {
-            this.walking_speed = boid_move_speed / 2;
+        if (this.walking_speed < this.max_speed / 2) {
+            this.walking_speed = this.max_speed / 2;
         }
     }
 
@@ -58,12 +68,14 @@ class Boid {
             this.position.x = 0;
         }
 
-        if (this.position.y < 1) {
-            this.position.y = 1;
+        if (this.position.y < border_padding) {
+            this.position.y = border_padding;
         }
-        else if (this.position.y > canvas_height - 1) {
-            this.position.y = canvas_height - 2;
+        else if (this.position.y > canvas_height - border_padding) {
+            this.position.y = canvas_height - border_padding;
         }
+
+        this.distance = -Math.cos(this.velocity.getHeading());
     }
 
     render() {

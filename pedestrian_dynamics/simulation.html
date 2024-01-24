@@ -23,7 +23,6 @@
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
-
   <!-- CSS -->
   <link rel="stylesheet" href="../style.css" />
 </head>
@@ -59,7 +58,21 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          <button class="btn waves-effect waves-light" id="pause-button" onclick="pauseToggle()">Toggle Pause</button>
+          <center>
+            <span id="blue-display" style="font-family: monospace">Blue flow:</span> <br>
+            <span id="red-display" style="font-family: monospace">Red flow:</span> <br> <br>
+            <button class="btn purple darken-4" id="pause-button" onclick="pauseToggle()">Pause</button>
+            <button class="btn purple darken-4" id="reset-button" onclick="makeBoids()">Restart</button>
+            <hr>
+            <br>
+            <span id="bias-display">Rightward bias:</span>
+            <input type="range" min="0" max="1" step="0.01" value="0.5" id="bias-input" onchange="updateParams('bias')" oninput="updateParams('bias')">
+            <span id="variance-display">Speed variance:</span>
+            <input type="range" min="0" max="1" step="0.01" value="0.5" id="variance-input" onchange="updateParams('variance')" oninput="updateParams('variance')">
+            <button class="btn purple darken-4" id="add-button" onclick="addBoids(5)">Add (5)</button>
+            <button class="btn purple darken-4" id="remove-button" onclick="removeBoids(5)">Remove (5)</button>
+            <button class="btn purple darken-4" id="clear-button" onclick="clearBoids()">Clear</button>
+          </center>
         </div>
       </div>
     </div>

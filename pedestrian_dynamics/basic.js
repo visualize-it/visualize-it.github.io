@@ -12,11 +12,22 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+
+let bias_input = document.getElementById("bias-input");
+let bias_display = document.getElementById("bias-display");
+
+let variance_input = document.getElementById("variance-input");
+let variance_display = document.getElementById("variance-display");
+
+let blue_display = document.getElementById("blue-display");
+let red_display = document.getElementById("red-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.4 * screen_width;
+    canvas_width = 0.45 * screen_width;
 }
 canvas_height = canvas_width / 1.618;
 
@@ -45,7 +56,8 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    bias_input.value = 0.5;
+    variance_input.value = 0;
 }
 
 let click_x, click_y, pressed;
@@ -126,5 +138,17 @@ function getTouchPosition(canvas, event) {
 }
 
 function pauseToggle() {
-    paused = !paused;
+    if (paused) {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+    else {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
+}
+
+function restart() {
+    boids = [];
+
 }

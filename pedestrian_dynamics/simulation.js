@@ -5,9 +5,6 @@ let repulsion_radius, border_padding;
 let boid_mean_speed, boid_speed_variance;
 let blue_flow, red_flow;
 
-let obstacle_state;
-let obstacle_gap, obstacle_padding;
-
 function update() {
     let boid, other_boid, distance_between;
     let relative_position = new Vector(0, 0);
@@ -110,12 +107,6 @@ function render() {
             num_red += 1;
         }
     }
-
-    if (obstacle_state) {
-        context.fillStyle = "#666666";
-        context.fillRect((canvas_width - obstacle_padding) / 2, 0, obstacle_padding, (canvas_height - obstacle_gap) / 2);
-        context.fillRect((canvas_width - obstacle_padding) / 2, (canvas_height + obstacle_gap) / 2, obstacle_padding, (canvas_height - obstacle_gap) / 2);
-    }
 }
 
 function updateParams(variable) {
@@ -142,23 +133,24 @@ function initParams() {
     updateParams("bias");
     updateParams("variance");
 
-    num_boids = 100;
-    boid_mean_speed = 1.5;
-    boid_turn_speed = 2 * Math.PI / 180;
     spoke_angle = 150 * Math.PI / 180;
-    border_padding = 5;
-
+    
     if (mobile) {
+        num_boids = 80;
         spoke_length = 5;
+        boid_mean_speed = 0.5;
+        border_padding = 3;
+        boid_turn_speed = 3 * Math.PI / 180;
     }
     else {
+        num_boids = 100;
         spoke_length = 10;
+        boid_mean_speed = 1.5;
+        border_padding = 5;
+        boid_turn_speed = 2 * Math.PI / 180;
     }
 
     repulsion_radius = spoke_length * 4;
-    obstacle_state = false;
-    obstacle_padding = 5;
-    obstacle_gap = 50;
 
     makeBoids();
 }

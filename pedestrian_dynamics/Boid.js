@@ -75,6 +75,19 @@ class Boid {
             this.position.y = canvas_height - border_padding;
         }
 
+        if (obstacle_state) {
+            if ((this.position.y < (canvas_height - obstacle_gap) / 2) || (this.position.y > (canvas_height + obstacle_gap) / 2)) {
+                if (this.position.x > (canvas_width - obstacle_padding) / 2 && this.position.x < canvas_width / 2) {
+                    console.log("Shift");
+                    this.position.x = (canvas_width - obstacle_padding) / 2;
+                }
+                else if (this.position.x < (canvas_width + obstacle_padding) / 2 && this.position.x > canvas_width / 2) {
+                    console.log("Shift");
+                    this.position.x = (canvas_width + obstacle_padding) / 2;
+                }
+            }
+        }
+
         this.distance = -Math.cos(this.velocity.getHeading());
     }
 

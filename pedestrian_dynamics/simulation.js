@@ -3,8 +3,10 @@ let num_boids, boid_turn_speed, rightward_bias;
 let spoke_angle, spoke_length;
 let repulsion_radius, border_padding;
 let boid_mean_speed, boid_speed_variance;
-
 let blue_flow, red_flow;
+
+let obstacle_state;
+let obstacle_gap, obstacle_padding;
 
 function update() {
     let boid, other_boid, distance_between;
@@ -30,9 +32,15 @@ function update() {
 
                 if (distance_between < repulsion_radius) {
                     relative_position = Vector.subtract(boid.position, other_boid.position);
-                    relative_position.scale(100 * Math.exp(1 / distance_between));
+                    relative_position.scale(100 / distance_between);
                     repulsion_vector.add(relative_position);
-                    num_repel += 1;
+                    
+                    if (boid.pref_velocity.x * other_boid.pref_velocity.x < 0) {
+                        num_repel += 2;
+                    }
+                    else {
+                        num_repel += 1;
+                    }
                 }
             }
         }
@@ -42,11 +50,13 @@ function update() {
             relative_position = new Vector(0.01, 1);
             relative_position.scale(100 / boid.position.y);
             repulsion_vector.add(relative_position);
+            num_repel += 1;
         }
         else if (boid.position.y > canvas_height - repulsion_radius) {
             relative_position = new Vector(0.01, -1);
-            relative_position.scale(1 / (canvas_height - boid.position.y));
+            relative_position.scale(100 / (canvas_height - boid.position.y));
             repulsion_vector.add(relative_position);
+            num_repel += 1;
         }
 
         if (num_repel != 0) {
@@ -100,6 +110,12 @@ function render() {
             num_red += 1;
         }
     }
+
+    if (obstacle_state) {
+        context.fillStyle = "#666666";
+        context.fillRect((canvas_width - obstacle_padding) / 2, 0, obstacle_padding, (canvas_height - obstacle_gap) / 2);
+        context.fillRect((canvas_width - obstacle_padding) / 2, (canvas_height + obstacle_gap) / 2, obstacle_padding, (canvas_height - obstacle_gap) / 2);
+    }
 }
 
 function updateParams(variable) {
@@ -140,6 +156,9 @@ function initParams() {
     }
 
     repulsion_radius = spoke_length * 4;
+    obstacle_state = false;
+    obstacle_padding = 5;
+    obstacle_gap = 50;
 
     makeBoids();
 }

@@ -52,6 +52,13 @@
   <div class="text">
     <h2>Pedestrian Dynamics</h2>
 
+    <center>
+      <p>The blue colored boids want to go left. The red colored boids want to go right. All boids want to avoid
+        collisions. These simple rules and interactions can give rise to lane formation and phantom traffic jams, as
+        showcased by this simulation.</p>
+    </center>
+    <br>
+
     <div class="container" style="width:90%">
       <div class="row">
         <div class="col s12 l8">
@@ -66,16 +73,64 @@
             <hr>
             <br>
             <span id="bias-display">Rightward bias:</span>
-            <input type="range" min="0" max="1" step="0.01" value="0.5" id="bias-input" onchange="updateParams('bias')" oninput="updateParams('bias')">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" id="bias-input" onchange="updateParams('bias')"
+              oninput="updateParams('bias')">
             <span id="variance-display">Speed variance:</span>
-            <input type="range" min="0" max="1" step="0.01" value="0.5" id="variance-input" onchange="updateParams('variance')" oninput="updateParams('variance')">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" id="variance-input"
+              onchange="updateParams('variance')" oninput="updateParams('variance')">
             <button class="btn purple darken-4" id="add-button" onclick="addBoids(5)">Add (5)</button>
             <button class="btn purple darken-4" id="remove-button" onclick="removeBoids(5)">Remove (5)</button>
             <button class="btn purple darken-4" id="clear-button" onclick="clearBoids()">Clear</button>
+            <br> <br>
+            <!-- <button class="btn purple darken-4" id="obstacle-button" onclick="obstacleToggle()">Place Bottleneck</button> -->
           </center>
         </div>
       </div>
     </div>
+    <hr>
+    <h3>Phenomena</h3>
+    <ol>
+      <li>
+        <b>Lane formation:</b> Eventually, the boids will forms lanes such that all boids in the same lane are
+        travelling in the same direction. Lane formation happens because boids keep steering away from boids coming in
+        the opposite direction, until they reach a state wherein they no longer encounter opposing boids (that is, in
+        a lane). A critical number of boids is required for lane formation, below which there is just not enough
+        interaction to faciliate lane formation. The size of the "privacy zone" also plays a role here. The number of
+        lanes possible depends on the width of the pathway. If there is a bias in direction, then the minority boids
+        may take longer to form their own lanes. A high variance in walking speed impedes the formation of lanes, as
+        described in the next point.
+      </li>
+      <br>
+      <li>
+        <b>Phantom traffic jams:</b> A congestion is called a phantom traffic jam if there was no long-term inertial
+        cause (example: vehicle break down, obstacles on road, etc) behind it. They typically happen because vehicles
+        decelerates too much (to take a turn, to avoid coming too close to the front vehicle, etc), which causes the
+        vehicle behind it to decelerate, and so on. This causes a "shockwave" of deceleration to travel backwards and is
+        resolved only when the last car in the chain can safely chose not to decelerate. In this simulation, phantom
+        traffic jams are caused when there is high variance in speed. The faster boids will have to decelerate and turn
+        in order to get ahead of the slower boids, and this obstructs the movement of the surrounding boids. This also
+        obstructs formation of lanes. In real-life, however, phantom traffic jams happen even when lanes are enforced by
+        traffic rules.
+      </li>
+    </ol>
+
+    <br>
+    <hr>
+    <br>
+
+    <b>Note:</b>
+    <ol>
+      <li>The model in this simulation is inspired from <a
+          href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.51.4282" target="_blank">this paper</a>.</li>
+      <li>The boundary condition is periodic. However, interactions don't happen across the boundary. This is to
+        simulate the effect of entering a new road.</li>
+      <li>If all boids are moving in same direction, and if variance is maximized, then flow decreases. This effect is
+        more pronounced at higher densities. This observation has been vaguely connected to phantom traffic jams.</li>
+      <li>Boids also steer away from the boundaries</li>
+      <li>This simulation may lag on lower end devices</li>
+      <li>Related: <a href="../collective_behaviour/simulation.html">Collective Behaviour</a>, <a
+          href="../vicsek_model/simulation.html">Vicsek Model</a></li>
+    </ol>
 
     <br>
     <hr>

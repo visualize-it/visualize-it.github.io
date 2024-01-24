@@ -13,6 +13,7 @@ let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
 let pause_button = document.getElementById("pause-button");
+let obstacle_button = document.getElementById("obstacle-button");
 
 let bias_input = document.getElementById("bias-input");
 let bias_display = document.getElementById("bias-display");
@@ -148,7 +149,13 @@ function pauseToggle() {
     }
 }
 
-function restart() {
-    boids = [];
-
+function obstacleToggle() {
+    if (obstacle_state) {
+        obstacle_state = false;
+        obstacle_button.innerHTML = "Place bottleneck";
+    }
+    else {
+        obstacle_state = true;
+        obstacle_button.innerHTML = "Remove bottleneck";
+    }
 }

@@ -33,6 +33,10 @@ class Vector {
         this.y *= scale;
     }
 
+    static copy(vector) {
+        return new Vector(vector.x, vector.y);
+    }
+
     static add(vector1, vector2) {
         return new Vector(vector1.x + vector2.x, vector1.y + vector2.y);
     }

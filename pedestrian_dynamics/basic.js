@@ -124,3 +124,7 @@ function getTouchPosition(canvas, event) {
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
 }
+
+function pauseToggle() {
+    paused = !paused;
+}

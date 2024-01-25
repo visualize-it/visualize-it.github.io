@@ -136,11 +136,12 @@ function initParams() {
     spoke_angle = 150 * Math.PI / 180;
     
     if (mobile) {
-        num_boids = 80;
+        num_boids = 100;
         spoke_length = 5;
-        boid_mean_speed = 0.5;
+        boid_mean_speed = 0.6;
         border_padding = 3;
         boid_turn_speed = 3 * Math.PI / 180;
+        repulsion_radius = spoke_length * 3.5;
     }
     else {
         num_boids = 100;
@@ -148,9 +149,8 @@ function initParams() {
         boid_mean_speed = 1.5;
         border_padding = 5;
         boid_turn_speed = 2 * Math.PI / 180;
+        repulsion_radius = spoke_length * 4;
     }
-
-    repulsion_radius = spoke_length * 4;
 
     makeBoids();
 }

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Collective Behaviour | Visualize It</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keyword"
+    content="collective behaviour, flocking behaviour, interactive, boids, boids simulation, couzin model">
+  <meta name="og:image"
+    content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/collective_behaviour.webp">
+
+  <!-- Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="utils.js" defer></script>
+  <script src="basic.js" defer></script>
+  <script src="user_input.js" defer></script>
+  <script src="Vector.js" defer></script>
+  <script src="Boid.js" defer></script>
+  <script src="tests.js" defer></script>
+  <script src="predefs.js" defer></script>
+  <script src="simulation.js" defer></script>
+
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../style.css" />
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M95CKRP8HB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-M95CKRP8HB');
+</script>
+
+<body>
+  <nav class="nav-extended" style="background:black; margin-top: 0mm">
+    <div class="nav-wrapper">
+      <h1 id="main-heading">Visualize It</h1>
+    </div>
+    <div class="nav-content">
+      <ul class="tabs tabs-transparent tabs-fixed-width">
+        <li class="tab"><a href="../index.html" style="font-size: larger;">Home</a></li>
+        <li class="tab"><a href="../about.html" style="font-size: larger;">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+
+<div class="text">
+  <h2>Collective Behaviour</h2>
+
+  <center>
+    <p>Basic interactions like repulsion, orientation and attraction can operate to different extents and give rise to a
+      variety of dynamical behaviours.</p>
+  </center>
+
+  <div class="container" style="width: 90%">
+    <div style="background:black; padding: 15px; border: 2px red solid;">
+      <center>
+        <b>This real-time simulation is computationally complex and may induce unresponsiveness
+          on lower-end devices</b>
+      </center>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col s12 l7">
+        <canvas id="canvas"></canvas>
+        <br>
+      </div>
+      <div class="col s12 l5">
+        <center>
+          <span class="jittery" id="polar-display"></span> <br>
+          <span class="jittery" id="ang-display">Group angular momentum: </span>
+          <hr>
+          <p id="num-display"></p>
+          <button class="btn purple darken-4" onclick="addBoids()">Add</button>
+          <button class="btn purple darken-4" onclick="removeBoids()">Remove</button>
+          <button class="btn purple darken-4" onclick="clearBoids()">Clear</button>
+          <hr>
+          <div class="col s12 l6">
+            <span id="repulsion-display"></span>
+            <input id="repulsion-input" type="range" min="0.5" max="5" step="0.1" oninput="updateParams('repulsion')"
+              onchange="updateParams('repulsion')">
+
+            <span id="orientation-display"></span>
+            <input id="orientation-input" type="range" min="1" max="15" step="0.2" oninput="updateParams('orientation')"
+              onchange="updateParams('orientation')">
+
+            <span id="attraction-display"></span>
+            <input id="attraction-input" type="range" min="1" max="15" step="0.2" oninput="updateParams('attraction')"
+              onchange="updateParams('attraction')">
+          </div>
+          <div class="col s12 l6">
+            <span id="moving-speed-display"></span>
+            <input id="moving-speed-input" type="range" min="1" max="10" step="0.2"
+              oninput="updateParams('moving-speed')" onchange="updateParams('moving-speed')">
+
+            <span id="turning-speed-display"></span>
+            <input id="turning-speed-input" type="range" min="0" max="20" step="1"
+              oninput="updateParams('turning-speed')" onchange="updateParams('turning-speed')">
+
+            <span id="noise-display"></span>
+            <input id="noise-input" type="range" min="0" max="20" step="1" oninput="updateParams('noise')"
+              onchange="updateParams('noise')">
+          </div>
+
+          <hr>
+
+          <div class="col s12 l6">
+            <span id="blind-display"></span>
+            <input id="blind-input" type="range" min="0" max="270" step="10" oninput="updateParams('blind')"
+              onchange="updateParams('blind')">
+          </div>
+
+          <div class="col s12 l6">
+            <button id="reflect-button" class="btn purple darken-4" onclick="toggleReflection()"
+              style="margin-top: 20px;">Reflection: On</button>
+          </div>
+
+          <hr>
+
+          <button id="pause-button" onclick="pauseToggle()" class="btn purple darken-4">Pause</button>
+          <button onclick="initParams()" class="btn purple darken-4">Restart</button>
+
+        </center>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Interactions</h3>
+
+  <p>All boids (a generic term used to indicate agents in collective behaviour) interact with each other via three
+    interactions:</p>
+
+  <ol>
+    <li>
+      <b>Repulsion:</b> <br>
+      When boids come too close, they move away from each other. Suppose there are \(n_r\) boids within the repulsion
+      radius of a particular boid \(i\). If \(\vec{d}\) represents their direction, and
+      \(\vec{c}\) represents their position, then repulsion dictates:
+      \[ \vec{d}_{i, r} (t + \tau) = - \sum_{j \not = i}^{n_r} \frac{\vec{c}_j (t) - \vec{c}_i (t)}{|\vec{c}_j (t) -
+      \vec{c}_i (t)|} \]
+    </li>
+    <li>
+      <b>Orientation:</b> <br>
+      Boids tend to orient themselves along the direction of their neighbours. Suppose there are \(n_o\) boids within
+      the orientation radius of a particular boid \(i\). If \(\vec{v}\) represents their velocity, then orientation
+      dictates:
+      \[ \vec{d}_{i, o} (t + \tau) = \sum_{j = 1}^{n_o} \frac{\vec{v_j} (t)}{|\vec{v_j} (t) |}\]
+    </li>
+    <li>
+      <b>Attraction:</b> <br>
+      Boids tend to move towards the centre of mass of their neighbours. Suppose there are \(n_a\) boids within the
+      attraction radius of a particular boid \(i\). then attraction operates exactly opposite to orientation:
+      \[ \vec{d}_{i, a} (t + \tau) = \sum_{j = 1}^{n_r} \frac{\vec{c}_j (t) - \vec{c}_i (t)}{|\vec{c}_j (t) -
+      \vec{c}_i (t)|} \]
+    </li>
+  </ol>
+
+  <p>
+    If there are any boids in the repulsion zone of a boid, then the boid only follows the repulsion rule. If there are
+    boids that lie in the attraction as well as the orientation zone, then the boid averages the result of both
+    interactions. The boids can turn only at a limited angle \( \theta \) in every time step. Further, there is a blind
+    angle \( \alpha \) behind each boid where it cannot perceive other boids. Every boid moves with the same velocity
+    \(v\) along its current direction. The intended direction of every boid is perturbed by random noise. This
+    represents errors in judgement made by the boids.
+  </p>
+
+  <hr>
+
+  <h3>Metrics</h3>
+
+  <p>
+    The following quantities can be used to quantify the collective motion of boids:
+  </p>
+
+  <ol>
+    <li>
+      <b>Group polarization:</b> <br>
+      This quantifies the degree of overall alignment of the boids. If every boid is moving along the same direction,
+      then group polarization is 1. If all boids are moving along random directions, then group polarization is 0.
+      \[ p (t) = \frac{1}{N} \left| \sum_{i}^{N} \vec{v}_i (t) \right| \]
+    </li>
+    <li>
+      <b>Group angular momentum:</b> <br>
+      Measures the degree of rotation of the group along their center:
+      \[ m (t) = \frac{1}{N} \left| \sum_{i}^{N} \vec{r}_{ic} (t) \times \vec{v}_i (t) \right| \]
+      Here, \( \vec{r}_{ic} = \vec{c}_i - \vec{c}_{group} \) is the displacement vector of the \(i^{th}\) boid from the
+      center of mass of the group, which is given by:
+      \[ \vec{c}_{group} (t) = \sum_{i = 1}^{N} \vec{c}_{i} (t) \]
+    </li>
+  </ol>
+
+  <hr>
+
+  <h3>Dynamical Behaviours</h3>
+
+  <p>
+    Depending on the strengths of various interactions, as well as other parameters, the boids can exhibit four
+    different kinds of dynamical behaviour:
+  </p>
+
+  <ol>
+    <li>
+      <b>Swarming:</b> <br>
+      Characterised by low polarization and low angular momentum <br>
+      This behaviour is seen when attraction is the dominant force, and there is negligible orientation. Boids rotate in
+      random directions, repeatedly flying into the center of the group and then emerging out. This sort of
+      behaviour is often seen in insects.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="swarm()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Swirling:</b> <br>
+      Characterised by low polarization and high angular momentum <br>
+      This behaviour is observed when orientation is low whereas attraction is relatively high. Boids
+      revolve around a common point in the same direction. This behaviour is seen in fish. <br>
+      <b>It may take some time for swirls to emerge</b>.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="swirl()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Dynamic parallel grouping:</b> <br>
+      Characterised by high polarisation and low angular momentum <br>
+      This behaviour is observed when orientation is intermediate whereas attraction can be either intermediate or
+      relatively high. Boids move in groups called 'flocks'. Seen in birds and fish.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="dynamicParallel()">Observe</button>
+      </center>
+    </li>
+    <br>
+    <li>
+      <b>Highly parallel grouping:</b> <br>
+      Characterised by very high polarisation and low angular momentum <br>
+      This behaviour is seen when orientation is high. <br>
+      <b>It may take some time for highly parallel groupings to emerge</b>.
+      <br> <br>
+      <center>
+        <button class="btn purple darken-4" onclick="highlyParallel()">Observe</button>
+      </center>
+    </li>
+  </ol>
+
+
+  <br>
+  <hr>
+  <br>
+
+  <b>Note:</b>
+
+  <ol>
+    <li>
+      This model is from the paper "Collective Memory and Spatial Sorting in Animal Groups" by Couzin et al. <a
+        href="https://doi.org/10.1006/jtbi.2002.3065">https://doi.org/10.1006/jtbi.2002.3065</a>
+    </li>
+    <li>
+      If reflect is off, boids just teleport from one edge to another. Implementing a periodic boundary condition was
+      not possible owing to the complex nature of this simulation
+    </li>
+    <li>
+      Although this simulation is usable on a mobile, it is preferably viewed on a desktop.
+    </li>
+    <li>
+      Related: <a href="../firefly_synchronization/simulation.html">Firefly Synchronization</a>,
+      <a href="../vicsek_model/simulation.html">Vicsek Model</a>, <a
+        href="../pedestrian_dynamics/simulation.html">Pedestrian Dynamics</a>.
+    </li>
+  </ol>
+
+  <hr>
+
+  <p class="center-align">Developed by ChanRT | Fork me at <a href="https://www.github.com/chanrt">GitHub</a></p>
+</div>
+
+</html>

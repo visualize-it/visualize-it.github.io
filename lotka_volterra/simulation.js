@@ -206,10 +206,10 @@ function newGrid() {
 
 function initParams() {
     if (mobile) {
-        pixel_size = 3;
+        pixel_size = 2;
     }
     else {
-        pixel_size = 5;
+        pixel_size = 3;
     }
     
     length = Math.floor(canvas_width / pixel_size);

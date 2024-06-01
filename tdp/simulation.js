@@ -201,10 +201,10 @@ function updateParams(variable) {
 
 function initParams() {
     if (mobile) {
-        n = 30;
+        n = 50;
     }
     else {
-        n = 50;
+        n = 80;
     }
     cell_length = canvas_width / n;
 

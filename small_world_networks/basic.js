@@ -18,6 +18,9 @@ let n_input = document.getElementById("n-input");
 let k_display = document.getElementById("k-display");
 let k_input = document.getElementById("k-input");
 
+let p_display = document.getElementById("p-display");
+let p_input = document.getElementById("p-input");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -52,6 +55,7 @@ window.onload = function () {
 function defaultParams() {
     n_input.value = 20;
     k_input.value = 4;
+    p_input.value = 0;
 }
 
 let click_x, click_y, pressed;

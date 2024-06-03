@@ -30,20 +30,30 @@ function updateParams(variable) {
     if (variable == "n") {
         n = n_input.value;
         n_display.innerHTML = `Number of nodes: ${n}`;
-        k_input.max = n - 1;
 
-        if (k_input.max % 2 == 1) {
-            k_input.max -= 1;
+        if ((n - 1) % 2 == 0) {
+            k_input.max = `${n - 1}`;
         }
+        else {
+            k_input.max = `${n - 2}`;
+        }
+        updateParams("k");
 
         k_display.innerHTML = `Number of edges per node: ${k} (max: ${k_input.max})`;
         constructNetwork();
-        rewireNetwork();
+        p_input.value = 0;
+        updateParams("p");
     }
     if (variable == "k") {
-        k = k_input.value;
+        k = parseInt(k_input.value);
         k_display.innerHTML = `Number of edges per node: ${k} (max: ${k_input.max})`;
         constructNetwork();
+        p_input.value = 0;
+        updateParams("p");
+    }
+    if (variable == "p") {
+        p = p_input.value;
+        p_display.innerHTML = `Rewire propensity: ${p}`;
         rewireNetwork();
     }
 }
@@ -71,6 +81,9 @@ function constructNetwork() {
 function rewireNetwork() {
     for (let edge of edges) {
         if (p > edge.rewire_propensity) {
+            if (edge.target.index != edge.original_target.index) {
+                continue;
+            }
             while (true) {
                 let new_target = nodes[Math.floor(Math.random() * n)];
                 if (noDuplicate(edge.source, new_target)) {
@@ -78,6 +91,9 @@ function rewireNetwork() {
                     break;
                 }
             }
+        }
+        else {
+            edge.target = edge.original_target;
         }
     }
 
@@ -89,6 +105,9 @@ function noDuplicate(source, target) {
         if (edge.source == source && edge.target == target) {
             return false;
         }
+        if (edge.source == target && edge.target == source) {
+            return false;
+        }
     }
     return true;
 
@@ -97,7 +116,7 @@ function noDuplicate(source, target) {
 function initParams() {
     updateParams("n");
     updateParams("k");
-    p = 0;
+    updateParams("p");
 
     network_radius = canvas_width / 2.5;
     node_radius = 10;

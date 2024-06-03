@@ -1,6 +1,6 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
 let canvas_width, canvas_height;
-let fps = 1000, paused = false;
+let fps = 24, paused = false;
 let mobile;
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -12,13 +12,19 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let n_display = document.getElementById("n-display");
+let n_input = document.getElementById("n-input");
+
+let k_display = document.getElementById("k-display");
+let k_input = document.getElementById("k-input");
+
 if (mobile) {
-    canvas_width = 0.85 * screen_width;
+    canvas_width = 0.9 * screen_width;
 }
 else {
-    canvas_width = 0.7 * screen_width;
+    canvas_width = 0.4 * screen_width;
 }
-canvas_height = canvas_width / 1.618;
+canvas_height = canvas_width;
 
 canvas.width = canvas_width;
 canvas.height = canvas_height;
@@ -44,7 +50,8 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    n_input.value = 20;
+    k_input.value = 4;
 }
 
 let click_x, click_y, pressed;

@@ -12,6 +12,9 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let c_display = document.getElementById("c-display");
+let l_display = document.getElementById("l-display");
+
 let n_display = document.getElementById("n-display");
 let n_input = document.getElementById("n-input");
 

@@ -61,17 +61,25 @@
         <div class="col s12 l4">
           <center>
             <hr>
+            <b>Calculated Parameters:</b>
+            <br> <br>
+            <span id="c-display"></span> <br>
+            <span id="l-display"></span>
+            <br> <br>
+            <hr>
+            <b>Network Control:</b> <br> <br>
             <span id="n-display"></span>
             <input type="range" id="n-input" min="4" max="50" value="20" step="1" class="slider"
               oninput="updateParams('n')" onchange="updateParams('n')" />
             <br> <br>
             <span id="k-display"></span>
-            <input type="range" id="k-input" min="2" value="4" step="2" class="slider"
+            <input type="range" id="k-input" min="2" value="4" step="1" class="slider"
               oninput="updateParams('k')" onchange="updateParams('k')" />
             <br> <br>
             <span id="p-display"></span>
             <input type="range" id="p-input" min="0" max="1" value="0" step="0.01" class="slider"
               oninput="updateParams('p')" onchange="updateParams('p')" />
+            <hr>
           </center>
         </div>
       </div>

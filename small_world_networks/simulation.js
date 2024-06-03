@@ -38,6 +38,8 @@ function update() {
         c_final /= n;
         c_display.innerHTML = `Clustering coefficient: ${c_final.toFixed(2)}`;
 
+        l_display.innerHTML = `Characteristic length: Calculating...`;
+        
         // calculation of average path length
         let l_final = 0;
         let num_pairs = 0;
@@ -114,7 +116,7 @@ function updateParams(variable) {
         k_input.max = `${n - 1}`;
         updateParams("k");
         k_display.innerHTML = `Number of edges per node: ${k} (max: ${k_input.max})`;
-        
+
         constructNetwork();
         p_input.value = 0;
         updateParams("p");
@@ -206,8 +208,14 @@ function initParams() {
     updateParams("p");
 
     network_radius = canvas_width / 2.5;
-    node_radius = 10;
-    num_bezier_points = 100;
+
+    if (mobile) {
+        node_radius = 5;
+    }
+    else {
+        node_radius = 8;
+    }
+    
 
     constructNetwork();
     rewireNetwork();

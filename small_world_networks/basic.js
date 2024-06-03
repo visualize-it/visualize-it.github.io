@@ -56,7 +56,7 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    n_input.value = 20;
+    n_input.value = 30;
     k_input.value = 4;
     p_input.value = 0;
 }

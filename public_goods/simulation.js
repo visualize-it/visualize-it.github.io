@@ -39,6 +39,22 @@ function update() {
     }
 
     grid = new_grid;
+
+    let num_l = 0, num_c = 0, num_d = 0;
+    for (let row = 0; row < grid_size; row++) {
+        for (let col = 0; col < grid_size; col++) {
+            if (grid[row][col] == 0) {
+                num_l++;
+            }
+            else if (grid[row][col] == 1) {
+                num_c++;
+            }
+            else if (grid[row][col] == 2) {
+                num_d++;
+            }
+        }
+    }
+    disp_params.innerHTML = `Loners: ${num_l} <br> Cooperators: ${num_c} <br> Defectors: ${num_d}`;
 }
 
 function calcFitness() {
@@ -113,21 +129,28 @@ function render() {
 }
 
 function updateParams(variable) {
-
+    if (variable == "r") {
+        r = r_input.value;
+        r_display.innerHTML = `r: ${r}`;
+    }
+    if (variable == "sigma") {
+        sigma = sigma_input.value;
+        sigma_display.innerHTML = `sigma: ${sigma}`;
+    }
 }
 
 function initParams() {
+    updateParams("r");
+    updateParams("sigma");
+
     grid = [];
     neigh = 1;
 
-    sigma = 1;
-    r = 2.2;
-
     if (mobile) {
-        grid_size = 70;
+        grid_size = 100;
     }
     else {
-        grid_size = 200;
+        grid_size = 150;
     }
 
     cell_length = canvas_width / grid_size;

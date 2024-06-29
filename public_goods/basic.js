@@ -12,6 +12,14 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
+let pause_button = document.getElementById("pause-button");
+let disp_params = document.getElementById("disp-params");
+
+let r_input = document.getElementById("r-input");
+let r_display = document.getElementById("r-display");
+let sigma_input = document.getElementById("sigma-input");
+let sigma_display = document.getElementById("sigma-display");
+
 if (mobile) {
     canvas_width = 0.9 * screen_width;
 }
@@ -45,7 +53,8 @@ window.onload = function () {
 }
 
 function defaultParams() {
-    
+    r_input.value = 2.2;
+    sigma_input.value = 1;
 }
 
 let click_x, click_y, pressed;
@@ -123,4 +132,14 @@ function getTouchPosition(canvas, event) {
     var rect = canvas.getBoundingClientRect();
     click_x = event.touches[0].clientX - rect.left;
     click_y = event.touches[0].clientY - rect.top;
+}
+
+function togglePause() {
+    paused =!paused;
+    if (paused) {
+        pause_button.innerHTML = "Resume";
+    }
+    else {
+        pause_button.innerHTML = "Pause";
+    }
 }

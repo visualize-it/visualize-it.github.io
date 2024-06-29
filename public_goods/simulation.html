@@ -57,7 +57,16 @@
           <canvas id="canvas"></canvas>
         </div>
         <div class="col s12 l4">
-          
+          <center>
+            <button id="pause-button" class="btn purple darken-4" onclick="togglePause()">Pause</button>
+            <button class="btn purple darken-4" onclick="initParams()">Restart</button>
+            <p style="font-family: monospace;" id="disp-params"></p>
+            <hr>
+            <span id="r-display"></span>
+            <input id="r-input" type="range" min="0" max="5" step="0.1" oninput="updateParams('r')" onchange="updateParams('r')">
+            <span id="sigma-display"></span>
+            <input id="sigma-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('sigma')" onchange="updateParams('sigma')">
+          </center>
         </div>
       </div>
     </div>

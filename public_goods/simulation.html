@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="keywords" content="">
+  <meta name="keywords" content="game theory, public good, free-rider problem, economics, simulation">
   <meta name="og:image" content="https://github.com/visualize-it/visualize-it.github.io/raw/main/images_webp/">
 
   <!-- Materialize -->
@@ -51,6 +51,17 @@
   <div class="text">
     <h2>Public Goods</h2>
 
+    <p>
+      A public good is anything that is non-excludable and non-rivalous. Best examples of public goods include
+      lighthouses and OTT media services (Netflix, etc). Just because one ship is utilizing a light house does not mean
+      another ship cannot use it, neither does it 'exhaust' the lighthouse. Yet, public goods still require support for
+      establishment and maintenance. For this purpose, governments collect taxes/tolls, and OTT media houses collect
+      monthly subscriptions. However, what happens when system cannot track down the users of the public good? Entities
+      will no longer contribute to the public good and it may collapse. This is known as the free-rider problem (among
+      many other terms). This simulation showcases one way to tackle this problem.
+    </p>
+    <br>
+
     <div class="container" style="width:90%">
       <div class="row">
         <div class="col s12 l8">
@@ -63,13 +74,59 @@
             <p style="font-family: monospace;" id="disp-params"></p>
             <hr>
             <span id="r-display"></span>
-            <input id="r-input" type="range" min="0" max="5" step="0.1" oninput="updateParams('r')" onchange="updateParams('r')">
+            <input id="r-input" type="range" min="0" max="5" step="0.1" oninput="updateParams('r')"
+              onchange="updateParams('r')">
             <span id="sigma-display"></span>
-            <input id="sigma-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('sigma')" onchange="updateParams('sigma')">
+            <input id="sigma-input" type="range" min="0" max="2" step="0.1" oninput="updateParams('sigma')"
+              onchange="updateParams('sigma')">
           </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Description</h3>
+
+    <p>
+      In the above simulation, there are three strategies: loner (green), cooperator (blue) and defector (red). The
+      loner has a constant payoff of \(\sigma\). They neither use nor contribute to the public good because they have
+      their own thing going on. Cooperators and defectors 'participate' in the game. Suppose there are \(S\)
+      participators and \(n_c\) cooperators, then the contribution of these cooperators is multiplied by a factor \(r\)
+      and then distributed amongst all \(S\) participants. Additionally, each cooperator pays a cost of 1 towards the
+      public goods. Hence, the payoff of each strategy are as follows:
+    </p>
+    \[ P_l = \sigma \]
+    \[ P_c = \frac{r n_c}{S} - 1 \]
+    \[ P_d = \frac{r n_c}{S} \]
+    <p>
+      In this simulation, every cell plays the public goods game with its 8 neighbors, and thereafter adopts the
+      strategy of its most successful neighbor. The updates are synchronous. The tunable parameters are \(r\) and
+      \(\sigma\). Some straightforward observations are:
+    </p>
+    <ol>
+      <li>If you want loners to even have a chance of existence, then we require \(\sigma > 0\)</li>
+      <li>In order to make total cooperation better than total defection, we need \(r > 1\)</li>
+    </ol>
+    <p>
+      The dynamics is not only dependent on the above parameters, but also on previous state of the system, and
+      non-extinction of strategies. With \(r = 2.2\) and \(\sigma = 1\), we observe oscillations. This is because it is
+      better to be a defector in a population of cooperators, a loner in a population of defectors, and a cooperator in
+      a population of loners. This rock-paper-scissor interaction makes sure that cooperators always exist, and the
+      public good is always maintained. This kind of continuous evolution, which is required for the system to undergo
+      (even though it comes back to the same state as before), in order to continue 'existing', is called the Red Queen
+      Mechanism.
+    </p>
+
+    <br>
+    <hr>
+
+    <b>Note:</b>
+    <ol>
+      <li>This model was described this Hauert. et al, Science (2002)</li>
+      <li>This simulation is computationally complex and may lag on lower-end devices</li>
+    </ol>
 
     <br>
     <hr>

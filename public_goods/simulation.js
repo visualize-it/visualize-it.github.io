@@ -135,7 +135,7 @@ function updateParams(variable) {
     }
     if (variable == "sigma") {
         sigma = sigma_input.value;
-        sigma_display.innerHTML = `sigma: ${sigma}`;
+        sigma_display.innerHTML = `&sigma;: ${sigma}`;
     }
 }
 

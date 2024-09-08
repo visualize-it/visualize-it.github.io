@@ -7,19 +7,20 @@ function moved() {
     if (pressed) {
         row = Math.floor(click_y / cell_length);
         col = Math.floor(click_x / cell_length);
-        if (!already_toggled[row][col]) {
-            grid[row][col] *= -1;
-            already_toggled[row][col] = true;
+        grid[row][col] = 1;
+
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                if (row + i >= 0 && row + i < num_cells && col + j >= 0 && col + j < num_cells) {
+                    grid[row + i][col + j] = 1;
+                }
+            }
         }
     }
 }
 
 function released() {
-    for (let i = 0; i < num_cells; i++) {
-        for (let j = 0; j < num_cells; j++) {
-            already_toggled[i][j] = false;
-        }
-    }
+
 }
 
 function keyPressed(key) {

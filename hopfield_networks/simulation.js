@@ -46,6 +46,9 @@ function memorize() {
             }
         }
     }
+
+    num_memorized += 1;
+    num_display.innerHTML = "Number of patterns memorized: " + num_memorized;
 }
 
 function recall() {
@@ -82,7 +85,7 @@ function recall() {
         }
         energies.push(energy);
 
-        if (energies.length > 100 && energies[energies.length - 1] >= energies[energies.length - 2]) {
+        if (energies.length > 50 && energies[energies.length - 1] >= energies[energies.length - 2]) {
             break;
         }
     }

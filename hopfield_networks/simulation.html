@@ -50,6 +50,18 @@
 
   <div class="text">
     <h2>Hopfield Networks</h2>
+    <center>
+      <p>
+        A hopfield network is a very simple framework that is capable of learning (memorization) and inference (recall)
+        of patterns. It also features associative memory, in the sense that it can recall the learnt pattern when the
+        given pattern is partial and/or noisy. The below simulation fetures a 35x35 grid which comprises a fully
+        connected network of 1225 nodes. Teach it some patterns (example: numbers) by drawing the pattern and then
+        clicking "memorize". After this, draw the same pattern(s) partially/differently and click on "recall" in order
+        to (hopefully) obtain the learned pattern. Hopfield networks through light on how LLMs may memorize information,
+        and how biological brains may retrieve information.
+      </p>
+    </center>
+    <br>
 
     <div class="container" style="width:90%">
       <div class="row">
@@ -58,15 +70,71 @@
         </div>
         <div class="col s12 l4">
           <center>
-            <button class="btn purple darken-4" onclick="memorize()">Memorize</button>
-            <button class="btn purple darken-4" onclick="recall()">Recall</button>
+            <hr>
+            <b>
+              Draw a pattern on the grid
+              <br>
+              Clear the grid to start over
+            </b>
             <br> <br>
             <button class="btn purple darken-4" onclick="clearGrid()">Clear Grid</button>
             <button class="btn purple darken-4" onclick="clearMemory()">Clear Memory</button>
+            <hr>
+            <span id="num-display">Number of patterns memorized: 0</span> <br> <br>
+            <span>Memory capacity (theoretical): 0.14 N<sup>2</sup> = approx. 170 patterns</span> <br> <br>
+            <button class="btn purple darken-4" onclick="memorize()">Memorize</button>
+            <button class="btn purple darken-4" onclick="recall()">Recall</button>
+            <hr>
           </center>
         </div>
       </div>
     </div>
+
+    <br>
+    <hr>
+
+    <h3>Description</h3>
+
+    <p>
+      The inspiration for Hopfield network comes from spin-glass systems in physics. A hopfield network of \(N\) nodes
+      is a fully connected network. Each node can take either discrete or continuous values. In this case, the nodes
+      are discrete (+/- 1). A pair of nodes connected by an edge with a positive weight have a tendency to correlate,
+      and vice versa. We define the energy of the system as follows:
+      \[ E (\vec{v}) = -\frac{1}{2} \sum_{(i, j)} w_{ij} v_{i} v_{j} \]
+      Here, \(\vec{v}\) is a vector that represents the state of the network and \(w_{ij}\) is the weight of the edge
+      joining the \(i^{th}\) and \(j^{th}\) nodes. Edges are symmetric/undirected. The memorization phase involves
+      tweaking the weights such that the resulting energy landscape features a local minimum at the pattern to be
+      learnt. The recall phase involves starting from a partial/noisy state and tweaking the state of each node until we
+      reach a local minimum.
+      <br> <br>
+      <b>Memorization:</b> with a given training vector \(\vec{v}\), we tweak the weights as follows, in order to make
+      \(\vec{v}\) correspond to a local minimum in the energy landscape:
+      \[ w_{ij} := w_{ij}^{prev} + v_i v_j \]
+      <b>Recall:</b> with an initial partial/noisy vector \(\vec{v}\), we tweak the state of each node as follows, in
+      order to make \(\vec{v}\) descend towards a local minimum in the energy landscape:
+      \[ v_i := \text{sign} \left( \sum_{j} w_{ij} v_j \right) \]
+      The amazing thing is that all the memorization and recall takes place via network interactions, without any
+      centralized mechanism. Hopfield networks shed light on how Large Language Models may hypothetically store memory.
+      They also suggest how biological brains retrieve complete information from incomplete snippets (say, an entire
+      song from a few lyrics). There are many extensions of Hopfield networks, the most prominent one being the
+      Boltzmann machine.
+      <br> <br>
+      The theoretical capacity of a Hopfield network is \(0.14 N^2\) patterns, where \(N\) is the number of nodes. In
+      practice, due to correlations in the patterns stored, the actual capacity may be much lower. Similar patterns may
+      give rise to additional local minima which correspond to an amalgamation of the similar patterns (confusion).
+      Multiple local minimas may lie together, leading to mis-identification.
+    </p>
+
+    <br>
+    <hr>
+
+    <b>Note:</b>
+    <ol>
+      <li>This simulation (particularly the recall phase) is computationally complex and may lag on lower-end devices.</li>
+      <li>For best recall results, use patterns that are dissimilar to each other.</li>
+      <li>Thanks to <a href="https://www.youtube.com/watch?v=1WPJdAW-sFo">this video</a> for providing a wonderful introduction to this topic!</li>
+      <li>Related: <a href="../ising_model/simulation.html">Ising Model</a>, <a href="../gradient_descent/simulation.html">Gradient Descent</a></li>
+    </ol>
 
     <br>
     <hr>

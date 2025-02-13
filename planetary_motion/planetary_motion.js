@@ -32,23 +32,33 @@ function calcScale() {
     scale_display.innerHTML = `Scale: ${scale.toFixed(0)} pixels = ${(3 * getFarthestDistance()).toFixed(2)} length units`;
 }
 
-function update() {
+function update_acceleration() {
     for (let i = 0; i < params.length; i++) {
-        ax = 0;
-        ay = 0;
+        params[i].ax = 0;
+        params[i].ay = 0;
 
         for (let j = 0; j < params.length; j++) {
             if (i != j) {
-                ax += (- G * params[j].m * (params[i].x - params[j].x) / Math.pow(distance(params[i].x, params[i].y, params[j].x, params[j].y), 3));
-                ay += (- G * params[j].m * (params[i].y - params[j].y) / Math.pow(distance(params[i].x, params[i].y, params[j].x, params[j].y), 3));
+                params[i].ax += (- G * params[j].m * (params[i].x - params[j].x) / Math.pow(distance(params[i].x, params[i].y, params[j].x, params[j].y), 3));
+                params[i].ay += (- G * params[j].m * (params[i].y - params[j].y) / Math.pow(distance(params[i].x, params[i].y, params[j].x, params[j].y), 3));
             }
         }
+    }
+}
 
-        params[i].vx += (ax * prec);
-        params[i].vy += (ay * prec);
+/*Applying velocity Verlet integration steps.*/
+function update() {
+    for (let i = 0; i < params.length; i++) {
+        params[i].vx += 0.5*(params[i].ax * prec);
+        params[i].vy += 0.5*(params[i].ay * prec);
 
         params[i].x += (params[i].vx * prec);
         params[i].y += (params[i].vy * prec);
+    }
+    update_acceleration();
+    for (let i = 0; i < params.length; i++) {
+        params[i].vx += 0.5*(params[i].ax * prec);
+        params[i].vy += 0.5*(params[i].ay * prec);
     }
 
     while(trails.length > trails_limit * num_entities) {
@@ -95,8 +105,11 @@ function startSimulation() {
             y: bodies[i].y,
             vx: bodies[i].vx,
             vy: bodies[i].vy,
+            ax: bodies[i].ax,
+            ay: bodies[i].ay,
         });
     }
+    update_acceleration();
 }
 
 function pause() {
@@ -163,6 +176,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 0,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 100,
@@ -170,6 +185,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 10,
+                ax: 0,
+                ay: 0,
             }
         )
         substituteParams();
@@ -186,6 +203,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 0,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 1,
@@ -193,6 +212,8 @@ function phenomena(number) {
                 y: -5,
                 vx: -3,
                 vy: 3,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 1,
@@ -200,6 +221,8 @@ function phenomena(number) {
                 y: 5,
                 vx: 4.5,
                 vy: 0,
+                ax: 0,
+                ay: 0,
             }
         )
         substituteParams();
@@ -216,6 +239,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: -5,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 500,
@@ -223,6 +248,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 5,
+                ax: 0,
+                ay: 0,
             }
         )
         substituteParams();
@@ -239,6 +266,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 0,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 1,
@@ -246,6 +275,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 5,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 1,
@@ -253,6 +284,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 3,
+                ax: 0,
+                ay: 0,
             }
         )
         substituteParams();
@@ -269,6 +302,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 0,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 10,
@@ -276,6 +311,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: 10,
+                ax: 0,
+                ay: 0,
             },
             {
                 m: 10,
@@ -283,6 +320,8 @@ function phenomena(number) {
                 y: 0,
                 vx: 0,
                 vy: -10,
+                ax: 0,
+                ay: 0,
             }
         )
         substituteParams();

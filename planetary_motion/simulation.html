@@ -128,9 +128,7 @@
 
   <h3 class="center-align">Planetary Phenomena</h3>
   <ol>
-    <li><b>Unstable orbit:</b> Here, the planet's total energy is actually positive. Hence it is not actually bound to
-      the star and instead revolves around an unstable orbit before getting ejected. Moreover, the planet is only
-      10 times lighter than the star, causing the star to wobble.
+    <li><b>Precessing orbit:</b> The use of the velocity Verlet integration preserves the total energy of the planetary system. The drifting of the system given the initial conditions is expected. Furthermore, the wobble of the star is also expected due to the planet being only 10 times less massive than its star. While stable in the sense of preserving the total energy (for the default step size) and the shape and size of the orbits, the simulated orbits deviate from their theoretical trajectories in that orbital precession is evident as an artefact of the integration approach. 
       <br> <br>
       <center>
         <button class="btn purple darken-4" onclick="phenomena(1)">Simulate</button>
@@ -164,11 +162,7 @@
     </li>
     <br>
     <li>
-      <b>Planetary dance:</b> The two planets initially revolve symmetrically around the star. However, they come quite
-      close
-      four times and exchange energy during each interaction. The planet that continually loses energy occupies
-      a lower orbit and eventually gets ejected whereas the planet that continually gains energy settles in an highly
-      elliptical orbit.
+      <b>Planetary dance:</b> The two planets revolve symmetrically around the star, staying in stable (but precessing) orbits.
       <br> <br>
       <center>
         <button class="btn purple darken-4" onclick="phenomena(5)">Simulate</button>

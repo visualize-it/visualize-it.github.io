@@ -125,10 +125,11 @@
     <li>
       <b>Dynamics</b> <br>
       <p>
-        The motion of nuclei obtained using the following equations:
-        \[ a = F / m \]
-        \[ v(t + \Delta t) = v(t) + a \Delta t \]
-        \[ x(t + \Delta t) = x(t) + v(t + \Delta t) \Delta t \]
+        The motion of nuclei obtained using the following Verlet method updates:
+        \[ v(t + 0.5\Delta t) = v(t) + 0.5 a(t) \Delta t \]
+        \[ x(t + \Delta t) = x(t) + v(t + 0.5\Delta t) \Delta t \]
+        \[ a(t + \Delta t) = F(x(t + \Delta t)) / m \]
+        \[ v(t + \Delta t) = v(t+0.5\Delta t) + 0.5 a(t + \Delta t) \Delta t \]
         Where \( \Delta t = 10^{-3} \ units \). Further, when a nucleus moves through a heated cell, it gets agitated,
         resulting in an increase in it's velocity. Lighter nuclei are more influenced by heat than heavier nuclei.
       </p>

@@ -198,7 +198,7 @@ function getColor(group) {
         case 4:
             return "#aaaaaa";
         case 5:
-            return "#ffcocb"
+            return "#ff00ff";
     }
 }
 

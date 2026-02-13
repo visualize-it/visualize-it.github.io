@@ -228,6 +228,7 @@ function makeScene() {
         }
         nuclei.push(new Nucleus(x, y, 1, 1, 100));
     }
+    internuclearInteractions();
 }
 
 function makeGrid() {

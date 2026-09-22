@@ -40,7 +40,7 @@ let dt = 0.001;
 
 function update() {
     for (let nucleus of nuclei) {
-        nucleus.update();
+        nucleus.update_init();
     }
 
     for(let fusion_event of fusion_events) {
@@ -52,6 +52,10 @@ function update() {
 
     if(pressed) {
         heatUp();
+    }
+
+    for (let nucleus of nuclei) {
+        nucleus.update_finish();
     }
 
     frame++;
@@ -224,6 +228,7 @@ function makeScene() {
         }
         nuclei.push(new Nucleus(x, y, 1, 1, 100));
     }
+    internuclearInteractions();
 }
 
 function makeGrid() {

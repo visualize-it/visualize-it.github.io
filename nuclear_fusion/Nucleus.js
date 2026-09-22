@@ -15,9 +15,9 @@ class Nucleus {
 
         this.undefined_safeguard = true;
     }
-    update() {
-        this.vx += this.ax * dt;
-        this.vy += this.ay * dt;
+    update_init() {
+        this.vx += 0.5*this.ax * dt;
+        this.vy += 0.5*this.ay * dt;
 
         this.agitate();
 
@@ -40,9 +40,12 @@ class Nucleus {
             this.vy = -Math.abs(this.vy);
             this.y = canvas_height - this.radius;
         }
-
         this.ax = 0;
         this.ay = 0;
+    }
+    update_finish() {
+        this.vx += 0.5*this.ax * dt;
+        this.vy += 0.5*this.ay * dt;
     }
     applyForce(force_x, force_y) {
         if(this.undefined_safeguard) {
@@ -85,7 +88,7 @@ class Nucleus {
             this.color = "#0000ff";
         }
         else if(this.mass == 2) {
-            this.color = "#00ff00";
+            this.color = "#ffff00";
         }
         else {
             this.color = "#aaaaaa";

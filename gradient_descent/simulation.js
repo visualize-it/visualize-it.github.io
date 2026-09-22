@@ -6,6 +6,11 @@ let degree, thetas;
 
 let alpha = 1;
 
+let iterationCount = 0;
+let manualIterateCount = 0;
+let autoIterating = false;
+let autoIterateInterval = null;
+
 function update() {
     if (points.length > 0) {
         let temp_thetas = [];
@@ -22,8 +27,91 @@ function update() {
         }
 
         thetas = temp_thetas;
+        iterationCount++;
         updateParams("cost");
         updateParams("coeffs");
+        updateParams("iteration");
+    }
+}
+
+function iterateManual() {
+    update();
+    manualIterateCount++;
+    updateParams("iteration");
+}
+
+function toggleAutoIterate() {
+    if (autoIterating) {
+        stopAutoIterate();
+    } else {
+        startAutoIterate();
+    }
+}
+
+function startAutoIterate() {
+    autoIterating = true;
+    document.getElementById("auto-btn").innerHTML = "Stop Auto";
+    autoIterateInterval = setInterval(() => {
+        update();
+    }, 50);
+}
+
+function stopAutoIterate() {
+    autoIterating = false;
+    document.getElementById("auto-btn").innerHTML = "Start Auto";
+    if (autoIterateInterval) {
+        clearInterval(autoIterateInterval);
+        autoIterateInterval = null;
+    }
+}
+
+function updateDegreeFromText() {
+    let textValue = document.getElementById("degree-text-input").value;
+    if (textValue !== "") {
+        let value = Math.max(0, Math.min(100, parseInt(textValue)));
+        document.getElementById("degree-input").value = value;
+        updateParams("degree");
+    }
+}
+
+function applyManualCoefficients() {
+    let input = document.getElementById("manual-coeffs-input").value.trim();
+    if (input === "") {
+        alert("Please enter coefficients separated by commas");
+        return;
+    }
+    
+    try {
+        let coefficients = input.split(",").map(c => parseFloat(c.trim()));
+        
+        // Validate input
+        if (coefficients.length > 100) {
+            alert("Maximum 100 polynomial coefficients allowed");
+            return;
+        }
+        
+        if (coefficients.some(isNaN)) {
+            alert("Invalid input. Please enter numbers separated by commas");
+            return;
+        }
+        
+        // Update degree and thetas
+        degree = coefficients.length - 1;
+        document.getElementById("degree-input").value = degree;
+        document.getElementById("degree-text-input").value = degree;
+        thetas = coefficients;
+        
+        iterationCount = 0;
+        manualIterateCount = 0;
+        
+        updateParams("degree");
+        updateParams("cost");
+        updateParams("coeffs");
+        updateParams("iteration");
+        
+        alert(`Polynomial set with degree ${degree} (${coefficients.length} coefficients)`);
+    } catch (e) {
+        alert("Error parsing coefficients: " + e.message);
     }
 }
 
@@ -67,6 +155,7 @@ function getY(x) {
 function updateParams(variable) {
     if (variable == "degree") {
         degree = Number.parseInt(degree_input.value);
+        degree_text_input.value = degree;
         degree_display.innerHTML = `Degree of fitting polynomial: ${degree}`;
         thetas = [];
         for (let i = 0; i < degree + 1; i++) {
@@ -101,6 +190,10 @@ function updateParams(variable) {
         }
         coeffs_display.innerHTML = `Fitting polynomial: ${string}`;
     }
+    if (variable == "iteration") {
+        let iterationDisplay = document.getElementById("iteration-display");
+        iterationDisplay.innerHTML = `Total Iterations: ${iterationCount} | Manual Clicks: ${manualIterateCount}`;
+    }
 }
 
 function initParams() {
@@ -112,6 +205,7 @@ function initParams() {
     updateParams("alpha");
     updateParams("cost");
     updateParams("coeffs");
+    updateParams("iteration");
 }
 
 function calculateCost() {
@@ -148,13 +242,21 @@ function resetTheta() {
     for (let i = 0; i < thetas.length; i++) {
         thetas[i] = 0;
     }
+    stopAutoIterate();
+    iterationCount = 0;
+    manualIterateCount = 0;
     updateParams("cost");
     updateParams("coeffs");
+    updateParams("iteration");
 }
 
 function clearPoints() {
     points = [];
+    stopAutoIterate();
+    iterationCount = 0;
+    manualIterateCount = 0;
     resetTheta();
     updateParams("cost");
     updateParams("coeffs");
+    updateParams("iteration");
 }

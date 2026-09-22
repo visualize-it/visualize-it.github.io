@@ -73,17 +73,27 @@
             <br> <br>
             <hr>
             <br>
-            <button class="btn purple darken-4" onclick="update()">Iterate</button>
+            <button class="btn purple darken-4" onclick="iterateManual()">Iterate</button>
+            <button class="btn purple darken-4" id="auto-btn" onclick="toggleAutoIterate()">Start Auto</button>
             <button class="btn purple darken-4" onclick="resetTheta()">Reset</button>
+            <p id="iteration-display"></p>
             <p id="cost-display"></p>
             <span id="degree-display"></span>
-            <input id="degree-input" type="range" min="0" max="10" step="1" oninput="updateParams('degree')"
+            <input id="degree-input" type="range" min="0" max="100" step="1" oninput="updateParams('degree')"
               onchange="updateParams('degree')">
+            <input id="degree-text-input" type="number" min="0" max="100" placeholder="Type degree (0-100)" onchange="updateDegreeFromText()">
+            <br><br>
             <span id="alpha-display"></span>
             <input id="alpha-input" type="range" min="-3" max="3" step="0.1" oninput="updateParams('alpha')"
               onchange="updateParams('alpha')">
             <br>
             <p id="coeffs-display"></p>
+            <hr>
+            <b>Manual Polynomial Entry</b>
+            <br>
+            <textarea id="manual-coeffs-input" placeholder="Enter coefficients separated by commas&#10;e.g: 1,2,3 for 1 + 2x + 3x²" style="width: 100%; height: 80px; resize: vertical; font-family: monospace;"></textarea>
+            <br>
+            <button class="btn purple darken-4" onclick="applyManualCoefficients()">Apply Coefficients</button>
           </center>
         </div>
       </div>

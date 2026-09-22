@@ -17,6 +17,7 @@ let coeffs_display = document.getElementById("coeffs-display");
 
 let degree_display = document.getElementById("degree-display");
 let degree_input = document.getElementById("degree-input");
+let degree_text_input = document.getElementById("degree-text-input");
 
 let alpha_display = document.getElementById("alpha-display");
 let alpha_input = document.getElementById("alpha-input");
